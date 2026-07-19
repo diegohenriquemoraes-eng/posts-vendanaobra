@@ -4,7 +4,8 @@ on:
   schedule:
     # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.
     # A folga existe porque o agendador do Actions costuma atrasar alguns minutos.
-    - cron: "45 14 * * *"
+    # 1-5 = segunda a sexta (sem sabado/domingo).
+    - cron: "45 14 * * 1-5"
   workflow_dispatch:
     inputs:
       id:

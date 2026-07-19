@@ -1,7 +1,8 @@
 # posts-vendanaobra
 
-Posta 1 carrossel por dia, **12h em ponto (BRT)**, no feed do Instagram
-**@vendanaobra** (IG User ID `17841470188725651`).
+Posta 1 carrossel por dia útil (**seg–sex, 12h em ponto BRT**) no feed do
+Instagram **@vendanaobra** (IG User ID `17841470188725651`). Sem sábado/domingo
+— decisão do Diego em 19/07/2026.
 
 Cada post são 2 slides com a **mesma frase**: slide 1 fundo branco/letra preta,
 slide 2 fundo preto/letra branca. Referência de formato: `@juliopereira.oficial`
