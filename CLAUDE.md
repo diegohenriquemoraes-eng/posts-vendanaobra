@@ -63,5 +63,37 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
   pano de fundo de uma tese de venda, nunca como assunto do post.
 - Escrever "inteligência artificial" por extenso — "IA" fica seco no slide.
 - Português impecável — o banco é revisado à mão, não gerado na hora.
-- Sem hashtag, sem emoji, sem CTA de venda no slide.
-- A legenda do post no Instagram é a própria frase (nada além dela).
+- Sem hashtag, sem emoji, sem CTA de venda **no slide** (o CTA vai na legenda).
+
+## CTA — todo post tem, mas com intensidade variável (`legenda.py`)
+
+Decidido em 19/07/2026, atuando como especialista de Instagram. O Diego pediu
+CTA em 100% dos posts. A regra:
+
+- **O CTA vai na LEGENDA, nunca num 3º slide.** Um terceiro slide de oferta
+  quebraria o formato espelhado (o que torna o post reconhecível no feed) e
+  derrubaria compartilhamento/salvamento — que é a fonte de alcance aqui. O
+  slide já carrega o CTA de seguir no rodapé.
+- **80% CTA leve** (salvar / seguir / "manda pro vendedor" / comentar). CTA de
+  venda em todo post treina o público a passar direto; o leve sustenta alcance.
+  "Manda pro vendedor" é o mais forte no B2B: circula entre dono e vendedor e
+  cai na frente de quem decide de graça.
+- **20% CTA de produto** (1 a cada 5 posts, `RITMO_OFERTA`), casado com a dor da
+  frase. Nos dias de oferta os 3 produtos se revezam (`RODIZIO`) e a fila puxa
+  para a frente uma frase que fale da dor do produto da vez — CTA só converte se
+  casar com o que a frase levantou.
+
+Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
+`"produto": "venda-blindada"` no `frases.json`.
+
+## Os 3 produtos (fonte: vendanaobra.com.br, conferido 19/07/2026)
+
+| Produto | Formato | Preço | Dor |
+|---|---|---|---|
+| **Venda 10x** | Programa ao vivo, quarta 20h | não público | Falta de rotina/consistência comercial |
+| **Venda Blindada** | Contrato editável | R$ 197 único | Prejuízo/brecha em contrato de esquadria |
+| **CRM Venda na Obra** | Assinatura, sem fidelidade | R$ 297/mês | Lead/funil/follow-up espalhados |
+
+Todos os produtos apontam para "link na bio" — não uso URL de checkout no post
+(a bio do @vendanaobra manda para a LP, que distribui). "Máquina de Vendas" e
+"Prospecção de Arquitetos" foram **arquivados**; não citar.

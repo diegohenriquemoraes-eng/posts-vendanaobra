@@ -28,6 +28,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 
+import legenda
 from gerar_carrossel import gerar_carrossel
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -120,7 +121,8 @@ def escolher(id_forcado: int | None) -> dict:
                 return fr
         raise SystemExit(f"Frase id={id_forcado} nao existe")
 
-    ja = {p["id"] for p in _carregar(PUBLICADOS, {"posts": []})["posts"]}
+    publicados = _carregar(PUBLICADOS, {"posts": []})["posts"]
+    ja = {p["id"] for p in publicados}
     restantes = [fr for fr in banco if fr["id"] not in ja]
     if not restantes:
         raise SystemExit(
@@ -128,6 +130,18 @@ def escolher(id_forcado: int | None) -> dict:
         )
     if len(restantes) <= 10:
         _log(f"AVISO: so restam {len(restantes)} frases no banco.")
+
+    # Em dia de oferta, puxa para a frente a proxima frase que fala da dor do
+    # produto da vez — o CTA so converte se casar com o que a frase levantou.
+    n = len(publicados)
+    if legenda.eh_dia_de_oferta(n):
+        devido = legenda.produto_do_dia(n)
+        for fr in restantes:
+            if legenda.produto_de(fr) == devido:
+                _log(f"dia de oferta ({devido}): frase {fr['id']} puxada para hoje")
+                return fr
+        _log(f"dia de oferta ({devido}): nenhuma frase casa, seguindo a fila")
+
     return restantes[0]
 
 
@@ -162,7 +176,12 @@ def publicar(frase: dict, ensaio: bool) -> None:
     caminhos = gerar_carrossel(frase["texto"], pasta, slug)
     _log(f"slides gerados: {', '.join(os.path.basename(c) for c in caminhos)}")
 
+    n_publicados = len(_carregar(PUBLICADOS, {"posts": []})["posts"])
+    texto_legenda, rotulo_cta = legenda.montar(frase, n_publicados)
+    _log(f"CTA {rotulo_cta}")
+
     if ensaio:
+        print("\n--- legenda ---\n" + texto_legenda + "\n---------------\n")
         _log("ensaio: parando antes de publicar")
         return
 
@@ -191,7 +210,7 @@ def publicar(frase: dict, ensaio: bool) -> None:
     pai = _post(f"{IG_USER_ID}/media", {
         "media_type": "CAROUSEL",
         "children": ",".join(filhos),
-        "caption": frase["texto"],
+        "caption": texto_legenda,
         "access_token": token,
     })["id"]
     esperar_container(pai, token)
@@ -211,6 +230,7 @@ def publicar(frase: dict, ensaio: bool) -> None:
         "tema": frase["tema"],
         "data": hoje,
         "texto": frase["texto"],
+        "cta": rotulo_cta,
         "media_id": post["id"],
     })
     _salvar(PUBLICADOS, registro)
