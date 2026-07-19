@@ -1,0 +1,52 @@
+name: Post diario @vendanaobra
+
+on:
+  schedule:
+    # 15:00 UTC = 12:00 em Brasilia (o Brasil nao tem mais horario de verao)
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Forcar uma frase especifica (id do frases.json)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pillow
+
+      - name: Publicar carrossel
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          if [ -n "${{ inputs.id }}" ]; then
+            python publicar.py --id "${{ inputs.id }}"
+          else
+            python publicar.py
+          fi
+
+      - name: Abrir issue se o banco de frases acabar
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Post diario falhou em " + new Date().toISOString().slice(0, 10),
+              body: "O workflow de post diario falhou. Ver o run: " +
+                    context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId +
+                    "\n\nCausas comuns: banco de frases esgotado ou token da Meta expirado."
+            })
