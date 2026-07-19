@@ -146,8 +146,15 @@ def esperar_container(container_id: str, token: str, tentativas: int = 30) -> No
     raise SystemExit(f"Container {container_id} nao ficou pronto a tempo")
 
 
+def conferir_token(token: str) -> None:
+    """Falha cedo e com mensagem clara se o token morreu (ja aconteceu em 07/2026)."""
+    r = _get(IG_USER_ID, {"fields": "username,followers_count", "access_token": token})
+    _log(f"token ok — @{r['username']}, {r['followers_count']} seguidores")
+
+
 def publicar(frase: dict, ensaio: bool) -> None:
     token = _token()
+    conferir_token(token)
     hoje = datetime.now(FUSO_BR).strftime("%Y-%m-%d")
     slug = f"{hoje}-{frase['id']:03d}"
     pasta = os.path.join(BASE, "imagens", hoje)

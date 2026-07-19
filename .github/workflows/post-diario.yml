@@ -11,6 +11,11 @@ on:
         description: "Forcar uma frase especifica (id do frases.json)"
         required: false
         type: string
+      ensaio:
+        description: "Ensaio: testa o caminho todo sem publicar"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -44,11 +49,10 @@ jobs:
         env:
           META_TOKEN: ${{ secrets.META_TOKEN }}
         run: |
-          if [ -n "${{ inputs.id }}" ]; then
-            python publicar.py --id "${{ inputs.id }}"
-          else
-            python publicar.py
-          fi
+          args=""
+          [ -n "${{ inputs.id }}" ] && args="$args --id ${{ inputs.id }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          python publicar.py $args
 
       - name: Abrir issue se o banco de frases acabar
         if: failure()
