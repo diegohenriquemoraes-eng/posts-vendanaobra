@@ -217,11 +217,26 @@ def publicar(frase: dict, ensaio: bool) -> None:
     _commitar(f"post {slug} publicado", "publicados.json")
 
 
+def ja_postou_hoje() -> bool:
+    hoje = datetime.now(FUSO_BR).strftime("%Y-%m-%d")
+    return any(p["data"] == hoje for p in _carregar(PUBLICADOS, {"posts": []})["posts"])
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--id", type=int, default=None)
     p.add_argument("--ensaio", action="store_true")
+    p.add_argument(
+        "--garantir",
+        action="store_true",
+        help="rede de seguranca: publica so se o post do dia nao saiu",
+    )
     a = p.parse_args()
+
+    if a.garantir and ja_postou_hoje():
+        _log("post do dia ja esta no ar — nada a fazer")
+        return
+
     publicar(escolher(a.id), a.ensaio)
 
 
