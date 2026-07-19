@@ -84,6 +84,19 @@ def _git(*args: str) -> None:
     subprocess.run(["git", *args], cwd=BASE, check=True)
 
 
+def _commitar(mensagem: str, *caminhos: str) -> None:
+    """Commita e sobe. Silencioso quando nao ha nada novo (ex.: apos --ensaio)."""
+    _git("add", *caminhos)
+    pronto = subprocess.run(
+        ["git", "diff", "--cached", "--quiet"], cwd=BASE
+    ).returncode != 0
+    if pronto:
+        _git("-c", "user.name=vendanaobra-bot",
+             "-c", "user.email=bot@vendanaobra.com.br",
+             "commit", "-m", mensagem)
+    _git("push", "origin", "main")
+
+
 # --------------------------------------------------------------------------- fila
 
 def _carregar(caminho: str, padrao):
@@ -147,11 +160,7 @@ def publicar(frase: dict, ensaio: bool) -> None:
         return
 
     # 1) subir as imagens para o repo publico (a Graph API exige URL https publica)
-    _git("add", "imagens")
-    _git("-c", "user.name=vendanaobra-bot",
-         "-c", "user.email=bot@vendanaobra.com.br",
-         "commit", "-m", f"imagens do post {slug}")
-    _git("push", "origin", "main")
+    _commitar(f"imagens do post {slug}", "imagens")
 
     urls = [f"{REPO_RAW}/imagens/{hoje}/{os.path.basename(c)}" for c in caminhos]
     _log("imagens no ar: " + " | ".join(urls))
@@ -198,11 +207,7 @@ def publicar(frase: dict, ensaio: bool) -> None:
         "media_id": post["id"],
     })
     _salvar(PUBLICADOS, registro)
-    _git("add", "publicados.json")
-    _git("-c", "user.name=vendanaobra-bot",
-         "-c", "user.email=bot@vendanaobra.com.br",
-         "commit", "-m", f"post {slug} publicado")
-    _git("push", "origin", "main")
+    _commitar(f"post {slug} publicado", "publicados.json")
 
 
 def main() -> None:
