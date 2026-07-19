@@ -51,6 +51,17 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
 
 ## Regras de conteúdo
 
+- **Escopo fechado: vendas, gestão comercial ou empreendedorismo.** Toda frase
+  precisa aterrissar em um desses três. Nada de frase de efeito genérica sobre
+  disciplina ou produtividade sem âncora comercial — "constância vence talento"
+  sozinho está fora; "em vendas, constância vence talento" está dentro.
+  Gestão emocional entra sempre pela ótica do vendedor (meta, funil, o não).
+- **Inteligência artificial é tema válido** — e desejado, sempre ligada ao
+  comercial (prospecção, follow-up, proposta, atendimento).
+- **Reforma tributária, política, macroeconomia: fora.** O Diego não trata
+  desses assuntos (dito por ele em 19/07/2026). Cenário do setor só entra como
+  pano de fundo de uma tese de venda, nunca como assunto do post.
+- Escrever "inteligência artificial" por extenso — "IA" fica seco no slide.
 - Português impecável — o banco é revisado à mão, não gerado na hora.
 - Sem hashtag, sem emoji, sem CTA de venda no slide.
 - A legenda do post no Instagram é a própria frase (nada além dela).
