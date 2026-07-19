@@ -2,8 +2,9 @@ name: Post diario @vendanaobra
 
 on:
   schedule:
-    # 15:00 UTC = 12:00 em Brasilia (o Brasil nao tem mais horario de verao)
-    - cron: "0 15 * * *"
+    # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.
+    # A folga existe porque o agendador do Actions costuma atrasar alguns minutos.
+    - cron: "45 14 * * *"
   workflow_dispatch:
     inputs:
       id:
@@ -25,6 +26,19 @@ jobs:
           python-version: "3.12"
 
       - run: pip install --quiet pillow
+
+      - name: Esperar o meio-dia em ponto
+        if: github.event_name == 'schedule'
+        run: |
+          alvo=$(date -u -d "$(date -u +%F) 15:00:00" +%s)
+          agora=$(date -u +%s)
+          espera=$(( alvo - agora ))
+          if [ "$espera" -gt 0 ]; then
+            echo "esperando ${espera}s ate 15:00:00 UTC (12:00 BRT)"
+            sleep "$espera"
+          else
+            echo "runner comecou atrasado (${espera}s); publicando agora"
+          fi
 
       - name: Publicar carrossel
         env:
