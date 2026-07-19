@@ -1,0 +1,11 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "tema": "vendas",
+      "data": "2026-07-19",
+      "texto": "Orçamento enviado não é venda em andamento.\n\nÉ só um preço esperando alguém decidir por você.",
+      "media_id": "17997052322986200"
+    }
+  ]
+}
