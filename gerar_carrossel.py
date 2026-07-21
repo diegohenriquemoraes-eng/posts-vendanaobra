@@ -3,8 +3,9 @@
 
 Slide 1: fundo branco, letra preta.
 Slide 2: fundo preto, letra branca.
-Slide 3 (CTA): fundo laranja da marca (#F99500), letra preta — a cor de
-"acao" que fecha o carrossel. O conteudo do CTA vem de fora (legenda.py).
+Slide 3 (CTA): fundo azul da marca (#18406F), letra branca — o azul do site
+vendanaobra.com.br, que fecha o carrossel. O conteudo do CTA vem de fora
+(legenda.py).
 
 Formato de referencia: @juliopereira.oficial — frase centralizada entre aspas
 tipograficas, blocos separados por linha em branco, assinatura discreta no rodape.
@@ -26,8 +27,9 @@ ASSINATURA = "Para vender mais siga o @vendanaobra"
 TEMAS = {
     "claro": {"fundo": (255, 255, 255), "texto": (17, 17, 17), "assinatura": (184, 184, 184)},
     "escuro": {"fundo": (11, 11, 11), "texto": (255, 255, 255), "assinatura": (110, 110, 110)},
-    # laranja da marca (#F99500), texto preto; rodape num tom escuro para contraste
-    "cta": {"fundo": (249, 149, 0), "texto": (17, 17, 17), "assinatura": (74, 44, 0)},
+    # azul da marca (#18406F, amostrado do hero de vendanaobra.com.br), texto
+    # branco; rodape num azul-claro suave para ler como assinatura discreta
+    "cta": {"fundo": (24, 64, 111), "texto": (255, 255, 255), "assinatura": (200, 214, 232)},
 }
 
 # alturas maximas que o bloco de texto pode ocupar
@@ -135,7 +137,7 @@ def gerar_slide(frase: str, tema: str, destino: str) -> str:
 
 
 def gerar_slide_cta(texto: str, rodape: str, destino: str) -> str:
-    """Terceiro slide: CTA em fundo laranja da marca, texto preto.
+    """Terceiro slide: CTA em fundo azul da marca, texto branco.
 
     Sem aspas tipograficas (nao e uma frase-citacao, e uma chamada). `rodape`
     e o direcionamento: @vendanaobra no CTA de seguir, vendanaobra.com.br nos

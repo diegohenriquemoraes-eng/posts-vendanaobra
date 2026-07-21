@@ -9,8 +9,8 @@ branco/letra preta, slide 2 fundo preto/letra branca. Referência de formato:
 `@juliopereira.oficial` — frase centralizada entre aspas tipográficas, blocos
 separados por linha em branco, assinatura discreta no rodapé
 (`Para vender mais siga o @vendanaobra`). O **slide 3 é o CTA do dia**, em fundo
-laranja da marca (`#F99500`) e letra preta — a cor de "ação" que fecha o
-carrossel (ver seção CTA abaixo).
+azul da marca (`#18406F`, amostrado do hero de `vendanaobra.com.br`) e letra
+branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 
 ## Arquivos
 
@@ -20,7 +20,7 @@ carrossel (ver seção CTA abaixo).
 | `publicados.json` | O que já foi ao ar — a fila é "banco menos publicados" |
 | `estado_cta.json` | Memória do ciclo de CTA: último CTA publicado + data |
 | `legenda.py` | Ciclo do CTA do dia + textos do slide 3 e da legenda |
-| `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA laranja) |
+| `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA azul) |
 | `publicar.py` | CTA do dia → fila → imagens → push → Graph API → registro |
 | `.github/workflows/post-diario.yml` | Cron `0 15 * * *` (15h UTC = 12h BRT) |
 
@@ -75,8 +75,8 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
 ## CTA — 3º slide, ciclo com memória (`legenda.py`)
 
 Decidido em 21/07/2026 (substitui o esquema 80/20 anterior, a pedido do Diego).
-O Diego pediu CTA em 100% dos posts, agora **num 3º slide laranja** (`#F99500`,
-letra preta) que fecha o carrossel. A regra:
+O Diego pediu CTA em 100% dos posts, agora **num 3º slide azul** (`#18406F`, o
+azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 
 - **O CTA do dia intercala numa ordem cíclica fixa, nunca repetindo dois dias
   seguidos:** `seguir → Venda Blindada → Venda 10x → CRM → seguir …`
