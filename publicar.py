@@ -2,12 +2,13 @@
 """Publica o carrossel do dia no feed do @vendanaobra.
 
 Fluxo:
-  1. escolhe a proxima frase nao publicada de frases.json
-  2. gera os 2 slides (claro + escuro)
-  3. commita e sobe as imagens (raw.githubusercontent serve a URL publica
+  1. calcula o CTA do dia (ciclo com memoria em estado_cta.json)
+  2. escolhe a frase que casa com esse CTA (frase.json menos publicados.json)
+  3. gera os 3 slides (claro + escuro + CTA laranja)
+  4. commita e sobe as imagens (raw.githubusercontent serve a URL publica
      que a Graph API exige — ela nao aceita upload de arquivo local)
-  4. cria os 2 containers filhos, o container do carrossel e publica
-  5. registra em publicados.json e commita
+  5. cria os 3 containers filhos, o container do carrossel e publica
+  6. registra em publicados.json, grava estado_cta.json e commita
 
 Uso:
     python publicar.py                 # proxima frase da fila
@@ -34,6 +35,7 @@ from gerar_carrossel import gerar_carrossel
 BASE = os.path.dirname(os.path.abspath(__file__))
 FRASES = os.path.join(BASE, "frases.json")
 PUBLICADOS = os.path.join(BASE, "publicados.json")
+ESTADO_CTA = os.path.join(BASE, "estado_cta.json")
 
 IG_USER_ID = "17841470188725651"          # @vendanaobra
 API = "https://graph.facebook.com/v21.0"
@@ -113,7 +115,16 @@ def _salvar(caminho: str, dados) -> None:
         f.write("\n")
 
 
-def escolher(id_forcado: int | None) -> dict:
+def _ler_estado_cta() -> dict:
+    return _carregar(ESTADO_CTA, {"ultimo_cta": None, "data": None})
+
+
+def cta_do_dia() -> str:
+    """CTA de hoje = proximo do ciclo depois do ultimo publicado (com memoria)."""
+    return legenda.avancar_cta(_ler_estado_cta().get("ultimo_cta"))
+
+
+def escolher(id_forcado: int | None, cta_hoje: str) -> dict:
     banco = _carregar(FRASES, {"frases": []})["frases"]
     if id_forcado is not None:
         for fr in banco:
@@ -131,16 +142,17 @@ def escolher(id_forcado: int | None) -> dict:
     if len(restantes) <= 10:
         _log(f"AVISO: so restam {len(restantes)} frases no banco.")
 
-    # Em dia de oferta, puxa para a frente a proxima frase que fala da dor do
-    # produto da vez — o CTA so converte se casar com o que a frase levantou.
-    n = len(publicados)
-    if legenda.eh_dia_de_oferta(n):
-        devido = legenda.produto_do_dia(n)
+    # O tema segue o CTA do dia: quando o CTA e de produto, puxa para a frente a
+    # proxima frase que fala da dor desse produto — o CTA so converte se casar
+    # com o que a frase levantou. Quando o CTA e "seguir", e dia de valor: pega
+    # a proxima da fila, sem viés de produto.
+    devido = legenda.produto_do_cta(cta_hoje)
+    if devido is not None:
         for fr in restantes:
             if legenda.produto_de(fr) == devido:
-                _log(f"dia de oferta ({devido}): frase {fr['id']} puxada para hoje")
+                _log(f"CTA {cta_hoje} ({devido}): frase {fr['id']} puxada para hoje")
                 return fr
-        _log(f"dia de oferta ({devido}): nenhuma frase casa, seguindo a fila")
+        _log(f"CTA {cta_hoje} ({devido}): nenhuma frase casa, seguindo a fila")
 
     return restantes[0]
 
@@ -166,19 +178,22 @@ def conferir_token(token: str) -> None:
     _log(f"token ok — @{r['username']}, {r['followers_count']} seguidores")
 
 
-def publicar(frase: dict, ensaio: bool) -> None:
+def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
     token = _token()
     conferir_token(token)
     hoje = datetime.now(FUSO_BR).strftime("%Y-%m-%d")
     slug = f"{hoje}-{frase['id']:03d}"
     pasta = os.path.join(BASE, "imagens", hoje)
 
-    caminhos = gerar_carrossel(frase["texto"], pasta, slug)
+    peca = legenda.conteudo_cta(cta_hoje)
+    caminhos = gerar_carrossel(
+        frase["texto"], pasta, slug,
+        cta_texto=peca["slide"], cta_rodape=peca["rodape"],
+    )
     _log(f"slides gerados: {', '.join(os.path.basename(c) for c in caminhos)}")
 
-    n_publicados = len(_carregar(PUBLICADOS, {"posts": []})["posts"])
-    texto_legenda, rotulo_cta = legenda.montar(frase, n_publicados)
-    _log(f"CTA {rotulo_cta}")
+    texto_legenda = legenda.montar(frase, cta_hoje)
+    _log(f"CTA do dia: {cta_hoje}")
 
     if ensaio:
         print("\n--- legenda ---\n" + texto_legenda + "\n---------------\n")
@@ -223,18 +238,21 @@ def publicar(frase: dict, ensaio: bool) -> None:
     })
     _log(f"PUBLICADO: {post['id']}")
 
-    # 5) registrar
+    # 6) registrar o post e avancar a memoria do ciclo de CTA. So gravamos o
+    # estado ao publicar de fato — se o dia falhar antes daqui, o proximo dia
+    # pega o mesmo CTA, sem repetir nem pular na sequencia.
     registro = _carregar(PUBLICADOS, {"posts": []})
     registro["posts"].append({
         "id": frase["id"],
         "tema": frase["tema"],
         "data": hoje,
         "texto": frase["texto"],
-        "cta": rotulo_cta,
+        "cta": cta_hoje,
         "media_id": post["id"],
     })
     _salvar(PUBLICADOS, registro)
-    _commitar(f"post {slug} publicado", "publicados.json")
+    _salvar(ESTADO_CTA, {"ultimo_cta": cta_hoje, "data": hoje})
+    _commitar(f"post {slug} publicado", "publicados.json", "estado_cta.json")
 
 
 def ja_postou_hoje() -> bool:
@@ -257,7 +275,8 @@ def main() -> None:
         _log("post do dia ja esta no ar — nada a fazer")
         return
 
-    publicar(escolher(a.id), a.ensaio)
+    cta_hoje = cta_do_dia()
+    publicar(escolher(a.id, cta_hoje), cta_hoje, a.ensaio)
 
 
 if __name__ == "__main__":

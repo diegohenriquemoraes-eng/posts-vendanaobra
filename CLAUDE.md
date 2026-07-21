@@ -4,10 +4,13 @@ Posta 1 carrossel por dia útil (**seg–sex, 12h em ponto BRT**) no feed do
 Instagram **@vendanaobra** (IG User ID `17841470188725651`). Sem sábado/domingo
 — decisão do Diego em 19/07/2026.
 
-Cada post são 2 slides com a **mesma frase**: slide 1 fundo branco/letra preta,
-slide 2 fundo preto/letra branca. Referência de formato: `@juliopereira.oficial`
-— frase centralizada entre aspas tipográficas, blocos separados por linha em
-branco, assinatura discreta no rodapé (`Para vender mais siga o @vendanaobra`).
+Cada post são **3 slides**. Slides 1 e 2 trazem a **mesma frase**: slide 1 fundo
+branco/letra preta, slide 2 fundo preto/letra branca. Referência de formato:
+`@juliopereira.oficial` — frase centralizada entre aspas tipográficas, blocos
+separados por linha em branco, assinatura discreta no rodapé
+(`Para vender mais siga o @vendanaobra`). O **slide 3 é o CTA do dia**, em fundo
+laranja da marca (`#F99500`) e letra preta — a cor de "ação" que fecha o
+carrossel (ver seção CTA abaixo).
 
 ## Arquivos
 
@@ -15,8 +18,10 @@ branco, assinatura discreta no rodapé (`Para vender mais siga o @vendanaobra`).
 |---|---|
 | `frases.json` | Banco de 120 frases revisadas (vendas, emocional, métricas, gestão) |
 | `publicados.json` | O que já foi ao ar — a fila é "banco menos publicados" |
-| `gerar_carrossel.py` | Pillow → os 2 JPEGs 1080x1080 |
-| `publicar.py` | Fila → imagens → push → Graph API → registro |
+| `estado_cta.json` | Memória do ciclo de CTA: último CTA publicado + data |
+| `legenda.py` | Ciclo do CTA do dia + textos do slide 3 e da legenda |
+| `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA laranja) |
+| `publicar.py` | CTA do dia → fila → imagens → push → Graph API → registro |
 | `.github/workflows/post-diario.yml` | Cron `0 15 * * *` (15h UTC = 12h BRT) |
 
 ## Por que o repositório é público
@@ -64,25 +69,29 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
   pano de fundo de uma tese de venda, nunca como assunto do post.
 - Escrever "inteligência artificial" por extenso — "IA" fica seco no slide.
 - Português impecável — o banco é revisado à mão, não gerado na hora.
-- Sem hashtag, sem emoji, sem CTA de venda **no slide** (o CTA vai na legenda).
+- **Slides 1 e 2**: sem hashtag, sem emoji, sem CTA de venda — só a frase. O CTA
+  fica no **slide 3** (e é reforçado na legenda).
 
-## CTA — todo post tem, mas com intensidade variável (`legenda.py`)
+## CTA — 3º slide, ciclo com memória (`legenda.py`)
 
-Decidido em 19/07/2026, atuando como especialista de Instagram. O Diego pediu
-CTA em 100% dos posts. A regra:
+Decidido em 21/07/2026 (substitui o esquema 80/20 anterior, a pedido do Diego).
+O Diego pediu CTA em 100% dos posts, agora **num 3º slide laranja** (`#F99500`,
+letra preta) que fecha o carrossel. A regra:
 
-- **O CTA vai na LEGENDA, nunca num 3º slide.** Um terceiro slide de oferta
-  quebraria o formato espelhado (o que torna o post reconhecível no feed) e
-  derrubaria compartilhamento/salvamento — que é a fonte de alcance aqui. O
-  slide já carrega o CTA de seguir no rodapé.
-- **80% CTA leve** (salvar / seguir / "manda pro vendedor" / comentar). CTA de
-  venda em todo post treina o público a passar direto; o leve sustenta alcance.
-  "Manda pro vendedor" é o mais forte no B2B: circula entre dono e vendedor e
-  cai na frente de quem decide de graça.
-- **20% CTA de produto** (1 a cada 5 posts, `RITMO_OFERTA`), casado com a dor da
-  frase. Nos dias de oferta os 3 produtos se revezam (`RODIZIO`) e a fila puxa
-  para a frente uma frase que fale da dor do produto da vez — CTA só converte se
-  casar com o que a frase levantou.
+- **O CTA do dia intercala numa ordem cíclica fixa, nunca repetindo dois dias
+  seguidos:** `seguir → Venda Blindada → Venda 10x → CRM → seguir …`
+  (`CICLO_CTA`). Depois de CRM volta pra "seguir".
+- **Rotação com memória** (`estado_cta.json`): o publicador avança a partir do
+  **último CTA publicado** (não da data). Assim um dia que falhe não repete nem
+  pula — o próximo dia pega o CTA que faltou. O estado só é gravado quando o post
+  publica de fato.
+- **O tema da frase segue o CTA do dia** (escolhido *depois* de saber o CTA):
+  dia de "seguir" é post de valor/autoridade (próxima da fila, sem viés); dia de
+  produto puxa para a frente a próxima frase que fale da dor daquele produto
+  (`produto_do_cta` + `produto_de`) — o CTA só converte se casar com a frase.
+- **A legenda usa o mesmo CTA do slide**, para o post ficar coerente
+  (`legenda.montar`). O direcionamento dos produtos é sempre
+  `vendanaobra.com.br`; o CTA de seguir aponta para `@vendanaobra`.
 
 Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 `"produto": "venda-blindada"` no `frases.json`.
@@ -95,6 +104,7 @@ Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 | **Venda Blindada** | Contrato editável | R$ 197 único | Prejuízo/brecha em contrato de esquadria |
 | **CRM Venda na Obra** | Assinatura, sem fidelidade | R$ 297/mês | Lead/funil/follow-up espalhados |
 
-Todos os produtos apontam para "link na bio" — não uso URL de checkout no post
-(a bio do @vendanaobra manda para a LP, que distribui). "Máquina de Vendas" e
-"Prospecção de Arquitetos" foram **arquivados**; não citar.
+No slide 3 e na legenda, o direcionamento dos produtos é **`vendanaobra.com.br`**
+(a LP que distribui) — decidido pelo Diego em 21/07/2026. Não uso URL de checkout
+no post. "Máquina de Vendas" e "Prospecção de Arquitetos" foram **arquivados**;
+não citar.

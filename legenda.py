@@ -1,47 +1,78 @@
 # -*- coding: utf-8 -*-
-"""Monta a legenda do post: a frase + o CTA.
+"""CTA do dia: o 3o slide + a legenda que o reforca.
 
-Regra (decidida em 19/07/2026, ver CLAUDE.md):
-  - todo post tem CTA;
-  - 4 em cada 5 sao CTA leve (salvar / seguir / mandar para alguem), que e o
-    que sustenta alcance — CTA de venda em todo post treina o publico a
-    passar direto;
-  - 1 em cada 5 e CTA de produto, escolhido pela dor da frase.
+Regra (decidida em 21/07/2026, ver CLAUDE.md — substitui o esquema 80/20
+anterior):
+  - todo post tem um 3o slide de CTA, em fundo laranja da marca;
+  - o CTA do dia intercala numa ordem ciclica fixa, NUNCA repetindo dois dias
+    seguidos:  seguir -> Venda Blindada -> Venda 10x -> CRM -> seguir ...
+  - a rotacao tem memoria (estado_cta.json, gravado pelo publicar.py): avanca a
+    partir do ULTIMO CTA publicado, entao um dia que falhe nao repete nem pula;
+  - a legenda usa o MESMO CTA do slide, para o post ficar coerente;
+  - o tema da frase e escolhido depois de saber o CTA (ver publicar.py), para
+    o conteudo puxar naturalmente para a chamada do dia.
 
-O CTA de produto NAO vira slide. O terceiro slide quebraria o formato
-espelhado e derrubaria compartilhamento, que e a fonte de alcance aqui.
+Direcionamento de produto e sempre "vendanaobra.com.br" (a bio distribui);
+o CTA de seguir aponta para "@vendanaobra".
 """
 from __future__ import annotations
 
-# 1 CTA de produto a cada N posts
-RITMO_OFERTA = 5
+# Ordem ciclica do CTA do dia. Nao reordenar sem querer mudar a sequencia.
+CICLO_CTA = ["seguir", "venda-blindada", "venda10x", "crm"]
 
-CTAS_LEVES = [
-    "Salva esse aqui para lembrar na próxima negociação.",
-    "Manda para o vendedor que precisa ler isso.",
-    "Para vender mais, segue o @vendanaobra.",
-    "Comenta aí: acontece na sua empresa?",
-]
+# Cada CTA tem tres pecas:
+#   slide   -> texto do 3o slide (blocos separados por \n\n viram linha em branco)
+#   rodape  -> destino da acao, no rodape do slide
+#   legenda -> reforco na legenda do post, casado com a frase
+CTA = {
+    "seguir": {
+        "slide": "Gostou?\n\nSegue o @vendanaobra e vem vender mais na obra.",
+        "rodape": "@vendanaobra",
+        "legenda": (
+            "Se isso fez sentido, segue o @vendanaobra — todo dia útil tem um "
+            "card desses aqui, direto ao ponto sobre vender mais na obra."
+        ),
+    },
+    "venda-blindada": {
+        "slide": "Venda Blindada\n\nO contrato editável que fecha as brechas da esquadria.",
+        "rodape": "vendanaobra.com.br",
+        "legenda": (
+            "Contrato genérico é onde a esquadria perde dinheiro depois da venda "
+            "fechada.\nO Venda Blindada é o modelo editável que fecha essas brechas.\n"
+            "Para ver: vendanaobra.com.br"
+        ),
+    },
+    "venda10x": {
+        "slide": "Venda 10x\n\nCadência comercial ao vivo, toda quarta às 20h.",
+        "rodape": "vendanaobra.com.br",
+        "legenda": (
+            "Rotina comercial não nasce de motivação, nasce de cadência.\n"
+            "É isso que eu destrincho toda quarta, 20h, no Venda 10x.\n"
+            "Para ver: vendanaobra.com.br"
+        ),
+    },
+    "crm": {
+        "slide": "CRM Venda na Obra\n\nLead, follow-up e funil no mesmo lugar.",
+        "rodape": "vendanaobra.com.br",
+        "legenda": (
+            "Se o seu funil vive na cabeça do vendedor e no WhatsApp, não é funil.\n"
+            "O CRM Venda na Obra põe lead, follow-up e relatório no mesmo lugar.\n"
+            "Para ver: vendanaobra.com.br"
+        ),
+    },
+}
 
-PRODUTOS = {
-    "venda10x": (
-        "Rotina comercial não nasce de motivação, nasce de cadência.\n"
-        "É isso que eu destrincho toda quarta, 20h, no Venda 10x.\n"
-        "Link na bio."
-    ),
-    "crm": (
-        "Se o seu funil vive na cabeça do vendedor e no WhatsApp, não é funil.\n"
-        "O CRM Venda na Obra põe lead, follow-up e relatório no mesmo lugar.\n"
-        "Link na bio."
-    ),
-    "venda-blindada": (
-        "Contrato genérico é onde a esquadria perde dinheiro depois da venda fechada.\n"
-        "O Venda Blindada é o modelo editável que fecha essas brechas.\n"
-        "Link na bio."
-    ),
+# Qual produto o CTA do dia empurra (None = dia de valor/autoridade, sem produto).
+# Serve para o publicar.py puxar uma frase que case com a dor do produto.
+CTA_PRODUTO = {
+    "seguir": None,
+    "venda-blindada": "venda-blindada",
+    "venda10x": "venda10x",
+    "crm": "crm",
 }
 
 # Qual produto responde a dor de cada tema, quando a frase nao manda o contrario.
+# Usado para casar a frase com o CTA de produto do dia.
 TEMA_PRODUTO = {
     "vendas": "venda10x",
     "emocional": "venda10x",
@@ -52,18 +83,20 @@ TEMA_PRODUTO = {
 }
 
 
-# Nos dias de oferta os 3 produtos se revezam. Sem isso o Venda Blindada quase
-# nao aparecia: a dor dele e estreita e raramente calhava de cair num dia desses.
-RODIZIO = ["venda10x", "crm", "venda-blindada"]
+def avancar_cta(ultimo: str | None) -> str:
+    """CTA de hoje = o proximo do ciclo depois do ultimo publicado.
+
+    `None` (primeira vez, sem estado) comeca em 'seguir'. Como avanca a partir
+    do ultimo *publicado*, um dia que falhe nao adianta o ciclo: o proximo dia
+    pega o mesmo CTA que faltou, sem repetir nem pular.
+    """
+    if ultimo not in CICLO_CTA:
+        return CICLO_CTA[0]
+    return CICLO_CTA[(CICLO_CTA.index(ultimo) + 1) % len(CICLO_CTA)]
 
 
-def eh_dia_de_oferta(n_publicados: int) -> bool:
-    return n_publicados % RITMO_OFERTA == RITMO_OFERTA - 1
-
-
-def produto_do_dia(n_publicados: int) -> str:
-    """Qual produto esta na vez, no dia de oferta de indice n_publicados."""
-    return RODIZIO[(n_publicados // RITMO_OFERTA) % len(RODIZIO)]
+def produto_do_cta(cta_key: str) -> str | None:
+    return CTA_PRODUTO.get(cta_key)
 
 
 def produto_de(frase: dict) -> str:
@@ -71,19 +104,11 @@ def produto_de(frase: dict) -> str:
     return frase.get("produto") or TEMA_PRODUTO.get(frase["tema"], "venda10x")
 
 
-def escolher_cta(frase: dict, n_publicados: int) -> tuple[str, str]:
-    """Devolve (texto_do_cta, rotulo) para o post de indice n_publicados."""
-    if eh_dia_de_oferta(n_publicados):
-        produto = produto_de(frase)
-        return PRODUTOS[produto], f"produto:{produto}"
-
-    # conta so os posts leves, senao o ritmo de 5 atropela o rodizio de 4 e
-    # alguns CTAs quase nunca aparecem
-    ja_ofertados = (n_publicados + 1) // RITMO_OFERTA
-    indice = (n_publicados - ja_ofertados) % len(CTAS_LEVES)
-    return CTAS_LEVES[indice], "leve"
+def conteudo_cta(cta_key: str) -> dict:
+    """Pecas do CTA (slide/rodape/legenda) para gerar imagem e legenda."""
+    return CTA[cta_key]
 
 
-def montar(frase: dict, n_publicados: int) -> tuple[str, str]:
-    cta, rotulo = escolher_cta(frase, n_publicados)
-    return f"{frase['texto']}\n\n{cta}", rotulo
+def montar(frase: dict, cta_key: str) -> str:
+    """Legenda do post: a frase + o reforco do CTA do dia (mesmo do slide)."""
+    return f"{frase['texto']}\n\n{CTA[cta_key]['legenda']}"
