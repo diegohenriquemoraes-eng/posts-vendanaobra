@@ -19,7 +19,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 FONTE = os.path.join(BASE, "fontes", "Inter-Regular.ttf")
 
 LADO = 1080
-MARGEM_X = 132
+MARGEM_X = 150          # margem lateral folgada: o texto nunca encosta na borda
 LARGURA_TEXTO = LADO - 2 * MARGEM_X
 
 ASSINATURA = "Para vender mais siga o @vendanaobra"
@@ -32,12 +32,15 @@ TEMAS = {
     "cta": {"fundo": (24, 64, 111), "texto": (255, 255, 255), "assinatura": (200, 214, 232)},
 }
 
-# alturas maximas que o bloco de texto pode ocupar
+# altura maxima que o bloco de texto pode ocupar (limite antes de encolher a fonte)
 ALTURA_MAX = 700
-TOPO_AREA = 158          # area util do texto comeca aqui
+CENTRO_TEXTO = 540       # o bloco e centralizado no meio da imagem (1080/2)
 Y_ASSINATURA = 968
 
-TAMANHO_MAX = 58
+# Tamanho de fonte FIXO para dar um padrao unico em todos os posts: a frase sai
+# sempre com a mesma letra e na mesma posicao. So encolhe (ate TAMANHO_MIN) se
+# uma frase excepcionalmente longa nao couber — no banco atual nenhuma precisa.
+TAMANHO_MAX = 52
 TAMANHO_MIN = 28
 ENTRELINHA = 1.42        # multiplicador da altura da linha
 GAP_PARAGRAFO = 0.80     # espaco extra entre blocos, em linhas
@@ -108,7 +111,7 @@ def _desenhar_texto(d: ImageDraw.ImageDraw, texto: str, cor) -> None:
     linhas, altura, altura_linha, tamanho = _ajustar(texto)
     fonte = _fonte(tamanho)
 
-    y = TOPO_AREA + (ALTURA_MAX - altura) // 2
+    y = CENTRO_TEXTO - altura // 2
     for i, (ln, fim_par) in enumerate(linhas):
         d.text((LADO / 2, y), ln, font=fonte, fill=cor, anchor="ma")
         y += altura_linha

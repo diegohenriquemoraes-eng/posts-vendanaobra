@@ -1,8 +1,11 @@
 # posts-vendanaobra
 
-Posta 1 carrossel por dia útil (**seg–sex, 12h em ponto BRT**) no feed do
-Instagram **@vendanaobra** (IG User ID `17841470188725651`). Sem sábado/domingo
-— decisão do Diego em 19/07/2026.
+Posta 1 carrossel **a cada 2 dias úteis** (dias úteis alternados, **12h em ponto
+BRT**) no feed do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
+Sem sábado/domingo. Ex.: postou terça → próximo quinta → segunda → quarta…
+(frequência decidida pelo Diego em 21/07/2026; sem fim de semana desde 19/07/2026).
+A cadência é ancorada no **último post real** (`deve_postar_hoje`, `publicar.py`),
+então um dia que falhe não quebra o ritmo.
 
 Cada post são **3 slides**. Slides 1 e 2 trazem a **mesma frase**: slide 1 fundo
 branco/letra preta, slide 2 fundo preto/letra branca. Referência de formato:
@@ -49,9 +52,11 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
 - **Fonte**: `fontes/Inter-Regular.ttf` é variável; o peso é escolhido por
   `set_variation_by_axes([14, peso])`. Sem isso o texto sai mais pesado.
 - **JPEG, não PNG**: a Graph API só aceita JPEG para imagem.
-- **Layout**: o tamanho da fonte é automático (58 → 28) até a frase caber em
-  860px de largura e 700px de altura. Frase muito longa encolhe o texto — o
-  ideal é no máximo ~180 caracteres, 2 blocos.
+- **Layout**: fonte de **tamanho fixo (52px)** para todo post sair com a mesma
+  letra, na mesma posição — o bloco é **centralizado no meio da imagem (540)** e
+  a margem lateral é folgada (`MARGEM_X = 150`, texto em 780px). A fonte só
+  encolhe (até 28) se uma frase excepcionalmente longa não couber em 700px de
+  altura; no banco atual nenhuma precisa. Ideal ~180 caracteres, 2 blocos.
 - **Banco esgotado**: `publicar.py` aborta e o workflow abre issue. Repor
   `frases.json` antes disso.
 

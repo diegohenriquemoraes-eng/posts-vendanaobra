@@ -260,6 +260,35 @@ def ja_postou_hoje() -> bool:
     return any(p["data"] == hoje for p in _carregar(PUBLICADOS, {"posts": []})["posts"])
 
 
+def _dias_uteis_entre(inicio, fim) -> int:
+    """Quantos dias uteis (seg-sex) ha depois de `inicio` ate `fim` inclusive."""
+    n = 0
+    d = inicio
+    while d < fim:
+        d += timedelta(days=1)
+        if d.weekday() < 5:
+            n += 1
+    return n
+
+
+def deve_postar_hoje() -> bool:
+    """Frequencia: 1 post a cada 2 dias uteis (posta em dias uteis alternados).
+
+    Publica so se hoje for dia util e ja tiverem passado >=2 dias uteis desde o
+    ultimo post — ex.: postou terca, o proximo e quinta, depois segunda, quarta...
+    Ancora no ultimo post real (nao numa data fixa), entao um dia que falhe nao
+    quebra o ritmo. Tambem evita postar duas vezes no mesmo dia (0 dias uteis).
+    """
+    hoje = datetime.now(FUSO_BR).date()
+    if hoje.weekday() >= 5:            # sabado/domingo: nunca
+        return False
+    posts = _carregar(PUBLICADOS, {"posts": []})["posts"]
+    if not posts:
+        return True
+    ultima = max(datetime.strptime(p["data"], "%Y-%m-%d").date() for p in posts)
+    return _dias_uteis_entre(ultima, hoje) >= 2
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--id", type=int, default=None)
@@ -270,6 +299,12 @@ def main() -> None:
         help="rede de seguranca: publica so se o post do dia nao saiu",
     )
     a = p.parse_args()
+
+    # Frequencia a cada 2 dias uteis. --id (frase manual) e --ensaio (preview)
+    # ignoram a cadencia; a automacao (sem argumentos) respeita.
+    if a.id is None and not a.ensaio and not deve_postar_hoje():
+        _log("frequencia a cada 2 dias uteis: hoje nao e dia de postar — nada a fazer")
+        return
 
     if a.garantir and ja_postou_hoje():
         _log("post do dia ja esta no ar — nada a fazer")
