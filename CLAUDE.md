@@ -90,8 +90,13 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
   produto puxa para a frente a próxima frase que fale da dor daquele produto
   (`produto_do_cta` + `produto_de`) — o CTA só converte se casar com a frase.
 - **A legenda usa o mesmo CTA do slide**, para o post ficar coerente
-  (`legenda.montar`). O direcionamento dos produtos é sempre
-  `vendanaobra.com.br`; o CTA de seguir aponta para `@vendanaobra`.
+  (`legenda.montar`).
+- **Conversão de produto por comment-to-DM**: o slide 3 traz uma explicação
+  breve do produto + o pedido de uma palavra (`BLINDADA` / `10X` / `CRM`); quem
+  comenta recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
+  na legenda do feed — por isso não colocamos URL no post. Por ora o Diego
+  responde à mão; depois liga a automação nativa de palavra-chave do Instagram.
+  O CTA de seguir não tem palavra nem link (é o post de valor puro).
 
 Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 `"produto": "venda-blindada"` no `frases.json`.
@@ -104,7 +109,8 @@ Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 | **Venda Blindada** | Contrato editável | R$ 197 único | Prejuízo/brecha em contrato de esquadria |
 | **CRM Venda na Obra** | Assinatura, sem fidelidade | R$ 297/mês | Lead/funil/follow-up espalhados |
 
-No slide 3 e na legenda, o direcionamento dos produtos é **`vendanaobra.com.br`**
-(a LP que distribui) — decidido pelo Diego em 21/07/2026. Não uso URL de checkout
-no post. "Máquina de Vendas" e "Prospecção de Arquitetos" foram **arquivados**;
+O link de cada produto (a LP `vendanaobra.com.br`, que distribui) é entregue **no
+Direct** para quem comenta a palavra do produto — não vai no post (link na legenda
+do feed não é clicável). Decidido pelo Diego em 21/07/2026. Não uso URL de
+checkout. "Máquina de Vendas" e "Prospecção de Arquitetos" foram **arquivados**;
 não citar.

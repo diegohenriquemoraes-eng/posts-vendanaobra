@@ -12,8 +12,11 @@ anterior):
   - o tema da frase e escolhido depois de saber o CTA (ver publicar.py), para
     o conteudo puxar naturalmente para a chamada do dia.
 
-Direcionamento de produto e sempre "vendanaobra.com.br" (a bio distribui);
-o CTA de seguir aponta para "@vendanaobra".
+Conversao de produto e por comment-to-DM: o slide traz uma explicacao breve do
+produto e pede uma palavra (BLINDADA / 10X / CRM); quem comenta recebe o link no
+Direct — no Instagram o link so e clicavel no DM, nunca na legenda do feed. Por
+ora o Diego responde a mao; depois liga a automacao nativa de palavra-chave do
+Instagram. O CTA de seguir nao tem palavra nem link (e o post de valor puro).
 """
 from __future__ import annotations
 
@@ -34,30 +37,44 @@ CTA = {
         ),
     },
     "venda-blindada": {
-        "slide": "Venda Blindada\n\nO contrato editável que fecha as brechas da esquadria.",
-        "rodape": "vendanaobra.com.br",
+        "slide": (
+            "Venda Blindada\n\n"
+            "O contrato editável que fecha as brechas onde a esquadria perde "
+            "dinheiro depois da venda.\n\n"
+            "Comenta BLINDADA que o link cai no seu Direct."
+        ),
+        "rodape": "@vendanaobra",
         "legenda": (
             "Contrato genérico é onde a esquadria perde dinheiro depois da venda "
-            "fechada.\nO Venda Blindada é o modelo editável que fecha essas brechas.\n"
-            "Para ver: vendanaobra.com.br"
+            "fechada.\nO Venda Blindada é o modelo editável que fecha essas brechas.\n\n"
+            "Comenta BLINDADA aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
     "venda10x": {
-        "slide": "Venda 10x\n\nCadência comercial ao vivo, toda quarta às 20h.",
-        "rodape": "vendanaobra.com.br",
+        "slide": (
+            "Venda 10x\n\n"
+            "O ao vivo semanal que transforma meta em rotina de execução comercial.\n\n"
+            "Comenta 10X que o link cai no seu Direct."
+        ),
+        "rodape": "@vendanaobra",
         "legenda": (
             "Rotina comercial não nasce de motivação, nasce de cadência.\n"
-            "É isso que eu destrincho toda quarta, 20h, no Venda 10x.\n"
-            "Para ver: vendanaobra.com.br"
+            "É isso que eu destrincho toda quarta, 20h, no Venda 10x.\n\n"
+            "Comenta 10X aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
     "crm": {
-        "slide": "CRM Venda na Obra\n\nLead, follow-up e funil no mesmo lugar.",
-        "rodape": "vendanaobra.com.br",
+        "slide": (
+            "CRM Venda na Obra\n\n"
+            "Lead, follow-up e funil no mesmo lugar — o comercial fora da cabeça "
+            "do vendedor.\n\n"
+            "Comenta CRM que o link cai no seu Direct."
+        ),
+        "rodape": "@vendanaobra",
         "legenda": (
             "Se o seu funil vive na cabeça do vendedor e no WhatsApp, não é funil.\n"
-            "O CRM Venda na Obra põe lead, follow-up e relatório no mesmo lugar.\n"
-            "Para ver: vendanaobra.com.br"
+            "O CRM Venda na Obra põe lead, follow-up e relatório no mesmo lugar.\n\n"
+            "Comenta CRM aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
 }
