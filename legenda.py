@@ -66,14 +66,15 @@ CTA = {
     "crm": {
         "slide": (
             "CRM Venda na Obra\n\n"
-            "Lead, follow-up e funil no mesmo lugar — o comercial fora da cabeça "
-            "do vendedor.\n\n"
+            "Controle total do setor comercial e dos clientes, com automações e "
+            "inteligência artificial.\n\n"
             "Comenta CRM que o link cai no seu Direct."
         ),
         "rodape": "@vendanaobra",
         "legenda": (
-            "Se o seu funil vive na cabeça do vendedor e no WhatsApp, não é funil.\n"
-            "O CRM Venda na Obra põe lead, follow-up e relatório no mesmo lugar.\n\n"
+            "Enquanto o concorrente controla o comercial no braço, você automatiza.\n"
+            "O CRM Venda na Obra usa automações e inteligência artificial integrada "
+            "para agilizar cada etapa da venda e te deixar na frente.\n\n"
             "Comenta CRM aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
