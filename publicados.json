@@ -14,6 +14,14 @@
       "texto": "O cliente não sumiu depois do orçamento.\n\nEle nunca chegou a entrar de verdade.",
       "cta": "leve",
       "media_id": "17952327666195005"
+    },
+    {
+      "id": 3,
+      "tema": "metricas",
+      "data": "2026-07-21",
+      "texto": "Faturamento não é métrica.\n\nÉ o resultado de métricas que você não está olhando.",
+      "cta": "seguir",
+      "media_id": "18121913158697374"
     }
   ]
 }
