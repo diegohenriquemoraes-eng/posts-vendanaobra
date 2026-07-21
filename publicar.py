@@ -178,6 +178,84 @@ def conferir_token(token: str) -> None:
     _log(f"token ok — @{r['username']}, {r['followers_count']} seguidores")
 
 
+def _subir_e_publicar(caminhos: list[str], hoje: str, slug: str,
+                      texto_legenda: str, token: str) -> str:
+    """Sobe as imagens (URL publica que a Graph API exige), monta o carrossel e
+    publica. Devolve o media_id do post publicado."""
+    # 1) subir as imagens para o repo publico
+    _commitar(f"imagens do post {slug}", "imagens")
+    urls = [f"{REPO_RAW}/imagens/{hoje}/{os.path.basename(c)}" for c in caminhos]
+    _log("imagens no ar: " + " | ".join(urls))
+    time.sleep(5)  # folga para o CDN do raw responder
+
+    # 2) containers filhos
+    filhos = []
+    for url in urls:
+        r = _post(f"{IG_USER_ID}/media", {
+            "image_url": url, "is_carousel_item": "true", "access_token": token,
+        })
+        filhos.append(r["id"])
+        _log(f"container filho {r['id']}")
+    for f in filhos:
+        esperar_container(f, token)
+
+    # 3) container do carrossel
+    pai = _post(f"{IG_USER_ID}/media", {
+        "media_type": "CAROUSEL", "children": ",".join(filhos),
+        "caption": texto_legenda, "access_token": token,
+    })["id"]
+    esperar_container(pai, token)
+    _log(f"container do carrossel {pai}")
+
+    # 4) publicar
+    post = _post(f"{IG_USER_ID}/media_publish", {
+        "creation_id": pai, "access_token": token,
+    })
+    _log(f"PUBLICADO: {post['id']}")
+    return post["id"]
+
+
+def refazer(fid: int) -> None:
+    """Republica o post de HOJE da frase `fid` com a arte nova, sem mexer no
+    ciclo de CTA: reusa o mesmo CTA ja registrado, gera uma URL nova (sufixo de
+    revisao, pra escapar do cache do CDN do raw) e ATUALIZA o registro em vez de
+    duplicar. Nao avanca `estado_cta.json`.
+
+    Deletar o post antigo no Instagram e manual (a Graph API nao apaga
+    publicacao); esta funcao so republica a versao corrigida.
+    """
+    token = _token()
+    conferir_token(token)
+    hoje = datetime.now(FUSO_BR).strftime("%Y-%m-%d")
+
+    registro = _carregar(PUBLICADOS, {"posts": []})
+    entrada = next((p for p in registro["posts"]
+                    if p["id"] == fid and p["data"] == hoje), None)
+    if entrada is None:
+        raise SystemExit(f"Nao ha post de hoje (id={fid}) para refazer")
+
+    cta = entrada.get("cta") or "seguir"
+    frase = escolher(fid, cta)
+    rev = int(entrada.get("rev", 0)) + 1          # URL nova a cada refacao
+    slug = f"{hoje}-{fid:03d}-r{rev}"
+    pasta = os.path.join(BASE, "imagens", hoje)
+    peca = legenda.conteudo_cta(cta)
+    caminhos = gerar_carrossel(
+        frase["texto"], pasta, slug,
+        cta_texto=peca["slide"], cta_rodape=peca["rodape"],
+    )
+    _log(f"refazer {slug} (CTA {cta}): {', '.join(os.path.basename(c) for c in caminhos)}")
+    texto_legenda = legenda.montar(frase, cta)
+
+    media_id = _subir_e_publicar(caminhos, hoje, slug, texto_legenda, token)
+
+    entrada["media_id"] = media_id
+    entrada["rev"] = rev
+    _salvar(PUBLICADOS, registro)
+    _commitar(f"refazer post {slug} (arte nova)", "publicados.json")
+    _log("registro atualizado; ciclo de CTA inalterado")
+
+
 def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
     token = _token()
     conferir_token(token)
@@ -200,47 +278,11 @@ def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
         _log("ensaio: parando antes de publicar")
         return
 
-    # 1) subir as imagens para o repo publico (a Graph API exige URL https publica)
-    _commitar(f"imagens do post {slug}", "imagens")
+    media_id = _subir_e_publicar(caminhos, hoje, slug, texto_legenda, token)
 
-    urls = [f"{REPO_RAW}/imagens/{hoje}/{os.path.basename(c)}" for c in caminhos]
-    _log("imagens no ar: " + " | ".join(urls))
-    time.sleep(5)  # folga para o CDN do raw responder
-
-    # 2) containers filhos
-    filhos = []
-    for url in urls:
-        r = _post(f"{IG_USER_ID}/media", {
-            "image_url": url,
-            "is_carousel_item": "true",
-            "access_token": token,
-        })
-        filhos.append(r["id"])
-        _log(f"container filho {r['id']}")
-
-    for f in filhos:
-        esperar_container(f, token)
-
-    # 3) container do carrossel
-    pai = _post(f"{IG_USER_ID}/media", {
-        "media_type": "CAROUSEL",
-        "children": ",".join(filhos),
-        "caption": texto_legenda,
-        "access_token": token,
-    })["id"]
-    esperar_container(pai, token)
-    _log(f"container do carrossel {pai}")
-
-    # 4) publicar
-    post = _post(f"{IG_USER_ID}/media_publish", {
-        "creation_id": pai,
-        "access_token": token,
-    })
-    _log(f"PUBLICADO: {post['id']}")
-
-    # 6) registrar o post e avancar a memoria do ciclo de CTA. So gravamos o
-    # estado ao publicar de fato — se o dia falhar antes daqui, o proximo dia
-    # pega o mesmo CTA, sem repetir nem pular na sequencia.
+    # registrar o post e avancar a memoria do ciclo de CTA. So gravamos o estado
+    # ao publicar de fato — se o dia falhar antes daqui, o proximo dia pega o
+    # mesmo CTA, sem repetir nem pular na sequencia.
     registro = _carregar(PUBLICADOS, {"posts": []})
     registro["posts"].append({
         "id": frase["id"],
@@ -248,7 +290,7 @@ def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
         "data": hoje,
         "texto": frase["texto"],
         "cta": cta_hoje,
-        "media_id": post["id"],
+        "media_id": media_id,
     })
     _salvar(PUBLICADOS, registro)
     _salvar(ESTADO_CTA, {"ultimo_cta": cta_hoje, "data": hoje})
@@ -298,7 +340,20 @@ def main() -> None:
         action="store_true",
         help="rede de seguranca: publica so se o post do dia nao saiu",
     )
+    p.add_argument(
+        "--refazer",
+        action="store_true",
+        help="republica o post de hoje da frase --id com a arte nova (sem mexer no ciclo)",
+    )
     a = p.parse_args()
+
+    # Refazer: republica o post de hoje com a arte corrigida. Nao passa pela
+    # cadencia nem avanca o ciclo de CTA. Deletar o post antigo e manual no app.
+    if a.refazer:
+        if a.id is None:
+            raise SystemExit("--refazer exige --id (qual frase de hoje refazer)")
+        refazer(a.id)
+        return
 
     # Frequencia a cada 2 dias uteis. --id (frase manual) e --ensaio (preview)
     # ignoram a cadencia; a automacao (sem argumentos) respeita.
