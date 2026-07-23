@@ -23,6 +23,14 @@
       "cta": "seguir",
       "media_id": "17890065621664297",
       "rev": 1
+    },
+    {
+      "id": 34,
+      "tema": "vendas",
+      "data": "2026-07-23",
+      "texto": "Na obra, ninguém compra esquadria.\n\nCompra a certeza de que o prazo não vai atrasar.",
+      "cta": "venda-blindada",
+      "media_id": "17984943465034138"
     }
   ]
 }
