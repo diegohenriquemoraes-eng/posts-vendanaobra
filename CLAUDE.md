@@ -1,11 +1,16 @@
 # posts-vendanaobra
 
-Posta 1 carrossel **a cada 2 dias úteis** (dias úteis alternados, **12h em ponto
-BRT**) no feed do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
-Sem sábado/domingo. Ex.: postou terça → próximo quinta → segunda → quarta…
-(frequência decidida pelo Diego em 21/07/2026; sem fim de semana desde 19/07/2026).
-A cadência é ancorada no **último post real** (`deve_postar_hoje`, `publicar.py`),
-então um dia que falhe não quebra o ritmo.
+Publica no feed do Instagram **@vendanaobra** (IG User ID `17841470188725651`),
+sempre **12h em ponto BRT**, com o calendário fixo definido em 03/08/2026:
+
+| Dia | Formato | Publicador |
+|---|---|---|
+| Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | `publicar.py` |
+| Ter / Qui | **Mini-aula** (7–9 slides, 4:5, capa com foto) | `publicar_miniaula.py` |
+| Todo post | + **Story de reforço** logo após o feed | `gerar_story.py` |
+
+Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
+derivava e ia colidir com a mini-aula.
 
 Cada post são **3 slides**. Slides 1 e 2 trazem a **mesma frase**: slide 1 fundo
 branco/letra preta, slide 2 fundo preto/letra branca. Referência de formato:
@@ -24,8 +29,14 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 | `estado_cta.json` | Memória do ciclo de CTA: último CTA publicado + data |
 | `legenda.py` | Ciclo do CTA do dia + textos do slide 3 e da legenda |
 | `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA azul) |
-| `publicar.py` | CTA do dia → fila → imagens → push → Graph API → registro |
-| `.github/workflows/post-diario.yml` | Cron `0 15 * * *` (15h UTC = 12h BRT) |
+| `publicar.py` | CTA do dia → fila → imagens → push → Graph API → registro + story |
+| `miniaulas.json` | Banco das mini-aulas (7 de 40 escritas; pauta em `PAUTA-MINIAULAS.md`) |
+| `publicar_miniaula.py` | Mini-aula: fila da `sequencia` → slides → publica → story → registro |
+| `gerar_miniaula.py` | Pillow → slides 4:5 (âncoras fixas + fonte única por peça) |
+| `gerar_story.py` | Story 1080x1920 com a arte do dia emoldurada |
+| `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
+| `.github/workflows/post-diario.yml` | Frase: seg/qua/sex 14:45 UTC (espera 15:00 = 12h BRT) |
+| `.github/workflows/miniaula.yml` | Mini-aula: ter/qui, mesmos horários + repescagem 13h/17h |
 
 ## Por que o repositório é público
 
