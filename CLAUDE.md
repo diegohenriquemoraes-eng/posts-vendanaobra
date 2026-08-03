@@ -83,13 +83,21 @@ Decidido em 21/07/2026 (substitui o esquema 80/20 anterior, a pedido do Diego).
 O Diego pediu CTA em 100% dos posts, agora **num 3º slide azul** (`#18406F`, o
 azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 
-- **O CTA do dia intercala numa ordem cíclica fixa, nunca repetindo dois dias
-  seguidos:** `seguir → Venda Blindada → Venda 10x → CRM → seguir …`
-  (`CICLO_CTA`). Depois de CRM volta pra "seguir".
-- **Rotação com memória** (`estado_cta.json`): o publicador avança a partir do
-  **último CTA publicado** (não da data). Assim um dia que falhe não repete nem
-  pula — o próximo dia pega o CTA que faltou. O estado só é gravado quando o post
-  publica de fato.
+- **O CTA do dia intercala numa ordem cíclica fixa de 7 posições** (e-book
+  acrescentado em 03/08/2026): `seguir → e-book → Venda 10x → seguir →
+  Venda Blindada → e-book → CRM →` volta ao início (`CICLO_CTA`). São **2x valor
+  puro, 2x e-book, 1x cada produto caro**: o e-book (R$ 19,90) tem peso dobrado
+  por ser a porta de entrada — fabrica comprador para os outros e tem o menor
+  atrito. Produto caro nunca cai em posições seguidas.
+- **Rotação com memória** (`estado_cta.json`): o publicador avança a partir da
+  **posição** do último CTA publicado (não da data). Assim um dia que falhe não
+  repete nem pula — o próximo dia pega o CTA que faltou. O estado só é gravado
+  quando o post publica de fato.
+- **É a POSIÇÃO (`ultimo_indice`), não o nome.** "seguir" e "ebook" aparecem duas
+  vezes no ciclo; `CICLO_CTA.index(nome)` só acha a 1ª ocorrência, e o ciclo
+  ficaria preso entre as posições 0–2 — **Venda Blindada e CRM nunca mais
+  sairiam**. `ultimo_cta` fica no arquivo só para leitura humana. Estado no
+  formato antigo (sem `ultimo_indice`) cai no nome uma única vez, para migrar.
 - **O tema da frase segue o CTA do dia** (escolhido *depois* de saber o CTA):
   dia de "seguir" é post de valor/autoridade (próxima da fila, sem viés); dia de
   produto puxa para a frente a próxima frase que fale da dor daquele produto
@@ -97,8 +105,8 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 - **A legenda usa o mesmo CTA do slide**, para o post ficar coerente
   (`legenda.montar`).
 - **Conversão de produto por comment-to-DM**: o slide 3 traz uma explicação
-  breve do produto + o pedido de uma palavra (`BLINDADA` / `10X` / `CRM`); quem
-  comenta recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
+  breve do produto + o pedido de uma palavra (`LIVRO` / `BLINDADA` / `10X` /
+  `CRM`); quem comenta recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
   na legenda do feed — por isso não colocamos URL no post. Por ora o Diego
   responde à mão; depois liga a automação nativa de palavra-chave do Instagram.
   O CTA de seguir não tem palavra nem link (é o post de valor puro).
@@ -106,13 +114,19 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 `"produto": "venda-blindada"` no `frases.json`.
 
-## Os 3 produtos (fonte: vendanaobra.com.br, conferido 19/07/2026)
+## Os 4 produtos (fonte: vendanaobra.com.br, preços conferidos 03/08/2026)
 
 | Produto | Formato | Preço | Dor |
 |---|---|---|---|
-| **Venda 10x** | Programa ao vivo, quarta 20h | não público | Falta de rotina/consistência comercial |
-| **Venda Blindada** | Contrato editável | R$ 197 único | Prejuízo/brecha em contrato de esquadria |
+| **O Cliente Sumiu** (e-book) | PDF + folhas de trabalho | R$ 19,90 | Orçamento enviado e o cliente some |
+| **Venda Blindada** | Contrato editável | R$ 347 único | Prejuízo/brecha em contrato de esquadria |
+| **Venda 10x** | Ao vivo semanal, quarta 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **CRM Venda na Obra** | Assinatura, sem fidelidade | R$ 297/mês | Lead/funil/follow-up espalhados |
+
+O e-book é a **porta de entrada** (ver `project_ebook_cliente_sumiu` na memória):
+o papel dele não é lucrar, é fabricar comprador para o Venda 10x. Por isso tem
+peso dobrado no ciclo de CTA. Frases da dor dele (follow-up, silêncio pós-orçamento,
+tempo de resposta) estão marcadas com `"produto": "ebook"` no `frases.json`.
 
 O link de cada produto (a LP `vendanaobra.com.br`, que distribui) é entregue **no
 Direct** para quem comenta a palavra do produto — não vai no post (link na legenda

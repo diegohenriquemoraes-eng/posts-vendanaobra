@@ -109,7 +109,8 @@
     {
       "id": 22,
       "tema": "vendas",
-      "texto": "Follow-up não é lembrar que você existe.\n\nÉ trazer uma informação que o cliente ainda não tinha."
+      "texto": "Follow-up não é lembrar que você existe.\n\nÉ trazer uma informação que o cliente ainda não tinha.",
+      "produto": "ebook"
     },
     {
       "id": 23,
@@ -230,7 +231,8 @@
     {
       "id": 46,
       "tema": "vendas",
-      "texto": "Quem responde em duas horas concorre com dois.\n\nQuem responde em dois dias concorre com dez."
+      "texto": "Quem responde em duas horas concorre com dois.\n\nQuem responde em dois dias concorre com dez.",
+      "produto": "ebook"
     },
     {
       "id": 47,
@@ -260,7 +262,8 @@
     {
       "id": 52,
       "tema": "emocional",
-      "texto": "O medo de incomodar custa mais caro do que qualquer follow-up."
+      "texto": "O medo de incomodar custa mais caro do que qualquer follow-up.",
+      "produto": "ebook"
     },
     {
       "id": 53,
@@ -290,12 +293,14 @@
     {
       "id": 58,
       "tema": "vendas",
-      "texto": "Todo orçamento sem próxima data marcada já está perdido.\n\nEle só ainda não sabe disso."
+      "texto": "Todo orçamento sem próxima data marcada já está perdido.\n\nEle só ainda não sabe disso.",
+      "produto": "ebook"
     },
     {
       "id": 59,
       "tema": "metricas",
-      "texto": "A pergunta não é quantos orçamentos você fez.\n\nÉ quantos viraram reunião."
+      "texto": "A pergunta não é quantos orçamentos você fez.\n\nÉ quantos viraram reunião.",
+      "produto": "ebook"
     },
     {
       "id": 60,
@@ -451,7 +456,8 @@
     {
       "id": 90,
       "tema": "vendas",
-      "texto": "Cliente que pede desconto está interessado.\n\nCliente que não responde é que está fora."
+      "texto": "Cliente que pede desconto está interessado.\n\nCliente que não responde é que está fora.",
+      "produto": "ebook"
     },
     {
       "id": 91,
@@ -536,7 +542,8 @@
     {
       "id": 107,
       "tema": "metricas",
-      "texto": "Quanto tempo seu cliente espera pelo orçamento é a métrica que seu concorrente já melhorou."
+      "texto": "Quanto tempo seu cliente espera pelo orçamento é a métrica que seu concorrente já melhorou.",
+      "produto": "ebook"
     },
     {
       "id": 108,
@@ -577,7 +584,8 @@
     {
       "id": 115,
       "tema": "metricas",
-      "texto": "Orçamento enviado é atividade.\n\nReunião marcada é indicador. Não confunda os dois."
+      "texto": "Orçamento enviado é atividade.\n\nReunião marcada é indicador. Não confunda os dois.",
+      "produto": "ebook"
     },
     {
       "id": 116,
@@ -612,7 +620,8 @@
     {
       "id": 122,
       "tema": "ia",
-      "texto": "Automatizar o follow-up é fácil.\n\nDifícil é ter o que dizer no follow-up."
+      "texto": "Automatizar o follow-up é fácil.\n\nDifícil é ter o que dizer no follow-up.",
+      "produto": "ebook"
     },
     {
       "id": 123,

@@ -2,26 +2,43 @@
 """CTA do dia: o 3o slide + a legenda que o reforca.
 
 Regra (decidida em 21/07/2026, ver CLAUDE.md — substitui o esquema 80/20
-anterior):
+anterior; e-book acrescentado ao ciclo em 03/08/2026):
   - todo post tem um 3o slide de CTA, em fundo laranja da marca;
   - o CTA do dia intercala numa ordem ciclica fixa, NUNCA repetindo dois dias
-    seguidos:  seguir -> Venda Blindada -> Venda 10x -> CRM -> seguir ...
+    seguidos:  seguir -> e-book -> Venda 10x -> seguir -> Venda Blindada ->
+    e-book -> CRM -> seguir ... (7 posicoes, ver CICLO_CTA);
   - a rotacao tem memoria (estado_cta.json, gravado pelo publicar.py): avanca a
-    partir do ULTIMO CTA publicado, entao um dia que falhe nao repete nem pula;
+    partir da POSICAO do ultimo CTA publicado, entao um dia que falhe nao repete
+    nem pula. E a posicao, nao o nome, porque "seguir" e "ebook" aparecem duas
+    vezes no ciclo — buscar pelo nome sempre acharia a 1a ocorrencia e o ciclo
+    ficaria preso num sub-loop, sem nunca chegar em Blindada e CRM;
   - a legenda usa o MESMO CTA do slide, para o post ficar coerente;
   - o tema da frase e escolhido depois de saber o CTA (ver publicar.py), para
     o conteudo puxar naturalmente para a chamada do dia.
 
 Conversao de produto e por comment-to-DM: o slide traz uma explicacao breve do
-produto e pede uma palavra (BLINDADA / 10X / CRM); quem comenta recebe o link no
-Direct — no Instagram o link so e clicavel no DM, nunca na legenda do feed. Por
-ora o Diego responde a mao; depois liga a automacao nativa de palavra-chave do
-Instagram. O CTA de seguir nao tem palavra nem link (e o post de valor puro).
+produto e pede uma palavra (LIVRO / BLINDADA / 10X / CRM); quem comenta recebe o
+link no Direct — no Instagram o link so e clicavel no DM, nunca na legenda do
+feed. Por ora o Diego responde a mao; depois liga a automacao nativa de
+palavra-chave do Instagram. O CTA de seguir nao tem palavra nem link (e o post de
+valor puro).
 """
 from __future__ import annotations
 
 # Ordem ciclica do CTA do dia. Nao reordenar sem querer mudar a sequencia.
-CICLO_CTA = ["seguir", "venda-blindada", "venda10x", "crm"]
+#
+# 7 posicoes: 2x valor puro, 2x e-book, 1x cada produto caro. O e-book (R$ 19,90)
+# tem peso dobrado por ser a porta de entrada — e o produto que fabrica comprador
+# para os outros, e o de menor atrito. Os caros nunca caem em posicoes seguidas.
+CICLO_CTA = [
+    "seguir",          # 0
+    "ebook",           # 1
+    "venda10x",        # 2
+    "seguir",          # 3
+    "venda-blindada",  # 4
+    "ebook",           # 5
+    "crm",             # 6
+]
 
 # Cada CTA tem tres pecas:
 #   slide   -> texto do 3o slide (blocos separados por \n\n viram linha em branco)
@@ -34,6 +51,22 @@ CTA = {
         "legenda": (
             "Se isso fez sentido, segue o @vendanaobra — todo dia útil tem um "
             "card desses aqui, direto ao ponto sobre vender mais na obra."
+        ),
+    },
+    "ebook": {
+        "slide": (
+            "O Cliente Sumiu\n\n"
+            "O e-book de R$ 19,90 com o protocolo D+1 · D+7 · D+30 para o "
+            "orçamento enviado virar contrato assinado.\n\n"
+            "Comenta LIVRO que o link cai no seu Direct."
+        ),
+        "rodape": "@vendanaobra",
+        "legenda": (
+            "Mandar o orçamento é o fim do seu trabalho e o começo do silêncio dele.\n"
+            "“O Cliente Sumiu” é o protocolo D+1 · D+7 · D+30 que transforma "
+            "orçamento enviado em contrato assinado — com 17 mensagens prontas "
+            "para copiar. R$ 19,90.\n\n"
+            "Comenta LIVRO aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
     "venda-blindada": {
@@ -84,6 +117,7 @@ CTA = {
 # Serve para o publicar.py puxar uma frase que case com a dor do produto.
 CTA_PRODUTO = {
     "seguir": None,
+    "ebook": "ebook",
     "venda-blindada": "venda-blindada",
     "venda10x": "venda10x",
     "crm": "crm",
@@ -101,16 +135,26 @@ TEMA_PRODUTO = {
 }
 
 
-def avancar_cta(ultimo: str | None) -> str:
+def avancar_cta(estado: dict) -> tuple[int, str]:
     """CTA de hoje = o proximo do ciclo depois do ultimo publicado.
 
-    `None` (primeira vez, sem estado) comeca em 'seguir'. Como avanca a partir
-    do ultimo *publicado*, um dia que falhe nao adianta o ciclo: o proximo dia
-    pega o mesmo CTA que faltou, sem repetir nem pular.
+    Devolve `(indice, chave)`. Avanca pela POSICAO gravada, nunca pelo nome:
+    'seguir' e 'ebook' aparecem duas vezes em CICLO_CTA, e `list.index()` so
+    acha a 1a ocorrencia — o ciclo ficaria preso entre as posicoes 0-2 e
+    Venda Blindada e CRM nunca sairiam.
+
+    Estado sem `ultimo_indice` (formato antigo, ate 03/08/2026) cai no nome uma
+    unica vez, so para migrar. Sem estado nenhum, comeca em 'seguir'.
+
+    Como avanca a partir do ultimo *publicado*, um dia que falhe nao adianta o
+    ciclo: o proximo dia pega o mesmo CTA que faltou, sem repetir nem pular.
     """
-    if ultimo not in CICLO_CTA:
-        return CICLO_CTA[0]
-    return CICLO_CTA[(CICLO_CTA.index(ultimo) + 1) % len(CICLO_CTA)]
+    i = estado.get("ultimo_indice")
+    if not isinstance(i, int) or not 0 <= i < len(CICLO_CTA):
+        ultimo = estado.get("ultimo_cta")
+        i = CICLO_CTA.index(ultimo) if ultimo in CICLO_CTA else -1
+    prox = (i + 1) % len(CICLO_CTA)
+    return prox, CICLO_CTA[prox]
 
 
 def produto_do_cta(cta_key: str) -> str | None:

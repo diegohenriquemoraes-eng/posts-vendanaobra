@@ -116,12 +116,18 @@ def _salvar(caminho: str, dados) -> None:
 
 
 def _ler_estado_cta() -> dict:
-    return _carregar(ESTADO_CTA, {"ultimo_cta": None, "data": None})
+    return _carregar(ESTADO_CTA, {"ultimo_cta": None, "ultimo_indice": None,
+                                  "data": None})
 
 
-def cta_do_dia() -> str:
-    """CTA de hoje = proximo do ciclo depois do ultimo publicado (com memoria)."""
-    return legenda.avancar_cta(_ler_estado_cta().get("ultimo_cta"))
+def cta_do_dia() -> tuple[int, str]:
+    """CTA de hoje = proximo do ciclo depois do ultimo publicado (com memoria).
+
+    Devolve `(indice, chave)`: o indice e o que fica gravado no estado, porque o
+    ciclo repete nomes ('seguir' e 'ebook' saem duas vezes) — ver
+    `legenda.avancar_cta`.
+    """
+    return legenda.avancar_cta(_ler_estado_cta())
 
 
 def escolher(id_forcado: int | None, cta_hoje: str) -> dict:
@@ -256,7 +262,7 @@ def refazer(fid: int) -> None:
     _log("registro atualizado; ciclo de CTA inalterado")
 
 
-def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
+def publicar(frase: dict, cta_hoje: str, indice_cta: int, ensaio: bool) -> None:
     token = _token()
     conferir_token(token)
     hoje = datetime.now(FUSO_BR).strftime("%Y-%m-%d")
@@ -293,7 +299,10 @@ def publicar(frase: dict, cta_hoje: str, ensaio: bool) -> None:
         "media_id": media_id,
     })
     _salvar(PUBLICADOS, registro)
-    _salvar(ESTADO_CTA, {"ultimo_cta": cta_hoje, "data": hoje})
+    # `ultimo_indice` e o que manda no avanco do ciclo; `ultimo_cta` fica so
+    # para leitura humana do arquivo.
+    _salvar(ESTADO_CTA, {"ultimo_cta": cta_hoje, "ultimo_indice": indice_cta,
+                         "data": hoje})
     _commitar(f"post {slug} publicado", "publicados.json", "estado_cta.json")
 
 
@@ -365,8 +374,8 @@ def main() -> None:
         _log("post do dia ja esta no ar — nada a fazer")
         return
 
-    cta_hoje = cta_do_dia()
-    publicar(escolher(a.id, cta_hoje), cta_hoje, a.ensaio)
+    indice_cta, cta_hoje = cta_do_dia()
+    publicar(escolher(a.id, cta_hoje), cta_hoje, indice_cta, a.ensaio)
 
 
 if __name__ == "__main__":
