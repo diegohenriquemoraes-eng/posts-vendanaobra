@@ -6,8 +6,8 @@ name: Rede de seguranca
 
 on:
   schedule:
-    - cron: "0 16 * * 1-5"   # 13h BRT, seg-sex
-    - cron: "0 20 * * 1-5"   # 17h BRT, seg-sex
+    - cron: "0 16 * * 1,3,5"   # 13h BRT, seg/qua/sex (ter/qui e a mini-aula)
+    - cron: "0 20 * * 1,3,5"   # 17h BRT, seg/qua/sex
   workflow_dispatch:
 
 permissions:

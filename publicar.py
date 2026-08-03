@@ -286,6 +286,25 @@ def publicar(frase: dict, cta_hoje: str, indice_cta: int, ensaio: bool) -> None:
 
     media_id = _subir_e_publicar(caminhos, hoje, slug, texto_legenda, token)
 
+    # story de reforco (a arte do slide 1 emoldurada). Se falhar, o post do
+    # feed ja esta no ar — avisa e segue, sem derrubar o job.
+    try:
+        from gerar_story import gerar_story
+        st_caminho = os.path.join(BASE, "imagens", hoje, f"{slug}-story.jpg")
+        gerar_story(caminhos[0], st_caminho)
+        _commitar(f"story do post {slug}", "imagens")
+        st_url = f"{REPO_RAW}/imagens/{hoje}/{os.path.basename(st_caminho)}"
+        r = _post(f"{IG_USER_ID}/media", {
+            "media_type": "STORIES", "image_url": st_url, "access_token": token,
+        })
+        esperar_container(r["id"], token)
+        st = _post(f"{IG_USER_ID}/media_publish", {
+            "creation_id": r["id"], "access_token": token,
+        })
+        _log(f"STORY publicado: {st['id']}")
+    except SystemExit as e:
+        _log(f"AVISO: story falhou ({e}); o post do feed esta no ar")
+
     # registrar o post e avancar a memoria do ciclo de CTA. So gravamos o estado
     # ao publicar de fato — se o dia falhar antes daqui, o proximo dia pega o
     # mesmo CTA, sem repetir nem pular na sequencia.
@@ -311,33 +330,22 @@ def ja_postou_hoje() -> bool:
     return any(p["data"] == hoje for p in _carregar(PUBLICADOS, {"posts": []})["posts"])
 
 
-def _dias_uteis_entre(inicio, fim) -> int:
-    """Quantos dias uteis (seg-sex) ha depois de `inicio` ate `fim` inclusive."""
-    n = 0
-    d = inicio
-    while d < fim:
-        d += timedelta(days=1)
-        if d.weekday() < 5:
-            n += 1
-    return n
-
-
 def deve_postar_hoje() -> bool:
-    """Frequencia: 1 post a cada 2 dias uteis (posta em dias uteis alternados).
+    """Frequencia: SEGUNDA, QUARTA E SEXTA (desde 03/08/2026).
 
-    Publica so se hoje for dia util e ja tiverem passado >=2 dias uteis desde o
-    ultimo post — ex.: postou terca, o proximo e quinta, depois segunda, quarta...
-    Ancora no ultimo post real (nao numa data fixa), entao um dia que falhe nao
-    quebra o ritmo. Tambem evita postar duas vezes no mesmo dia (0 dias uteis).
+    Antes era "a cada 2 dias uteis" ancorado no ultimo post, mas essa ancora
+    deriva (ter -> qui -> seg...) e uma hora cairia em cima da mini-aula, que
+    ocupa terca e quinta (publicar_miniaula.py). Dias fixos nunca colidem.
+    Tambem evita postar duas vezes no mesmo dia.
     """
     hoje = datetime.now(FUSO_BR).date()
-    if hoje.weekday() >= 5:            # sabado/domingo: nunca
+    if hoje.weekday() not in (0, 2, 4):    # seg, qua, sex
         return False
     posts = _carregar(PUBLICADOS, {"posts": []})["posts"]
     if not posts:
         return True
     ultima = max(datetime.strptime(p["data"], "%Y-%m-%d").date() for p in posts)
-    return _dias_uteis_entre(ultima, hoje) >= 2
+    return ultima < hoje
 
 
 def main() -> None:

@@ -4,10 +4,9 @@ on:
   schedule:
     # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.
     # A folga existe porque o agendador do Actions costuma atrasar alguns minutos.
-    # 1-5 = dispara de segunda a sexta; QUEM decide se posta hoje e o publicar.py
-    # (deve_postar_hoje): a cadencia real e 1 post a cada 2 dias uteis, ancorada
-    # no ultimo post. Dias em que nao toca a vez, o job roda e sai sem publicar.
-    - cron: "45 14 * * 1-5"
+    # 1,3,5 = seg/qua/sex — desde 03/08/2026 a frase tem dias fixos; terca e
+    # quinta sao da mini-aula (miniaula.yml). O publicar.py confirma o dia.
+    - cron: "45 14 * * 1,3,5"
   workflow_dispatch:
     inputs:
       id:

@@ -1,0 +1,81 @@
+name: Mini-aula @vendanaobra
+
+# Terca e quinta, 12h em ponto BRT. O cron dispara 14:45 UTC e o job dorme ate
+# 15:00:00 UTC exatos, porque o agendador do Actions costuma atrasar.
+# O carrossel de frase ocupa seg/qua/sex (post-diario.yml) — nunca colidem.
+
+on:
+  schedule:
+    - cron: "45 14 * * 2,4"   # ter e qui
+    # repescagens: publicam so se a mini-aula do dia nao saiu (--garantir)
+    - cron: "0 16 * * 2,4"    # 13h BRT
+    - cron: "0 20 * * 2,4"    # 17h BRT
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Forcar uma aula especifica (id do miniaulas.json)"
+        required: false
+        type: string
+      ensaio:
+        description: "Ensaio: gera tudo sem publicar"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pillow
+
+      - name: Esperar o meio-dia em ponto
+        if: github.event_name == 'schedule' && github.event.schedule == '45 14 * * 2,4'
+        run: |
+          alvo=$(date -u -d "$(date -u +%F) 15:00:00" +%s)
+          agora=$(date -u +%s)
+          espera=$(( alvo - agora ))
+          if [ "$espera" -gt 0 ]; then
+            echo "esperando ${espera}s ate 15:00:00 UTC (12:00 BRT)"
+            sleep "$espera"
+          else
+            echo "runner comecou atrasado (${espera}s); publicando agora"
+          fi
+
+      - name: Publicar mini-aula
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          args=""
+          [ -n "${{ inputs.id }}" ] && args="$args --id ${{ inputs.id }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          # repescagens das 13h/17h entram com --garantir
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" != "45 14 * * 2,4" ]; then
+            args="$args --garantir"
+          fi
+          python publicar_miniaula.py $args
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Mini-aula falhou em " + hoje,
+              body: "O workflow da mini-aula falhou. Run: " + context.serverUrl +
+                    "/" + context.repo.owner + "/" + context.repo.repo +
+                    "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas comuns: aula sem foto no fotos/, token da Meta, banco esgotado."
+            })
