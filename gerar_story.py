@@ -2,10 +2,10 @@
 """Gera o Story de reforco do post do dia (1080x1920).
 
 O Story existe para colocar o post na tela de quem ja segue: boa parte dos
-seguidores nao ve o feed, mas ve Story. E a arte do proprio post do dia
-(slide 1), emoldurada num fundo navy com uma chamada curta em cima e o
-direcionamento para o feed embaixo. Sem link (a Graph API nao publica sticker
-de link em story) — o caminho e "post novo no feed".
+seguidores nao ve o feed, mas ve Story. Formato definido pelo Diego em
+03/08/2026: **so a arte do proprio post**, emoldurada no fundo navy — sem
+"saiu post novo", sem "toca no perfil", sem chamada nenhuma. A frase do post
+E o story.
 """
 from __future__ import annotations
 
@@ -37,17 +37,17 @@ def gerar_story(arte_do_post: str, destino: str) -> str:
 
     arte = Image.open(arte_do_post).convert("RGB")
 
-    # arte a ~86% da largura, centralizada; altura conforme a proporcao original
-    w = int(LARG * 0.86)
+    # so a arte, grande e centralizada — sem texto nenhum em volta
+    w = int(LARG * 0.92)
     h = int(arte.height * w / arte.width)
-    h_max = ALT - 560                      # sobra para o texto em cima e embaixo
+    h_max = ALT - 240                      # respiro nas pontas
     if h > h_max:
         h = h_max
         w = int(arte.width * h / arte.height)
     arte = arte.resize((w, h), Image.LANCZOS)
 
     x = (LARG - w) // 2
-    y = (ALT - h) // 2 + 20
+    y = (ALT - h) // 2
 
     # sombra suave atras da arte, para descolar do fundo
     sombra = Image.new("RGB", (LARG, ALT), NAVY_ESCURO)
@@ -56,17 +56,6 @@ def gerar_story(arte_do_post: str, destino: str) -> str:
     img = Image.composite(sombra.filter(ImageFilter.GaussianBlur(18)), img,
                           Image.new("L", (LARG, ALT), 255))
     img.paste(arte, (x, y))
-    d = ImageDraw.Draw(img)
-
-    # chamada no topo
-    d.text((LARG / 2, y - 150), "SAIU POST NOVO", font=_f(34, peso=800),
-           fill=DOURADO, anchor="ma")
-    d.text((LARG / 2, y - 96), "no feed do @vendanaobra", font=_f(40, peso=600),
-           fill=BRANCO, anchor="ma")
-
-    # direcionamento embaixo
-    d.text((LARG / 2, y + h + 60), "Toca no perfil e ve o post completo",
-           font=_f(32, peso=500), fill=(200, 214, 232), anchor="ma")
 
     os.makedirs(os.path.dirname(destino), exist_ok=True)
     img.save(destino, "JPEG", quality=92, subsampling=0, optimize=True)
