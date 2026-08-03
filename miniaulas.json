@@ -1,0 +1,345 @@
+{
+  "_regras": [
+    "Toda mini-aula sai de material JA PUBLICADO pelo Diego (e-book, Venda Blindada, blog, transcricoes do YouTube). Campo 'fonte' obriga a dizer de onde veio.",
+    "Voz: seguir content/VOZ-DIEGO.md da LP. Antitese em par, frase curta, abre na dor em 2a pessoa, fecha mandando executar.",
+    "Nunca inventar numero, cliente, percentual ou depoimento. Sem experiencia pessoal que nao esteja em CASOS-DIEGO.md.",
+    "Escopo: vendas, gestao comercial, empreendedorismo na construcao civil. Inteligencia artificial so ligada ao comercial."
+  ],
+  "aulas": [
+    {
+      "id": 1,
+      "etiqueta": "Antes do orçamento",
+      "titulo": "As 5 perguntas que evitam o orçamento furado",
+      "foto": "fotos/miniaula-01.jpg",
+      "produto": "ebook",
+      "fonte": "E-book O Cliente Sumiu, Parte 2 — 'As cinco perguntas que evitam o orçamento furado' e 'O combinado de retorno'",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "O erro não está no follow-up. Está antes dele.",
+          "corpo": "A visita foi ótima. O cliente elogiou a empresa. Você montou um orçamento caprichado, revisou duas vezes, mandou no mesmo dia.\n\nE nunca mais teve notícia.\n\nQuando isso acontece, a primeira reação é achar que o follow-up falhou. Não falhou. Não tinha o que fazer.\n\nFollow-up não salva orçamento mal nascido. Você não conserta no dia 7 o que quebrou no dia zero."
+        },
+        {
+          "numero": "1",
+          "titulo": "Em que fase está a obra hoje?",
+          "corpo": "Fundação, alvenaria, contrapiso, acabamento.\n\nVocê precisa da fase real, não da intenção. É a fase que diz quanto tempo falta para a compra acontecer, e que tipo de acompanhamento aquele cliente precisa até lá.",
+          "rodape": "Pergunta 1 de 5"
+        },
+        {
+          "numero": "2",
+          "titulo": "Que data você precisa disso instalado?",
+          "corpo": "Repare que a pergunta não é \"quando você pretende comprar\". Ninguém responde isso com honestidade.\n\nMas todo mundo sabe quando a filha casa, quando a mudança está marcada, quando o cliente da construtora recebe a chave.\n\nA data da obra é real. A data da compra é opinião.",
+          "rodape": "Pergunta 2 de 5"
+        },
+        {
+          "numero": "3",
+          "titulo": "Quem mais participa dessa decisão com você?",
+          "corpo": "Pergunta simples, e é a que mais gente tem vergonha de fazer. Não tenha. Ela não ofende ninguém.\n\nEla evita que você descubra na terceira semana que existe um sócio, um marido, uma esposa, um engenheiro ou um financeiro que nunca ouviu falar de você.",
+          "rodape": "Pergunta 3 de 5"
+        },
+        {
+          "numero": "4",
+          "titulo": "Já pediu orçamento para outra empresa? O que fez você chamar a gente?",
+          "corpo": "Duas informações numa pergunta só. A primeira diz com quem você está disputando. A segunda diz qual é o critério de compra dele.\n\n\"Porque indicaram\" é venda de confiança. \"Porque achei o site de vocês\" é venda de comparação. São dois jogos diferentes.",
+          "rodape": "Pergunta 4 de 5"
+        },
+        {
+          "numero": "5",
+          "titulo": "O que precisa acontecer para a gente avançar?",
+          "corpo": "Não é técnica de fechamento. É diagnóstico.\n\nQuem responde essa pergunta entrega a objeção de graça: \"preciso falar com minha esposa\", \"preciso esperar liberar a parcela\", \"preciso ver mais dois orçamentos\".\n\nNenhuma dessas respostas é preço. E todas mudam o que você faz nos próximos 30 dias.",
+          "rodape": "Pergunta 5 de 5"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E o combinado que vale mais que as cinco",
+          "corpo": "Nenhum orçamento sai da sua mão sem uma data de retorno dita pelo cliente.\n\nQuando você marca, é cobrança. Quando ele marca, é compromisso.\n\n\"Mando hoje até o fim do dia. Você consegue olhar até quinta? Aí na quinta à tarde eu te ligo para tirar as dúvidas técnicas, que sempre aparecem. Pode ser 16h?\""
+        }
+      ],
+      "cta": {
+        "titulo": "O orçamento é só o começo do trabalho",
+        "corpo": "Depois que ele sai da sua mão, começa o silêncio. \"O Cliente Sumiu\" é o protocolo D+1 · D+7 · D+30 para transformar orçamento enviado em contrato assinado, com 17 mensagens prontas para copiar. R$ 19,90.",
+        "palavra": "LIVRO"
+      },
+      "legenda": "Você manda o orçamento na terça. O cliente lê. Não responde.\n\nNa sexta você manda um \"conseguiu ver?\" e ele responde \"tô analisando\". Duas semanas depois a obra fechou com outro. E você jura que perdeu no preço.\n\nNa maioria das vezes não perdeu. A venda quebrou antes, na visita, quando o orçamento foi prometido sem as informações que decidem a compra.\n\nSão cinco perguntas. Levam menos de cinco minutos no fim da visita. Salvei elas aqui no carrossel para você aplicar no próximo orçamento que for mandar.\n\nA quinta é a que eu mais uso: \"o que precisa acontecer para a gente avançar?\". Quem responde entrega a objeção de graça.\n\nSalva esse post para não perder na hora da visita.\n\n#vendasnaconstrucaocivil #esquadrias #vidracaria #serralheria #marmoraria #gestaocomercial #construcaocivil"
+    },
+    {
+      "id": 2,
+      "etiqueta": "Depois do orçamento",
+      "titulo": "O protocolo que faz o cliente voltar a responder",
+      "foto": "fotos/miniaula-02.jpg",
+      "produto": "ebook",
+      "fonte": "E-book O Cliente Sumiu, Parte 3 — 'O Protocolo D+1 · D+7 · D+30'",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Três contatos. Trinta dias. Nada no meio.",
+          "corpo": "A maioria faz o contrário: manda \"e aí, conseguiu ver?\" no terceiro dia, repete no quinto, some no décimo e reaparece dois meses depois.\n\nO protocolo tem só três momentos, cada um com um objetivo diferente. Entre eles, silêncio de propósito."
+        },
+        {
+          "numero": "D+1",
+          "titulo": "As primeiras 24 horas",
+          "corpo": "O objetivo não é cobrar leitura. É garantir que ele entendeu o que recebeu.\n\nEm 24 horas você ainda está fresco na memória dele. Depois de três dias, você já é mais um PDF na pasta de downloads.\n\nA mensagem não é \"recebeu?\". É a explicação do ponto técnico que você sabe que gera dúvida.",
+          "rodape": "Etapa 1 de 3"
+        },
+        {
+          "numero": "D+7",
+          "titulo": "A semana da comparação",
+          "corpo": "É o momento mais importante dos três. As outras propostas já chegaram e ele está com três documentos parecidos na mesa.\n\nAqui você entrega o critério de comparação que ele não tem. Não é falar mal do concorrente, nunca. É dar a ele uma pergunta para fazer a todo mundo, inclusive a você.",
+          "rodape": "Etapa 2 de 3"
+        },
+        {
+          "numero": "D+30",
+          "titulo": "A hora de decidir",
+          "corpo": "Trinta dias depois, a obra andou. O que era \"vou ver\" agora tem resposta.\n\nÉ o contato que fecha o ciclo com dignidade: ou reabre a negociação com informação nova, ou libera você para parar de carregar um orçamento morto na cabeça.",
+          "rodape": "Etapa 3 de 3"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E o intervalo, que é a parte que ninguém aguenta",
+          "corpo": "Entre o dia 8 e o dia 29 você não faz nada.\n\nParece pouco. É o que separa o profissional do vendedor ansioso. Cada mensagem a mais nesse intervalo comunica uma coisa só: que você precisa mais da venda do que ele precisa da obra.\n\nQuem responde \"vou olhar com calma\" está em fase, não em desinteresse. Fase se respeita."
+        }
+      ],
+      "cta": {
+        "titulo": "Os três textos prontos estão no livro",
+        "corpo": "\"O Cliente Sumiu\" traz o protocolo completo e 17 mensagens escritas para copiar, colar e adaptar: as cinco do protocolo, as de objeção, as de arquiteto, as de construtora e as de reativação de carteira parada. R$ 19,90.",
+        "palavra": "LIVRO"
+      },
+      "legenda": "Você mandou o orçamento e agora está naquela dúvida: mando mensagem hoje ou pareço chato?\n\nA resposta é que existe hora certa, e são só três.\n\nD+1 para garantir que ele entendeu o que recebeu. D+7 para entrar na semana em que ele está comparando as propostas. D+30 para fechar o ciclo, de um jeito ou de outro.\n\nEntre o dia 8 e o dia 29 você não faz nada. É a parte mais difícil e a que mais funciona: cada mensagem a mais nesse intervalo diz para o cliente que você precisa mais da venda do que ele precisa da obra.\n\nSalva esse post e usa no próximo orçamento que sair da sua mão.\n\n#vendasnaconstrucaocivil #esquadrias #vidracaria #followup #gestaocomercial #construcaocivil"
+    },
+    {
+      "id": 3,
+      "etiqueta": "Script pronto",
+      "titulo": "A mensagem de 24 horas que não parece cobrança",
+      "foto": "fotos/miniaula-03.jpg",
+      "produto": "ebook",
+      "fonte": "E-book O Cliente Sumiu, Partes 3 e 4 — mensagem 2 e 'Objeções que viram sumiço'",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "\"Recebeu?\" é a pior mensagem que existe",
+          "corpo": "Ela não entrega nada. Só transfere para o cliente a tarefa de te responder alguma coisa.\n\nA mensagem de 24 horas boa faz o contrário: ela entrega uma informação que ele ainda não tinha e abre porta para conversa."
+        },
+        {
+          "numero": "1",
+          "titulo": "Abra garantindo o arquivo, não cobrando resposta",
+          "corpo": "\"Bom dia, [nome]. Passando aqui só para garantir que o arquivo abriu certinho.\"\n\nÉ um motivo legítimo para a mensagem existir. Ninguém se incomoda com isso.",
+          "rodape": "Estrutura da mensagem"
+        },
+        {
+          "numero": "2",
+          "titulo": "Explique o ponto que gera dúvida",
+          "corpo": "\"O ponto que mais gera dúvida nessa proposta é o [item técnico]. Muita gente compara com [alternativa mais barata] e acha que é a mesma coisa. A diferença aparece no vento da fachada, na limpeza, no acabamento com o gesso.\"\n\nVocê está ensinando, não vendendo.",
+          "rodape": "Estrutura da mensagem"
+        },
+        {
+          "numero": "3",
+          "titulo": "Ofereça o áudio de dois minutos",
+          "corpo": "\"Se quiser, eu te explico em dois minutos por áudio.\"\n\nDois minutos é um compromisso pequeno o suficiente para ele aceitar, e um áudio seu vale mais que qualquer PDF na comparação.",
+          "rodape": "Estrutura da mensagem"
+        },
+        {
+          "numero": "4",
+          "titulo": "Feche abrindo porta, não encerrando",
+          "corpo": "\"Qualquer coisa que estiver confusa na proposta, me fala que eu ajusto.\"\n\nRepare na diferença: \"me fala que eu ajusto\" abre porta para conversa. \"Estou à disposição\" encerra o assunto com educação.",
+          "rodape": "Estrutura da mensagem"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E se ele não responder nada",
+          "corpo": "Está tudo bem. Não repete a mensagem. Não manda \"oi?\" no dia seguinte.\n\nEle entra no dia 7, e ponto.\n\nSilêncio no dia 2 não é resposta. É só silêncio."
+        }
+      ],
+      "cta": {
+        "titulo": "São 17 mensagens, não uma",
+        "corpo": "O livro traz a mensagem completa de cada etapa e mais as de objeção, arquiteto, construtora e reativação de carteira parada. Escritas para copiar e adaptar ao que você vende. R$ 19,90.",
+        "palavra": "LIVRO"
+      },
+      "legenda": "Todo vendedor já mandou aquele \"e aí, conseguiu ver?\".\n\nÉ a pior mensagem que existe, porque ela não entrega nada. Só passa para o cliente a tarefa de responder alguma coisa.\n\nA mensagem de 24 horas que funciona tem quatro partes, e nenhuma delas é cobrança. Ela garante o arquivo, explica o ponto técnico que gera dúvida, oferece um áudio de dois minutos e fecha abrindo porta.\n\nRepare no detalhe do último slide: \"me fala que eu ajusto\" é diferente de \"estou à disposição\". Uma abre conversa, a outra encerra o assunto com educação.\n\nSalva para usar amanhã.\n\n#vendasnaconstrucaocivil #esquadrias #followup #whatsappvendas #construcaocivil #gestaocomercial"
+    },
+    {
+      "id": 7,
+      "etiqueta": "Depois do não",
+      "titulo": "Descubra onde a venda morreu, sem achismo",
+      "foto": "fotos/miniaula-07.jpg",
+      "produto": "venda10x",
+      "fonte": "E-book O Cliente Sumiu, Parte 5 + vídeo 'Venda Perdida: O Que Fazer Depois do Não'",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Supõe que é preço. Supõe que é prazo. Supõe que é concorrência.",
+          "corpo": "A maioria dos profissionais da construção tenta adivinhar o motivo da não venda.\n\nE preço é a resposta mais fácil de engolir, porque é a que não exige nada de você. Preço é o que o cliente fala quando não quer explicar o motivo real.\n\nNinguém liga para dizer \"não fechei com você porque não confiei no seu prazo\"."
+        },
+        {
+          "numero": "1",
+          "titulo": "A venda morre em cinco lugares, não em um",
+          "corpo": "Primeiro contato, qualificação, proposta, negociação, fechamento.\n\nQuando você diz \"perdi no preço\", você está dizendo que morreu na negociação. Na maioria das vezes ela morreu na qualificação, três semanas antes, e você nem viu.",
+          "rodape": "Diagnóstico"
+        },
+        {
+          "numero": "2",
+          "titulo": "A pergunta que devolve informação",
+          "corpo": "\"O que pesou na escolha de vocês?\"\n\nPerguntada sem defesa e sem tentar reverter. Você não está negociando, está aprendendo. E cliente que já decidiu costuma responder com uma honestidade que ele não teve enquanto estava comprando.",
+          "rodape": "Diagnóstico"
+        },
+        {
+          "numero": "3",
+          "titulo": "O não que não é não",
+          "corpo": "\"Agora não\" não é a mesma coisa que \"não\". Obra atrasa, financiamento trava, sócio viaja.\n\nBoa parte do que você anotou como venda perdida é venda adiada que ninguém reabriu, porque ficou marcada como derrota e saiu da lista.",
+          "rodape": "Diagnóstico"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E a parte que ninguém fala",
+          "corpo": "Todo vendedor vai tomar muito mais não do que sim ao longo da vida. Isso é regra geral, para todo mundo.\n\nO problema não é o não. É o vendedor que se massacra depois dele e demora mais para fazer a próxima ligação.\n\nGestão emocional não é papo motivacional. É o que determina quantas tentativas você ainda tem no mês."
+        }
+      ],
+      "cta": {
+        "titulo": "Isso é rotina, não é talento",
+        "corpo": "Diagnóstico de perda, leitura de funil e controle emocional são o que eu destrincho toda quarta às 20h, ao vivo, no Venda 10x. Aula semanal, prática, sobre vender e gerir o comercial na construção civil.",
+        "palavra": "10X"
+      },
+      "legenda": "Perdeu uma venda e ficou com aquela sensação de \"era pra ter fechado\"?\n\nA primeira coisa que a gente faz é adivinhar o motivo. Supõe que é preço, supõe que é prazo, supõe que é concorrência.\n\nPreço é a resposta mais fácil de engolir porque é a que não exige nada de você. Mas ninguém liga para dizer \"não fechei porque não confiei no seu prazo\".\n\nA venda morre em cinco lugares diferentes. Quando você diz que perdeu no preço, está dizendo que morreu na negociação. Quase sempre morreu na qualificação, três semanas antes.\n\nE tem o não que não é não: obra atrasa, financiamento trava. Muita venda marcada como perdida é venda adiada que ninguém reabriu.\n\n#vendasnaconstrucaocivil #esquadrias #gestaocomercial #vendaperdida #construcaocivil"
+    },
+    {
+      "id": 9,
+      "etiqueta": "Rotina comercial",
+      "titulo": "Os 20 minutos por dia que pagam o mês",
+      "foto": "fotos/miniaula-09.jpg",
+      "produto": "crm",
+      "fonte": "E-book O Cliente Sumiu, Parte 6 — 'Os 20 minutos que pagam o mês' e 'O Mapa dos 30 Dias'",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Processo que depende de memória não é processo",
+          "corpo": "É sorte com nome bonito.\n\nEnquanto o follow-up está só na sua cabeça, ele funciona no dia bom e some no dia corrido. E o dia corrido é a maioria dos dias."
+        },
+        {
+          "numero": "1",
+          "titulo": "Mesma hora, todo dia útil",
+          "corpo": "Escolha um horário morto da sua agenda e trave: início da manhã antes das visitas, ou fim da tarde depois da obra.\n\nNão precisa de força de vontade se estiver no calendário. Precisa de força de vontade justamente quando não está.",
+          "rodape": "A rotina"
+        },
+        {
+          "numero": "2",
+          "titulo": "Olhe só quem vence hoje",
+          "corpo": "Não é revisar a carteira inteira todo dia. É abrir a lista e ver quem cai no D+1, quem cai no D+7 e quem cai no D+30 hoje.\n\nNa prática são três, quatro nomes. Vinte minutos dão conta com folga.",
+          "rodape": "A rotina"
+        },
+        {
+          "numero": "3",
+          "titulo": "Escreva a próxima data antes de fechar",
+          "corpo": "Nenhum contato termina sem a próxima data marcada no mesmo lugar onde você acabou de escrever o que aconteceu.\n\nÉ isso que impede a carteira de virar um monte de nomes soltos que você não sabe mais em que pé estão.",
+          "rodape": "A rotina"
+        },
+        {
+          "tema": "claro",
+          "titulo": "Quando o papel para de dar conta",
+          "corpo": "Com 10 ou 15 orçamentos abertos, um caderno resolve.\n\nCom 60, 80, e mais de um vendedor na equipe, o caderno vira o gargalo: ninguém enxerga a carteira do outro, o dono não sabe o que está para fechar no mês, e a informação vai embora junto com quem sai da empresa.\n\nAí não é disciplina que falta. É ferramenta."
+        }
+      ],
+      "cta": {
+        "titulo": "O funil inteiro numa tela só",
+        "corpo": "O CRM Venda na Obra guarda cada orçamento, a próxima data e o histórico de cada cliente, com automações e inteligência artificial para o follow-up não depender de memória. Sem fidelidade.",
+        "palavra": "CRM"
+      },
+      "legenda": "Follow-up não falha por falta de vontade. Falha porque está na cabeça.\n\nProcesso que depende de memória não é processo, é sorte com nome bonito: funciona no dia bom e some no dia corrido. E o dia corrido é a maioria dos dias.\n\nA rotina que sustenta tudo leva 20 minutos. Mesma hora, todo dia útil. Olhar só quem vence hoje, que na prática são três ou quatro nomes. E nunca fechar um contato sem escrever a próxima data.\n\nCom 15 orçamentos abertos, um caderno resolve. Com 80 e mais de um vendedor, o caderno vira o gargalo.\n\n#vendasnaconstrucaocivil #crm #gestaocomercial #esquadrias #produtividade #construcaocivil"
+    },
+    {
+      "id": 19,
+      "etiqueta": "Contrato",
+      "titulo": "A página que evita 80% das brigas de obra",
+      "foto": "fotos/miniaula-19.jpg",
+      "produto": "venda-blindada",
+      "fonte": "Venda Blindada, Aula 1.1 (Quadro Resumo) e Aula 1.2 (Proposta Comercial)",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Quase toda briga de obra é sobre o que ninguém escreveu",
+          "corpo": "Não é má-fé do cliente. É que ele entendeu uma coisa, você entendeu outra, e nenhum dos dois tem onde conferir.\n\nContrato de 12 páginas ninguém lê. Uma página de resumo, todo mundo lê."
+        },
+        {
+          "numero": "1",
+          "titulo": "O que está sendo vendido, item por item",
+          "corpo": "Em português, não em código técnico. Quantidade, linha, cor, tipo de vidro, ferragem.\n\nSe está no quadro, não vira discussão depois.",
+          "rodape": "O Quadro Resumo"
+        },
+        {
+          "numero": "2",
+          "titulo": "Prazo e a partir de quando ele conta",
+          "corpo": "Prazo sem marco inicial não é prazo, é expectativa.\n\nDa assinatura? Da medição definitiva em obra? Do pagamento da entrada? Escreva qual, na primeira página.",
+          "rodape": "O Quadro Resumo"
+        },
+        {
+          "numero": "3",
+          "titulo": "Valor, forma de pagamento e reajuste",
+          "corpo": "Quanto, em quantas vezes, em que datas, e o que acontece se a obra atrasar meses e o insumo subir no meio do caminho.",
+          "rodape": "O Quadro Resumo"
+        },
+        {
+          "numero": "4",
+          "titulo": "O que NÃO está incluso",
+          "corpo": "Parece contraintuitivo e é o item que mais gera confiança que eu conheço.\n\nQuando você escreve \"não está incluso acabamento de alvenaria após a instalação\", o cliente entende que você pensou na obra dele de verdade. E passa a procurar essa informação na proposta do concorrente, onde ela não vai estar.",
+          "rodape": "O Quadro Resumo"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E a proposta comercial faz parte do contrato",
+          "corpo": "Uma linha resolve: o contrato precisa dizer que a proposta comercial e o manual de garantia são parte integrante dele.\n\nSem isso, tudo que você combinou na proposta fica fora do que é exigível. Você discutiu semanas sobre especificação e assinou um documento que não fala dela."
+        }
+      ],
+      "cta": {
+        "titulo": "O contrato inteiro, explicado cláusula por cláusula",
+        "corpo": "Venda Blindada é o contrato de esquadrias que a gente usa na Perffec, em modelo editável, com cada cláusula explicada em texto: por que ela existe e o que acontece quando ela falta.",
+        "palavra": "BLINDADA"
+      },
+      "legenda": "Quase toda briga de obra é sobre o que ninguém escreveu.\n\nNão é má-fé do cliente. Ele entendeu uma coisa, você entendeu outra, e nenhum dos dois tem onde conferir.\n\nContrato de 12 páginas ninguém lê. Uma página de resumo na frente, todo mundo lê: o que está sendo vendido item por item, o prazo e a partir de quando ele conta, o valor e o reajuste, e o que NÃO está incluso.\n\nEsse último parece contraintuitivo e é o que mais gera confiança. Quando você escreve o que não está incluso, o cliente entende que você pensou na obra dele de verdade, e vai procurar essa informação na proposta do concorrente, onde ela não vai estar.\n\n#esquadrias #vidracaria #serralheria #contrato #construcaocivil #gestaocomercial"
+    },
+    {
+      "id": 29,
+      "etiqueta": "Diagnóstico",
+      "titulo": "Vender não é suposição. É diagnóstico.",
+      "foto": "fotos/miniaula-29.jpg",
+      "produto": "venda10x",
+      "fonte": "Vídeo 'Como Aumentar Suas Vendas com 2 Perguntas para o Cliente' (@VendanaObra)",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Quem vende mais não é quem fala mais. É quem pergunta melhor.",
+          "corpo": "O vendedor médio decora argumento. Ele chega na visita com uma apresentação pronta e despeja.\n\nO problema é que argumento pronto responde a uma objeção que talvez esse cliente nem tenha."
+        },
+        {
+          "numero": "1",
+          "titulo": "\"O que precisa acontecer para a gente avançar?\"",
+          "corpo": "Não é técnica de fechamento. É diagnóstico.\n\nQuem responde essa pergunta entrega a objeção de graça: \"preciso falar com minha esposa\", \"preciso esperar liberar a parcela\", \"preciso ver mais dois orçamentos\".\n\nNenhuma dessas respostas é preço.",
+          "rodape": "Pergunta 1 de 2"
+        },
+        {
+          "numero": "2",
+          "titulo": "\"O que fez você chamar a gente?\"",
+          "corpo": "Essa devolve o critério de compra, que é a informação mais valiosa que existe numa negociação.\n\n\"Porque indicaram\" é venda de confiança: você fala de garantia, de pós-venda, de quem responde se der problema.\n\n\"Porque achei o site de vocês\" é venda de comparação: você precisa dar critério antes que ele compare só preço.",
+          "rodape": "Pergunta 2 de 2"
+        },
+        {
+          "tema": "claro",
+          "titulo": "O que muda na prática",
+          "corpo": "Você para de montar orçamento no escuro.\n\nCom essas duas respostas na mão, você sabe se está numa venda de confiança ou de comparação, quem mais decide junto e o que trava o avanço.\n\nÉ a diferença entre trabalhar com informação e trabalhar no achismo."
+        }
+      ],
+      "cta": {
+        "titulo": "Vender com processo, não com sorte",
+        "corpo": "Toda quarta, 20h, ao vivo, eu abro o processo comercial que a gente roda na Perffec: qualificação, proposta, follow-up e fechamento. Venda 10x, aula semanal para quem vende na construção civil.",
+        "palavra": "10X"
+      },
+      "legenda": "A maioria tenta adivinhar por que o cliente não fechou.\n\nMas vender não é suposição. É diagnóstico.\n\nDuas perguntas mudam a conversa inteira. \"O que precisa acontecer para a gente avançar?\" faz o cliente entregar a objeção de graça. E \"o que fez você chamar a gente?\" devolve o critério de compra dele.\n\nQuem responde \"porque indicaram\" está numa venda de confiança. Quem responde \"porque achei o site\" está numa venda de comparação. São dois jogos diferentes, e você só sabe qual está jogando se perguntar.\n\nQuem vende mais não é quem fala mais. É quem pergunta melhor.\n\n#vendasnaconstrucaocivil #esquadrias #gestaocomercial #vendaconsultiva #construcaocivil"
+    }
+  ],
+  "sequencia": [
+    1,
+    19,
+    2,
+    29,
+    3,
+    9,
+    7
+  ]
+}
