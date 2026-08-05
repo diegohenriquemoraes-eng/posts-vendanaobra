@@ -47,6 +47,14 @@
       "texto": "Contratar vendedor não resolve processo quebrado.\n\nMultiplica.",
       "cta": "crm",
       "media_id": "18097031852235074"
+    },
+    {
+      "id": 6,
+      "tema": "vendas",
+      "data": "2026-08-05",
+      "texto": "Quem vende preço precisa de desconto.\n\nQuem vende critério precisa de conversa.",
+      "cta": "seguir",
+      "media_id": "17871276906632481"
     }
   ]
 }
