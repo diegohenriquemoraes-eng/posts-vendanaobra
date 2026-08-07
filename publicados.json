@@ -55,6 +55,14 @@
       "texto": "Quem vende preço precisa de desconto.\n\nQuem vende critério precisa de conversa.",
       "cta": "seguir",
       "media_id": "17871276906632481"
+    },
+    {
+      "id": 22,
+      "tema": "vendas",
+      "data": "2026-08-07",
+      "texto": "Follow-up não é lembrar que você existe.\n\nÉ trazer uma informação que o cliente ainda não tinha.",
+      "cta": "ebook",
+      "media_id": "18065648606737785"
     }
   ]
 }
