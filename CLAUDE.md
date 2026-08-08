@@ -94,12 +94,15 @@ Decidido em 21/07/2026 (substitui o esquema 80/20 anterior, a pedido do Diego).
 O Diego pediu CTA em 100% dos posts, agora **num 3º slide azul** (`#18406F`, o
 azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 
-- **O CTA do dia intercala numa ordem cíclica fixa de 7 posições** (e-book
-  acrescentado em 03/08/2026): `seguir → e-book → Venda 10x → seguir →
-  Venda Blindada → e-book → CRM →` volta ao início (`CICLO_CTA`). São **2x valor
-  puro, 2x e-book, 1x cada produto caro**: o e-book (R$ 19,90) tem peso dobrado
-  por ser a porta de entrada — fabrica comprador para os outros e tem o menor
-  atrito. Produto caro nunca cai em posições seguidas.
+- **O CTA do dia intercala numa ordem cíclica fixa de 7 posições** (Raio-X
+  virou o CTA dominante em 09/08/2026, aprovado pelo Diego): `seguir → Raio-X →
+  e-book → Raio-X → Venda 10x → Raio-X → CRM →` volta ao início (`CICLO_CTA`).
+  O **Raio-X** (diagnóstico gratuito em `vendanaobra.com.br/raio-x`, palavra
+  `RAIOX`) tem 3 posições porque captura e segmenta: o quiz recomenda o produto
+  certo no resultado e nas trilhas de e-mail. A **Venda Blindada saiu do
+  ciclo** — é vendida na trilha de e-mail de quem tem gargalo em Decisão/Oferta
+  (`scripts/leads/Code.gs` na LP). E-book segue como 1ª compra; produto pago
+  nunca cai em posições seguidas.
 - **Rotação com memória** (`estado_cta.json`): o publicador avança a partir da
   **posição** do último CTA publicado (não da data). Assim um dia que falhe não
   repete nem pula — o próximo dia pega o CTA que faltou. O estado só é gravado
@@ -116,8 +119,9 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 - **A legenda usa o mesmo CTA do slide**, para o post ficar coerente
   (`legenda.montar`).
 - **Conversão de produto por comment-to-DM**: o slide 3 traz uma explicação
-  breve do produto + o pedido de uma palavra (`LIVRO` / `BLINDADA` / `10X` /
-  `CRM`); quem comenta recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
+  breve do produto + o pedido de uma palavra (`RAIOX` / `LIVRO` / `10X` /
+  `CRM`; `BLINDADA` continua ativa no Direct para posts antigos); quem comenta
+  recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
   na legenda do feed — por isso não colocamos URL no post. Por ora o Diego
   responde à mão; depois liga a automação nativa de palavra-chave do Instagram.
   O CTA de seguir não tem palavra nem link (é o post de valor puro).

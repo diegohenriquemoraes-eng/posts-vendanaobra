@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """CTA do dia: o 3o slide + a legenda que o reforca.
 
-Regra (decidida em 21/07/2026, ver CLAUDE.md — substitui o esquema 80/20
-anterior; e-book acrescentado ao ciclo em 03/08/2026):
-  - todo post tem um 3o slide de CTA, em fundo laranja da marca;
+Regra (decidida em 21/07/2026; e-book acrescentado em 03/08/2026; Raio-X
+virou o CTA dominante em 09/08/2026 — ver CLAUDE.md):
+  - todo post tem um 3o slide de CTA, em fundo azul da marca;
   - o CTA do dia intercala numa ordem ciclica fixa, NUNCA repetindo dois dias
-    seguidos:  seguir -> e-book -> Venda 10x -> seguir -> Venda Blindada ->
-    e-book -> CRM -> seguir ... (7 posicoes, ver CICLO_CTA);
+    seguidos:  seguir -> Raio-X -> e-book -> Raio-X -> Venda 10x -> Raio-X ->
+    CRM -> seguir ... (7 posicoes, ver CICLO_CTA). A Venda Blindada saiu do
+    ciclo: e vendida na trilha de e-mail do Raio-X (gargalo em Decisao/Oferta);
   - a rotacao tem memoria (estado_cta.json, gravado pelo publicar.py): avanca a
     partir da POSICAO do ultimo CTA publicado, entao um dia que falhe nao repete
     nem pula. E a posicao, nao o nome, porque "seguir" e "ebook" aparecem duas
@@ -17,7 +18,7 @@ anterior; e-book acrescentado ao ciclo em 03/08/2026):
     o conteudo puxar naturalmente para a chamada do dia.
 
 Conversao de produto e por comment-to-DM: o slide traz uma explicacao breve do
-produto e pede uma palavra (LIVRO / BLINDADA / 10X / CRM); quem comenta recebe o
+produto e pede uma palavra (RAIOX / LIVRO / 10X / CRM); quem comenta recebe o
 link no Direct — no Instagram o link so e clicavel no DM, nunca na legenda do
 feed. Por ora o Diego responde a mao; depois liga a automacao nativa de
 palavra-chave do Instagram. O CTA de seguir nao tem palavra nem link (e o post de
@@ -27,17 +28,20 @@ from __future__ import annotations
 
 # Ordem ciclica do CTA do dia. Nao reordenar sem querer mudar a sequencia.
 #
-# 7 posicoes: 2x valor puro, 2x e-book, 1x cada produto caro. O e-book (R$ 19,90)
-# tem peso dobrado por ser a porta de entrada — e o produto que fabrica comprador
-# para os outros, e o de menor atrito. Os caros nunca caem em posicoes seguidas.
+# 7 posicoes (aprovado pelo Diego em 09/08/2026, substitui o ciclo com Venda
+# Blindada): o Raio-X (diagnostico gratuito em vendanaobra.com.br/raio-x) vira o
+# CTA dominante — 3 posicoes — porque captura e segmenta o lead; o proprio quiz
+# recomenda o produto certo no final e por e-mail. A Venda Blindada saiu do
+# ciclo: ela agora e vendida dentro da trilha de e-mail de quem tem gargalo em
+# Decisao/Oferta. E-book segue como 1a compra; CRM segue por ser link direto.
 CICLO_CTA = [
-    "seguir",          # 0
-    "ebook",           # 1
-    "venda10x",        # 2
-    "seguir",          # 3
-    "venda-blindada",  # 4
-    "ebook",           # 5
-    "crm",             # 6
+    "seguir",    # 0
+    "raiox",     # 1
+    "ebook",     # 2
+    "raiox",     # 3
+    "venda10x",  # 4
+    "raiox",     # 5
+    "crm",       # 6
 ]
 
 # Cada CTA tem tres pecas:
@@ -51,6 +55,22 @@ CTA = {
         "legenda": (
             "Se isso fez sentido, segue o @vendanaobra — todo dia útil tem um "
             "card desses aqui, direto ao ponto sobre vender mais na obra."
+        ),
+    },
+    "raiox": {
+        "slide": (
+            "Raio-X da Venda na Obra\n\n"
+            "Descubra de graça, em 3 minutos, em qual etapa da venda a sua "
+            "empresa está perdendo dinheiro. Nota de 0 a 100 + plano de ação.\n\n"
+            "Comenta RAIOX que o link cai no seu Direct."
+        ),
+        "rodape": "@vendanaobra",
+        "legenda": (
+            "Você sabe ONDE a sua venda perde dinheiro — na atração, na proposta "
+            "ou no fechamento?\n"
+            "O Raio-X da Venda na Obra é o diagnóstico gratuito de 3 minutos: "
+            "15 perguntas, nota de 0 a 100 e o plano de ação no seu e-mail.\n\n"
+            "Comenta RAIOX aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
     "ebook": {
@@ -117,6 +137,7 @@ CTA = {
 # Serve para o publicar.py puxar uma frase que case com a dor do produto.
 CTA_PRODUTO = {
     "seguir": None,
+    "raiox": None,  # diagnostico gratuito serve a qualquer frase, sem viés de tema
     "ebook": "ebook",
     "venda-blindada": "venda-blindada",
     "venda10x": "venda10x",
