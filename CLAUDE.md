@@ -129,6 +129,11 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 `"produto": "venda-blindada"` no `frases.json`.
 
+**Mini-aulas e o Raio-X**: o CTA da mini-aula continua amarrado ao produto de onde
+a aula saiu (aula tirada do e-book chama `LIVRO` etc.) — casamento conteúdo→produto
+converte melhor que CTA genérico. `RAIOX` é opção válida para aulas novas de
+diagnóstico/processo geral sem produto natural (regra em `miniaulas.json`).
+
 ## Os 4 produtos (fonte: vendanaobra.com.br, preços conferidos 03/08/2026)
 
 | Produto | Formato | Preço | Dor |
