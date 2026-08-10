@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 """Gera os slides do carrossel a partir de uma frase.
 
-Slide 1: fundo branco, letra preta.
-Slide 2: fundo preto, letra branca.
+Slide 1: fundo branco, letra preta — o GANCHO (1o bloco da frase).
+Slide 2: fundo preto, letra branca — a CONTINUACAO (blocos restantes).
+Regra definida pelo Diego em 10/08/2026: os dois primeiros slides nao repetem
+mais a mesma frase; o slide 2 desenvolve o assunto do slide 1. A frase no
+banco continua sendo um texto so, com blocos separados por linha em branco —
+o corte e feito aqui. Frase de bloco unico repete nos dois slides (fallback
+legado; o banco foi enriquecido para nao ter mais esse caso).
 Slide 3 (CTA): fundo azul da marca (#18406F), letra branca — o azul do site
 vendanaobra.com.br, que fecha o carrossel. O conteudo do CTA vem de fora
 (legenda.py).
@@ -156,6 +161,18 @@ def gerar_slide_cta(texto: str, rodape: str, destino: str) -> str:
     return _salvar_jpeg(img, destino)
 
 
+def _dividir(frase: str) -> tuple[str, str]:
+    """Corta a frase em (gancho, continuacao) pelos blocos.
+
+    1o bloco vira o slide 1; o resto vira o slide 2. Bloco unico repete
+    nos dois slides (fallback legado).
+    """
+    blocos = [p.strip() for p in frase.split("\n\n") if p.strip()]
+    if len(blocos) < 2:
+        return frase.strip(), frase.strip()
+    return blocos[0], "\n\n".join(blocos[1:])
+
+
 def gerar_carrossel(
     frase: str,
     pasta: str,
@@ -164,9 +181,10 @@ def gerar_carrossel(
     cta_rodape: str | None = None,
 ) -> list[str]:
     """Gera os slides 1 e 2 sempre; o 3o (CTA) quando `cta_texto` e passado."""
+    gancho, continuacao = _dividir(frase)
     caminhos = [
-        gerar_slide(frase, "claro", os.path.join(pasta, f"{slug}-1.jpg")),
-        gerar_slide(frase, "escuro", os.path.join(pasta, f"{slug}-2.jpg")),
+        gerar_slide(gancho, "claro", os.path.join(pasta, f"{slug}-1.jpg")),
+        gerar_slide(continuacao, "escuro", os.path.join(pasta, f"{slug}-2.jpg")),
     ]
     if cta_texto is not None:
         caminhos.append(

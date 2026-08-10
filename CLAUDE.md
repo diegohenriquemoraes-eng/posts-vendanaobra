@@ -12,10 +12,15 @@ sempre **12h em ponto BRT**, com o calendário fixo definido em 03/08/2026:
 Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
 derivava e ia colidir com a mini-aula.
 
-Cada post são **3 slides**. Slides 1 e 2 trazem a **mesma frase**: slide 1 fundo
-branco/letra preta, slide 2 fundo preto/letra branca. Referência de formato:
-`@juliopereira.oficial` — frase centralizada entre aspas tipográficas, blocos
-separados por linha em branco, assinatura discreta no rodapé
+Cada post são **3 slides**. Regra definida pelo Diego em **10/08/2026** (substitui
+o formato antigo de frase repetida): o **slide 1 é o gancho** (1º bloco da frase,
+fundo branco/letra preta) e o **slide 2 é a continuação do assunto** (blocos
+restantes, fundo preto/letra branca) — os dois **nunca repetem** o mesmo texto.
+A frase no banco continua sendo um texto só com blocos separados por linha em
+branco; `gerar_carrossel.py` corta no 1º bloco. As 49 frases que eram de bloco
+único ganharam continuação escrita em 10/08/2026 — **frase nova no banco precisa
+ter 2+ blocos**. Referência de formato: `@juliopereira.oficial` — frase
+centralizada entre aspas tipográficas, assinatura discreta no rodapé
 (`Para vender mais siga o @vendanaobra`). O **slide 3 é o CTA do dia**, em fundo
 azul da marca (`#18406F`, amostrado do hero de `vendanaobra.com.br`) e letra
 branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).

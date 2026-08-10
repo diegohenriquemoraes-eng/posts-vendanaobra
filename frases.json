@@ -54,7 +54,7 @@
     {
       "id": 11,
       "tema": "metricas",
-      "texto": "A métrica mais barata de melhorar é o tempo de resposta."
+      "texto": "A métrica mais barata de melhorar é o tempo de resposta.\n\nNão exige curso, ferramenta nem contratação. Exige decidir que orçamento parado é prioridade, não pendência."
     },
     {
       "id": 12,
@@ -74,7 +74,7 @@
     {
       "id": 15,
       "tema": "metricas",
-      "texto": "Curtida não paga folha."
+      "texto": "Curtida não paga folha.\n\nAudiência só vira receita quando existe oferta, proposta e follow-up. O resto é vaidade com gráfico bonito."
     },
     {
       "id": 16,
@@ -104,7 +104,7 @@
     {
       "id": 21,
       "tema": "gestao",
-      "texto": "Comissão não substitui gestão."
+      "texto": "Comissão não substitui gestão.\n\nDinheiro motiva quem já sabe o que fazer. Para os outros, falta processo, critério e cobrança — e isso não se paga por fora."
     },
     {
       "id": 22,
@@ -120,7 +120,7 @@
     {
       "id": 24,
       "tema": "emocional",
-      "texto": "Quem depende de uma venda para bater a meta já perdeu o controle da negociação."
+      "texto": "Quem depende de uma venda para bater a meta já perdeu o controle da negociação.\n\nO cliente sente a pressa do outro lado. Pipeline cheio é o que deixa você negociar sem precisar aceitar qualquer coisa."
     },
     {
       "id": 25,
@@ -135,7 +135,7 @@
     {
       "id": 27,
       "tema": "metricas",
-      "texto": "Meta sem métrica intermediária é torcida."
+      "texto": "Meta sem métrica intermediária é torcida.\n\nEntre o número do mês e o dia 30 existem ligações, propostas e follow-ups. Quem não mede o meio só descobre o fim quando acabou."
     },
     {
       "id": 28,
@@ -145,7 +145,7 @@
     {
       "id": 29,
       "tema": "gestao",
-      "texto": "Treinar quem não tem processo é ensinar improviso melhor."
+      "texto": "Treinar quem não tem processo é ensinar improviso melhor.\n\nPrimeiro o caminho, depois a técnica. Sem etapa definida, cada treinamento vira mais um jeito diferente de fazer a mesma bagunça."
     },
     {
       "id": 30,
@@ -155,12 +155,12 @@
     {
       "id": 31,
       "tema": "metricas",
-      "texto": "Taxa de conversão sem tempo de ciclo esconde o pior problema: a demora."
+      "texto": "Taxa de conversão sem tempo de ciclo esconde o pior problema: a demora.\n\nFechar 30% em noventa dias pode ser pior que fechar 20% em quinze. Caixa vive de velocidade, não só de percentual."
     },
     {
       "id": 32,
       "tema": "emocional",
-      "texto": "Não existe vendedor confiante com pipeline curto."
+      "texto": "Não existe vendedor confiante com pipeline curto.\n\nA segurança na mesa de negociação nasce da agenda cheia da semana anterior. Prospecção é o que sustenta a postura."
     },
     {
       "id": 33,
@@ -176,7 +176,7 @@
     {
       "id": 35,
       "tema": "metricas",
-      "texto": "Previsão de vendas feita por sentimento é chute com planilha."
+      "texto": "Previsão de vendas feita por sentimento é chute com planilha.\n\nPrevisão de verdade nasce de etapa com critério: quantas propostas, em que fase, com que taxa histórica. O resto é otimismo formatado."
     },
     {
       "id": 36,
@@ -186,7 +186,7 @@
     {
       "id": 37,
       "tema": "gestao",
-      "texto": "Toda empresa que reclama de vendedor tem um processo que ninguém escreveu."
+      "texto": "Toda empresa que reclama de vendedor tem um processo que ninguém escreveu.\n\nSe o jeito certo só existe na cabeça do dono, o erro é de projeto, não de contratação."
     },
     {
       "id": 38,
@@ -206,7 +206,7 @@
     {
       "id": 41,
       "tema": "gestao",
-      "texto": "Padronizar proposta economiza mais tempo que qualquer técnica de fechamento."
+      "texto": "Padronizar proposta economiza mais tempo que qualquer técnica de fechamento.\n\nModelo pronto, prazo de envio e critério de desconto: o vendedor gasta o dia vendendo, não formatando documento."
     },
     {
       "id": 42,
@@ -216,7 +216,7 @@
     {
       "id": 43,
       "tema": "metricas",
-      "texto": "Medir o vendedor só pelo quanto vendeu ensina ele a esconder o que não vendeu."
+      "texto": "Medir o vendedor só pelo quanto vendeu ensina ele a esconder o que não vendeu.\n\nQuem esconde o funil perdido não aprende com ele. O número que falta conta mais história que o número que fecha."
     },
     {
       "id": 44,
@@ -226,7 +226,7 @@
     {
       "id": 45,
       "tema": "gestao",
-      "texto": "Quem não define critério de lead qualificado deixa o vendedor escolher o mais fácil."
+      "texto": "Quem não define critério de lead qualificado deixa o vendedor escolher o mais fácil.\n\nE o mais fácil quase nunca é o que dá margem. Critério claro protege o funil da preguiça de sexta-feira."
     },
     {
       "id": 46,
@@ -262,7 +262,7 @@
     {
       "id": 52,
       "tema": "emocional",
-      "texto": "O medo de incomodar custa mais caro do que qualquer follow-up.",
+      "texto": "O medo de incomodar custa mais caro do que qualquer follow-up.\n\nO cliente não está ofendido com a sua ligação — está ocupado. Quem volta com motivo e próximo passo é lembrado, não bloqueado.",
       "produto": "ebook"
     },
     {
@@ -288,7 +288,7 @@
     {
       "id": 57,
       "tema": "gestao",
-      "texto": "Time pequeno com etapa clara vence time grande sem direção."
+      "texto": "Time pequeno com etapa clara vence time grande sem direção.\n\nTrês vendedores sabendo o que fazer amanhã produzem mais que dez esperando ordem. Clareza é multiplicador."
     },
     {
       "id": 58,
@@ -315,7 +315,7 @@
     {
       "id": 62,
       "tema": "vendas",
-      "texto": "Ninguém compra de quem parece precisar da venda."
+      "texto": "Ninguém compra de quem parece precisar da venda.\n\nO desespero aparece no desconto dado cedo demais e na resposta à meia-noite. Postura se constrói com pipeline, não com teatro."
     },
     {
       "id": 63,
@@ -325,12 +325,12 @@
     {
       "id": 64,
       "tema": "emocional",
-      "texto": "Quem só comemora venda fechada passa o mês inteiro se sentindo mal."
+      "texto": "Quem só comemora venda fechada passa o mês inteiro se sentindo mal.\n\nComemore atividade: as ligações feitas, as propostas enviadas, os follow-ups cumpridos. O resultado é consequência — e o ânimo também."
     },
     {
       "id": 65,
       "tema": "gestao",
-      "texto": "Automatizar um processo ruim só entrega bagunça mais rápido."
+      "texto": "Automatizar um processo ruim só entrega bagunça mais rápido.\n\nPrimeiro desenhe o caminho à mão, depois ligue o robô. Automação amplifica o que existe — inclusive o erro."
     },
     {
       "id": 66,
@@ -340,12 +340,12 @@
     {
       "id": 67,
       "tema": "metricas",
-      "texto": "Velocidade do funil é a métrica que mais afeta o caixa e a que menos gente olha."
+      "texto": "Velocidade do funil é a métrica que mais afeta o caixa e a que menos gente olha.\n\nCada dia de proposta parada é dinheiro esperando decisão. Encurtar uma semana do ciclo vale mais que subir um ponto de conversão."
     },
     {
       "id": 68,
       "tema": "emocional",
-      "texto": "O vendedor que leva tudo para o pessoal perde a próxima venda por antecipação."
+      "texto": "O vendedor que leva tudo para o pessoal perde a próxima venda por antecipação.\n\nO não de hoje contamina a ligação de amanhã. Profissional é quem separa o resultado da própria identidade."
     },
     {
       "id": 69,
@@ -370,7 +370,7 @@
     {
       "id": 73,
       "tema": "gestao",
-      "texto": "Se cada vendedor tem um jeito, você tem quatro empresas dentro de uma."
+      "texto": "Se cada vendedor tem um jeito, você tem quatro empresas dentro de uma.\n\nQuatro discursos, quatro propostas, quatro experiências de compra. O cliente não escolheu qual delas atendeu — foi sorteado."
     },
     {
       "id": 74,
@@ -381,7 +381,7 @@
     {
       "id": 75,
       "tema": "metricas",
-      "texto": "Você só controla o que mede antes do resultado."
+      "texto": "Você só controla o que mede antes do resultado.\n\nDepois que o mês fechou, o número é história. A atividade de hoje é a única alavanca que ainda muda o fim."
     },
     {
       "id": 76,
@@ -396,7 +396,7 @@
     {
       "id": 78,
       "tema": "vendas",
-      "texto": "Se o cliente só pergunta quanto custa, a culpa é da conversa anterior."
+      "texto": "Se o cliente só pergunta quanto custa, a culpa é da conversa anterior.\n\nPreço vira o assunto quando ninguém construiu valor antes. Diagnóstico bem feito muda a pergunta para “quando começamos?”."
     },
     {
       "id": 79,
@@ -411,12 +411,12 @@
     {
       "id": 81,
       "tema": "gestao",
-      "texto": "Empresa que só cresce com indicação tem teto, não estratégia."
+      "texto": "Empresa que só cresce com indicação tem teto, não estratégia.\n\nIndicação é ótima — quando é conduzida, pedida e medida. Esperar que aconteça não é canal, é loteria."
     },
     {
       "id": 82,
       "tema": "vendas",
-      "texto": "Vender para quem não decide é o jeito mais educado de perder o mês."
+      "texto": "Vender para quem não decide é o jeito mais educado de perder o mês.\n\nDescobrir quem assina, quem paga e quem influencia é a primeira pergunta do funil, não a última."
     },
     {
       "id": 83,
@@ -426,12 +426,12 @@
     {
       "id": 84,
       "tema": "emocional",
-      "texto": "Sorte em vendas é volume com método."
+      "texto": "Sorte em vendas é volume com método.\n\nQuem prospecta todo dia com processo dá sorte com uma frequência impressionante. Azar é a estatística de quem parou."
     },
     {
       "id": 85,
       "tema": "gestao",
-      "texto": "Definir quem é seu cliente é a decisão comercial mais barata e a menos tomada."
+      "texto": "Definir quem é seu cliente é a decisão comercial mais barata e a menos tomada.\n\nSem perfil claro, o time gasta energia com quem nunca vai fechar — e chama o cansaço de mercado difícil."
     },
     {
       "id": 86,
@@ -441,17 +441,17 @@
     {
       "id": 87,
       "tema": "metricas",
-      "texto": "O melhor indicador de mês bom é a quantidade de reuniões marcadas três semanas antes."
+      "texto": "O melhor indicador de mês bom é a quantidade de reuniões marcadas três semanas antes.\n\nO resultado de setembro se constrói em agosto. Quem olha só o placar do mês vive apagando incêndio com atraso."
     },
     {
       "id": 88,
       "tema": "emocional",
-      "texto": "Nenhuma técnica de fechamento salva quem não prospecta todo dia."
+      "texto": "Nenhuma técnica de fechamento salva quem não prospecta todo dia.\n\nFechamento é a colheita. Se o plantio falhou há trinta dias, não existe frase mágica que produza safra."
     },
     {
       "id": 89,
       "tema": "gestao",
-      "texto": "Meta sem plano de atividade é só um número em reunião."
+      "texto": "Meta sem plano de atividade é só um número em reunião.\n\nQuebre a meta em ligações, visitas e propostas por semana. Número que não vira agenda não vira resultado."
     },
     {
       "id": 90,
@@ -472,7 +472,7 @@
     {
       "id": 93,
       "tema": "gestao",
-      "texto": "Quem paga comissão sobre venda com desconto está pagando para perder margem."
+      "texto": "Quem paga comissão sobre venda com desconto está pagando para perder margem.\n\nComissão sobre margem, não sobre faturamento: o vendedor defende o preço porque o bolso dele também sente o desconto."
     },
     {
       "id": 94,
@@ -482,12 +482,12 @@
     {
       "id": 95,
       "tema": "metricas",
-      "texto": "Se você não sabe de onde veio o cliente, não sabe onde investir."
+      "texto": "Se você não sabe de onde veio o cliente, não sabe onde investir.\n\nPerguntar “como nos conheceu” e registrar no CRM custa dez segundos — e decide o orçamento de marketing do ano que vem."
     },
     {
       "id": 96,
       "tema": "emocional",
-      "texto": "Quem não aguenta ouvir não acaba cobrando menos para não ouvir."
+      "texto": "Quem não aguenta ouvir não acaba cobrando menos para não ouvir.\n\nO desconto preventivo é o preço do medo. Ouvir não faz parte do jogo — baixar o preço antes da objeção é perder sem jogar."
     },
     {
       "id": 97,
@@ -507,7 +507,7 @@
     {
       "id": 100,
       "tema": "emocional",
-      "texto": "Vendedor que se massacra depois do não demora mais para fazer a próxima ligação."
+      "texto": "Vendedor que se massacra depois do não demora mais para fazer a próxima ligação.\n\nE a demora custa mais que a recusa. Anote o motivo, ajuste o alvo e ligue de novo: ritmo é o melhor antídoto."
     },
     {
       "id": 101,
@@ -522,7 +522,7 @@
     {
       "id": 103,
       "tema": "metricas",
-      "texto": "Não existe time previsível sem etapa com critério de passagem."
+      "texto": "Não existe time previsível sem etapa com critério de passagem.\n\nSe cada um decide sozinho o que é proposta quente, o funil vira opinião. Critério transforma achismo em previsão."
     },
     {
       "id": 104,
@@ -532,7 +532,7 @@
     {
       "id": 105,
       "tema": "gestao",
-      "texto": "A escala do comercial começa quando o dono para de ser o gargalo."
+      "texto": "A escala do comercial começa quando o dono para de ser o gargalo.\n\nEnquanto toda proposta, desconto e follow-up passa por uma pessoa, o teto da empresa é a agenda dela."
     },
     {
       "id": 106,
@@ -542,18 +542,18 @@
     {
       "id": 107,
       "tema": "metricas",
-      "texto": "Quanto tempo seu cliente espera pelo orçamento é a métrica que seu concorrente já melhorou.",
+      "texto": "Quanto tempo seu cliente espera pelo orçamento é a métrica que seu concorrente já melhorou.\n\nQuem responde em duas horas conversa com o cliente ainda animado. Quem responde em três dias negocia com um estranho.",
       "produto": "ebook"
     },
     {
       "id": 108,
       "tema": "emocional",
-      "texto": "Quem trata cada não como veredito troca de profissão antes de aprender a vender."
+      "texto": "Quem trata cada não como veredito troca de profissão antes de aprender a vender.\n\nO não é dado, não sentença: registre o motivo, corrija a rota e siga. Vendedor bom é colecionador de aprendizado."
     },
     {
       "id": 109,
       "tema": "gestao",
-      "texto": "Não existe estruturar vendas sem alguém dono do número."
+      "texto": "Não existe estruturar vendas sem alguém dono do número.\n\nQuando a meta é de todo mundo, a cobrança não é de ninguém. Um nome, um número, uma rotina de acompanhamento."
     },
     {
       "id": 110,
@@ -564,7 +564,7 @@
     {
       "id": 111,
       "tema": "metricas",
-      "texto": "Relatório que ninguém usa para decidir é trabalho, não é gestão."
+      "texto": "Relatório que ninguém usa para decidir é trabalho, não é gestão.\n\nAntes de montar o painel, defina a decisão que ele alimenta. Dado sem decisão é decoração."
     },
     {
       "id": 112,
@@ -574,7 +574,7 @@
     {
       "id": 113,
       "tema": "gestao",
-      "texto": "O processo certo é o que sobrevive quando o melhor vendedor sai de férias."
+      "texto": "O processo certo é o que sobrevive quando o melhor vendedor sai de férias.\n\nSe a venda depende do talento de uma pessoa, você não tem processo — tem refém com crachá."
     },
     {
       "id": 114,
@@ -590,17 +590,17 @@
     {
       "id": 116,
       "tema": "emocional",
-      "texto": "Prospectar quando o mês está bom é o que salva o mês que vem."
+      "texto": "Prospectar quando o mês está bom é o que salva o mês que vem.\n\nO funil de outubro se enche em setembro. Quem só prospecta na crise vive dela."
     },
     {
       "id": 117,
       "tema": "gestao",
-      "texto": "Reunião comercial que só olha faturamento não muda nada na semana seguinte."
+      "texto": "Reunião comercial que só olha faturamento não muda nada na semana seguinte.\n\nOlhe atividade e funil: o que travou, o que avança, quem precisa de ajuda. Faturamento é retrovisor; agenda é volante."
     },
     {
       "id": 118,
       "tema": "vendas",
-      "texto": "O melhor momento de vender é quando o cliente ainda não sabe o que quer."
+      "texto": "O melhor momento de vender é quando o cliente ainda não sabe o que quer.\n\nQuem entra cedo desenha o critério de decisão — e o concorrente que chega depois disputa nas regras que você escreveu."
     },
     {
       "id": 119,
@@ -631,17 +631,17 @@
     {
       "id": 124,
       "tema": "ia",
-      "texto": "Empresa que usa inteligência artificial sem processo comercial só erra mais rápido."
+      "texto": "Empresa que usa inteligência artificial sem processo comercial só erra mais rápido.\n\nA ferramenta multiplica o que encontra. Com funil claro, multiplica venda; com bagunça, multiplica retrabalho."
     },
     {
       "id": 125,
       "tema": "ia",
-      "texto": "A inteligência artificial acabou com a desculpa da demora."
+      "texto": "A inteligência artificial acabou com a desculpa da demora.\n\nOrçamento, proposta e resposta de dúvida podem sair no mesmo dia. Quem ainda demora uma semana escolheu demorar."
     },
     {
       "id": 126,
       "tema": "ia",
-      "texto": "Use a inteligência artificial para preparar a conversa, não para evitar a conversa."
+      "texto": "Use a inteligência artificial para preparar a conversa, não para evitar a conversa.\n\nPesquisa, proposta e follow-up podem ser automáticos. O olho no olho na hora de decidir continua sendo o seu trabalho."
     },
     {
       "id": 127,
@@ -651,7 +651,7 @@
     {
       "id": 128,
       "tema": "empreendedorismo",
-      "texto": "Crescer sem processo é só aumentar o tamanho do problema."
+      "texto": "Crescer sem processo é só aumentar o tamanho do problema.\n\nMais vendedores vendendo cada um do seu jeito é mais retrabalho, não mais receita. Escala é repetição do que funciona."
     },
     {
       "id": 129,
@@ -672,7 +672,7 @@
     {
       "id": 132,
       "tema": "empreendedorismo",
-      "texto": "Quem não sabe o próprio custo aceita qualquer preço."
+      "texto": "Quem não sabe o próprio custo aceita qualquer preço.\n\nMargem não é o que sobra — é o que se defende. Conhecer o número é o que separa negociar de ceder."
     },
     {
       "id": 133,
