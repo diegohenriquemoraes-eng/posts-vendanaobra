@@ -128,7 +128,8 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
   (`legenda.montar`).
 - **Conversão de produto por comment-to-DM**: o slide 3 traz uma explicação
   breve do produto + o pedido de uma palavra (`RAIOX` / `LIVRO` / `10X` /
-  `CRM`; `BLINDADA` continua ativa no Direct para posts antigos); quem comenta
+  `MAQUINA` — a palavra da Máquina de Vendas desde 12/08/2026; `CRM` e
+  `BLINDADA` continuam ativas no Direct para posts antigos); quem comenta
   recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
   na legenda do feed — por isso não colocamos URL no post. Por ora o Diego
   responde à mão; depois liga a automação nativa de palavra-chave do Instagram.
@@ -149,7 +150,7 @@ diagnóstico/processo geral sem produto natural (regra em `miniaulas.json`).
 | **O Cliente Sumiu** (e-book) | PDF + folhas de trabalho | R$ 19,90 | Orçamento enviado e o cliente some |
 | **Venda Blindada** | Contrato editável | R$ 347 único | Prejuízo/brecha em contrato de esquadria |
 | **Venda 10x** | Ao vivo semanal, quarta 20h | R$ 497/ano | Falta de rotina/consistência comercial |
-| **CRM Venda na Obra** | Assinatura, sem fidelidade | R$ 297/mês | Lead/funil/follow-up espalhados |
+| **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 
 O e-book é a **porta de entrada** (ver `project_ebook_cliente_sumiu` na memória):
 o papel dele não é lucrar, é fabricar comprador para o Venda 10x. Por isso tem
@@ -159,5 +160,6 @@ tempo de resposta) estão marcadas com `"produto": "ebook"` no `frases.json`.
 O link de cada produto (a LP `vendanaobra.com.br`, que distribui) é entregue **no
 Direct** para quem comenta a palavra do produto — não vai no post (link na legenda
 do feed não é clicável). Decidido pelo Diego em 21/07/2026. Não uso URL de
-checkout. "Máquina de Vendas" e "Prospecção de Arquitetos" foram **arquivados**;
-não citar.
+checkout. "Prospecção de Arquitetos" foi **arquivado**; não citar. (Atenção:
+"Máquina de Vendas" era um produto antigo arquivado, mas desde 12/08/2026 é o
+**nome oficial do CRM** — citar normalmente com esse sentido.)

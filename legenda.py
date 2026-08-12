@@ -18,7 +18,9 @@ virou o CTA dominante em 09/08/2026 — ver CLAUDE.md):
     o conteudo puxar naturalmente para a chamada do dia.
 
 Conversao de produto e por comment-to-DM: o slide traz uma explicacao breve do
-produto e pede uma palavra (RAIOX / LIVRO / 10X / CRM); quem comenta recebe o
+produto e pede uma palavra (RAIOX / LIVRO / 10X / MAQUINA — palavra da Maquina
+de Vendas, o CRM rebatizado em 12/08/2026; CRM segue ativa para posts
+antigos); quem comenta recebe o
 link no Direct — no Instagram o link so e clicavel no DM, nunca na legenda do
 feed. Por ora o Diego responde a mao; depois liga a automacao nativa de
 palavra-chave do Instagram. O CTA de seguir nao tem palavra nem link (e o post de
@@ -117,18 +119,24 @@ CTA = {
         ),
     },
     "crm": {
+        # Rebatizado em 12/08/2026: "CRM Venda na Obra" virou "Máquina de
+        # Vendas" (a dor manda no nome; CRM é o qualificador técnico). A
+        # chave interna continua "crm" — estado_cta.json e publicados.json
+        # dependem dela. Palavra nova no Direct: MAQUINA (CRM segue ativa
+        # para posts antigos).
         "slide": (
-            "CRM Venda na Obra\n\n"
-            "Controle total do setor comercial e dos clientes, com automações e "
-            "inteligência artificial.\n\n"
-            "Comenta CRM que o link cai no seu Direct."
+            "Máquina de Vendas\n\n"
+            "O CRM da construção civil já configurado: funil pronto, follow-up "
+            "automático e nenhum orçamento esquecido.\n\n"
+            "Comenta MAQUINA que o link cai no seu Direct."
         ),
         "rodape": "@vendanaobra",
         "legenda": (
-            "Enquanto o concorrente controla o comercial no braço, você automatiza.\n"
-            "O CRM Venda na Obra usa automações e inteligência artificial integrada "
-            "para agilizar cada etapa da venda e te deixar na frente.\n\n"
-            "Comenta CRM aqui embaixo que eu te mando o link no seu Direct."
+            "Orçamento enviado sem follow-up é venda morrendo em silêncio.\n"
+            "A Máquina de Vendas é o CRM com o funil da construção civil pronto, "
+            "follow-up automático e inteligência artificial — nenhum orçamento "
+            "esquecido.\n\n"
+            "Comenta MAQUINA aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
 }
