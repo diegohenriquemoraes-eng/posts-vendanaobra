@@ -20,8 +20,9 @@ from __future__ import annotations
 import os
 from PIL import Image, ImageDraw, ImageFont
 
+from tipografia import fonte as _fonte_base
+
 BASE = os.path.dirname(os.path.abspath(__file__))
-FONTE = os.path.join(BASE, "fontes", "Inter-Regular.ttf")
 
 LADO = 1080
 MARGEM_X = 150          # margem lateral folgada: o texto nunca encosta na borda
@@ -52,12 +53,7 @@ GAP_PARAGRAFO = 0.80     # espaco extra entre blocos, em linhas
 
 
 def _fonte(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
-    f = ImageFont.truetype(FONTE, tamanho)
-    try:
-        f.set_variation_by_axes([14, peso])
-    except Exception:
-        pass
-    return f
+    return _fonte_base(tamanho, peso)
 
 
 def _quebrar(texto: str, fonte: ImageFont.FreeTypeFont, largura: int) -> list[str]:

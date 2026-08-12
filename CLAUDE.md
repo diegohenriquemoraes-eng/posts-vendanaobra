@@ -65,8 +65,11 @@ Token: `META_TOKEN` no ambiente, ou o arquivo
 
 - **Aspas tipográficas no código**: usar `“ ”` literais funciona (o arquivo é
   UTF-8), mas o console do Windows mostra `?` ao imprimir — não é bug.
-- **Fonte**: `fontes/Inter-Regular.ttf` é variável; o peso é escolhido por
-  `set_variation_by_axes([14, peso])`. Sem isso o texto sai mais pesado.
+- **Fonte**: **Instagram Sans** (`tipografia.py`), a mesma das legendas
+  automáticas dos Reels do Diego — identidade visual unificada, decidida por
+  ele em 12/08/2026. São arquivos **estáticos** por peso em `fontes/`
+  (Regular/Medium/Bold; pesos ≥600 usam Bold) — nada de
+  `set_variation_by_axes`, que era coisa da Inter variável antiga.
 - **JPEG, não PNG**: a Graph API só aceita JPEG para imagem.
 - **Layout**: fonte de **tamanho fixo (52px)** para todo post sair com a mesma
   letra, na mesma posição — o bloco é **centralizado no meio da imagem (540)** e

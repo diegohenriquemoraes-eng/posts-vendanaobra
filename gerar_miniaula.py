@@ -21,8 +21,9 @@ from __future__ import annotations
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
+from tipografia import fonte as _fonte_base
+
 BASE = os.path.dirname(os.path.abspath(__file__))
-FONTE = os.path.join(BASE, "fontes", "Inter-Regular.ttf")
 
 LARG, ALT = 1080, 1350          # 4:5
 MARGEM = 96
@@ -41,12 +42,7 @@ ASSINATURA = "@vendanaobra"
 
 
 def _f(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
-    f = ImageFont.truetype(FONTE, tamanho)
-    try:
-        f.set_variation_by_axes([14, peso])
-    except Exception:
-        pass
-    return f
+    return _fonte_base(tamanho, peso)
 
 
 def _quebrar(texto: str, fonte, largura: int) -> list[str]:

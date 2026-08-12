@@ -12,8 +12,9 @@ from __future__ import annotations
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
+from tipografia import fonte as _fonte_base
+
 BASE = os.path.dirname(os.path.abspath(__file__))
-FONTE = os.path.join(BASE, "fontes", "Inter-Regular.ttf")
 
 LARG, ALT = 1080, 1920
 NAVY_ESCURO = (13, 38, 68)
@@ -22,12 +23,7 @@ BRANCO = (255, 255, 255)
 
 
 def _f(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
-    f = ImageFont.truetype(FONTE, tamanho)
-    try:
-        f.set_variation_by_axes([14, peso])
-    except Exception:
-        pass
-    return f
+    return _fonte_base(tamanho, peso)
 
 
 def gerar_story(arte_do_post: str, destino: str) -> str:
