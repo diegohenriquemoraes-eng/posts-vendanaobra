@@ -5,12 +5,36 @@ sempre **12h em ponto BRT**, com o calendário fixo definido em 03/08/2026:
 
 | Dia | Formato | Publicador |
 |---|---|---|
-| Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | `publicar.py` |
+| ~~Seg / Qua / Sex~~ **PAUSADO até 24/08** | Carrossel de frase (3 slides, 1080x1080) | `publicar.py` |
 | Ter / Qui | **Mini-aula** (7–9 slides, 4:5, capa com foto) | `publicar_miniaula.py` |
 | Todo post | + **Story de reforço** logo após o feed | `gerar_story.py` |
 
 Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
 derivava e ia colidir com a mini-aula.
+
+> ### ⏸️ Carrossel de frase PAUSADO de 17/08 a 23/08/2026
+>
+> O `schedule` do `post-diario.yml` está **comentado** (o workflow segue existindo
+> e roda por `workflow_dispatch`). **Para retomar em 24/08: descomentar as 2 linhas
+> do cron.**
+>
+> Motivo, medido nos insights: o formato saturou. Views do mesmo formato —
+> 19/07 = 415 · **20/07 = 539 (pico)** · 23/07 = 479 · 27/07 = 413 · 03/08 = 299 ·
+> 12/08 = 183 · **14/08 = 135**. Queda de 75% em 3 semanas.
+>
+> A **mini-aula continua rodando**: carrossel é o formato mais eficiente da conta
+> (índice 2,10 de interação por view, contra 0,85 do Reel). O que saturou foi a
+> **frase**, não o carrossel. Ao voltar, **não repetir o formato idêntico** — rever
+> diagramação e estrutura de legenda, e voltar 1×/semana em vez de 3×.
+>
+> **Horário fica 12h.** Cheguei a recomendar 15h com base no painel "Horários mais
+> ativos" e estava errado: aquela curva marca 3.961 seguidores ativos às 3h da
+> manhã e 575 às 21h, o que não descreve público brasileiro (provavelmente UTC).
+> Cruzando a hora real de publicação de 65 posts com as views, e isolando o período
+> orgânico (jul/ago, sem tráfego pago): **12h = mediana 545 (a melhor)**, 9h = 427,
+> 8h = 366, 15h = 206, 13h = 153. **Regra: nunca trocar horário de robô pelo painel
+> de horários mais ativos — só por desempenho real por hora, controlando pela época
+> (abril a junho está contaminado por tráfego pago).**
 
 Cada post são **3 slides**. Regra definida pelo Diego em **10/08/2026** (substitui
 o formato antigo de frase repetida): o **slide 1 é o gancho** (1º bloco da frase,
@@ -102,15 +126,40 @@ Decidido em 21/07/2026 (substitui o esquema 80/20 anterior, a pedido do Diego).
 O Diego pediu CTA em 100% dos posts, agora **num 3º slide azul** (`#18406F`, o
 azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 
-- **O CTA do dia intercala numa ordem cíclica fixa de 7 posições** (Raio-X
-  virou o CTA dominante em 09/08/2026, aprovado pelo Diego): `seguir → Raio-X →
-  e-book → Raio-X → Venda 10x → Raio-X → CRM →` volta ao início (`CICLO_CTA`).
-  O **Raio-X** (diagnóstico gratuito em `vendanaobra.com.br/raio-x`, palavra
-  `RAIOX`) tem 3 posições porque captura e segmenta: o quiz recomenda o produto
-  certo no resultado e nas trilhas de e-mail. A **Venda Blindada saiu do
-  ciclo** — é vendida na trilha de e-mail de quem tem gargalo em Decisão/Oferta
-  (`scripts/leads/Code.gs` na LP). E-book segue como 1ª compra; produto pago
-  nunca cai em posições seguidas.
+- **O CTA do dia intercala numa ordem cíclica fixa de 14 posições** (refeito em
+  **14/08/2026**, substitui o ciclo de 7 com 6 CTAs de produto):
+  `envio → Raio-X → pergunta → seguir → pergunta → envio → Venda 10x →
+  pergunta → seguir → envio → Raio-X → pergunta → envio → e-book →` volta ao
+  início (`CICLO_CTA`). São **4 CTAs de palavra-chave em 14 = exatamente 2 em 7**,
+  contra 6 em 7 de antes.
+
+  **Por que mudou:** 6 dos 7 CTAs pediam produto. Somando os Reels, todo post do
+  perfil pedia alguma coisa, e o perfil lia como loja — 172 contas engajaram em
+  30 dias, de 9.296 seguidores (1,85%). Metricool 2026 (24,3 mi de posts): CTA
+  pedindo comentário rende **+202,8% de comentários**; pergunta na legenda, +36,7%.
+  Mosseri (22/01/2025) nomeou 3 sinais — tempo de visualização, curtidas e
+  **envios** — e o envio é o que mais pesa para alcançar quem **não** segue.
+  Nenhum desses sinais é produzido por CTA de produto. O padrão do mercado
+  confirma: Concer separa **Reel = alcance sem CTA / carrossel = CTA de palavra**,
+  e em 72 legendas de perfis de construção civil e esquadria o CTA de Direct
+  apareceu **zero vezes** — o mecanismo do nicho é a **pergunta aberta**.
+
+  **Dois CTAs novos, sem produto:** `envio` (isca de compartilhamento no Direct —
+  ataca o número que está zerado: os Reels auditados têm 0 compartilhamento) e
+  `pergunta` (isca de comentário). Somados ao `seguir`, são 10 das 14 posições.
+
+  O **Raio-X** mantém o maior peso entre os produtos (2 das 4 vagas) porque
+  captura e segmenta: o quiz recomenda o produto certo no resultado e nas trilhas
+  de e-mail. A **Venda Blindada saiu do ciclo em 09/08** e o **CRM (Máquina de
+  Vendas) saiu em 14/08** — pela mesma lógica: são vendidos na trilha de e-mail
+  de quem tem gargalo em Decisão/Oferta (`scripts/leads/Code.gs` na LP). A palavra
+  `MAQUINA` **segue ativa no Direct** para os posts antigos e para os Reels.
+  ⚠️ **A saída do CRM é decisão de negócio — conferir com o Diego.**
+  Produto nunca cai em posições seguidas.
+
+  **Pendência conhecida:** a legenda do CTA `pergunta` é genérica ("E na sua
+  empresa, como isso acontece?"). O ideal é uma pergunta escrita **por frase** no
+  `frases.json`, casando com a dor do post — fica como melhoria futura.
 - **Rotação com memória** (`estado_cta.json`): o publicador avança a partir da
   **posição** do último CTA publicado (não da data). Assim um dia que falhe não
   repete nem pula — o próximo dia pega o CTA que faltou. O estado só é gravado
@@ -142,6 +191,13 @@ Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 a aula saiu (aula tirada do e-book chama `LIVRO` etc.) — casamento conteúdo→produto
 converte melhor que CTA genérico. `RAIOX` é opção válida para aulas novas de
 diagnóstico/processo geral sem produto natural (regra em `miniaulas.json`).
+
+**Ordem da `sequencia` em 14/08/2026:** as aulas 3 e 9 foram trocadas de lugar
+(`[1, 19, 2, 29, 9, 3, 7]`). A aula 3 chama `LIVRO` e cairia na quinta 20/08, no
+dia seguinte a um Reel que também pede `LIVRO` — duas chamadas da mesma palavra
+em 24h. Com a troca, quinta sai a aula 9 (`MAQUINA`) e a 3 vai para 25/08.
+**Regra que fica: conferir a palavra da mini-aula contra a do Reel do dia seguinte
+antes de publicar.**
 
 ## Os 4 produtos (fonte: vendanaobra.com.br, preços conferidos 03/08/2026)
 

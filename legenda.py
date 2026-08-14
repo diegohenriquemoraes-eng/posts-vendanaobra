@@ -2,12 +2,16 @@
 """CTA do dia: o 3o slide + a legenda que o reforca.
 
 Regra (decidida em 21/07/2026; e-book acrescentado em 03/08/2026; Raio-X
-virou o CTA dominante em 09/08/2026 — ver CLAUDE.md):
+virou o CTA dominante em 09/08/2026; **ciclo refeito em 14/08/2026** para
+cortar o excesso de CTA de produto — ver CLAUDE.md):
   - todo post tem um 3o slide de CTA, em fundo azul da marca;
-  - o CTA do dia intercala numa ordem ciclica fixa, NUNCA repetindo dois dias
-    seguidos:  seguir -> Raio-X -> e-book -> Raio-X -> Venda 10x -> Raio-X ->
-    CRM -> seguir ... (7 posicoes, ver CICLO_CTA). A Venda Blindada saiu do
-    ciclo: e vendida na trilha de e-mail do Raio-X (gargalo em Decisao/Oferta);
+  - o CTA do dia intercala numa ordem ciclica fixa de **14 posicoes**, com so
+    **4 de produto (2 em 7)** e 10 de sinal (envio / pergunta / seguir):
+    envio -> Raio-X -> pergunta -> seguir -> pergunta -> envio -> Venda 10x ->
+    pergunta -> seguir -> envio -> Raio-X -> pergunta -> envio -> e-book ->
+    volta ao inicio (ver CICLO_CTA). Produto nunca cai em posicoes seguidas.
+    A Venda Blindada saiu do ciclo em 09/08 e o CRM saiu em 14/08: os dois sao
+    vendidos na trilha de e-mail do Raio-X (gargalo em Decisao/Oferta);
   - a rotacao tem memoria (estado_cta.json, gravado pelo publicar.py): avanca a
     partir da POSICAO do ultimo CTA publicado, entao um dia que falhe nao repete
     nem pula. E a posicao, nao o nome, porque "seguir" e "ebook" aparecem duas
@@ -30,20 +34,56 @@ from __future__ import annotations
 
 # Ordem ciclica do CTA do dia. Nao reordenar sem querer mudar a sequencia.
 #
-# 7 posicoes (aprovado pelo Diego em 09/08/2026, substitui o ciclo com Venda
-# Blindada): o Raio-X (diagnostico gratuito em vendanaobra.com.br/raio-x) vira o
-# CTA dominante — 3 posicoes — porque captura e segmenta o lead; o proprio quiz
-# recomenda o produto certo no final e por e-mail. A Venda Blindada saiu do
-# ciclo: ela agora e vendida dentro da trilha de e-mail de quem tem gargalo em
-# Decisao/Oferta. E-book segue como 1a compra; CRM segue por ser link direto.
+# ---------------------------------------------------------------------------
+# CICLO NOVO DE 14 POSICOES (14/08/2026) — substitui o de 7 posicoes com 6 CTAs
+# de produto. Motivo, medido nos insights da conta:
+#
+#   - 6 dos 7 CTAs pediam palavra-chave de produto (RAIOX 3x, LIVRO, 10X,
+#     MAQUINA). Somando os Reels, praticamente todo post do perfil pedia
+#     alguma coisa — o perfil lia como loja e o publico parou de responder:
+#     172 contas engajaram em 30 dias, de 9.296 seguidores (1,85%).
+#   - Metricool 2026 (24,3 mi de posts): CTA pedindo comentario rende
+#     +202,8% de comentarios; pergunta na legenda, +36,7%. E Mosseri
+#     (22/01/2025) nomeou 3 sinais de ranqueamento — tempo de visualizacao,
+#     curtidas e ENVIOS — sendo o envio o que mais pesa para alcancar quem
+#     ainda nao segue. Nada disso e produzido por CTA de produto.
+#   - O padrao do mercado confirma: Concer separa cirurgicamente (Reel = alcance
+#     sem CTA; carrossel = CTA de palavra) e, em 72 legendas de perfis de
+#     construcao civil e esquadria, CTA de Direct apareceu ZERO vezes — o
+#     mecanismo do nicho e a pergunta aberta.
+#
+# Agora sao 4 CTAs de produto em 14 posicoes = exatamente 2 em 7, contra os 6
+# em 7 de antes. As outras 10 posicoes se dividem em:
+#   - "envio"    -> isca de compartilhamento no Direct (o sinal que mais falta:
+#                   os Reels da conta estao com ZERO envios)
+#   - "pergunta" -> isca de comentario, o mecanismo do nicho
+#   - "seguir"   -> valor puro, sem pedir nada
+#
+# Produto nunca cai em posicoes seguidas. O Raio-X mantem o maior peso (2 das 4
+# vagas de produto) porque captura e segmenta — o quiz e que recomenda o produto
+# certo no resultado e nas trilhas de e-mail.
+#
+# ATENCAO — decisao de negocio embutida, conferir com o Diego: o CRM (Maquina de
+# Vendas) SAIU do ciclo do carrossel, pela mesma logica que ja tinha tirado a
+# Venda Blindada — e o produto mais caro (R$297/mes) e converte melhor na trilha
+# de e-mail do Raio-X do que num slide de carrossel. A palavra MAQUINA segue
+# ativa no Direct para os posts antigos e para os Reels.
+# ---------------------------------------------------------------------------
 CICLO_CTA = [
-    "seguir",    # 0
-    "raiox",     # 1
-    "ebook",     # 2
-    "raiox",     # 3
-    "venda10x",  # 4
-    "raiox",     # 5
-    "crm",       # 6
+    "envio",     # 0
+    "raiox",     # 1   <- produto
+    "pergunta",  # 2
+    "seguir",    # 3
+    "pergunta",  # 4
+    "envio",     # 5
+    "venda10x",  # 6   <- produto
+    "pergunta",  # 7
+    "seguir",    # 8
+    "envio",     # 9
+    "raiox",     # 10  <- produto
+    "pergunta",  # 11
+    "envio",     # 12
+    "ebook",     # 13  <- produto
 ]
 
 # Cada CTA tem tres pecas:
@@ -57,6 +97,40 @@ CTA = {
         "legenda": (
             "Se isso fez sentido, segue o @vendanaobra — todo dia útil tem um "
             "card desses aqui, direto ao ponto sobre vender mais na obra."
+        ),
+    },
+    # --- CTAs de sinal, sem produto (criados em 14/08/2026) --------------------
+    # "envio" existe para atacar o numero que esta zerado na conta: os Reels
+    # auditados tinham 0 compartilhamento. Envio no Direct e o sinal que Mosseri
+    # apontou como o mais forte para alcancar quem ainda nao segue.
+    "envio": {
+        "slide": (
+            "Pensou em alguém agora?\n\n"
+            "Manda esse post para a pessoa. Leva três segundos e pode evitar "
+            "um prejuízo na próxima obra."
+        ),
+        "rodape": "@vendanaobra",
+        "legenda": (
+            "Se você pensou em alguém do seu time enquanto lia, manda esse post "
+            "para a pessoa.\n"
+            "É mais fácil combinar isso agora do que discutir depois que a venda "
+            "já foi embora."
+        ),
+    },
+    # "pergunta" e o mecanismo do nicho: em 72 legendas de perfis de construcao
+    # civil e esquadria, CTA de Direct apareceu zero vezes e a pergunta aberta e
+    # o padrao. Ideal futuro: pergunta escrita por frase no frases.json, casando
+    # com a dor do post; por ora e generica, mas aberta e sem resposta obvia.
+    "pergunta": {
+        "slide": (
+            "E aí na sua empresa?\n\n"
+            "Me conta nos comentários como isso acontece no seu dia a dia. "
+            "Eu respondo um por um."
+        ),
+        "rodape": "@vendanaobra",
+        "legenda": (
+            "E na sua empresa, como isso acontece?\n"
+            "Comenta aqui embaixo — eu leio e respondo um por um."
         ),
     },
     "raiox": {
@@ -145,6 +219,8 @@ CTA = {
 # Serve para o publicar.py puxar uma frase que case com a dor do produto.
 CTA_PRODUTO = {
     "seguir": None,
+    "envio": None,     # CTA de sinal: nao puxa tema, serve a qualquer frase
+    "pergunta": None,  # idem
     "raiox": None,  # diagnostico gratuito serve a qualquer frase, sem viés de tema
     "ebook": "ebook",
     "venda-blindada": "venda-blindada",

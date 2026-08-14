@@ -1,12 +1,34 @@
 name: Post diario @vendanaobra
 
+# ============================================================================
+# PAUSADO de 17/08 a 23/08/2026 (plano de reativacao de engajamento, 14/08).
+#
+# Motivo: o carrossel de frase saturou. Views por post, mesmo formato:
+#   19/07 = 415 | 20/07 = 539 (pico) | 23/07 = 479 | 27/07 = 413
+#   03/08 = 299 | 12/08 = 183 | 14/08 = 135
+# Queda de 75% em 3 semanas. O publico aprendeu a rolar por cima.
+#
+# A mini-aula (miniaula.yml, ter/qui) CONTINUA rodando — carrossel e o formato
+# mais eficiente da conta (indice 2,10 de interacao por view, contra 0,85 do
+# Reel); o que saturou foi a FRASE, nao o carrossel.
+#
+# Nesta semana seg/qua/sex ficam para os Reels que o Diego grava.
+#
+# PARA RETOMAR em 24/08/2026: descomentar a linha do cron abaixo.
+# Nao voltar com o formato identico — rever diagramacao e estrutura de legenda
+# antes, e voltar 1x/semana em vez de 3x.
+# ============================================================================
 on:
-  schedule:
-    # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.
-    # A folga existe porque o agendador do Actions costuma atrasar alguns minutos.
-    # 1,3,5 = seg/qua/sex — desde 03/08/2026 a frase tem dias fixos; terca e
-    # quinta sao da mini-aula (miniaula.yml). O publicar.py confirma o dia.
-    - cron: "45 14 * * 1,3,5"
+  # PAUSADO: o bloco `schedule` inteiro esta comentado. O workflow continua
+  # existindo e pode ser rodado a mao por workflow_dispatch (inclusive --ensaio).
+  #
+  # PARA RETOMAR em 24/08/2026: descomentar as 2 linhas abaixo.
+  #
+  # schedule:
+  #   # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.
+  #   # A folga existe porque o agendador do Actions costuma atrasar alguns minutos.
+  #   # 1,3,5 = seg/qua/sex; terca e quinta sao da mini-aula (miniaula.yml).
+  #   - cron: "45 14 * * 1,3,5"
   workflow_dispatch:
     inputs:
       id:
