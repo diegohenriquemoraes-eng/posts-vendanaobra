@@ -95,6 +95,14 @@
       "texto": "Se a venda depende do dono, a empresa não tem comercial.\n\nTem sorte.",
       "cta": "envio",
       "media_id": "18014944583937076"
+    },
+    {
+      "id": 10,
+      "tema": "vendas",
+      "data": "2026-08-19",
+      "texto": "Desconto não vence objeção.\n\nDesconto confirma que o preço estava errado.",
+      "cta": "venda10x",
+      "media_id": "18113153816471741"
     }
   ]
 }
