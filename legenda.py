@@ -188,7 +188,7 @@ CTA = {
         "rodape": "@vendanaobra",
         "legenda": (
             "Rotina comercial não nasce de motivação, nasce de cadência.\n"
-            "É isso que eu destrincho toda quarta, 20h, no Venda 10x.\n\n"
+            "É isso que eu destrincho toda terça, 20h, no Venda 10x.\n\n"
             "Comenta 10X aqui embaixo que eu te mando o link no seu Direct."
         ),
     },

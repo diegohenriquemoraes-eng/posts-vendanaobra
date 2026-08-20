@@ -205,7 +205,7 @@ antes de publicar.**
 |---|---|---|---|
 | **O Cliente Sumiu** (e-book) | PDF + folhas de trabalho | R$ 19,90 | Orçamento enviado e o cliente some |
 | **Venda Blindada** | Contrato editável | R$ 347 único | Prejuízo/brecha em contrato de esquadria |
-| **Venda 10x** | Ao vivo semanal, quarta 20h | R$ 497/ano | Falta de rotina/consistência comercial |
+| **Venda 10x** | Ao vivo semanal, terça 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 
 O e-book é a **porta de entrada** (ver `project_ebook_cliente_sumiu` na memória):
