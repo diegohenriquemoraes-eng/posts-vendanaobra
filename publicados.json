@@ -103,6 +103,14 @@
       "texto": "Desconto não vence objeção.\n\nDesconto confirma que o preço estava errado.",
       "cta": "venda10x",
       "media_id": "18113153816471741"
+    },
+    {
+      "id": 11,
+      "tema": "metricas",
+      "data": "2026-08-21",
+      "texto": "A métrica mais barata de melhorar é o tempo de resposta.\n\nNão exige curso, ferramenta nem contratação. Exige decidir que orçamento parado é prioridade, não pendência.",
+      "cta": "pergunta",
+      "media_id": "18126640973502347"
     }
   ]
 }
