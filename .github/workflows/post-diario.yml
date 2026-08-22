@@ -1,28 +1,30 @@
 name: Post diario @vendanaobra
 
 # ============================================================================
-# PAUSADO de 17/08 a 23/08/2026 (plano de reativacao de engajamento, 14/08).
+# AUTOMACAO DE POSTAGEM ENCERRADA EM 21/08/2026 (decisao do Diego).
 #
-# Motivo: o carrossel de frase saturou. Views por post, mesmo formato:
-#   19/07 = 415 | 20/07 = 539 (pico) | 23/07 = 479 | 27/07 = 413
-#   03/08 = 299 | 12/08 = 183 | 14/08 = 135
-# Queda de 75% em 3 semanas. O publico aprendeu a rolar por cima.
+# O @vendanaobra nao publica mais por API. Nada neste repo posta sozinho:
+# os 3 workflows estao `disabled_manually` no GitHub E com o `schedule`
+# comentado (trava dupla — reativar pela UI nao faz o cron voltar).
 #
-# A mini-aula (miniaula.yml, ter/qui) CONTINUA rodando — carrossel e o formato
-# mais eficiente da conta (indice 2,10 de interacao por view, contra 0,85 do
-# Reel); o que saturou foi a FRASE, nao o carrossel.
+# Historico: este workflow ja estava com o cron comentado desde 17/08 (o
+# carrossel de frase tinha saturado: 415 views em 19/07 contra 135 em 14/08).
+# A pausa nao pegou de verdade — a `rede-de-seguranca.yml` continuou chamando
+# `publicar.py --garantir` seg/qua/sex e publicou 17/08 e 19/08 assim mesmo.
+# Agora as duas estao desligadas.
 #
-# Nesta semana seg/qua/sex ficam para os Reels que o Diego grava.
+# O que o repo faz agora: PREPARA a peca (`preparar.py`) — gera os slides e a
+# legenda e entrega no Desktop e no Drive. Quem posta e o Diego, do celular,
+# pelo app do Instagram, como qualquer pessoa.
 #
-# PARA RETOMAR em 24/08/2026: descomentar a linha do cron abaixo.
-# Nao voltar com o formato identico — rever diagramacao e estrutura de legenda
-# antes, e voltar 1x/semana em vez de 3x.
+# Para voltar a postar por API algum dia: descomentar o `schedule` E rodar
+# `gh workflow enable`. Nao fazer isso sem pedido explicito dele.
 # ============================================================================
+
 on:
-  # PAUSADO: o bloco `schedule` inteiro esta comentado. O workflow continua
-  # existindo e pode ser rodado a mao por workflow_dispatch (inclusive --ensaio).
-  #
-  # PARA RETOMAR em 24/08/2026: descomentar as 2 linhas abaixo.
+  # DESLIGADO 21/08/2026: o bloco `schedule` inteiro esta comentado e o
+  # workflow esta disabled no GitHub. `workflow_dispatch` so publica se quem
+  # rodar tambem definir VNO_PUBLICAR_API=1 (trava dentro do publicar.py).
   #
   # schedule:
   #   # 14:45 UTC; o job espera ate 15:00:00 UTC = 12:00:00 em Brasilia.

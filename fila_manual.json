@@ -1,0 +1,26 @@
+{
+  "pendentes": [
+    {
+      "tipo": "frase",
+      "slug": "2026-08-21-011",
+      "preparado_em": "2026-08-21",
+      "pasta": "C:\\Users\\NOTE\\Desktop\\Perffec\\Claude\\Posts-Manuais\\2026-08-21-011",
+      "legenda": "A métrica mais barata de melhorar é o tempo de resposta.\n\nNão exige curso, ferramenta nem contratação. Exige decidir que orçamento parado é prioridade, não pendência.\n\nE na sua empresa, como isso acontece?\nComenta aqui embaixo — eu leio e respondo um por um.",
+      "frase_id": 11,
+      "tema": "metricas",
+      "texto": "A métrica mais barata de melhorar é o tempo de resposta.\n\nNão exige curso, ferramenta nem contratação. Exige decidir que orçamento parado é prioridade, não pendência.",
+      "cta": "pergunta",
+      "indice_cta": 7
+    },
+    {
+      "tipo": "aula",
+      "slug": "2026-08-21-aula007",
+      "preparado_em": "2026-08-21",
+      "pasta": "C:\\Users\\NOTE\\Desktop\\Perffec\\Claude\\Posts-Manuais\\2026-08-21-aula007",
+      "legenda": "Perdeu uma venda e ficou com aquela sensação de \"era pra ter fechado\"?\n\nA primeira coisa que a gente faz é adivinhar o motivo. Supõe que é preço, supõe que é prazo, supõe que é concorrência.\n\nPreço é a resposta mais fácil de engolir porque é a que não exige nada de você. Mas ninguém liga para dizer \"não fechei porque não confiei no seu prazo\".\n\nA venda morre em cinco lugares diferentes. Quando você diz que perdeu no preço, está dizendo que morreu na negociação. Quase sempre morreu na qualificação, três semanas antes.\n\nE tem o não que não é não: obra atrasa, financiamento trava. Muita venda marcada como perdida é venda adiada que ninguém reabriu.\n\n#vendasnaconstrucaocivil #esquadrias #gestaocomercial #vendaperdida #construcaocivil",
+      "aula_id": 7,
+      "titulo": "Descubra onde a venda morreu, sem achismo",
+      "produto": "venda10x"
+    }
+  ]
+}

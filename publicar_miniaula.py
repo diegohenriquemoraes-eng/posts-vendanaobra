@@ -80,12 +80,30 @@ def ja_postou_hoje() -> bool:
     return any(p["data"] == hoje for p in _carregar(PUBLICADOS, {"posts": []})["posts"])
 
 
+# --------------------------------------------------------------------------- trava
+# Publicacao por API ENCERRADA em 21/08/2026 (decisao do Diego): o perfil
+# @vendanaobra passou a postar a mao, do celular. Este arquivo so publica se
+# quem chamar assumir a decisao definindo VNO_PUBLICAR_API=1. Sem isso ele
+# para aqui e manda usar o preparar.py.
+def _travar_api() -> None:
+    if os.environ.get("VNO_PUBLICAR_API", "").strip() == "1":
+        return
+    raise SystemExit(
+        "Postagem por API desligada em 21/08/2026 - o @vendanaobra posta a mao. "
+        "Use: python preparar.py frase (ou: aula). "
+        "Para publicar por API mesmo assim: VNO_PUBLICAR_API=1"
+    )
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--id", type=int, default=None)
     p.add_argument("--ensaio", action="store_true")
     p.add_argument("--garantir", action="store_true")
     a = p.parse_args()
+
+    if not a.ensaio:
+        _travar_api()
 
     hoje_dt = datetime.now(FUSO_BR)
     # terca=1, quinta=3 — a automacao respeita; --id e --ensaio ignoram

@@ -1,22 +1,72 @@
 # posts-vendanaobra
 
-Publica no feed do Instagram **@vendanaobra** (IG User ID `17841470188725651`),
-sempre **12h em ponto BRT**, com o calendário fixo definido em 03/08/2026:
+Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
-| Dia | Formato | Publicador |
+> ## ⛔ NÃO PUBLICA MAIS SOZINHO — decisão do Diego, 21/08/2026
+>
+> O perfil **saiu da publicação automática**. Nada aqui posta por API:
+>
+> - os 3 workflows estão **`disabled_manually`** no GitHub **e** com o bloco
+>   `schedule` comentado (trava dupla: reativar pela UI não devolve o cron);
+> - `publicar.py` e `publicar_miniaula.py` só publicam se quem chamar definir
+>   **`VNO_PUBLICAR_API=1`** — sem isso param e mandam usar o `preparar.py`.
+>
+> **O fluxo agora é: o robô prepara, o Diego posta do celular, pelo app.**
+> Não religar a automação sem pedido explícito dele.
+>
+> Motivo dado por ele: publicação por API pode estar prejudicando a entrega e
+> expondo o perfil a risco. Contraponto registrado, para quando o assunto
+> voltar: a Graph API é o caminho oficial (é o que mLabs, Later e Buffer usam) e
+> não há sinal de penalização por ela — a queda medida é de **formato** (mesmo
+> carrossel de frase: 415 views em 19/07 contra 135 em 14/08). O que arrisca
+> perfil de verdade é automação **não oficial** (robô clicando no Instagram
+> Web) — por isso o `preparar.py` não tenta postar por navegador.
+
+## Fluxo manual (`preparar.py`)
+
+| Comando | O que faz |
+|---|---|
+| `python preparar.py frase` | próxima frase da fila → 3 slides 1:1 + legenda |
+| `python preparar.py aula` | próxima mini-aula da sequência → 7–9 slides 4:5 + legenda |
+| `python preparar.py fila` | o que está preparado e ainda não foi postado |
+| `python preparar.py confirmar <slug>` | registra como postado |
+
+Aceita `--id N` para forçar frase/aula específica.
+
+**Entrega em duas mãos:** pasta local
+`Desktop\Perffec\Claude\Posts-Manuais\<slug>\` e espelho no Drive
+(`gdrive:MKT vendanaobra/Posts manuais/<slug>`, via rclone) — é de lá que o
+Diego pega no celular. Dentro: `1.jpg`, `2.jpg`, … na ordem do carrossel,
+`legenda.txt` e `COMO-POSTAR.txt`.
+
+**`confirmar` não é opcional.** É o que grava em `publicados.json` /
+`publicados_miniaulas.json` e avança o ciclo de CTA (`estado_cta.json`). Sem
+confirmar, a próxima preparação repete a mesma peça; enquanto pendente, ela
+fica em `fila_manual.json`.
+
+**Story saiu do fluxo**: era publicado por API logo depois do feed. Se o Diego
+quiser story, é postar a arte do slide 1 à mão.
+
+## Calendário (referência — hoje é sugestão, não cron)
+
+| Dia | Formato | Preparador |
 |---|---|---|
-| ~~Seg / Qua / Sex~~ **PAUSADO até 24/08** | Carrossel de frase (3 slides, 1080x1080) | `publicar.py` |
-| Ter / Qui | **Mini-aula** (7–9 slides, 4:5, capa com foto) | `publicar_miniaula.py` |
-| Todo post | + **Story de reforço** logo após o feed | `gerar_story.py` |
+| Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | `preparar.py frase` |
+| Ter / Qui | Mini-aula (7–9 slides, 4:5, capa com foto) | `preparar.py aula` |
 
 Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
 derivava e ia colidir com a mini-aula.
 
-> ### ⏸️ Carrossel de frase PAUSADO de 17/08 a 23/08/2026
->
-> O `schedule` do `post-diario.yml` está **comentado** (o workflow segue existindo
-> e roda por `workflow_dispatch`). **Para retomar em 24/08: descomentar as 2 linhas
-> do cron.**
+## O que rodava até 21/08/2026
+
+Publicava 12h em ponto BRT, com rede de segurança às 13h e 17h. O
+`post-diario.yml` estava com o cron comentado desde 17/08 (frase saturada), mas
+a **pausa nunca pegou**: a `rede-de-seguranca.yml` seguiu chamando
+`publicar.py --garantir` seg/qua/sex e publicou 17/08 e 19/08 assim mesmo.
+Lição: pausar um workflow sem olhar quem mais chama o mesmo script não pausa
+nada.
+
+> ### ⏸️ Por que o carrossel de frase já estava pausado desde 17/08/2026
 >
 > Motivo, medido nos insights: o formato saturou. Views do mesmo formato —
 > 19/07 = 415 · **20/07 = 539 (pico)** · 23/07 = 479 · 27/07 = 413 · 03/08 = 299 ·
@@ -53,37 +103,42 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 
 | Arquivo | Papel |
 |---|---|
+| `preparar.py` | **O que se usa hoje**: gera slides + legenda e entrega para postar à mão |
+| `fila_manual.json` | Peças preparadas e ainda não confirmadas como postadas |
 | `frases.json` | Banco de 120 frases revisadas (vendas, emocional, métricas, gestão) |
 | `publicados.json` | O que já foi ao ar — a fila é "banco menos publicados" |
 | `estado_cta.json` | Memória do ciclo de CTA: último CTA publicado + data |
 | `legenda.py` | Ciclo do CTA do dia + textos do slide 3 e da legenda |
 | `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA azul) |
-| `publicar.py` | CTA do dia → fila → imagens → push → Graph API → registro + story |
+| `publicar.py` | Publicador por API — **desligado 21/08/2026** (exige `VNO_PUBLICAR_API=1`) |
 | `miniaulas.json` | Banco das mini-aulas (7 de 40 escritas; pauta em `PAUTA-MINIAULAS.md`) |
-| `publicar_miniaula.py` | Mini-aula: fila da `sequencia` → slides → publica → story → registro |
+| `publicar_miniaula.py` | Mini-aula por API — **desligado 21/08/2026** (mesma trava) |
 | `gerar_miniaula.py` | Pillow → slides 4:5 (âncoras fixas + fonte única por peça) |
 | `gerar_story.py` | Story 1080x1920 com a arte do dia emoldurada |
 | `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
-| `.github/workflows/post-diario.yml` | Frase: seg/qua/sex 14:45 UTC (espera 15:00 = 12h BRT) |
-| `.github/workflows/miniaula.yml` | Mini-aula: ter/qui, mesmos horários + repescagem 13h/17h |
+| `.github/workflows/*.yml` | Os 3 workflows — **disabled + cron comentado desde 21/08/2026** |
 
 ## Por que o repositório é público
 
-A Graph API **não aceita upload de arquivo local** para imagem: ela exige uma
-URL https pública e busca o arquivo por conta própria. As imagens são commitadas
-e servidas por `raw.githubusercontent.com`. Repositório privado quebraria isso.
+Herança da publicação por API: a Graph API **não aceita upload de arquivo
+local**, exige URL https pública, e as imagens eram servidas por
+`raw.githubusercontent.com`. Com a postagem manual isso deixou de importar — o
+`preparar.py` não commita imagem nenhuma (as peças vão para `saida/manual/`,
+ignorada pelo git, e daí para a pasta de entrega e o Drive). O repo pode virar
+privado quando o Diego quiser; hoje segue público só porque ninguém precisou
+mudar.
 
 ## Rodar na mão
 
 ```bash
-python publicar.py --ensaio     # só gera as imagens, não publica
-python publicar.py              # próxima frase da fila
-python publicar.py --id 7       # frase específica
+python preparar.py frase        # prepara a próxima frase para postar no celular
+python preparar.py aula         # prepara a próxima mini-aula
+python preparar.py fila         # o que está esperando ser postado
 ```
 
-Token: `META_TOKEN` no ambiente, ou o arquivo
-`Desktop\Perffec\Claude\meta_system_user_token.txt`. Na nuvem é o secret
-`META_TOKEN` do repositório.
+Nada disso precisa de token. O `META_TOKEN` (secret do repo e o arquivo
+`Desktop\Perffec\Claude\meta_system_user_token.txt`) só é usado pelo caminho de
+API, que está desligado — continua válido caso um dia se volte atrás.
 
 ## Armadilhas já pagas
 

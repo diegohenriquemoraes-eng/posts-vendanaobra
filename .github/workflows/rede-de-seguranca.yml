@@ -1,13 +1,28 @@
 name: Rede de seguranca
 
+# ============================================================================
+# AUTOMACAO DE POSTAGEM ENCERRADA EM 21/08/2026 (decisao do Diego).
+#
+# O @vendanaobra nao publica mais por API. Nada neste repo posta sozinho:
+# os 3 workflows estao `disabled_manually` no GitHub E com o `schedule`
+# comentado (trava dupla — reativar pela UI nao faz o cron voltar).
+#
+# O que o repo faz agora: PREPARA a peca (`preparar.py`) — gera os slides e a
+# legenda e entrega no Desktop e no Drive. Quem posta e o Diego, do celular,
+# pelo app do Instagram, como qualquer pessoa.
+#
+# Para voltar a postar por API algum dia: descomentar o `schedule` E rodar
+# `gh workflow enable`. Nao fazer isso sem pedido explicito dele.
+# ============================================================================
+
 # O cron do Actions pode atrasar ou ser descartado em horario de pico, e um dia
 # perdido passaria silencioso. Este job roda depois do horario e publica so se
 # o post do dia nao saiu. Duas passadas: 13h e 17h (BRT).
 
 on:
-  schedule:
-    - cron: "0 16 * * 1,3,5"   # 13h BRT, seg/qua/sex (ter/qui e a mini-aula)
-    - cron: "0 20 * * 1,3,5"   # 17h BRT, seg/qua/sex
+  # schedule:   # DESLIGADO 21/08/2026
+  # - cron: "0 16 * * 1,3,5"   # 13h BRT, seg/qua/sex (ter/qui e a mini-aula)
+  # - cron: "0 20 * * 1,3,5"   # 17h BRT, seg/qua/sex
   workflow_dispatch:
 
 permissions:
