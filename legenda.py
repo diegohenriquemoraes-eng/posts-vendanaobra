@@ -95,8 +95,10 @@ CTA = {
         "slide": "Gostou?\n\nSegue o @vendanaobra e vem vender mais na obra.",
         "rodape": "@vendanaobra",
         "legenda": (
-            "Se isso fez sentido, segue o @vendanaobra — todo dia útil tem um "
-            "card desses aqui, direto ao ponto sobre vender mais na obra."
+            # Nao prometer cadencia ("todo dia util") desde 21/08/2026: a
+            # postagem passou a ser manual e o ritmo e o que o Diego decidir.
+            "Se isso fez sentido, segue o @vendanaobra — por aqui é card "
+            "direto ao ponto sobre vender mais na obra."
         ),
     },
     # --- CTAs de sinal, sem produto (criados em 14/08/2026) --------------------

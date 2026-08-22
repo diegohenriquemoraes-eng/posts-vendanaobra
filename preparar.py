@@ -230,9 +230,26 @@ def confirmar(slug: str | None) -> None:
     _log(f"{alvo['slug']} registrado como postado.")
 
 
+def descartar(slug: str | None) -> None:
+    """Joga fora uma peca preparada que nao vai ser postada (duplicata, peca
+    errada). Tira da fila, apaga a pasta de entrega e o espelho no Drive."""
+    pendentes = _fila()
+    alvo = next((p for p in pendentes if slug is None or p["slug"] == slug), None)
+    if alvo is None:
+        raise SystemExit(f"{slug or 'nada'} nao esta na fila.")
+    shutil.rmtree(alvo["pasta"], ignore_errors=True)
+    try:
+        subprocess.run(["rclone", "purge", f"{DRIVE}/{alvo['slug']}", "--quiet"],
+                       check=False, capture_output=True, timeout=180)
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+    _salvar_fila([p for p in pendentes if p["slug"] != alvo["slug"]])
+    _log(f"{alvo['slug']} descartado (nada foi registrado como publicado).")
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description="Prepara a peca para postar a mao.")
-    p.add_argument("acao", choices=["frase", "aula", "fila", "confirmar"])
+    p.add_argument("acao", choices=["frase", "aula", "fila", "confirmar", "descartar"])
     p.add_argument("slug", nargs="?", default=None)
     p.add_argument("--id", type=int, default=None)
     a = p.parse_args()
@@ -243,6 +260,8 @@ def main() -> None:
         preparar_aula(a.id)
     elif a.acao == "fila":
         mostrar_fila()
+    elif a.acao == "descartar":
+        descartar(a.slug)
     else:
         confirmar(a.slug)
 
