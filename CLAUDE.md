@@ -8,7 +8,7 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > |---|---|
 > | **Carrossel longo (mini-aula, 4:5)** | **AUTOMÁTICO por API** — `miniaula.yml`, terça e quinta, 12h BRT, com story de reforço. Religado em 24/08/2026 a pedido do Diego: o formato longo está trazendo retorno de comentários. |
 > | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
-> | **Reel diário (9:16)** | **PRONTO, DESLIGADO** — `reel-diario.yml` + `publicar_reel.py`, fila de 12 cortes do Aluparts Podcast #EP25 em `reels_ep25.json`. Aguarda aprovação do Diego (ver seção abaixo). |
+> | **Reel diário (9:16)** | **NO AR desde 24/08/2026** — `reel-diario.yml` + `publicar_reel.py`, 9h BRT, fila de 27 cortes do Aluparts Podcast #EP25 em `reels_ep25.json`, em colab com @aluparts.oficial. |
 >
 > Em 21/08/2026 o Diego tinha tirado os dois formatos da API (receio de a
 > publicação automática prejudicar a entrega). Em 24/08/2026 ele mandou o
@@ -301,30 +301,40 @@ checkout. "Prospecção de Arquitetos" foi **arquivado**; não citar. (Atenção
 ## Reel diário — fila do Aluparts Podcast #EP25 (24/08/2026)
 
 O Diego participou do **#EP25 do Aluparts Podcast** (1h13m, publicado 21/08/2026,
-host Audrey Dias). Tirei **12 cortes** dali, um por dia, como **colaboração** com
-o perfil da Aluparts — aparece nos dois feeds e soma os dois públicos.
+host Audrey Dias). Tirei **27 cortes** dali — 12 no lote 1 e 15 no lote 2, aprovados
+em 24/08/2026 —, um por dia, como **colaboração** com a @aluparts.oficial: aparece
+nos dois feeds e soma os dois públicos. Juntos usam 25 dos 73 minutos do episódio.
+
+**A fila é posicional, não por data.** O corte 01 saiu à mão em 24/08 e o cron pega
+o próximo todo dia — item N publica em 24/08 + (N−1) dias, terminando em 19/09.
+Foi por isso que o lote 2 teve de ser reordenado: com o 01 saindo um dia antes do
+previsto, os cortes de feira cairiam antes da **Fesqua (9 a 12/09)**. Hoje o de
+network cai na véspera (08/09) e os três de stand/posicionamento dentro do evento.
+**Mexer na ordem da fila desloca todas as datas seguintes — conferir a Fesqua antes.**
 
 | Peça | Papel |
 |---|---|
 | `reels_ep25.json` | A fila: ordem, duração, arquivo, capa e legenda de cada corte |
 | `publicar_reel.py` | Publica o próximo da fila por API (`media_type=REELS`) |
 | `publicados_reels.json` | O que já foi ao ar — a fila é "banco menos publicados" |
-| `midia/reels/` | Os 12 MP4 + as 12 capas JPEG, servidos por `raw.githubusercontent` |
-| `.github/workflows/reel-diario.yml` | Cron diário 09h BRT — **comentado até aprovar** |
+| `midia/reels/` | Os 27 MP4 + as 27 capas JPEG (394 MB), servidos por `raw.githubusercontent` |
+| `.github/workflows/reel-diario.yml` | Cron diário 09h BRT + repescagem 11h — **ativo** |
 
 **Horário 09h BRT, não 12h.** A mini-aula ocupa terça e quinta às 12h. 09h é o
 segundo melhor horário medido da conta (mediana 427 views contra 545 das 12h no
 período orgânico de jul/ago) e deixa 3h de folga do carrossel. Terça e quinta
 ficam com dois posts — decisão do Diego em 24/08/2026, formatos diferentes.
 
-**Duas travas, de propósito:** o `schedule` do workflow está comentado **e** o
-`publicar_reel.py` exige `VNO_REEL_ATIVO=1`. Mesmo padrão do `publicar.py`.
-Para ligar: descomentar o cron, trocar o env para `"1"`, e **preencher
-`colaboradores` no `reels_ep25.json`** — collab não se adiciona depois de
-publicado, só apagando o post.
+**Ligado em 24/08/2026** — cron ativo e `VNO_REEL_ATIVO=1` no workflow. A trava
+do script continua valendo para quem rodar na mão sem querer publicar.
 
-**Duração fora da regra, com aval.** A regra de 28/07 é 25–45s por Reel. Só 4 dos
-12 cabem; os outros vão de 51s a 111s. O Diego aprovou publicar assim em
+⚠️ **Collab não se adiciona depois de publicado**, só apagando o post — por isso o
+`colaboradores` tem de estar preenchido antes de qualquer publicação. E o convite
+precisa ser **aceito por alguém da Aluparts em cada post**: no corte 01 ele ficou
+como `Pending`. Consultar com `GET /{media-id}?fields=collaborators`.
+
+**Duração fora da regra, com aval.** A regra de 28/07 é 25–45s por Reel. Só 10 dos
+27 cabem; os outros vão de 51s a 111s. O Diego aprovou publicar assim em
 24/08/2026: corte de podcast vive do começo-meio-fim, e cortar em 45s quebra a
 história.
 
