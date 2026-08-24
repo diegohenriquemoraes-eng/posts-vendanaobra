@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 """Prepara a peca do @vendanaobra para o Diego postar A MAO, do celular.
 
-Desde 21/08/2026 este perfil nao publica mais por API (ver CLAUDE.md). O robo
-so PREPARA: gera os slides e a legenda, monta a pasta de entrega no Desktop,
-espelha no Google Drive e para por ai. Quem abre o app do Instagram e posta e
-o Diego.
+Desde 21/08/2026 o CARROSSEL CURTO (frase, 3 slides) nao publica mais por API:
+o robo so PREPARA — gera os slides e a legenda, monta a pasta de entrega no
+Desktop, espelha no Google Drive e para por ai. Quem abre o app do Instagram e
+posta e o Diego.
+
+O CARROSSEL LONGO (mini-aula) voltou ao automatico em 24/08/2026 — sai sozinho
+terca e quinta, 12h BRT (miniaula.yml). `preparar.py aula` continua existindo
+para gerar a peca a mao em caso de emergencia, mas exige --forcar, senao o
+mesmo carrossel sai duas vezes.
 
 Uso:
     python preparar.py frase              # proxima frase da fila (3 slides 1:1)
     python preparar.py frase --id 42      # frase especifica
-    python preparar.py aula               # proxima mini-aula da sequencia (4:5)
-    python preparar.py aula --id 19       # aula especifica
+    python preparar.py aula --forcar      # mini-aula a mao (ela sai sozinha ter/qui)
+    python preparar.py aula --id 19 --forcar
     python preparar.py fila               # o que esta preparado e ainda nao foi postado
     python preparar.py confirmar          # marca a pendencia como postada
     python preparar.py confirmar <slug>   # confirma uma pendencia especifica
@@ -161,7 +166,14 @@ def preparar_frase(id_forcado: int | None) -> None:
 
 # --------------------------------------------------------------------------- aula
 
-def preparar_aula(id_forcado: int | None) -> None:
+def preparar_aula(id_forcado: int | None, forcar: bool = False) -> None:
+    # A mini-aula voltou a publicar sozinha em 24/08/2026 (miniaula.yml, ter/qui
+    # 12h BRT). Preparar a mao sem querer faria a mesma peca sair duas vezes.
+    if not forcar:
+        raise SystemExit(
+            "A mini-aula volta a sair sozinha desde 24/08/2026 (ter/qui, 12h BRT). "
+            "Se precisar mesmo preparar uma a mao: python preparar.py aula --forcar"
+        )
     aula = publicar_miniaula.escolher(id_forcado)
     if aula is None:
         raise SystemExit("Nenhuma mini-aula com foto disponivel — repor o banco.")
@@ -252,12 +264,14 @@ def main() -> None:
     p.add_argument("acao", choices=["frase", "aula", "fila", "confirmar", "descartar"])
     p.add_argument("slug", nargs="?", default=None)
     p.add_argument("--id", type=int, default=None)
+    p.add_argument("--forcar", action="store_true",
+                   help="prepara a mini-aula a mao mesmo com o automatico ligado")
     a = p.parse_args()
 
     if a.acao == "frase":
         preparar_frase(a.id)
     elif a.acao == "aula":
-        preparar_aula(a.id)
+        preparar_aula(a.id, a.forcar)
     elif a.acao == "fila":
         mostrar_fila()
     elif a.acao == "descartar":

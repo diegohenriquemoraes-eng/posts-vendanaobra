@@ -2,32 +2,36 @@
 
 Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
-> ## ⛔ NÃO PUBLICA MAIS SOZINHO — decisão do Diego, 21/08/2026
+> ## Quem publica o quê — desde 24/08/2026
 >
-> O perfil **saiu da publicação automática**. Nada aqui posta por API:
+> | Formato | Como sai hoje |
+> |---|---|
+> | **Carrossel longo (mini-aula, 4:5)** | **AUTOMÁTICO por API** — `miniaula.yml`, terça e quinta, 12h BRT, com story de reforço. Religado em 24/08/2026 a pedido do Diego: o formato longo está trazendo retorno de comentários. |
+> | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
 >
-> - os 3 workflows estão **`disabled_manually`** no GitHub **e** com o bloco
->   `schedule` comentado (trava dupla: reativar pela UI não devolve o cron);
-> - `publicar.py` e `publicar_miniaula.py` só publicam se quem chamar definir
->   **`VNO_PUBLICAR_API=1`** — sem isso param e mandam usar o `preparar.py`.
+> Em 21/08/2026 o Diego tinha tirado os dois formatos da API (receio de a
+> publicação automática prejudicar a entrega). Em 24/08/2026 ele mandou o
+> carrossel longo voltar exatamente à estratégia de antes — mesmo formato,
+> leitura, cores, CTA, dias e horários — e manter o curto na mão.
 >
-> **O fluxo agora é: o robô prepara, o Diego posta do celular, pelo app.**
-> Não religar a automação sem pedido explícito dele.
+> **Travas hoje:** `post-diario.yml` e `rede-de-seguranca.yml` seguem
+> `disabled_manually` **e** com o `schedule` comentado, e `publicar.py` só
+> publica com `VNO_PUBLICAR_API=1`. `miniaula.yml` e `publicar_miniaula.py`
+> estão livres de novo. Não religar o carrossel de frase sem pedido explícito.
 >
-> Motivo dado por ele: publicação por API pode estar prejudicando a entrega e
-> expondo o perfil a risco. Contraponto registrado, para quando o assunto
-> voltar: a Graph API é o caminho oficial (é o que mLabs, Later e Buffer usam) e
-> não há sinal de penalização por ela — a queda medida é de **formato** (mesmo
-> carrossel de frase: 415 views em 19/07 contra 135 em 14/08). O que arrisca
-> perfil de verdade é automação **não oficial** (robô clicando no Instagram
-> Web) — por isso o `preparar.py` não tenta postar por navegador.
+> Contraponto já registrado, para quando o assunto voltar: a Graph API é o
+> caminho oficial (mLabs, Later e Buffer usam) e não há sinal de penalização —
+> a queda medida foi de **formato** (mesmo carrossel de frase: 415 views em
+> 19/07 contra 135 em 14/08). O que arrisca perfil de verdade é automação
+> **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
+> nunca posta por navegador.
 
-## Fluxo manual (`preparar.py`)
+## Fluxo manual (`preparar.py`) — hoje só o carrossel de frase
 
 | Comando | O que faz |
 |---|---|
 | `python preparar.py frase` | próxima frase da fila → 3 slides 1:1 + legenda |
-| `python preparar.py aula` | próxima mini-aula da sequência → 7–9 slides 4:5 + legenda |
+| `python preparar.py aula --forcar` | mini-aula à mão — só em emergência, ela sai sozinha ter/qui |
 | `python preparar.py fila` | o que está preparado e ainda não foi postado |
 | `python preparar.py confirmar <slug>` | registra como postado |
 
@@ -44,15 +48,16 @@ Diego pega no celular. Dentro: `1.jpg`, `2.jpg`, … na ordem do carrossel,
 confirmar, a próxima preparação repete a mesma peça; enquanto pendente, ela
 fica em `fila_manual.json`.
 
-**Story saiu do fluxo**: era publicado por API logo depois do feed. Se o Diego
-quiser story, é postar a arte do slide 1 à mão.
+**Story:** a mini-aula volta a publicar o story de reforço por API logo depois
+do feed (`gerar_story.py`). No carrossel de frase, que é manual, não há story —
+se o Diego quiser, é postar a arte do slide 1 à mão.
 
 ## Calendário (referência — hoje é sugestão, não cron)
 
 | Dia | Formato | Preparador |
 |---|---|---|
-| Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | `preparar.py frase` |
-| Ter / Qui | Mini-aula (7–9 slides, 4:5, capa com foto) | `preparar.py aula` |
+| Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | manual — `preparar.py frase` |
+| Ter / Qui, 12h BRT | Mini-aula (7–9 slides, 4:5, capa com foto) | automático — `miniaula.yml` |
 
 Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
 derivava e ia colidir com a mini-aula.
@@ -112,11 +117,12 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 | `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA azul) |
 | `publicar.py` | Publicador por API — **desligado 21/08/2026** (exige `VNO_PUBLICAR_API=1`) |
 | `miniaulas.json` | Banco das mini-aulas (7 de 40 escritas; pauta em `PAUTA-MINIAULAS.md`) |
-| `publicar_miniaula.py` | Mini-aula por API — **desligado 21/08/2026** (mesma trava) |
+| `publicar_miniaula.py` | Mini-aula por API — **no ar de novo desde 24/08/2026** (ter/qui 12h BRT) |
 | `gerar_miniaula.py` | Pillow → slides 4:5 (âncoras fixas + fonte única por peça) |
 | `gerar_story.py` | Story 1080x1920 com a arte do dia emoldurada |
 | `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
-| `.github/workflows/*.yml` | Os 3 workflows — **disabled + cron comentado desde 21/08/2026** |
+| `.github/workflows/miniaula.yml` | **Ativo** desde 24/08/2026 — ter/qui 12h BRT + repescagens 13h/17h |
+| `.github/workflows/post-diario.yml`, `rede-de-seguranca.yml` | **Disabled + cron comentado** (carrossel de frase é manual) |
 
 ## Por que o repositório é público
 
@@ -132,7 +138,7 @@ mudar.
 
 ```bash
 python preparar.py frase        # prepara a próxima frase para postar no celular
-python preparar.py aula         # prepara a próxima mini-aula
+python preparar.py aula --forcar # mini-aula à mão (normalmente sai sozinha)
 python preparar.py fila         # o que está esperando ser postado
 ```
 

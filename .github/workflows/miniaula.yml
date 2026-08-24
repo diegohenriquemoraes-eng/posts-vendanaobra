@@ -1,18 +1,16 @@
 name: Mini-aula @vendanaobra
 
 # ============================================================================
-# AUTOMACAO DE POSTAGEM ENCERRADA EM 21/08/2026 (decisao do Diego).
+# CARROSSEL LONGO (mini-aula) — AUTOMACAO RELIGADA EM 24/08/2026.
 #
-# O @vendanaobra nao publica mais por API. Nada neste repo posta sozinho:
-# os 3 workflows estao `disabled_manually` no GitHub E com o `schedule`
-# comentado (trava dupla — reativar pela UI nao faz o cron voltar).
+# Historico: a publicacao por API foi encerrada em 21/08/2026 e a peca passou a
+# ser preparada pelo preparar.py e postada a mao. Em 24/08 o Diego mandou voltar
+# a estrategia de antes SO PARA O CARROSSEL LONGO — ele estava tendo retorno de
+# comentarios. Mesmo formato, cores, leitura, CTA, dias e horarios de antes:
+# terca e quinta, 12h BRT, com story de reforco.
 #
-# O que o repo faz agora: PREPARA a peca (`preparar.py`) — gera os slides e a
-# legenda e entrega no Desktop e no Drive. Quem posta e o Diego, do celular,
-# pelo app do Instagram, como qualquer pessoa.
-#
-# Para voltar a postar por API algum dia: descomentar o `schedule` E rodar
-# `gh workflow enable`. Nao fazer isso sem pedido explicito dele.
+# O CARROSSEL CURTO (frase, 2 slides) CONTINUA MANUAL — post-diario.yml e
+# rede-de-seguranca.yml seguem desligados de proposito. Nao religar sem pedido.
 # ============================================================================
 
 # Terca e quinta, 12h em ponto BRT. O cron dispara 14:45 UTC e o job dorme ate
@@ -20,11 +18,11 @@ name: Mini-aula @vendanaobra
 # O carrossel de frase ocupa seg/qua/sex (post-diario.yml) — nunca colidem.
 
 on:
-  # schedule:   # DESLIGADO 21/08/2026
-  # - cron: "45 14 * * 2,4"   # ter e qui
-  # # repescagens: publicam so se a mini-aula do dia nao saiu (--garantir)
-  # - cron: "0 16 * * 2,4"    # 13h BRT
-  # - cron: "0 20 * * 2,4"    # 17h BRT
+  schedule:
+    - cron: "45 14 * * 2,4"   # ter e qui
+    # repescagens: publicam so se a mini-aula do dia nao saiu (--garantir)
+    - cron: "0 16 * * 2,4"    # 13h BRT
+    - cron: "0 20 * * 2,4"    # 17h BRT
   workflow_dispatch:
     inputs:
       id:
