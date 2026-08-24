@@ -158,6 +158,100 @@
       "legenda": "Todo vendedor já mandou aquele \"e aí, conseguiu ver?\".\n\nÉ a pior mensagem que existe, porque ela não entrega nada. Só passa para o cliente a tarefa de responder alguma coisa.\n\nA mensagem de 24 horas que funciona tem quatro partes, e nenhuma delas é cobrança. Ela garante o arquivo, explica o ponto técnico que gera dúvida, oferece um áudio de dois minutos e fecha abrindo porta.\n\nRepare no detalhe do último slide: \"me fala que eu ajusto\" é diferente de \"estou à disposição\". Uma abre conversa, a outra encerra o assunto com educação.\n\nSalva para usar amanhã.\n\n#vendasnaconstrucaocivil #esquadrias #followup #whatsappvendas #construcaocivil #gestaocomercial"
     },
     {
+      "id": 4,
+      "etiqueta": "Depois do orçamento",
+      "titulo": "Por que você não faz nada entre o dia 8 e o dia 29",
+      "foto": "fotos/miniaula-04.jpg",
+      "produto": "ebook",
+      "fonte": "E-book O Cliente Sumiu, Parte 3",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Essa é a parte que dá mais ansiedade, então vou ser direto.",
+          "corpo": "Entre o sétimo e o trigésimo dia, você não manda mensagem de cobrança nenhuma.\n\nSe ele respondeu e a negociação está viva, você não está mais no protocolo — está numa negociação, e a conversa segue o ritmo dela. O protocolo é para quem não respondeu."
+        },
+        {
+          "numero": "1",
+          "titulo": "Insistir na semana seguinte não acelera nada",
+          "corpo": "Quem não respondeu em uma semana está numa de duas situações: ou não é a hora dele, ou já decidiu por outro e não teve coragem de te avisar.\n\nNos dois casos, mensagem no dia 10, no dia 14 e no dia 18 não muda o resultado. Muda só a imagem que ele tem de você.",
+          "rodape": "O intervalo"
+        },
+        {
+          "numero": "2",
+          "titulo": "O tempo trabalha a seu favor",
+          "corpo": "O concorrente que ganhou a obra vai atrasar, ou vai medir errado, ou vai sumir depois de receber o sinal.\n\nQuando isso acontecer, quem estiver com o nome limpo na cabeça do cliente é quem ele vai chamar. Nome limpo é o que sobra de quem não encheu.",
+          "rodape": "O intervalo"
+        },
+        {
+          "numero": "3",
+          "titulo": "Você não está esperando parado",
+          "corpo": "Você está esperando com data marcada.\n\nO dia 30 já está no seu mapa, com objetivo definido: encerrar com dignidade ou reabrir com motivo novo. Nunca ficar no meio.\n\nA diferença entre esperar e sumir é o registro. Sem data anotada, dia 30 vira dia 60, e dia 60 vira nunca.",
+          "rodape": "O intervalo"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E o que fazer com a ansiedade",
+          "corpo": "A vontade de mandar mensagem no dia 12 não é estratégia. É necessidade sua de bater meta, disfarçada de follow-up.\n\nO cliente sente a diferença. Sempre.\n\nSe sobrou tempo entre o dia 8 e o dia 29, o lugar dele não é na caixa de mensagem desse cliente. É na prospecção do próximo."
+        }
+      ],
+      "cta": {
+        "titulo": "O protocolo inteiro, com os dias e as palavras",
+        "corpo": "\"O Cliente Sumiu\" traz o D+1 · D+7 · D+30 explicado e 17 mensagens prontas para copiar e adaptar, incluindo as duas do dia 30: a de encerramento e a de reabertura. R$ 19,90.",
+        "palavra": "LIVRO"
+      },
+      "legenda": "Entre o sétimo e o trigésimo dia, você não manda mensagem de cobrança nenhuma.\n\nQuem não respondeu em uma semana está numa de duas situações: ou não é a hora dele, ou já decidiu por outro e não teve coragem de avisar. Nos dois casos, mensagem no dia 10, 14 e 18 não muda o resultado. Muda só a imagem que ele tem de você.\n\nE o tempo trabalha a seu favor: o concorrente que ganhou a obra vai atrasar, medir errado ou sumir depois do sinal. Quem estiver com o nome limpo é quem ele vai chamar.\n\nVocê não está esperando parado. Está esperando com data marcada.\n\nA vontade de mandar mensagem no dia 12 não é estratégia. É necessidade de bater meta disfarçada de follow-up — e o cliente sente a diferença.\n\n#vendasnaconstrucaocivil #esquadrias #followup #gestaocomercial #construcaocivil"
+    },
+    {
+      "id": 6,
+      "etiqueta": "Script pronto",
+      "titulo": "4 objeções que viram sumiço — e a resposta de cada uma",
+      "foto": "fotos/miniaula-06.jpg",
+      "produto": "ebook",
+      "fonte": "E-book O Cliente Sumiu, Parte 4",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Objeção não vira sumiço sozinha.",
+          "corpo": "Ela vira sumiço quando a sua resposta cobra decisão em vez de devolver informação.\n\nSão quatro objeções que aparecem em quase toda obra. Cada uma tem uma resposta que se escreve, não se improvisa no dia."
+        },
+        {
+          "numero": "1",
+          "titulo": "\"Vou pensar\" — e sumiu",
+          "corpo": "Três dias depois:\n\n\"Quando você falou que ia pensar, eu fiquei com uma dúvida e prefiro perguntar direto: o que ficou pesando mais, o valor, o prazo ou a especificação técnica? Pergunto porque nos três casos eu tenho caminho diferente, e não quero te oferecer desconto se o problema não era preço.\"",
+          "rodape": "Objeções"
+        },
+        {
+          "numero": "2",
+          "titulo": "Pediu desconto e sumiu depois da sua resposta",
+          "corpo": "\"Eu não consigo baixar o preço sem tirar alguma coisa de dentro, e prefiro te mostrar as opções a entregar uma obra pior. Dá para chegar em [valor] se a gente [mudança real]. Me diz qual caminho faz sentido que eu refaço a proposta hoje.\"\n\nNão escreva no lugar: \"consigo 5% se fechar hoje\". Desconto sem contrapartida ensina o cliente que o seu primeiro preço era mentira.",
+          "rodape": "Objeções"
+        },
+        {
+          "numero": "3",
+          "titulo": "\"Tá caro\" — e parou de responder",
+          "corpo": "No dia seguinte:\n\n\"Caro comparado com o quê? Pergunto sem ironia nenhuma: se for comparado com outra proposta, me manda o escopo dela, pode tapar o nome da empresa, que eu te mostro em cinco minutos onde estão as diferenças. Se for comparado com o que você planejou gastar na obra, a conversa é outra e eu tenho caminhos.\"",
+          "rodape": "Objeções"
+        },
+        {
+          "numero": "4",
+          "titulo": "\"Me chama mês que vem\"",
+          "corpo": "No dia que ele pediu. Nem antes, nem depois.\n\n\"Como combinado, estou te chamando agora. A obra chegou na fase de [fase]? Se sim, eu já reservo a medição para [duas datas]. Se atrasou, me fala a nova previsão que eu te procuro na hora certa, sem ficar te enchendo no meio do caminho.\"\n\nCumprir a data que ele pediu é a prova de organização mais barata que existe. Quase ninguém faz.",
+          "rodape": "Objeções"
+        },
+        {
+          "tema": "claro",
+          "titulo": "O que as quatro têm em comum",
+          "corpo": "Nenhuma delas cobra resposta. Todas entregam alguma coisa: uma escolha mais fácil de fazer, um caminho concreto, um critério de comparação, uma data cumprida.\n\nQuem cobra resposta pede favor. Quem traz informação presta serviço."
+        }
+      ],
+      "cta": {
+        "titulo": "São 17 mensagens, não quatro",
+        "corpo": "\"O Cliente Sumiu\" traz o protocolo D+1 · D+7 · D+30 e 17 mensagens escritas para copiar e adaptar: as do protocolo, as de objeção, as de arquiteto, as de construtora e as de reativação de carteira parada. R$ 19,90.",
+        "palavra": "LIVRO"
+      },
+      "legenda": "Objeção não vira sumiço sozinha. Ela vira sumiço quando a sua resposta cobra decisão em vez de devolver informação.\n\n\"Vou pensar\": pergunte o que pesou mais — valor, prazo ou especificação. É mais fácil escolher entre três do que formular uma objeção do zero.\n\nPediu desconto: mostre o que sai de dentro para o preço cair. Desconto sem contrapartida ensina o cliente que o seu primeiro preço era mentira.\n\n\"Tá caro\": caro comparado com o quê? Peça o escopo do concorrente e mostre onde estão as diferenças.\n\n\"Me chama mês que vem\": chame no dia que ele pediu. Cumprir a data é a prova de organização mais barata que existe.\n\nNenhuma das quatro cobra resposta. Todas entregam alguma coisa.\n\n#vendasnaconstrucaocivil #esquadrias #objecoes #gestaocomercial #construcaocivil"
+    },
+    {
       "id": 7,
       "etiqueta": "Depois do não",
       "titulo": "Descubra onde a venda morreu, sem achismo",
@@ -244,6 +338,194 @@
         "palavra": "MAQUINA"
       },
       "legenda": "Follow-up não falha por falta de vontade. Falha porque está na cabeça.\n\nProcesso que depende de memória não é processo, é sorte com nome bonito: funciona no dia bom e some no dia corrido. E o dia corrido é a maioria dos dias.\n\nA rotina que sustenta tudo leva 20 minutos. Mesma hora, todo dia útil. Olhar só quem vence hoje, que na prática são três ou quatro nomes. E nunca fechar um contato sem escrever a próxima data.\n\nCom 15 orçamentos abertos, um caderno resolve. Com 80 e mais de um vendedor, o caderno vira o gargalo.\n\n#vendasnaconstrucaocivil #crm #gestaocomercial #esquadrias #produtividade #construcaocivil"
+    },
+    {
+      "id": 10,
+      "etiqueta": "Rotina comercial",
+      "titulo": "O Mapa dos 30 Dias: a carteira inteira numa folha",
+      "foto": "fotos/miniaula-10.jpg",
+      "produto": "crm",
+      "fonte": "E-book O Cliente Sumiu, Parte 6",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Você não esqueceu o cliente. Ele saiu da sua frente.",
+          "corpo": "No WhatsApp a conversa desce e some. O orçamento de terça está oito conversas abaixo do grupo da obra na quinta.\n\nO follow-up é a única atividade comercial que não tem ninguém do outro lado cobrando. O cliente cobra a medição, o instalador cobra o material, a fábrica cobra o pedido. O orçamento parado não cobra nada de você — e por isso é o primeiro a cair da agenda."
+        },
+        {
+          "numero": "1",
+          "titulo": "Um lugar único onde todo orçamento aparece",
+          "corpo": "Não vale WhatsApp e não vale memória. Uma folha só, com sete colunas: cliente, obra, data do envio, dia 1, dia 7, dia 30 e resultado.\n\nVocê imprime, prende num quadro perto da sua mesa e vai marcando um X.",
+          "rodape": "Mapa dos 30 Dias"
+        },
+        {
+          "numero": "2",
+          "titulo": "Papel na parede tem uma vantagem que sistema nenhum tem",
+          "corpo": "Ele fica na sua frente sem você precisar abrir nada.\n\nÉ pouco tecnológico de propósito. Para uma carteira de até uns vinte orçamentos abertos, resolve muito bem. Se você preferir planilha, funciona igual — as colunas são as mesmas.",
+          "rodape": "Mapa dos 30 Dias"
+        },
+        {
+          "numero": "3",
+          "titulo": "Vinte minutos, todo dia útil, no mesmo horário",
+          "corpo": "Cinco minutos para separar quem vence hoje: quem está no dia 1, no dia 7 e no dia 30. Normalmente são duas ou três pessoas.\n\nDez minutos para escrever e enviar, uma mensagem de cada vez. Cinco minutos para anotar o que respondeu e quando é o próximo toque. Sem o terceiro bloco, os outros quinze foram perdidos.",
+          "rodape": "Mapa dos 30 Dias"
+        },
+        {
+          "numero": "4",
+          "titulo": "Quando o papel para de dar conta",
+          "corpo": "Três sinais: você passa de trinta orçamentos abertos ao mesmo tempo; tem mais de um vendedor e não sabe quem está devendo follow-up para quem; ou a informação de cada cliente está espalhada entre caderno, WhatsApp e a memória de alguém.\n\nAí você precisa de CRM. Não porque é moderno — porque a informação parou de caber na cabeça de uma pessoa só.",
+          "rodape": "Mapa dos 30 Dias"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E é bom deixar isso claro",
+          "corpo": "CRM não faz follow-up. Ele lembra, organiza e mostra quem está devendo. Quem faz o follow-up continua sendo você.\n\nEmpresa que compra sistema achando que o sistema vai vender só troca a bagunça de lugar, e seis meses depois tem uma bagunça mais cara.\n\nPrimeiro o protocolo. Depois a ferramenta."
+        }
+      ],
+      "cta": {
+        "titulo": "Quando a folha não segurar mais",
+        "corpo": "A Máquina de Vendas é o CRM que guarda cada orçamento, a próxima data e o histórico de cada cliente, com automações e inteligência artificial para o follow-up não depender de memória. Sem fidelidade.",
+        "palavra": "MAQUINA"
+      },
+      "legenda": "Você não esqueceu o cliente. Ele saiu da sua frente.\n\nNo WhatsApp a conversa desce e some. O orçamento de terça está oito conversas abaixo do grupo da obra na quinta.\n\nO follow-up é a única atividade comercial que não tem ninguém do outro lado cobrando. Por isso ele é sempre o primeiro a cair da agenda.\n\nO Mapa dos 30 Dias é uma folha com sete colunas: cliente, obra, data do envio, dia 1, dia 7, dia 30 e resultado. Prende num quadro perto da mesa e vai marcando um X.\n\nE vinte minutos todo dia útil, no mesmo horário: cinco para ver quem vence hoje, dez para escrever, cinco para anotar.\n\nCRM não faz follow-up. Ele lembra, organiza e mostra quem está devendo. Quem faz continua sendo você.\n\n#vendasnaconstrucaocivil #esquadrias #gestaocomercial #followup #construcaocivil"
+    },
+    {
+      "id": 13,
+      "etiqueta": "Antes do orçamento",
+      "titulo": "O \"não está incluso\" que faz o cliente confiar em você",
+      "foto": "fotos/miniaula-13.jpg",
+      "produto": "venda-blindada",
+      "fonte": "E-book O Cliente Sumiu, Parte 2",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Não é que o cliente só olha preço.",
+          "corpo": "É que você entregou um documento onde só dava para olhar o preço.\n\nSe ele pediu para três empresas, ele recebeu três tabelas parecidas: item, medida, quantidade e valor. Aí ele faz a única coisa possível com três documentos parecidos — compara o número de baixo."
+        },
+        {
+          "numero": "1",
+          "titulo": "Diga o que está incluso, em português",
+          "corpo": "Não em código técnico. \"Instalação com equipe própria, sem terceirizar\" é uma frase que o seu concorrente talvez não consiga escrever.\n\nEscreva.",
+          "rodape": "O orçamento que fecha"
+        },
+        {
+          "numero": "2",
+          "titulo": "Diga o que NÃO está incluso",
+          "corpo": "Parece contra-intuitivo e é o item que mais gera confiança que eu conheço.\n\nQuando você escreve \"não está incluso o acabamento de alvenaria após a instalação\", duas coisas acontecem: o cliente entende que você pensou na obra dele de verdade, e ele passa a olhar a proposta do concorrente procurando essa informação — que não vai estar lá.",
+          "rodape": "O orçamento que fecha"
+        },
+        {
+          "numero": "3",
+          "titulo": "Validade sem motivo é pressão. Com motivo é informação.",
+          "corpo": "\"Esse valor vale por 15 dias porque o alumínio é cotado por peso e a nossa compra do mês fecha no dia 20.\"\n\nTroque o alumínio pelo insumo que manda no seu preço: porcelanato, chapa, madeira, mármore, mão de obra.",
+          "rodape": "O orçamento que fecha"
+        },
+        {
+          "tema": "claro",
+          "titulo": "E o que não está incluso não pode morrer no orçamento",
+          "corpo": "O que você escreveu na proposta precisa estar no contrato, com a mesma clareza. Escopo combinado por WhatsApp vira discussão na semana da instalação, quando já não dá para voltar atrás.\n\nA proposta comercial faz parte do contrato. Quando ela não faz, a palavra do cliente vale tanto quanto a sua."
+        }
+      ],
+      "cta": {
+        "titulo": "O que está fora do escopo, escrito antes da obra começar",
+        "corpo": "Venda Blindada é o contrato de esquadrias que a gente usa na Perffec, em modelo editável, com cada cláusula explicada em texto: por que ela existe e o que acontece quando ela falta.",
+        "palavra": "BLINDADA"
+      },
+      "legenda": "Não é que o cliente só olha preço. É que você entregou um documento onde só dava para olhar o preço.\n\nO orçamento que fecha faz três coisas que a tabela não faz.\n\nDiz o que está incluso, em português, não em código técnico.\n\nDiz o que NÃO está incluso — o item que mais gera confiança que eu conheço. O cliente entende que você pensou na obra dele, e passa a procurar essa informação na proposta do concorrente. Ela não vai estar lá.\n\nE tem validade com motivo. Validade sem motivo é pressão de vendedor; com motivo é informação.\n\nDepois disso, o que você escreveu precisa estar no contrato com a mesma clareza. Escopo combinado por WhatsApp vira discussão na semana da instalação.\n\n#vendasnaconstrucaocivil #esquadrias #orcamento #gestaocomercial #construcaocivil"
+    },
+    {
+      "id": 16,
+      "etiqueta": "Carteira parada",
+      "titulo": "3 mensagens para a carteira que está parada há meses",
+      "foto": "fotos/miniaula-16.jpg",
+      "produto": "crm",
+      "fonte": "E-book O Cliente Sumiu, Parte 4 (mensagens 14, 15 e 17)",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Você tem dinheiro parado em orçamento antigo.",
+          "corpo": "Todo orçamento que você mandou esse ano e não virou nada continua na sua lista, ou pior: saiu dela e ninguém percebeu.\n\nObra atrasa, financiamento trava, sócio viaja. Boa parte do que você anotou como venda perdida é venda adiada que ninguém reabriu."
+        },
+        {
+          "numero": "1",
+          "titulo": "Sumiu há mais de 90 dias",
+          "corpo": "\"Estou passando pelos orçamentos que fiz esse ano e o seu chegou na minha mão. A obra do [bairro] andou? Pergunto porque, se ela ainda estiver de pé, os valores de hoje estão diferentes dos daquela época e vale a pena refazer a conta antes de você decidir qualquer coisa.\"",
+          "rodape": "Reativação"
+        },
+        {
+          "numero": "2",
+          "titulo": "Fechou com o concorrente e a obra está atrasando",
+          "corpo": "Sem ironia nenhuma:\n\n\"Soube que a obra do [bairro] está andando. Não estou aqui para vender nada, mas fica o recado: se precisar de qualquer suporte técnico na parte de [sua área], mesmo que não seja material nosso, pode me chamar. Prefiro ajudar e ser lembrado depois.\"\n\nÉ a mensagem que mais volta como venda no ano seguinte. E é a que mais gente tem orgulho demais para mandar.",
+          "rodape": "Reativação"
+        },
+        {
+          "numero": "3",
+          "titulo": "Ele reapareceu depois de meses",
+          "corpo": "No minuto em que ele responde:\n\n\"Que bom te ver por aqui. Me atualiza: a obra está em que fase agora? Vou refazer a proposta com os valores e os prazos de hoje, e já te mando as duas datas de medição mais próximas.\"\n\nNunca escreva \"sumiu, achei que tinha desistido\". Cliente que volta e leva cobrança some de novo — e dessa vez não volta.",
+          "rodape": "Reativação"
+        },
+        {
+          "tema": "claro",
+          "titulo": "Uma por vez, nunca em disparo",
+          "corpo": "Três mensagens boas mandadas em massa viram spam, e no WhatsApp comercial isso tem consequência: bloqueio, denúncia e número queimado.\n\nSe você precisa de volume, o problema é de prospecção, não de reativação.\n\nE só dá para reativar o que está registrado em algum lugar. Carteira que mora na memória não se reabre."
+        }
+      ],
+      "cta": {
+        "titulo": "Você consegue listar hoje quem sumiu há 90 dias?",
+        "corpo": "A Máquina de Vendas é o CRM que guarda cada orçamento, a próxima data e o histórico de cada cliente, com automações e inteligência artificial para nada depender de memória. Sem fidelidade.",
+        "palavra": "MAQUINA"
+      },
+      "legenda": "Você tem dinheiro parado em orçamento antigo.\n\nObra atrasa, financiamento trava, sócio viaja. Boa parte do que você anotou como venda perdida é venda adiada que ninguém reabriu.\n\nTrês mensagens para reabrir:\n\nSumiu há mais de 90 dias — \"os valores de hoje estão diferentes dos daquela época e vale a pena refazer a conta antes de você decidir qualquer coisa\".\n\nFechou com o concorrente e a obra atrasou — ofereça suporte técnico sem vender nada. É a mensagem que mais volta como venda no ano seguinte.\n\nEle reapareceu — nunca cobre o sumiço. Cliente que volta e leva cobrança some de novo.\n\nUma por vez. Em massa, isso vira spam e número queimado.\n\n#vendasnaconstrucaocivil #esquadrias #followup #gestaocomercial #construcaocivil"
+    },
+    {
+      "id": 18,
+      "etiqueta": "Construtoras",
+      "titulo": "Construtora não compra igual a cliente final",
+      "foto": "fotos/miniaula-18.jpg",
+      "produto": "venda10x",
+      "fonte": "E-book O Cliente Sumiu, Parte 3 (variação construtora) e Parte 4 (mensagens 12 e 13)",
+      "slides": [
+        {
+          "tema": "claro",
+          "titulo": "Você não perdeu a obra. A proposta nem chegou na pauta.",
+          "corpo": "Em construtora, quase nunca a venda trava por decisão. Ela trava por documento faltando ou por pessoa que ainda não olhou.\n\nE o vendedor, do lado de cá, fica mandando \"conseguiu ver?\" para um engenheiro que não é quem assina."
+        },
+        {
+          "numero": "1",
+          "titulo": "O ciclo é mais lento e a decisão é protocolar",
+          "corpo": "Cliente final decide com o cônjuge e com o bolso. Construtora decide com fluxo interno: engenharia especifica, suprimentos cota, financeiro aprova.\n\nCobrar resposta de quem não decide não acelera nada. Só queima o seu nome com a única pessoa que te atende.",
+          "rodape": "Obras grandes"
+        },
+        {
+          "numero": "2",
+          "titulo": "A pergunta que destrava construtora",
+          "corpo": "Sete dias depois do envio:\n\n\"Para eu não te atrapalhar cobrando: o que eu preciso te mandar para essa proposta entrar na pauta de compras? Certidão, ficha de fornecedor, ART, ficha técnica do material, o que for. Me passa a lista que eu te mando ainda hoje.\"",
+          "rodape": "Obras grandes"
+        },
+        {
+          "numero": "3",
+          "titulo": "Descubra quem é a próxima pessoa do fluxo",
+          "corpo": "No dia 7 você não fala de preço com o engenheiro. Você pergunta quem é o próximo no caminho e qual documento falta.\n\nCada nome que você descobre é uma etapa que deixa de ser invisível. Venda em construtora se ganha conhecendo o fluxo, não insistindo com quem te atendeu primeiro.",
+          "rodape": "Obras grandes"
+        },
+        {
+          "numero": "4",
+          "titulo": "Depois da medição, o assunto é agenda de produção",
+          "corpo": "\"A medição ficou fechada e eu já bloqueei a produção para a semana de [data]. Preciso da sua confirmação até [dia] para segurar essa janela, senão ela entra para outra obra e a próxima disponível é [data mais distante]. Não é pressão, é como a agenda funciona.\"\n\nEscassez real, explicada, é informação. Escassez inventada é truque — e o cliente de obra sente o cheiro de longe.",
+          "rodape": "Obras grandes"
+        },
+        {
+          "tema": "claro",
+          "titulo": "O que muda na prática",
+          "corpo": "Você para de contar história de venda perdida e passa a saber exatamente onde a proposta parou: falta documento, falta pessoa ou falta pauta.\n\nTrês coisas resolvíveis. Nenhuma delas é preço."
+        }
+      ],
+      "cta": {
+        "titulo": "Vender para obra grande é processo, não sorte",
+        "corpo": "Toda terça, 20h, ao vivo, eu abro o processo comercial que a gente roda na Perffec: qualificação, proposta, follow-up e fechamento, com cliente final, arquiteto e construtora. Venda 10x, aula semanal para quem vende na construção civil.",
+        "palavra": "10X"
+      },
+      "legenda": "Você não perdeu a obra. A proposta nem chegou na pauta.\n\nEm construtora, quase nunca a venda trava por decisão. Trava por documento faltando ou por pessoa que ainda não olhou.\n\nO ciclo é mais lento e a decisão é protocolar: engenharia especifica, suprimentos cota, financeiro aprova. Cobrar resposta de quem não decide não acelera nada.\n\nA pergunta que destrava: \"o que eu preciso te mandar para essa proposta entrar na pauta de compras?\"\n\nE depois da medição, o assunto é agenda de produção — com data real, não com escassez inventada. O cliente de obra sente o cheiro de longe.\n\n#vendasnaconstrucaocivil #construtoras #esquadrias #gestaocomercial #construcaocivil"
     },
     {
       "id": 19,
@@ -341,6 +623,12 @@
     29,
     9,
     3,
-    7
+    7,
+    10,
+    13,
+    6,
+    18,
+    16,
+    4
   ]
 }

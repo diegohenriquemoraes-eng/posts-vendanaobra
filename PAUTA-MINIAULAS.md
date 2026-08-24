@@ -7,27 +7,31 @@ aula sai de material já publicado pelo Diego** — a coluna Fonte diz de onde. 
 Produto = qual CTA fecha o carrossel (a palavra do comment-to-DM).
 Status: ✅ pronta (texto + foto) · ✍️ texto pronto, falta foto · ⬜ pautada
 
+**13 das 40 estão prontas** (1, 2, 3, 4, 6, 7, 9, 10, 13, 16, 18, 19, 29) — as 6 últimas
+escritas em 24/08/2026, quando o carrossel longo voltou ao automático. Ordem de
+publicação em `sequencia` no `miniaulas.json`.
+
 | # | Título | Fonte | Produto | Status |
 |---|---|---|---|---|
 | 1 | As 5 perguntas que evitam o orçamento furado | E-book, Parte 2 | LIVRO | ✅ |
-| 2 | O protocolo D+1 · D+7 · D+30 explicado | E-book, Parte 3 | LIVRO | ✍️ |
-| 3 | As 5 mensagens do protocolo, prontas para copiar | E-book, Parte 4 | LIVRO | ✍️ |
-| 4 | Por que você não faz nada entre o dia 8 e o dia 29 | E-book, Parte 3 | LIVRO | ✍️ |
+| 2 | O protocolo D+1 · D+7 · D+30 explicado | E-book, Parte 3 | LIVRO | ✅ |
+| 3 | As 5 mensagens do protocolo, prontas para copiar | E-book, Parte 4 | LIVRO | ✅ |
+| 4 | Por que você não faz nada entre o dia 8 e o dia 29 | E-book, Parte 3 | LIVRO | ✅ |
 | 5 | Como ler a resposta do cliente (e o que ela esconde) | E-book, Parte 3 | LIVRO | ⬜ |
-| 6 | 4 objeções que viram sumiço — e a resposta de cada uma | E-book, Parte 4 | LIVRO | ⬜ |
-| 7 | Descubra onde a venda morreu, sem achismo | E-book, Parte 5 + blog "Perdeu a venda" | 10X | ⬜ |
+| 6 | 4 objeções que viram sumiço — e a resposta de cada uma | E-book, Parte 4 | LIVRO | ✅ |
+| 7 | Descubra onde a venda morreu, sem achismo | E-book, Parte 5 + blog "Perdeu a venda" | 10X | ✅ |
 | 8 | O não que não é não | E-book, Parte 5 | 10X | ⬜ |
-| 9 | Os 20 minutos por dia que pagam o mês | E-book, Parte 6 | CRM | ⬜ |
-| 10 | O Mapa dos 30 Dias: como enxergar a carteira inteira | E-book, Parte 6 | CRM | ⬜ |
+| 9 | Os 20 minutos por dia que pagam o mês | E-book, Parte 6 | CRM | ✅ |
+| 10 | O Mapa dos 30 Dias: como enxergar a carteira inteira | E-book, Parte 6 | CRM | ✅ |
 | 11 | Quando a planilha para de dar conta | E-book, Parte 6 | CRM | ⬜ |
 | 12 | Orçamento não é documento, é conversa | E-book, Parte 2 | LIVRO | ⬜ |
-| 13 | O que escrever no "não está incluso" (e por que gera confiança) | E-book, Parte 2 | BLINDADA | ⬜ |
+| 13 | O que escrever no "não está incluso" (e por que gera confiança) | E-book, Parte 2 | BLINDADA | ✅ |
 | 14 | Validade sem motivo é pressão. Com motivo é informação | E-book, Parte 2 | LIVRO | ⬜ |
 | 15 | O combinado de retorno: quem marca a data é o cliente | E-book, Parte 2 | LIVRO | ⬜ |
-| 16 | Reativação de carteira parada: 3 mensagens | E-book, Parte 4 | CRM | ⬜ |
+| 16 | Reativação de carteira parada: 3 mensagens | E-book, Parte 4 | CRM | ✅ |
 | 17 | Como falar com arquiteto sem parecer insistente | E-book, Parte 4 + vídeo "Relação com Arquitetos" | 10X | ⬜ |
-| 18 | Construtora não compra igual a cliente final | E-book, Parte 4 | 10X | ⬜ |
-| 19 | O Quadro Resumo: a página que evita 80% das brigas | Venda Blindada, Aula 1.1 | BLINDADA | ⬜ |
+| 18 | Construtora não compra igual a cliente final | E-book, Parte 4 | 10X | ✅ |
+| 19 | O Quadro Resumo: a página que evita 80% das brigas | Venda Blindada, Aula 1.1 | BLINDADA | ✅ |
 | 20 | A tolerância de 30mm e o fim do "vão torto" | Venda Blindada, Aula 2.2 | BLINDADA | ⬜ |
 | 21 | Visita perdida se cobra | Venda Blindada, Aula 3.2 | BLINDADA | ⬜ |
 | 22 | Seu prazo só começa quando duas coisas acontecem | Venda Blindada, Aula 4.1 | BLINDADA | ⬜ |
@@ -37,7 +41,7 @@ Status: ✅ pronta (texto + foto) · ✍️ texto pronto, falta foto · ⬜ paut
 | 26 | Quebra de piso na instalação: quando não é sua conta | Venda Blindada, Aula 5.3 | BLINDADA | ⬜ |
 | 27 | A proposta comercial faz parte do contrato | Venda Blindada, Aula 1.2 | BLINDADA | ⬜ |
 | 28 | Duas visitas técnicas grátis. Da terceira em diante, combina-se | Venda Blindada, Aula 3.4 | BLINDADA | ⬜ |
-| 29 | Vender não é suposição, é diagnóstico: as 2 perguntas | Vídeo "2 Perguntas" | 10X | ⬜ |
+| 29 | Vender não é suposição, é diagnóstico: as 2 perguntas | Vídeo "2 Perguntas" | 10X | ✅ |
 | 30 | Quem vende mais não é quem fala mais | Vídeo "2 Perguntas" | 10X | ⬜ |
 | 31 | Curva ABC aplicada a arquitetos | Vídeo "O Segredo" | 10X | ⬜ |
 | 32 | Pare de pedir indicação. Comece a parabenizar | Vídeo "Vender por Indicação" | 10X | ⬜ |

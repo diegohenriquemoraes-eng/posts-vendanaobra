@@ -26,6 +26,22 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
 
+## Banco de mini-aulas (24/08/2026)
+
+**13 das 40 aulas da pauta estão prontas** (texto + foto): 1, 2, 3, 4, 6, 7, 9, 10,
+13, 16, 18, 19, 29. Seis foram escritas em 24/08/2026, no mesmo dia em que o
+carrossel longo voltou ao automático — o banco tinha só a aula 7 sobrando e a
+quinta seguinte ficaria sem post. Fontes no campo `fonte` de cada aula (e-book
+O Cliente Sumiu, Venda Blindada, transcrições). Fila em `sequencia`:
+7 → 10 → 13 → 6 → 18 → 16 → 4, sem dois produtos iguais seguidos. Isso cobre
+ter/qui até meados de setembro/2026 — **repor antes disso**, senão o workflow
+falha com "Nenhuma mini-aula com foto disponivel" e abre issue.
+
+Fotos novas geradas no Gemini com o padrão documental de sempre; a capa da aula
+18 saiu com o logotipo "Sesc" no colete dos trabalhadores e o enquadramento foi
+recortado para o prédio e a grua (retoque local no logo não funciona: o remendo
+fica visível). **Conferir marca de terceiro em toda foto gerada antes de commitar.**
+
 ## Fluxo manual (`preparar.py`) — hoje só o carrossel de frase
 
 | Comando | O que faz |
