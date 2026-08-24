@@ -10,18 +10,15 @@ name: Reel diario @vendanaobra
 # 09h e o segundo melhor horario medido da conta (mediana 427 views contra 545
 # das 12h no periodo organico de jul/ago) e deixa 3h de folga do carrossel.
 #
-# ⚠️ DESLIGADO ATE O DIEGO APROVAR. Duas travas, de proposito:
-#   1. o cron abaixo esta comentado;
-#   2. publicar_reel.py exige VNO_REEL_ATIVO=1.
-# Para ligar: descomentar o schedule E trocar o env abaixo para "1".
-# Antes de ligar, preencher "colaboradores" no reels_ep25.json — sem isso o
-# post sai sem a colaboracao e collab nao se adiciona depois de publicado.
+# LIGADO em 24/08/2026, com os cortes e as capas aprovados pelo Diego. O corte
+# 01 saiu na mao no mesmo dia; o cron pega o proximo da fila a partir de 25/08.
+# Colaborador fixo: @aluparts.oficial (reels_ep25.json).
 # ============================================================================
 
 on:
-  # schedule:
-  #   - cron: "45 11 * * *"   # dispara 11:45 UTC, publica 12:00 UTC = 09h BRT
-  #   - cron: "0 14 * * *"    # repescagem 11h BRT, so se o do dia nao saiu
+  schedule:
+    - cron: "45 11 * * *"   # dispara 11:45 UTC, publica 12:00 UTC = 09h BRT
+    - cron: "0 14 * * *"    # repescagem 11h BRT, so se o do dia nao saiu
   workflow_dispatch:
     inputs:
       id:
@@ -32,7 +29,7 @@ on:
         description: "Ensaio: mostra o que sairia, sem publicar"
         required: false
         type: boolean
-        default: true
+        default: false
 
 permissions:
   contents: write
@@ -64,7 +61,7 @@ jobs:
       - name: Publicar Reel
         env:
           META_TOKEN: ${{ secrets.META_TOKEN }}
-          VNO_REEL_ATIVO: "0"   # trocar para "1" quando o Diego aprovar
+          VNO_REEL_ATIVO: "1"   # aprovado pelo Diego em 24/08/2026
         run: |
           args=""
           [ -n "${{ inputs.id }}" ] && args="$args --id ${{ inputs.id }}"
