@@ -350,3 +350,11 @@ desfocada, o corte é **9:16 de verdade** (`crop=608:1080`), com o x seguindo a
 câmera: fechada no Diego (x=656), fechada na Audrey (x=470), plano aberto
 (x=1330, que enquadra o lado dele da mesa). As trocas de câmera foram detectadas
 quadro a quadro pela luminância da TV ao fundo, que só aparece no plano aberto.
+
+### Armadilha paga: media_publish mente quando falha
+
+Em **24/08/2026**, ao publicar o corte 01, o `media_publish` devolveu
+`OAuthException code 2 · is_transient: true` — e **o Reel foi publicado assim
+mesmo**. Se o robô tivesse confiado no erro, o dia seguinte republicaria o mesmo
+corte. Desde então `publicar_reel.py` usa `_publicar_conferindo()`: no erro, ele
+espera 20s, lê o último Reel do feed e só falha de verdade se o feed não mudou.

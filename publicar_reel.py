@@ -125,6 +125,41 @@ def esperar_container(cid: str, token: str, tentativas: int = 90) -> None:
     raise SystemExit(f"Container {cid} nao ficou pronto a tempo")
 
 
+def _ultimo_reel(token: str) -> dict | None:
+    r = _get(f"{IG_USER_ID}/media", {
+        "fields": "id,media_product_type,permalink,timestamp", "limit": "3",
+        "access_token": token})
+    for m in r.get("data", []):
+        if m.get("media_product_type") == "REELS":
+            return m
+    return None
+
+
+def _publicar_conferindo(cid: str, token: str) -> tuple[str, str]:
+    """Publica e confirma olhando o feed.
+
+    Em 24/08/2026 o media_publish do corte 01 devolveu OAuthException code 2
+    ("is_transient": true) e MESMO ASSIM publicou o Reel. Se a gente confiasse no
+    erro, o retry do dia seguinte postaria o mesmo corte duas vezes. Entao: no
+    erro, conferir o feed antes de desistir.
+    """
+    antes = _ultimo_reel(token)
+    id_antes = antes["id"] if antes else None
+    try:
+        post = _post(f"{IG_USER_ID}/media_publish",
+                     {"creation_id": cid, "access_token": token})
+        agora = _ultimo_reel(token)
+        return post["id"], (agora or {}).get("permalink", "")
+    except SystemExit as erro:
+        _log(f"media_publish devolveu erro; conferindo se publicou assim mesmo... ({erro})")
+        time.sleep(20)
+        depois = _ultimo_reel(token)
+        if depois and depois["id"] != id_antes:
+            _log("publicou — o erro era da resposta, nao da publicacao")
+            return depois["id"], depois.get("permalink", "")
+        raise
+
+
 def _hoje() -> str:
     return datetime.now(FUSO_BR).strftime("%Y-%m-%d")
 
@@ -208,13 +243,12 @@ def main() -> None:
     _log(f"container {cid} criado, esperando o Instagram processar o video...")
     esperar_container(cid, token)
 
-    post = _post(f"{IG_USER_ID}/media_publish", {"creation_id": cid, "access_token": token})
-    media_id = post["id"]
-    _log(f"publicado: {media_id}")
+    media_id, link = _publicar_conferindo(cid, token)
+    _log(f"publicado: {media_id} — {link}")
 
     feitos = _carregar(PUBLICADOS, [])
     feitos.append({"id": corte["id"], "slug": corte["slug"], "media_id": media_id,
-                   "data": _hoje(), "colaboradores": colabs})
+                   "permalink": link, "data": _hoje(), "colaboradores": colabs})
     _salvar(PUBLICADOS, feitos)
     _commitar(f"reel {corte['id']} publicado", "publicados_reels.json")
 
