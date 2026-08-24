@@ -8,6 +8,7 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > |---|---|
 > | **Carrossel longo (mini-aula, 4:5)** | **AUTOMÁTICO por API** — `miniaula.yml`, terça e quinta, 12h BRT, com story de reforço. Religado em 24/08/2026 a pedido do Diego: o formato longo está trazendo retorno de comentários. |
 > | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
+> | **Reel diário (9:16)** | **PRONTO, DESLIGADO** — `reel-diario.yml` + `publicar_reel.py`, fila de 12 cortes do Aluparts Podcast #EP25 em `reels_ep25.json`. Aguarda aprovação do Diego (ver seção abaixo). |
 >
 > Em 21/08/2026 o Diego tinha tirado os dois formatos da API (receio de a
 > publicação automática prejudicar a entrega). Em 24/08/2026 ele mandou o
@@ -296,3 +297,56 @@ do feed não é clicável). Decidido pelo Diego em 21/07/2026. Não uso URL de
 checkout. "Prospecção de Arquitetos" foi **arquivado**; não citar. (Atenção:
 "Máquina de Vendas" era um produto antigo arquivado, mas desde 12/08/2026 é o
 **nome oficial do CRM** — citar normalmente com esse sentido.)
+
+## Reel diário — fila do Aluparts Podcast #EP25 (24/08/2026)
+
+O Diego participou do **#EP25 do Aluparts Podcast** (1h13m, publicado 21/08/2026,
+host Audrey Dias). Tirei **12 cortes** dali, um por dia, como **colaboração** com
+o perfil da Aluparts — aparece nos dois feeds e soma os dois públicos.
+
+| Peça | Papel |
+|---|---|
+| `reels_ep25.json` | A fila: ordem, duração, arquivo, capa e legenda de cada corte |
+| `publicar_reel.py` | Publica o próximo da fila por API (`media_type=REELS`) |
+| `publicados_reels.json` | O que já foi ao ar — a fila é "banco menos publicados" |
+| `midia/reels/` | Os 12 MP4 + as 12 capas JPEG, servidos por `raw.githubusercontent` |
+| `.github/workflows/reel-diario.yml` | Cron diário 09h BRT — **comentado até aprovar** |
+
+**Horário 09h BRT, não 12h.** A mini-aula ocupa terça e quinta às 12h. 09h é o
+segundo melhor horário medido da conta (mediana 427 views contra 545 das 12h no
+período orgânico de jul/ago) e deixa 3h de folga do carrossel. Terça e quinta
+ficam com dois posts — decisão do Diego em 24/08/2026, formatos diferentes.
+
+**Duas travas, de propósito:** o `schedule` do workflow está comentado **e** o
+`publicar_reel.py` exige `VNO_REEL_ATIVO=1`. Mesmo padrão do `publicar.py`.
+Para ligar: descomentar o cron, trocar o env para `"1"`, e **preencher
+`colaboradores` no `reels_ep25.json`** — collab não se adiciona depois de
+publicado, só apagando o post.
+
+**Duração fora da regra, com aval.** A regra de 28/07 é 25–45s por Reel. Só 4 dos
+12 cabem; os outros vão de 51s a 111s. O Diego aprovou publicar assim em
+24/08/2026: corte de podcast vive do começo-meio-fim, e cortar em 45s quebra a
+história.
+
+### Legenda queimada — o padrão real dele
+
+Medido no Reel de 12/08/2026 (`instagram.com/reel/Db85xTDpw3b`), não no que a
+estratégia de julho dizia. O padrão é a **legenda automática do Instagram**:
+Instagram Sans branca, ~72px em 1080x1920, bloco de 2 a 4 linhas centralizado em
+y=1400, halo escuro suave (`\bord4 \blur6`), caixa de frase normal, **sem cor de
+destaque e sem fade**. O bloco troca inteiro.
+
+⚠️ **Nada de karaokê palavra a palavra.** A primeira versão destacava a palavra
+falada em amarelo com `\fad` — e o Diego devolveu com "a legenda está piscando".
+O que pisca é a troca de cor e o fade por palavra, não a legenda em si. A
+estratégia de 28/07 (`Perffec\Claude\Instagram-vendanaobra`) ainda descreve
+"bold, 3 palavras por bloco, última em amarelo" como padrão atual — **está
+desatualizada**; conferir no Reel mais recente antes de acreditar nela.
+
+### Enquadramento 9:16 sem tarja
+
+O master do podcast é 1920x1080. Em vez de encaixar o 16:9 numa moldura
+desfocada, o corte é **9:16 de verdade** (`crop=608:1080`), com o x seguindo a
+câmera: fechada no Diego (x=656), fechada na Audrey (x=470), plano aberto
+(x=1330, que enquadra o lado dele da mesa). As trocas de câmera foram detectadas
+quadro a quadro pela luminância da TV ao fundo, que só aparece no plano aberto.
