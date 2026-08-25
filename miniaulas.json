@@ -1,10 +1,10 @@
 {
   "_regras": [
-    "Toda mini-aula sai de material JA PUBLICADO pelo Diego (e-book, Venda Blindada, blog, transcricoes do YouTube). Campo 'fonte' obriga a dizer de onde veio.",
+    "Toda mini-aula sai de material JA PUBLICADO pelo Diego (Venda Blindada, blog, transcricoes do YouTube e o material arquivado O Cliente Sumiu, que saiu do portfolio em 25/08/2026 e nao pode mais ser citado nem vendido nos posts). Campo 'fonte' obriga a dizer de onde veio.",
     "Voz: seguir content/VOZ-DIEGO.md da LP. Antitese em par, frase curta, abre na dor em 2a pessoa, fecha mandando executar.",
     "Nunca inventar numero, cliente, percentual ou depoimento. Sem experiencia pessoal que nao esteja em CASOS-DIEGO.md.",
     "Escopo: vendas, gestao comercial, empreendedorismo na construcao civil. Inteligencia artificial so ligada ao comercial.",
-    "CTA da mini-aula: a palavra segue o produto de onde a aula saiu (LIVRO/10X/MAQUINA/BLINDADA — MAQUINA e a palavra da Maquina de Vendas, o CRM rebatizado em 12/08/2026; CRM segue ativa no Direct para posts antigos). Desde 09/08/2026 RAIOX tambem e opcao valida - usar quando a aula for de diagnostico/processo geral sem produto natural; o robo de Direct RAIOX ja existe e entrega vendanaobra.com.br/raio-x."
+    "CTA da mini-aula: a palavra segue o produto de onde a aula saiu (10X/MAQUINA/BLINDADA - MAQUINA e a palavra da Maquina de Vendas, o CRM rebatizado em 12/08/2026; CRM segue ativa no Direct para posts antigos). Desde 09/08/2026 RAIOX tambem e opcao valida - usar quando a aula for de diagnostico/processo geral sem produto natural; o robo de Direct RAIOX ja existe e entrega vendanaobra.com.br/raio-x. A palavra LIVRO foi APOSENTADA em 25/08/2026 com a saida do e-book do portfolio."
   ],
   "aulas": [
     {
@@ -12,8 +12,8 @@
       "etiqueta": "Antes do orçamento",
       "titulo": "As 5 perguntas que evitam o orçamento furado",
       "foto": "fotos/miniaula-01.jpg",
-      "produto": "ebook",
-      "fonte": "E-book O Cliente Sumiu, Parte 2 — 'As cinco perguntas que evitam o orçamento furado' e 'O combinado de retorno'",
+      "produto": "raiox",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 2 — 'As cinco perguntas que evitam o orçamento furado' e 'O combinado de retorno'",
       "slides": [
         {
           "tema": "claro",
@@ -57,9 +57,9 @@
         }
       ],
       "cta": {
-        "titulo": "O orçamento é só o começo do trabalho",
-        "corpo": "Depois que ele sai da sua mão, começa o silêncio. \"O Cliente Sumiu\" é o protocolo D+1 · D+7 · D+30 para transformar orçamento enviado em contrato assinado, com 17 mensagens prontas para copiar. R$ 19,90.",
-        "palavra": "LIVRO"
+        "titulo": "Antes de arrumar o follow-up, descubra onde você perde",
+        "corpo": "Se o cliente some depois do orçamento, o buraco pode estar na qualificação, na proposta ou no fechamento. O Raio-X da Venda na Obra é o diagnóstico gratuito de 3 minutos: 15 perguntas, nota de 0 a 100 e plano de ação no seu e-mail.",
+        "palavra": "RAIOX"
       },
       "legenda": "Você manda o orçamento na terça. O cliente lê. Não responde.\n\nNa sexta você manda um \"conseguiu ver?\" e ele responde \"tô analisando\". Duas semanas depois a obra fechou com outro. E você jura que perdeu no preço.\n\nNa maioria das vezes não perdeu. A venda quebrou antes, na visita, quando o orçamento foi prometido sem as informações que decidem a compra.\n\nSão cinco perguntas. Levam menos de cinco minutos no fim da visita. Salvei elas aqui no carrossel para você aplicar no próximo orçamento que for mandar.\n\nA quinta é a que eu mais uso: \"o que precisa acontecer para a gente avançar?\". Quem responde entrega a objeção de graça.\n\nSalva esse post para não perder na hora da visita.\n\n#vendasnaconstrucaocivil #esquadrias #vidracaria #serralheria #marmoraria #gestaocomercial #construcaocivil"
     },
@@ -68,8 +68,8 @@
       "etiqueta": "Depois do orçamento",
       "titulo": "O protocolo que faz o cliente voltar a responder",
       "foto": "fotos/miniaula-02.jpg",
-      "produto": "ebook",
-      "fonte": "E-book O Cliente Sumiu, Parte 3 — 'O Protocolo D+1 · D+7 · D+30'",
+      "produto": "crm",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 3 — 'O Protocolo D+1 · D+7 · D+30'",
       "slides": [
         {
           "tema": "claro",
@@ -101,9 +101,9 @@
         }
       ],
       "cta": {
-        "titulo": "Os três textos prontos estão no livro",
-        "corpo": "\"O Cliente Sumiu\" traz o protocolo completo e 17 mensagens escritas para copiar, colar e adaptar: as cinco do protocolo, as de objeção, as de arquiteto, as de construtora e as de reativação de carteira parada. R$ 19,90.",
-        "palavra": "LIVRO"
+        "titulo": "Protocolo sem data marcada vira esquecimento",
+        "corpo": "D+1, D+7 e D+30 só acontecem se estiverem registrados em algum lugar que te cobre. A Máquina de Vendas é o CRM da construção civil já configurado: cada orçamento com responsável, próxima ação com data e follow-up automático.",
+        "palavra": "MAQUINA"
       },
       "legenda": "Você mandou o orçamento e agora está naquela dúvida: mando mensagem hoje ou pareço chato?\n\nA resposta é que existe hora certa, e são só três.\n\nD+1 para garantir que ele entendeu o que recebeu. D+7 para entrar na semana em que ele está comparando as propostas. D+30 para fechar o ciclo, de um jeito ou de outro.\n\nEntre o dia 8 e o dia 29 você não faz nada. É a parte mais difícil e a que mais funciona: cada mensagem a mais nesse intervalo diz para o cliente que você precisa mais da venda do que ele precisa da obra.\n\nSalva esse post e usa no próximo orçamento que sair da sua mão.\n\n#vendasnaconstrucaocivil #esquadrias #vidracaria #followup #gestaocomercial #construcaocivil"
     },
@@ -112,8 +112,8 @@
       "etiqueta": "Script pronto",
       "titulo": "A mensagem de 24 horas que não parece cobrança",
       "foto": "fotos/miniaula-03.jpg",
-      "produto": "ebook",
-      "fonte": "E-book O Cliente Sumiu, Partes 3 e 4 — mensagem 2 e 'Objeções que viram sumiço'",
+      "produto": "venda10x",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Partes 3 e 4 — mensagem 2 e 'Objeções que viram sumiço'",
       "slides": [
         {
           "tema": "claro",
@@ -151,9 +151,9 @@
         }
       ],
       "cta": {
-        "titulo": "São 17 mensagens, não uma",
-        "corpo": "O livro traz a mensagem completa de cada etapa e mais as de objeção, arquiteto, construtora e reativação de carteira parada. Escritas para copiar e adaptar ao que você vende. R$ 19,90.",
-        "palavra": "LIVRO"
+        "titulo": "Escrever a mensagem certa se aprende treinando",
+        "corpo": "Toda terça, 20h, eu trabalho ao vivo um tema do processo comercial com empresários e vendedores da construção civil — da abordagem ao fechamento. É o Venda 10x.",
+        "palavra": "10X"
       },
       "legenda": "Todo vendedor já mandou aquele \"e aí, conseguiu ver?\".\n\nÉ a pior mensagem que existe, porque ela não entrega nada. Só passa para o cliente a tarefa de responder alguma coisa.\n\nA mensagem de 24 horas que funciona tem quatro partes, e nenhuma delas é cobrança. Ela garante o arquivo, explica o ponto técnico que gera dúvida, oferece um áudio de dois minutos e fecha abrindo porta.\n\nRepare no detalhe do último slide: \"me fala que eu ajusto\" é diferente de \"estou à disposição\". Uma abre conversa, a outra encerra o assunto com educação.\n\nSalva para usar amanhã.\n\n#vendasnaconstrucaocivil #esquadrias #followup #whatsappvendas #construcaocivil #gestaocomercial"
     },
@@ -162,8 +162,8 @@
       "etiqueta": "Depois do orçamento",
       "titulo": "Por que você não faz nada entre o dia 8 e o dia 29",
       "foto": "fotos/miniaula-04.jpg",
-      "produto": "ebook",
-      "fonte": "E-book O Cliente Sumiu, Parte 3",
+      "produto": "crm",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 3",
       "slides": [
         {
           "tema": "claro",
@@ -195,9 +195,9 @@
         }
       ],
       "cta": {
-        "titulo": "O protocolo inteiro, com os dias e as palavras",
-        "corpo": "\"O Cliente Sumiu\" traz o D+1 · D+7 · D+30 explicado e 17 mensagens prontas para copiar e adaptar, incluindo as duas do dia 30: a de encerramento e a de reabertura. R$ 19,90.",
-        "palavra": "LIVRO"
+        "titulo": "A diferença entre esperar e sumir é o registro",
+        "corpo": "Sem data anotada, o dia 30 vira dia 60 e o dia 60 vira nunca. A Máquina de Vendas é o CRM da construção civil já configurado: cada orçamento com próxima ação marcada e nenhum retorno esquecido.",
+        "palavra": "MAQUINA"
       },
       "legenda": "Entre o sétimo e o trigésimo dia, você não manda mensagem de cobrança nenhuma.\n\nQuem não respondeu em uma semana está numa de duas situações: ou não é a hora dele, ou já decidiu por outro e não teve coragem de avisar. Nos dois casos, mensagem no dia 10, 14 e 18 não muda o resultado. Muda só a imagem que ele tem de você.\n\nE o tempo trabalha a seu favor: o concorrente que ganhou a obra vai atrasar, medir errado ou sumir depois do sinal. Quem estiver com o nome limpo é quem ele vai chamar.\n\nVocê não está esperando parado. Está esperando com data marcada.\n\nA vontade de mandar mensagem no dia 12 não é estratégia. É necessidade de bater meta disfarçada de follow-up — e o cliente sente a diferença.\n\n#vendasnaconstrucaocivil #esquadrias #followup #gestaocomercial #construcaocivil"
     },
@@ -206,8 +206,8 @@
       "etiqueta": "Script pronto",
       "titulo": "4 objeções que viram sumiço — e a resposta de cada uma",
       "foto": "fotos/miniaula-06.jpg",
-      "produto": "ebook",
-      "fonte": "E-book O Cliente Sumiu, Parte 4",
+      "produto": "venda10x",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 4",
       "slides": [
         {
           "tema": "claro",
@@ -245,9 +245,9 @@
         }
       ],
       "cta": {
-        "titulo": "São 17 mensagens, não quatro",
-        "corpo": "\"O Cliente Sumiu\" traz o protocolo D+1 · D+7 · D+30 e 17 mensagens escritas para copiar e adaptar: as do protocolo, as de objeção, as de arquiteto, as de construtora e as de reativação de carteira parada. R$ 19,90.",
-        "palavra": "LIVRO"
+        "titulo": "Objeção não se improvisa no dia",
+        "corpo": "Resposta pronta se constrói antes de precisar dela. É o que eu trabalho toda terça, 20h, ao vivo com empresários e vendedores da construção civil no Venda 10x.",
+        "palavra": "10X"
       },
       "legenda": "Objeção não vira sumiço sozinha. Ela vira sumiço quando a sua resposta cobra decisão em vez de devolver informação.\n\n\"Vou pensar\": pergunte o que pesou mais — valor, prazo ou especificação. É mais fácil escolher entre três do que formular uma objeção do zero.\n\nPediu desconto: mostre o que sai de dentro para o preço cair. Desconto sem contrapartida ensina o cliente que o seu primeiro preço era mentira.\n\n\"Tá caro\": caro comparado com o quê? Peça o escopo do concorrente e mostre onde estão as diferenças.\n\n\"Me chama mês que vem\": chame no dia que ele pediu. Cumprir a data é a prova de organização mais barata que existe.\n\nNenhuma das quatro cobra resposta. Todas entregam alguma coisa.\n\n#vendasnaconstrucaocivil #esquadrias #objecoes #gestaocomercial #construcaocivil"
     },
@@ -257,7 +257,7 @@
       "titulo": "Descubra onde a venda morreu, sem achismo",
       "foto": "fotos/miniaula-07.jpg",
       "produto": "venda10x",
-      "fonte": "E-book O Cliente Sumiu, Parte 5 + vídeo 'Venda Perdida: O Que Fazer Depois do Não'",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 5 + vídeo 'Venda Perdida: O Que Fazer Depois do Não'",
       "slides": [
         {
           "tema": "claro",
@@ -301,7 +301,7 @@
       "titulo": "Os 20 minutos por dia que pagam o mês",
       "foto": "fotos/miniaula-09.jpg",
       "produto": "crm",
-      "fonte": "E-book O Cliente Sumiu, Parte 6 — 'Os 20 minutos que pagam o mês' e 'O Mapa dos 30 Dias'",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 6 — 'Os 20 minutos que pagam o mês' e 'O Mapa dos 30 Dias'",
       "slides": [
         {
           "tema": "claro",
@@ -345,7 +345,7 @@
       "titulo": "O Mapa dos 30 Dias: a carteira inteira numa folha",
       "foto": "fotos/miniaula-10.jpg",
       "produto": "crm",
-      "fonte": "E-book O Cliente Sumiu, Parte 6",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 6",
       "slides": [
         {
           "tema": "claro",
@@ -395,7 +395,7 @@
       "titulo": "O \"não está incluso\" que faz o cliente confiar em você",
       "foto": "fotos/miniaula-13.jpg",
       "produto": "venda-blindada",
-      "fonte": "E-book O Cliente Sumiu, Parte 2",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 2",
       "slides": [
         {
           "tema": "claro",
@@ -439,7 +439,7 @@
       "titulo": "3 mensagens para a carteira que está parada há meses",
       "foto": "fotos/miniaula-16.jpg",
       "produto": "crm",
-      "fonte": "E-book O Cliente Sumiu, Parte 4 (mensagens 14, 15 e 17)",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 4 (mensagens 14, 15 e 17)",
       "slides": [
         {
           "tema": "claro",
@@ -483,7 +483,7 @@
       "titulo": "Construtora não compra igual a cliente final",
       "foto": "fotos/miniaula-18.jpg",
       "produto": "venda10x",
-      "fonte": "E-book O Cliente Sumiu, Parte 3 (variação construtora) e Parte 4 (mensagens 12 e 13)",
+      "fonte": "Material próprio O Cliente Sumiu (arquivado em 25/08/2026), Parte 3 (variação construtora) e Parte 4 (mensagens 12 e 13)",
       "slides": [
         {
           "tema": "claro",

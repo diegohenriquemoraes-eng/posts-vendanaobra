@@ -5,6 +5,7 @@ aula sai de material já publicado pelo Diego** — a coluna Fonte diz de onde. 
 é inventado: quando a fonte não cobre, a aula não entra no banco, eu pergunto.
 
 Produto = qual CTA fecha o carrossel (a palavra do comment-to-DM).
+A palavra LIVRO não existe mais desde 25/08/2026 — o e-book saiu do portfólio.
 Status: ✅ pronta (texto + foto) · ✍️ texto pronto, falta foto · ⬜ pautada
 
 **13 das 40 estão prontas** (1, 2, 3, 4, 6, 7, 9, 10, 13, 16, 18, 19, 29) — as 6 últimas
@@ -13,24 +14,24 @@ publicação em `sequencia` no `miniaulas.json`.
 
 | # | Título | Fonte | Produto | Status |
 |---|---|---|---|---|
-| 1 | As 5 perguntas que evitam o orçamento furado | E-book, Parte 2 | LIVRO | ✅ |
-| 2 | O protocolo D+1 · D+7 · D+30 explicado | E-book, Parte 3 | LIVRO | ✅ |
-| 3 | As 5 mensagens do protocolo, prontas para copiar | E-book, Parte 4 | LIVRO | ✅ |
-| 4 | Por que você não faz nada entre o dia 8 e o dia 29 | E-book, Parte 3 | LIVRO | ✅ |
-| 5 | Como ler a resposta do cliente (e o que ela esconde) | E-book, Parte 3 | LIVRO | ⬜ |
-| 6 | 4 objeções que viram sumiço — e a resposta de cada uma | E-book, Parte 4 | LIVRO | ✅ |
-| 7 | Descubra onde a venda morreu, sem achismo | E-book, Parte 5 + blog "Perdeu a venda" | 10X | ✅ |
-| 8 | O não que não é não | E-book, Parte 5 | 10X | ⬜ |
-| 9 | Os 20 minutos por dia que pagam o mês | E-book, Parte 6 | CRM | ✅ |
-| 10 | O Mapa dos 30 Dias: como enxergar a carteira inteira | E-book, Parte 6 | CRM | ✅ |
-| 11 | Quando a planilha para de dar conta | E-book, Parte 6 | CRM | ⬜ |
-| 12 | Orçamento não é documento, é conversa | E-book, Parte 2 | LIVRO | ⬜ |
-| 13 | O que escrever no "não está incluso" (e por que gera confiança) | E-book, Parte 2 | BLINDADA | ✅ |
-| 14 | Validade sem motivo é pressão. Com motivo é informação | E-book, Parte 2 | LIVRO | ⬜ |
-| 15 | O combinado de retorno: quem marca a data é o cliente | E-book, Parte 2 | LIVRO | ⬜ |
-| 16 | Reativação de carteira parada: 3 mensagens | E-book, Parte 4 | CRM | ✅ |
-| 17 | Como falar com arquiteto sem parecer insistente | E-book, Parte 4 + vídeo "Relação com Arquitetos" | 10X | ⬜ |
-| 18 | Construtora não compra igual a cliente final | E-book, Parte 4 | 10X | ✅ |
+| 1 | As 5 perguntas que evitam o orçamento furado | O Cliente Sumiu (arquivado), Parte 2 | RAIOX | ✅ |
+| 2 | O protocolo D+1 · D+7 · D+30 explicado | O Cliente Sumiu (arquivado), Parte 3 | MAQUINA | ✅ |
+| 3 | As 5 mensagens do protocolo, prontas para copiar | O Cliente Sumiu (arquivado), Parte 4 | 10X | ✅ |
+| 4 | Por que você não faz nada entre o dia 8 e o dia 29 | O Cliente Sumiu (arquivado), Parte 3 | MAQUINA | ✅ |
+| 5 | Como ler a resposta do cliente (e o que ela esconde) | O Cliente Sumiu (arquivado), Parte 3 | 10X | ⬜ |
+| 6 | 4 objeções que viram sumiço — e a resposta de cada uma | O Cliente Sumiu (arquivado), Parte 4 | 10X | ✅ |
+| 7 | Descubra onde a venda morreu, sem achismo | O Cliente Sumiu (arquivado), Parte 5 + blog "Perdeu a venda" | 10X | ✅ |
+| 8 | O não que não é não | O Cliente Sumiu (arquivado), Parte 5 | 10X | ⬜ |
+| 9 | Os 20 minutos por dia que pagam o mês | O Cliente Sumiu (arquivado), Parte 6 | MAQUINA | ✅ |
+| 10 | O Mapa dos 30 Dias: como enxergar a carteira inteira | O Cliente Sumiu (arquivado), Parte 6 | MAQUINA | ✅ |
+| 11 | Quando a planilha para de dar conta | O Cliente Sumiu (arquivado), Parte 6 | MAQUINA | ⬜ |
+| 12 | Orçamento não é documento, é conversa | O Cliente Sumiu (arquivado), Parte 2 | 10X | ⬜ |
+| 13 | O que escrever no "não está incluso" (e por que gera confiança) | O Cliente Sumiu (arquivado), Parte 2 | BLINDADA | ✅ |
+| 14 | Validade sem motivo é pressão. Com motivo é informação | O Cliente Sumiu (arquivado), Parte 2 | BLINDADA | ⬜ |
+| 15 | O combinado de retorno: quem marca a data é o cliente | O Cliente Sumiu (arquivado), Parte 2 | MAQUINA | ⬜ |
+| 16 | Reativação de carteira parada: 3 mensagens | O Cliente Sumiu (arquivado), Parte 4 | MAQUINA | ✅ |
+| 17 | Como falar com arquiteto sem parecer insistente | O Cliente Sumiu (arquivado), Parte 4 + vídeo "Relação com Arquitetos" | 10X | ⬜ |
+| 18 | Construtora não compra igual a cliente final | O Cliente Sumiu (arquivado), Parte 4 | 10X | ✅ |
 | 19 | O Quadro Resumo: a página que evita 80% das brigas | Venda Blindada, Aula 1.1 | BLINDADA | ✅ |
 | 20 | A tolerância de 30mm e o fim do "vão torto" | Venda Blindada, Aula 2.2 | BLINDADA | ⬜ |
 | 21 | Visita perdida se cobra | Venda Blindada, Aula 3.2 | BLINDADA | ⬜ |
@@ -49,17 +50,22 @@ publicação em `sequencia` no `miniaulas.json`.
 | 34 | Mapa e território: por que o cliente entende outra coisa | Blog "PNL mapa e território" | 10X | ⬜ |
 | 35 | Como estruturar meta e parar de só sonhar | Vídeo "Estruturar Metas" | 10X | ⬜ |
 | 36 | Gestão emocional depois do não | Vídeo "Venda Perdida" + Parte 5 | 10X | ⬜ |
-| 37 | A ansiedade de fim de mês tem causa de funil | Blog "Ansiedade fim de mês" | CRM | ⬜ |
-| 38 | Taxa de conversão: o número que muda a prospecção | Blog "Taxa de conversão" | CRM | ⬜ |
-| 39 | Volume de contatos não é faturamento | Vídeo "O Segredo" | CRM | ⬜ |
-| 40 | Inteligência artificial no follow-up: o fácil e o difícil | frases.json (tema ia) + e-book | CRM | ⬜ |
+| 37 | A ansiedade de fim de mês tem causa de funil | Blog "Ansiedade fim de mês" | MAQUINA | ⬜ |
+| 38 | Taxa de conversão: o número que muda a prospecção | Blog "Taxa de conversão" | MAQUINA | ⬜ |
+| 39 | Volume de contatos não é faturamento | Vídeo "O Segredo" | MAQUINA | ⬜ |
+| 40 | Inteligência artificial no follow-up: o fácil e o difícil | frases.json (tema ia) + material arquivado | MAQUINA | ⬜ |
 
 ## Distribuição por produto (o CTA de cada aula)
 
-- **LIVRO (e-book)** — 8 aulas. Porta de entrada, maior peso.
-- **BLINDADA** — 10 aulas. Nicho esquadrias/vidro, o material mais denso que existe.
-- **10X** — 12 aulas. Método e gestão emocional.
-- **CRM** — 10 aulas. Rotina, funil, métrica, automação.
+Refeita em 25/08/2026, quando o e-book **O Cliente Sumiu saiu do portfólio**: a
+palavra **LIVRO foi aposentada** e as 9 aulas que fechavam nele foram
+redistribuídas. O material continua servindo de FONTE (é conteúdo do Diego), mas
+**nenhum slide, legenda ou CTA pode citar, mostrar preço ou vender o e-book**.
+
+- **BLINDADA** — 12 aulas. Nicho esquadrias/vidro, o material mais denso que existe.
+- **10X** — 16 aulas. Método e gestão emocional.
+- **MAQUINA** (CRM) — 11 aulas. Rotina, funil, métrica, automação.
+- **RAIOX** — 1 aula. Diagnóstico gratuito, para a aula sem produto natural.
 
 ## Regra de sequência
 

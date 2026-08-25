@@ -32,8 +32,8 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 **13 das 40 aulas da pauta estão prontas** (texto + foto): 1, 2, 3, 4, 6, 7, 9, 10,
 13, 16, 18, 19, 29. Seis foram escritas em 24/08/2026, no mesmo dia em que o
 carrossel longo voltou ao automático — o banco tinha só a aula 7 sobrando e a
-quinta seguinte ficaria sem post. Fontes no campo `fonte` de cada aula (e-book
-O Cliente Sumiu, Venda Blindada, transcrições). Fila em `sequencia`:
+quinta seguinte ficaria sem post. Fontes no campo `fonte` de cada aula (material
+arquivado O Cliente Sumiu, Venda Blindada, transcrições). Fila em `sequencia`:
 7 → 10 → 13 → 6 → 18 → 16 → 4, sem dois produtos iguais seguidos. Isso cobre
 ter/qui até meados de setembro/2026 — **repor antes disso**, senão o workflow
 falha com "Nenhuma mini-aula com foto disponivel" e abre issue.
@@ -207,8 +207,9 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 - **O CTA do dia intercala numa ordem cíclica fixa de 14 posições** (refeito em
   **14/08/2026**, substitui o ciclo de 7 com 6 CTAs de produto):
   `envio → Raio-X → pergunta → seguir → pergunta → envio → Venda 10x →
-  pergunta → seguir → envio → Raio-X → pergunta → envio → e-book →` volta ao
-  início (`CICLO_CTA`). São **4 CTAs de palavra-chave em 14 = exatamente 2 em 7**,
+  pergunta → seguir → envio → Raio-X → pergunta → envio → pergunta →` volta ao
+  início (`CICLO_CTA`). São **3 CTAs de palavra-chave em 14** (eram 4 até
+  25/08/2026, quando o e-book saiu do portfólio e a vaga dele virou `pergunta`),
   contra 6 em 7 de antes.
 
   **Por que mudou:** 6 dos 7 CTAs pediam produto. Somando os Reels, todo post do
@@ -224,9 +225,9 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 
   **Dois CTAs novos, sem produto:** `envio` (isca de compartilhamento no Direct —
   ataca o número que está zerado: os Reels auditados têm 0 compartilhamento) e
-  `pergunta` (isca de comentário). Somados ao `seguir`, são 10 das 14 posições.
+  `pergunta` (isca de comentário). Somados ao `seguir`, são 11 das 14 posições.
 
-  O **Raio-X** mantém o maior peso entre os produtos (2 das 4 vagas) porque
+  O **Raio-X** mantém o maior peso entre os produtos (2 das 3 vagas) porque
   captura e segmenta: o quiz recomenda o produto certo no resultado e nas trilhas
   de e-mail. A **Venda Blindada saiu do ciclo em 09/08** e o **CRM (Máquina de
   Vendas) saiu em 14/08** — pela mesma lógica: são vendidos na trilha de e-mail
@@ -242,9 +243,9 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
   **posição** do último CTA publicado (não da data). Assim um dia que falhe não
   repete nem pula — o próximo dia pega o CTA que faltou. O estado só é gravado
   quando o post publica de fato.
-- **É a POSIÇÃO (`ultimo_indice`), não o nome.** "seguir" e "ebook" aparecem duas
-  vezes no ciclo; `CICLO_CTA.index(nome)` só acha a 1ª ocorrência, e o ciclo
-  ficaria preso entre as posições 0–2 — **Venda Blindada e CRM nunca mais
+- **É a POSIÇÃO (`ultimo_indice`), não o nome.** "seguir", "envio" e "pergunta"
+  se repetem no ciclo; `CICLO_CTA.index(nome)` só acha a 1ª ocorrência, e o ciclo
+  ficaria preso entre as posições 0–2 — **Raio-X e Venda 10x nunca mais
   sairiam**. `ultimo_cta` fica no arquivo só para leitura humana. Estado no
   formato antigo (sem `ultimo_indice`) cai no nome uma única vez, para migrar.
 - **O tema da frase segue o CTA do dia** (escolhido *depois* de saber o CTA):
@@ -254,9 +255,9 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 - **A legenda usa o mesmo CTA do slide**, para o post ficar coerente
   (`legenda.montar`).
 - **Conversão de produto por comment-to-DM**: o slide 3 traz uma explicação
-  breve do produto + o pedido de uma palavra (`RAIOX` / `LIVRO` / `10X` /
-  `MAQUINA` — a palavra da Máquina de Vendas desde 12/08/2026; `CRM` e
-  `BLINDADA` continuam ativas no Direct para posts antigos); quem comenta
+  breve do produto + o pedido de uma palavra (`RAIOX` / `10X` / `MAQUINA` — a
+  palavra da Máquina de Vendas desde 12/08/2026; `CRM` e `BLINDADA` continuam
+  ativas no Direct para posts antigos; `LIVRO` foi **aposentada em 25/08/2026**); quem comenta
   recebe o link no Direct. No Instagram o link só é clicável no DM, nunca
   na legenda do feed — por isso não colocamos URL no post. Por ora o Diego
   responde à mão; depois liga a automação nativa de palavra-chave do Instagram.
@@ -265,31 +266,38 @@ azul do site `vendanaobra.com.br`, letra branca) que fecha o carrossel. A regra:
 Mapa dor→produto em `TEMA_PRODUTO`; frases de esquadria/obra são marcadas com
 `"produto": "venda-blindada"` no `frases.json`.
 
-**Mini-aulas e o Raio-X**: o CTA da mini-aula continua amarrado ao produto de onde
-a aula saiu (aula tirada do e-book chama `LIVRO` etc.) — casamento conteúdo→produto
-converte melhor que CTA genérico. `RAIOX` é opção válida para aulas novas de
+**Mini-aulas e o Raio-X**: o CTA da mini-aula continua amarrado ao produto que
+responde a dor da aula (aula de contrato chama `BLINDADA` etc.) — casamento
+conteúdo→produto converte melhor que CTA genérico. As 9 aulas que fechavam no
+e-book foram redistribuídas em 25/08/2026 entre `RAIOX`, `MAQUINA`, `10X` e
+`BLINDADA`. `RAIOX` é opção válida para aulas novas de
 diagnóstico/processo geral sem produto natural (regra em `miniaulas.json`).
 
 **Ordem da `sequencia` em 14/08/2026:** as aulas 3 e 9 foram trocadas de lugar
-(`[1, 19, 2, 29, 9, 3, 7]`). A aula 3 chama `LIVRO` e cairia na quinta 20/08, no
-dia seguinte a um Reel que também pede `LIVRO` — duas chamadas da mesma palavra
-em 24h. Com a troca, quinta sai a aula 9 (`MAQUINA`) e a 3 vai para 25/08.
+(`[1, 19, 2, 29, 9, 3, 7]`). A aula 3 chamava `LIVRO` (palavra aposentada em
+25/08/2026) e cairia na quinta 20/08, no dia seguinte a um Reel que pedia a mesma
+palavra — duas chamadas iguais em 24h. Com a troca, quinta saiu a aula 9
+(`MAQUINA`) e a 3 foi para 25/08.
 **Regra que fica: conferir a palavra da mini-aula contra a do Reel do dia seguinte
 antes de publicar.**
 
-## Os 4 produtos (fonte: vendanaobra.com.br, preços conferidos 03/08/2026)
+## Os 3 produtos (fonte: vendanaobra.com.br, preços conferidos 03/08/2026)
+
+O e-book "O Cliente Sumiu" (R$ 19,90) **saiu do portfólio em 25/08/2026** e não
+entra mais em post nenhum.
 
 | Produto | Formato | Preço | Dor |
 |---|---|---|---|
-| **O Cliente Sumiu** (e-book) | PDF + folhas de trabalho | R$ 19,90 | Orçamento enviado e o cliente some |
 | **Venda Blindada** | Contrato editável | R$ 347 único | Prejuízo/brecha em contrato de esquadria |
 | **Venda 10x** | Ao vivo semanal, terça 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 
-O e-book é a **porta de entrada** (ver `project_ebook_cliente_sumiu` na memória):
-o papel dele não é lucrar, é fabricar comprador para o Venda 10x. Por isso tem
-peso dobrado no ciclo de CTA. Frases da dor dele (follow-up, silêncio pós-orçamento,
-tempo de resposta) estão marcadas com `"produto": "ebook"` no `frases.json`.
+**O e-book "O Cliente Sumiu" saiu do portfólio em 25/08/2026** (decisão do
+Diego). Ele era a porta de entrada de R$ 19,90; sem ele, a porta de entrada
+passou a ser o **Raio-X** (diagnóstico gratuito), que captura e segmenta.
+As frases que tinham `"produto": "ebook"` no `frases.json` ficaram sem produto —
+continuam no banco, servindo a qualquer CTA. **Não recriar a marcação nem a
+palavra `LIVRO`.**
 
 O link de cada produto (a LP `vendanaobra.com.br`, que distribui) é entregue **no
 Direct** para quem comenta a palavra do produto — não vai no post (link na legenda

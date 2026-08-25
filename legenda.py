@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 """CTA do dia: o 3o slide + a legenda que o reforca.
 
-Regra (decidida em 21/07/2026; e-book acrescentado em 03/08/2026; Raio-X
-virou o CTA dominante em 09/08/2026; **ciclo refeito em 14/08/2026** para
-cortar o excesso de CTA de produto — ver CLAUDE.md):
+Regra (decidida em 21/07/2026; Raio-X virou o CTA dominante em 09/08/2026;
+**ciclo refeito em 14/08/2026** para cortar o excesso de CTA de produto;
+**e-book removido em 25/08/2026**, produto tirado do portfolio — ver CLAUDE.md):
   - todo post tem um 3o slide de CTA, em fundo azul da marca;
   - o CTA do dia intercala numa ordem ciclica fixa de **14 posicoes**, com so
-    **4 de produto (2 em 7)** e 10 de sinal (envio / pergunta / seguir):
+    **3 de produto** e 11 de sinal (envio / pergunta / seguir):
     envio -> Raio-X -> pergunta -> seguir -> pergunta -> envio -> Venda 10x ->
-    pergunta -> seguir -> envio -> Raio-X -> pergunta -> envio -> e-book ->
+    pergunta -> seguir -> envio -> Raio-X -> pergunta -> envio -> pergunta ->
     volta ao inicio (ver CICLO_CTA). Produto nunca cai em posicoes seguidas.
-    A Venda Blindada saiu do ciclo em 09/08 e o CRM saiu em 14/08: os dois sao
-    vendidos na trilha de e-mail do Raio-X (gargalo em Decisao/Oferta);
+    A Venda Blindada saiu do ciclo em 09/08, o CRM saiu em 14/08 e o e-book
+    saiu em 25/08 (produto descontinuado): Blindada e CRM sao vendidos na
+    trilha de e-mail do Raio-X (gargalo em Decisao/Oferta);
   - a rotacao tem memoria (estado_cta.json, gravado pelo publicar.py): avanca a
     partir da POSICAO do ultimo CTA publicado, entao um dia que falhe nao repete
-    nem pula. E a posicao, nao o nome, porque "seguir" e "ebook" aparecem duas
-    vezes no ciclo — buscar pelo nome sempre acharia a 1a ocorrencia e o ciclo
-    ficaria preso num sub-loop, sem nunca chegar em Blindada e CRM;
+    nem pula. E a posicao, nao o nome, porque varios CTAs de sinal aparecem mais
+    de uma vez no ciclo — buscar pelo nome sempre acharia a 1a ocorrencia e o
+    ciclo ficaria preso num sub-loop, sem nunca chegar no Raio-X e no Venda 10x;
   - a legenda usa o MESMO CTA do slide, para o post ficar coerente;
   - o tema da frase e escolhido depois de saber o CTA (ver publicar.py), para
     o conteudo puxar naturalmente para a chamada do dia.
 
 Conversao de produto e por comment-to-DM: o slide traz uma explicacao breve do
-produto e pede uma palavra (RAIOX / LIVRO / 10X / MAQUINA — palavra da Maquina
+produto e pede uma palavra (RAIOX / 10X / MAQUINA — palavra da Maquina
 de Vendas, o CRM rebatizado em 12/08/2026; CRM segue ativa para posts
 antigos); quem comenta recebe o
 link no Direct — no Instagram o link so e clicavel no DM, nunca na legenda do
@@ -38,8 +39,8 @@ from __future__ import annotations
 # CICLO NOVO DE 14 POSICOES (14/08/2026) — substitui o de 7 posicoes com 6 CTAs
 # de produto. Motivo, medido nos insights da conta:
 #
-#   - 6 dos 7 CTAs pediam palavra-chave de produto (RAIOX 3x, LIVRO, 10X,
-#     MAQUINA). Somando os Reels, praticamente todo post do perfil pedia
+#   - 6 dos 7 CTAs pediam palavra-chave de produto (RAIOX 3x, 10X, MAQUINA e o
+#     e-book). Somando os Reels, praticamente todo post do perfil pedia
 #     alguma coisa — o perfil lia como loja e o publico parou de responder:
 #     172 contas engajaram em 30 dias, de 9.296 seguidores (1,85%).
 #   - Metricool 2026 (24,3 mi de posts): CTA pedindo comentario rende
@@ -52,14 +53,15 @@ from __future__ import annotations
 #     construcao civil e esquadria, CTA de Direct apareceu ZERO vezes — o
 #     mecanismo do nicho e a pergunta aberta.
 #
-# Agora sao 4 CTAs de produto em 14 posicoes = exatamente 2 em 7, contra os 6
-# em 7 de antes. As outras 10 posicoes se dividem em:
+# Desde 25/08/2026 sao 3 CTAs de produto em 14 posicoes (eram 4; a vaga do
+# e-book virou "pergunta" quando o produto saiu do portfolio), contra os 6 em 7
+# de antes. As outras 11 posicoes se dividem em:
 #   - "envio"    -> isca de compartilhamento no Direct (o sinal que mais falta:
 #                   os Reels da conta estao com ZERO envios)
 #   - "pergunta" -> isca de comentario, o mecanismo do nicho
 #   - "seguir"   -> valor puro, sem pedir nada
 #
-# Produto nunca cai em posicoes seguidas. O Raio-X mantem o maior peso (2 das 4
+# Produto nunca cai em posicoes seguidas. O Raio-X mantem o maior peso (2 das 3
 # vagas de produto) porque captura e segmenta — o quiz e que recomenda o produto
 # certo no resultado e nas trilhas de e-mail.
 #
@@ -83,7 +85,7 @@ CICLO_CTA = [
     "raiox",     # 10  <- produto
     "pergunta",  # 11
     "envio",     # 12
-    "ebook",     # 13  <- produto
+    "pergunta",  # 13  (era o e-book, produto retirado do portfolio em 25/08/2026)
 ]
 
 # Cada CTA tem tres pecas:
@@ -151,22 +153,6 @@ CTA = {
             "Comenta RAIOX aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
-    "ebook": {
-        "slide": (
-            "O Cliente Sumiu\n\n"
-            "O e-book de R$ 19,90 com o protocolo D+1 · D+7 · D+30 para o "
-            "orçamento enviado virar contrato assinado.\n\n"
-            "Comenta LIVRO que o link cai no seu Direct."
-        ),
-        "rodape": "@vendanaobra",
-        "legenda": (
-            "Mandar o orçamento é o fim do seu trabalho e o começo do silêncio dele.\n"
-            "“O Cliente Sumiu” é o protocolo D+1 · D+7 · D+30 que transforma "
-            "orçamento enviado em contrato assinado — com 17 mensagens prontas "
-            "para copiar. R$ 19,90.\n\n"
-            "Comenta LIVRO aqui embaixo que eu te mando o link no seu Direct."
-        ),
-    },
     "venda-blindada": {
         "slide": (
             "Venda Blindada\n\n"
@@ -224,7 +210,6 @@ CTA_PRODUTO = {
     "envio": None,     # CTA de sinal: nao puxa tema, serve a qualquer frase
     "pergunta": None,  # idem
     "raiox": None,  # diagnostico gratuito serve a qualquer frase, sem viés de tema
-    "ebook": "ebook",
     "venda-blindada": "venda-blindada",
     "venda10x": "venda10x",
     "crm": "crm",
@@ -246,9 +231,9 @@ def avancar_cta(estado: dict) -> tuple[int, str]:
     """CTA de hoje = o proximo do ciclo depois do ultimo publicado.
 
     Devolve `(indice, chave)`. Avanca pela POSICAO gravada, nunca pelo nome:
-    'seguir' e 'ebook' aparecem duas vezes em CICLO_CTA, e `list.index()` so
-    acha a 1a ocorrencia — o ciclo ficaria preso entre as posicoes 0-2 e
-    Venda Blindada e CRM nunca sairiam.
+    'seguir', 'envio' e 'pergunta' aparecem varias vezes em CICLO_CTA, e
+    `list.index()` so acha a 1a ocorrencia — o ciclo ficaria preso entre as
+    posicoes 0-2 e o Raio-X e o Venda 10x nunca sairiam.
 
     Estado sem `ultimo_indice` (formato antigo, ate 03/08/2026) cai no nome uma
     unica vez, so para migrar. Sem estado nenhum, comeca em 'seguir'.

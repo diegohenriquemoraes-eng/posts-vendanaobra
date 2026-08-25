@@ -124,8 +124,8 @@ def cta_do_dia() -> tuple[int, str]:
     """CTA de hoje = proximo do ciclo depois do ultimo publicado (com memoria).
 
     Devolve `(indice, chave)`: o indice e o que fica gravado no estado, porque o
-    ciclo repete nomes ('seguir' e 'ebook' saem duas vezes) — ver
-    `legenda.avancar_cta`.
+    ciclo repete nomes ('seguir', 'envio' e 'pergunta' saem mais de uma vez) —
+    ver `legenda.avancar_cta`.
     """
     return legenda.avancar_cta(_ler_estado_cta())
 
