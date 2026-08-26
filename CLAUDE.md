@@ -167,16 +167,18 @@ API, que está desligado — continua válido caso um dia se volte atrás.
 
 - **Aspas tipográficas no código**: usar `“ ”` literais funciona (o arquivo é
   UTF-8), mas o console do Windows mostra `?` ao imprimir — não é bug.
-- **Tipografia (25/08/2026)**: par editorial em `tipografia.py` —
-  `titulo()` = **Playfair Display** (gancho, título de slide, número, CTA) e
-  `fonte()` = **Archivo** (corpo, etiqueta, rodapé, assinatura). A Instagram
-  Sans **saiu dos títulos** a pedido do Diego: ele mandou o print do próprio
-  Reel ("você perdeu a venda NA PRIMEIRA REUNIÃO", legenda de destaque em
-  serifada didone) e pediu identidade mais profissional, sem letra arredondada.
-  Ficou na pasta `fontes/` só porque as legendas queimadas dos 27 Reels do EP25
-  foram medidas nela e não se refazem.
-  - **Não usar didone no corpo**: haste fina de 30px sobre navy some no feed
-    comprimido. Título serifado + corpo grotesco é o par, não a serifada sozinha.
+- **Tipografia (25/08/2026) — a letra nova vive SÓ NA CAPA.** `tipografia.py`:
+  `titulo()` = **Playfair Display** (gancho da capa do carrossel e da capa do
+  Reel), `rotulo()` = **Archivo** (etiqueta dourada e assinatura, dentro da
+  capa) e `fonte()` = **Instagram Sans** (todo o resto: slides de conteúdo,
+  corpo, número, CTA, rodapé, story e carrossel de frase).
+  - Veio do print de um Reel dele (legenda de destaque em serifada didone) com
+    o pedido de "identidade mais profissional no tipo da letra". Na primeira
+    volta a dupla nova pegou a peça inteira; **ao ver pronto, o Diego aprovou a
+    capa e mandou limitar a mudança às capas** — o miolo lê melhor na letra de
+    antes. Não reabrir: serifada só em texto grande sobre foto.
+  - A **legenda queimada dos 27 Reels do EP25 nunca entrou nessa troca** —
+    sempre foi Instagram Sans (os `.ass` foram renderizados em 24/08).
   - **Algarismos**: a Playfair vem com figuras **old-style** (o 3, o 4 e o 7
     descem abaixo da linha) e o Pillow desta máquina é **sem libraqm**, então
     não dá para ligar a feature `lnum` na hora. `fontes/preparar_playfair.py`

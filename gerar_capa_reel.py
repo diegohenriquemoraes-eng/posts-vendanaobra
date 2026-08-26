@@ -4,7 +4,9 @@
 Mesma receita da capa da mini-aula: frame do episodio, escurecido de leve,
 degrade smoothstep fechando em preto solido embaixo, etiqueta dourada, gancho
 grande e @vendanaobra no topo. A tipografia e a de `tipografia.py` — gancho na
-Playfair Display, etiqueta e assinatura na Archivo (decisao de 25/08/2026).
+Playfair Display, etiqueta e assinatura na Archivo. A letra nova fica SO na capa:
+a legenda queimada do video e o miolo dos carrosseis seguem na Instagram Sans
+(decisao do Diego em 25/08/2026, depois de ver a capa pronta).
 
 Por que o bloco de texto termina em y=1500 e nao no rodape: a grade do perfil
 corta o 1080x1920 num 1080x1350 central, e texto colado na base some no grid.
@@ -32,7 +34,7 @@ import tempfile
 
 from PIL import Image, ImageDraw
 
-from tipografia import fonte as _fonte
+from tipografia import rotulo as _fonte
 from tipografia import titulo as _titulo
 from tipografia import escrever_espacado as _espacado
 

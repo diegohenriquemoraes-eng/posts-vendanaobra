@@ -21,7 +21,6 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 from tipografia import fonte as _fonte_base
-from tipografia import titulo as _titulo_base
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -54,13 +53,17 @@ GAP_PARAGRAFO = 0.80     # espaco extra entre blocos, em linhas
 
 
 def _fonte(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
-    """Rodape e assinatura: Archivo."""
     return _fonte_base(tamanho, peso)
 
 
 def _frase(tamanho: int) -> ImageFont.FreeTypeFont:
-    """A frase entre aspas e o texto do CTA: Playfair Display (ver tipografia.py)."""
-    return _titulo_base(tamanho, peso=600)
+    """A frase e o CTA: Instagram Sans.
+
+    Chegou a sair na Playfair em 25/08/2026, junto com a troca das capas, e
+    voltou no mesmo dia: o carrossel de frase e texto grande sem foto atras, e
+    o Diego pediu a letra nova SO nas capas.
+    """
+    return _fonte_base(tamanho)
 
 
 def _quebrar(texto: str, fonte: ImageFont.FreeTypeFont, largura: int) -> list[str]:
