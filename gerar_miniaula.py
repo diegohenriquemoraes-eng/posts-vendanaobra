@@ -22,6 +22,8 @@ import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 from tipografia import fonte as _fonte_base
+from tipografia import titulo as _titulo_base
+from tipografia import escrever_espacado as _espacado
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -42,7 +44,13 @@ ASSINATURA = "@vendanaobra"
 
 
 def _f(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
+    """Corpo, etiqueta, rodape: Archivo."""
     return _fonte_base(tamanho, peso)
+
+
+def _t(tamanho: int, peso: int = 700) -> ImageFont.FreeTypeFont:
+    """Gancho, titulo de slide e numero: Playfair Display (ver tipografia.py)."""
+    return _titulo_base(tamanho, peso)
 
 
 def _quebrar(texto: str, fonte, largura: int) -> list[str]:
@@ -86,13 +94,14 @@ def _altura_bloco(texto: str, largura: int, fonte,
 
 
 def _ajustar(texto: str, largura: int, altura_max: int,
-             maior: int, menor: int, peso: int = 400):
+             maior: int, menor: int, peso: int = 400, familia=None):
     """Maior corpo em que o texto ainda cabe na caixa."""
+    familia = familia or _f
     for t in range(maior, menor - 1, -1):
-        f = _f(t, peso)
+        f = familia(t, peso)
         if _altura_bloco(texto, largura, f) <= altura_max:
             return f
-    return _f(menor, peso)
+    return familia(menor, peso)
 
 
 def _salvar(img: Image.Image, destino: str) -> str:
@@ -145,10 +154,10 @@ def gerar_capa(titulo: str, etiqueta: str, foto_path: str, destino: str) -> str:
     # etiqueta dourada no alto do bloco de texto
     fe = _f(30, peso=700)
     y_txt = ALT - 130
-    ft = _ajustar(titulo, UTIL, 560, 92, 54, peso=800)
+    ft = _ajustar(titulo, UTIL, 560, 100, 58, peso=800, familia=_t)
     altura_titulo = _altura_bloco(titulo, UTIL, ft, entrelinha=1.16)
     y_titulo = y_txt - altura_titulo
-    d.text((MARGEM, y_titulo - 58), etiqueta.upper(), font=fe, fill=DOURADO, anchor="la")
+    _espacado(d, (MARGEM, y_titulo - 58), etiqueta.upper(), fe, DOURADO, tracking=fe.size * 0.10)
     _bloco(d, titulo, MARGEM, y_titulo, UTIL, ft, BRANCO, entrelinha=1.16)
 
     # marca discreta no topo
@@ -190,11 +199,11 @@ def gerar_slide(numero: str, titulo: str, corpo: str, destino: str,
     # faixa dourada fininha no topo: costura visual entre os slides
     d.rectangle([0, 0, LARG, 8], fill=DOURADO)
 
-    ft = fonte_titulo or _f(56, peso=700)
+    ft = fonte_titulo or _t(60, peso=700)
     fc = fonte_corpo or _f(34, peso=400)
 
     if numero:
-        d.text((MARGEM, Y_NUMERO), numero, font=_f(104, peso=800),
+        d.text((MARGEM, Y_NUMERO), numero, font=_t(112, peso=800),
                fill=DOURADO, anchor="ls")
         _bloco(d, titulo, MARGEM, Y_TITULO, UTIL, ft, BRANCO, entrelinha=1.22)
         _bloco(d, corpo, MARGEM, Y_CORPO, UTIL, fc, (214, 224, 238))
@@ -220,7 +229,7 @@ def gerar_slide_claro(titulo: str, corpo: str, destino: str,
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, LARG, 8], fill=NAVY)
 
-    ft = fonte_titulo or _f(56, peso=700)
+    ft = fonte_titulo or _t(60, peso=700)
     fc = fonte_corpo or _f(34, peso=400)
 
     _bloco(d, titulo, MARGEM, Y_TITULO_SEM_NUM, UTIL, ft, GRAFITE, entrelinha=1.22)
@@ -241,7 +250,7 @@ def gerar_slide_cta(titulo: str, corpo: str, palavra: str, destino: str) -> str:
     ALTURA_PILULA = 208            # pilula + a linha de apoio abaixo dela
     disponivel = ALT - TOPO - BASE
 
-    ft = _ajustar(titulo, UTIL, 340, 72, 44, peso=800)
+    ft = _ajustar(titulo, UTIL, 340, 78, 46, peso=800, familia=_t)
     h_tit = _altura_bloco(titulo, UTIL, ft, entrelinha=1.2)
     fc = _ajustar(corpo, UTIL, disponivel - h_tit - GAP - ALTURA_PILULA, 38, 26, peso=400)
     h_cor = _altura_bloco(corpo, UTIL, fc)
@@ -283,9 +292,9 @@ def _fontes_da_peca(aula: dict) -> tuple:
     caixa_titulo = Y_CORPO - Y_TITULO - 30           # espaco reservado ao titulo
     caixa_corpo = Y_RODAPE - Y_CORPO - 60
 
-    ft = _f(56, peso=700)
-    for t in range(58, 37, -1):
-        f = _f(t, peso=700)
+    ft = _t(60, peso=700)
+    for t in range(62, 39, -1):
+        f = _t(t, peso=700)
         if all(_altura_bloco(x, UTIL, f, entrelinha=1.22) <= caixa_titulo for x in titulos):
             ft = f
             break

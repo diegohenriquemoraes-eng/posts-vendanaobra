@@ -167,11 +167,26 @@ API, que está desligado — continua válido caso um dia se volte atrás.
 
 - **Aspas tipográficas no código**: usar `“ ”` literais funciona (o arquivo é
   UTF-8), mas o console do Windows mostra `?` ao imprimir — não é bug.
-- **Fonte**: **Instagram Sans** (`tipografia.py`), a mesma das legendas
-  automáticas dos Reels do Diego — identidade visual unificada, decidida por
-  ele em 12/08/2026. São arquivos **estáticos** por peso em `fontes/`
-  (Regular/Medium/Bold; pesos ≥600 usam Bold) — nada de
-  `set_variation_by_axes`, que era coisa da Inter variável antiga.
+- **Tipografia (25/08/2026)**: par editorial em `tipografia.py` —
+  `titulo()` = **Playfair Display** (gancho, título de slide, número, CTA) e
+  `fonte()` = **Archivo** (corpo, etiqueta, rodapé, assinatura). A Instagram
+  Sans **saiu dos títulos** a pedido do Diego: ele mandou o print do próprio
+  Reel ("você perdeu a venda NA PRIMEIRA REUNIÃO", legenda de destaque em
+  serifada didone) e pediu identidade mais profissional, sem letra arredondada.
+  Ficou na pasta `fontes/` só porque as legendas queimadas dos 27 Reels do EP25
+  foram medidas nela e não se refazem.
+  - **Não usar didone no corpo**: haste fina de 30px sobre navy some no feed
+    comprimido. Título serifado + corpo grotesco é o par, não a serifada sozinha.
+  - **Algarismos**: a Playfair vem com figuras **old-style** (o 3, o 4 e o 7
+    descem abaixo da linha) e o Pillow desta máquina é **sem libraqm**, então
+    não dá para ligar a feature `lnum` na hora. `fontes/preparar_playfair.py`
+    gera `PlayfairDisplay-Lining.ttf` apontando o cmap dos dígitos para os
+    glifos `.lf` — é esse arquivo que `tipografia.py` carrega. Sem ele, o número
+    do slide dança de altura entre os slides (a reprovação de 03/08/2026).
+  - As duas são **variáveis**: peso vai direto no eixo `wght`, sem arquivo
+    estático por peso como era com a Instagram Sans.
+  - `escrever_espacado()` desenha letra a letra porque o Pillow não tem
+    tracking — é o que dá cara de etiqueta de revista ao rótulo dourado.
 - **JPEG, não PNG**: a Graph API só aceita JPEG para imagem.
 - **Layout**: fonte de **tamanho fixo (52px)** para todo post sair com a mesma
   letra, na mesma posição — o bloco é **centralizado no meio da imagem (540)** e
@@ -323,6 +338,8 @@ network cai na véspera (08/09) e os três de stand/posicionamento dentro do eve
 | Peça | Papel |
 |---|---|
 | `reels_ep25.json` | A fila: ordem, duração, arquivo, capa e legenda de cada corte |
+| `capas_ep25.json` | Instante do frame, recorte (x da câmera) e gancho de cada capa |
+| `gerar_capa_reel.py` | Refaz a capa de qualquer corte (`--restantes --master ep25_full.mp4`) |
 | `publicar_reel.py` | Publica o próximo da fila por API (`media_type=REELS`) |
 | `publicados_reels.json` | O que já foi ao ar — a fila é "banco menos publicados" |
 | `midia/reels/` | Os 27 MP4 + as 27 capas JPEG (394 MB), servidos por `raw.githubusercontent` |

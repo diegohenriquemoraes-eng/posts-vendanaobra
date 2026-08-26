@@ -1,0 +1,164 @@
+{
+ "01": {
+  "slug": "5-minutos-para-chorar",
+  "t_abs": 2194.8,
+  "x": 656,
+  "titulo": "Você tem 5 minutos para chorar"
+ },
+ "02": {
+  "slug": "melhor-oferta-nao-melhor-produto",
+  "t_abs": 1131.6,
+  "x": 656,
+  "titulo": "Não vence quem tem o melhor produto"
+ },
+ "03": {
+  "slug": "3-segundos-prova-de-fogo-paulista",
+  "t_abs": 1035.3,
+  "x": 656,
+  "titulo": "3 segundos para te esquecer"
+ },
+ "04": {
+  "slug": "quem-faz-tudo-nao-faz-nada",
+  "t_abs": 3700.3,
+  "x": 656,
+  "titulo": "Quem faz tudo não faz nada"
+ },
+ "05": {
+  "slug": "venda-nao-e-dom",
+  "t_abs": 1371.1,
+  "x": 656,
+  "titulo": "Venda não é dom"
+ },
+ "06": {
+  "slug": "nunca-marco-no-mesmo-dia",
+  "t_abs": 2656.2,
+  "x": 656,
+  "titulo": "Nunca atenda no mesmo dia"
+ },
+ "07": {
+  "slug": "pedir-x-pegar-indicacao",
+  "t_abs": 1523.2,
+  "x": 656,
+  "titulo": "Pedir indicação não é pegar indicação"
+ },
+ "08": {
+  "slug": "2-perguntas-antes-do-orcamento",
+  "t_abs": 2396.2,
+  "x": 656,
+  "titulo": "As 2 perguntas antes do orçamento"
+ },
+ "09": {
+  "slug": "presente-anticiclico",
+  "t_abs": 4009.7,
+  "x": 656,
+  "titulo": "O presente que ninguém manda em março"
+ },
+ "10": {
+  "slug": "nao-culpe-ninguem-pelos-resultados",
+  "t_abs": 4112.2,
+  "x": 656,
+  "titulo": "O problema não é o mercado"
+ },
+ "11": {
+  "slug": "atendimento-dura-20-minutos",
+  "t_abs": 2721.6,
+  "x": 656,
+  "titulo": "O atendimento dura 20 minutos"
+ },
+ "12": {
+  "slug": "instagram-com-cara-de-arquitetura",
+  "t_abs": 1840.9,
+  "x": 656,
+  "titulo": "Meu Instagram parece de arquiteto"
+ },
+ "13": {
+  "slug": "territorio-x-mapa",
+  "t_abs": 1298.3,
+  "x": 656,
+  "titulo": "Território e mapa: o erro que custa a venda"
+ },
+ "14": {
+  "slug": "demitir-cliente",
+  "t_abs": 1461.3,
+  "x": 656,
+  "titulo": "Empresa que não demite cliente não tem cliente"
+ },
+ "15": {
+  "slug": "gestao-emocional-do-vendedor",
+  "t_abs": 2081.7,
+  "x": 656,
+  "titulo": "A gestão que decide a venda é a emocional"
+ },
+ "16": {
+  "slug": "aviso-que-nao-vou-fechar-nada",
+  "t_abs": 2144.8,
+  "x": 656,
+  "titulo": "Eu aviso que não vou fechar nada hoje"
+ },
+ "17": {
+  "slug": "ninguem-me-ensinou-a-vender",
+  "t_abs": 699.6,
+  "x": 656,
+  "titulo": "Ninguém me ensinou a vender o produto"
+ },
+ "18": {
+  "slug": "nao-me-posicionava-como-autoridade",
+  "t_abs": 754.2,
+  "x": 656,
+  "titulo": "Eu não tinha nem perfil no Instagram"
+ },
+ "19": {
+  "slug": "network-interessado-nao-interesseiro",
+  "t_abs": 808.5,
+  "x": 656,
+  "titulo": "Network é ser interessado, não interesseiro"
+ },
+ "20": {
+  "slug": "posicionamento-antes-de-abrir-a-boca",
+  "t_abs": 1747.3,
+  "x": 656,
+  "titulo": "Posicionamento é o que ele vê antes de você falar"
+ },
+ "21": {
+  "slug": "medo-de-produzir-conteudo",
+  "t_abs": 3182.0,
+  "x": 656,
+  "titulo": "O vídeo que mais engaja é o sem produção"
+ },
+ "22": {
+  "slug": "vai-com-medo",
+  "t_abs": 3320.6,
+  "x": 656,
+  "titulo": "Todo mundo sente medo. Vai com medo"
+ },
+ "23": {
+  "slug": "instagram-e-uma-novela",
+  "t_abs": 3092.7,
+  "x": 656,
+  "titulo": "Seu Instagram é uma novela sem protagonista"
+ },
+ "24": {
+  "slug": "ninguem-sabe-quantos-orcamentos-faz",
+  "t_abs": 3451.4,
+  "x": 656,
+  "titulo": "Você sabe quantos orçamentos fez esse mês?"
+ },
+ "25": {
+  "slug": "por-onde-chegam-x-por-onde-fecham",
+  "t_abs": 3516.0,
+  "x": 656,
+  "titulo": "Por onde chegam não é por onde fecham"
+ },
+ "26": {
+  "slug": "funil-de-arquiteto-45-dias",
+  "t_abs": 3945.9,
+  "x": 656,
+  "titulo": "Arquiteto precisa de funil próprio"
+ },
+ "27": {
+  "slug": "dois-mentores",
+  "t_abs": 4305.5,
+  "x": 656,
+  "titulo": "Você precisa de dois mentores, não de um"
+ }
+}

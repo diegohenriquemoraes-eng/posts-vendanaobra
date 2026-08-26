@@ -21,6 +21,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 from tipografia import fonte as _fonte_base
+from tipografia import titulo as _titulo_base
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -53,7 +54,13 @@ GAP_PARAGRAFO = 0.80     # espaco extra entre blocos, em linhas
 
 
 def _fonte(tamanho: int, peso: int = 400) -> ImageFont.FreeTypeFont:
+    """Rodape e assinatura: Archivo."""
     return _fonte_base(tamanho, peso)
+
+
+def _frase(tamanho: int) -> ImageFont.FreeTypeFont:
+    """A frase entre aspas e o texto do CTA: Playfair Display (ver tipografia.py)."""
+    return _titulo_base(tamanho, peso=600)
 
 
 def _quebrar(texto: str, fonte: ImageFont.FreeTypeFont, largura: int) -> list[str]:
@@ -76,7 +83,7 @@ def _montar(frase: str, tamanho: int) -> tuple[list[tuple[str, bool]], int, int]
 
     Cada item de `linhas` e (texto, e_ultima_linha_do_paragrafo).
     """
-    fonte = _fonte(tamanho)
+    fonte = _frase(tamanho)
     altura_linha = int(tamanho * ENTRELINHA)
     paragrafos = [p.strip() for p in frase.split("\n\n") if p.strip()]
 
@@ -99,7 +106,7 @@ def _ajustar(frase: str) -> tuple[list[tuple[str, bool]], int, int, int]:
     for tamanho in range(TAMANHO_MAX, TAMANHO_MIN - 1, -1):
         linhas, altura, altura_linha = _montar(frase, tamanho)
         cabe_largura = all(
-            _fonte(tamanho).getlength(ln) <= LARGURA_TEXTO for ln, _ in linhas
+            _frase(tamanho).getlength(ln) <= LARGURA_TEXTO for ln, _ in linhas
         )
         if altura <= ALTURA_MAX and cabe_largura:
             return linhas, altura, altura_linha, tamanho
@@ -110,7 +117,7 @@ def _ajustar(frase: str) -> tuple[list[tuple[str, bool]], int, int, int]:
 def _desenhar_texto(d: ImageDraw.ImageDraw, texto: str, cor) -> None:
     """Desenha o bloco de texto centralizado na area util (auto-ajuste de fonte)."""
     linhas, altura, altura_linha, tamanho = _ajustar(texto)
-    fonte = _fonte(tamanho)
+    fonte = _frase(tamanho)
 
     y = CENTRO_TEXTO - altura // 2
     for i, (ln, fim_par) in enumerate(linhas):
