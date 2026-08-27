@@ -8,7 +8,7 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > |---|---|
 > | **Carrossel longo (mini-aula, 4:5)** | **AUTOMÁTICO por API** — `miniaula.yml`, terça e quinta, 12h BRT, com story de reforço. Religado em 24/08/2026 a pedido do Diego: o formato longo está trazendo retorno de comentários. |
 > | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
-> | **Reel diário (9:16)** | **NO AR desde 24/08/2026** — `reel-diario.yml` + `publicar_reel.py`, 9h BRT, fila de 27 cortes do Aluparts Podcast #EP25 em `reels_ep25.json`, em colab com @aluparts.oficial. |
+> | **Reel diário (9:16)** | **NO AR desde 24/08/2026** — `reel-diario.yml` + `publicar_reel.py`, 9h BRT. Desde 27/08/2026 quase todo Reel sai **só na aba de Reels**; a ordem e o destino de cada um vivem em `plano_ep25.json`. |
 >
 > **Armadilha do cron (27/08/2026):** o Reel do dia não saiu porque o GitHub
 > simplesmente **não disparou nenhum dos dois crons** — sem run, sem erro, sem
@@ -34,6 +34,94 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > 19/07 contra 135 em 14/08). O que arrisca perfil de verdade é automação
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
+
+## Reel do EP25 — refeito em 27/08/2026 (formato, calendário e capas)
+
+Três decisões do Diego no mesmo dia mudaram o Reel de ponta a ponta. O que valia
+antes (enquadramento fixo, 1 por dia sempre no feed, capa sempre com o rosto dele)
+**não vale mais**.
+
+### 1. O quadro segue quem fala
+
+O corte antigo era um recorte fixo de 84 segundos — a câmera ficava nele mesmo
+quando a Audrey falava. Agora, `montar_reel.py` monta o Reel plano a plano:
+
+- **Regra de ouro:** quando o Diego fala, o quadro está nele; quando a Audrey
+  fala, vai para ela — ou fica nele ouvindo, quando naquele instante o master só
+  tem a câmera fechada nele. Isso ele autorizou explicitamente.
+- **Split empilhado** (ele em cima, ela embaixo) quando os dois se revezam. **Só
+  existe enquanto o master está no plano aberto**: a edição da Aluparts já vem
+  cortada, então em cada instante existe **um** ângulo só — não há imagem dos
+  dois em ângulos separados para empilhar. Foi o formato que ele escolheu
+  (`--modo split`).
+- **Ritmo:** nenhum plano passa de 3,2 s, com punch-in alternado (plano médio e
+  fechado do mesmo ângulo) e corte sempre seco. É o beat de 2-3 s dos cortes de
+  podcast que rendem.
+
+**O falante vem da legenda revisada, não do detector de voz.** O detector por
+timbre (`analise/voz.py`) acerta as falas longas e erra na fronteira curta — foi
+ele que pôs o quadro na Audrey enquanto o Diego dizia "não, total". Cada bloco de
+`legendas_ep25.json` tem o campo `quem` (`D`/`A`), escrito à mão, e é ele que manda.
+
+**Armadilha paga:** um plano não pode atravessar uma troca de câmera do master.
+Quando atravessa, o recorte do ângulo velho cai sobre o ângulo novo e o quadro
+fica vazio (parede e cadeira, sem ninguém). `montar_edl` quebra o beat na troca.
+
+### 2. Calendário: feed x só Reels
+
+Postar todo dia no feed encheria o perfil de corte. A cadência continua **1 por
+dia**, mas quase tudo sai com `share_to_feed=false` — só na aba de Reels, fora da
+grade. Ordem e destino em `plano_ep25.json`, gerado por `plano.py` (sorteio de
+semente fixa: o calendário é sempre o mesmo).
+
+- **No feed:** 07 (28/08), 13 (31/08), 27 (05/09), 14 (10/09).
+- **Colab com a @aluparts.oficial só nos do feed.** Nos de aba de Reels o post
+  não entra no feed de ninguém, então marcar a Aluparts não entrega nada a eles.
+- A Meta trata `share_to_feed` como **indicação de preferência, não garantia** —
+  funciona na prática, mas não é contrato.
+
+### 3. Capas
+
+- **Feed:** capa de IA, foto gerada no Gemini, **sem a etiqueta "ALUPARTS
+  PODCAST"** — a ideia é que a pessoa só descubra que é corte depois de clicar.
+  `gerar_capa_ia.py`, mesma diagramação da capa do podcast.
+- **Só Reels:** segue a capa original (rosto do Diego + gancho).
+
+⚠️ **O Gemini não obedece "sem marca" nem "sem texto legível".** Ele pôs o
+logotipo da Dell na moldura do notebook e escreveu "CONTRACT" em letra grande no
+papel, nas duas vezes **depois** de eu pedir explicitamente que não. Pedir de novo
+não resolve: ele regera a cena e mantém. O que funciona é **clonar um pedaço
+vizinho por cima**, e só em superfície lisa. **Conferir toda foto ampliada antes
+de publicar.** O campo de texto do Gemini também embaralha acentuação — mandar o
+comando sem acento.
+
+### Como se produz hoje
+
+| Peça | Papel |
+|---|---|
+| `plano.py` → `plano_ep25.json` | O calendário: ordem, dia e se vai ao feed |
+| `montar_reel.py` | Monta o Reel plano a plano (`--id 07 --modo split`) |
+| `legendas_ep25.json` | Legenda revisada à mão, com o falante de cada bloco |
+| `producao.py --daemon` | Renderiza tudo que tem legenda, na ordem de publicação |
+| `painel.py` → `painel.html` | Acompanhamento (atalho na Área de Trabalho) |
+| `gerar_capa_ia.py` | Capa dos que vão ao feed |
+| `analise/*.py` | Alinhamento no master, câmeras, falante, transcrição |
+
+**A legenda foi revisada cruzando duas transcrições** — a automática do YouTube
+(acerta contexto e nome próprio) e uma própria por Whisper (pontua melhor). Onde
+divergem, decide o contexto. Correções que só aparecem no cruzamento: "Aldre" é
+**Audrey**, "Lopart" é **Aluparts**, "esquadrilha" é **esquadria**, "criança
+limitante" é **crença limitante**, "custo de questão de cliente" é **custo de
+aquisição de cliente**. A transcrição própria também **inventou** uma linha de
+crédito de legendagem que não existe no áudio — conferir o fim de cada corte.
+
+### Armadilha: o tamanho do repositório
+
+O `.git` passou de 500 MB e cada lote de vídeo novo é ~100 MB. **`git push`
+estoura 10 minutos** e precisa rodar em segundo plano. Sem o push, o Actions
+publica o arquivo **antigo** — o vídeo vem de `raw.githubusercontent`, não da
+máquina. Subir em lotes, e conferir `git status -sb` antes de dar a fila por
+pronta.
 
 ## Banco de mini-aulas (24/08/2026)
 
