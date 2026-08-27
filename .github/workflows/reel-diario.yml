@@ -18,7 +18,10 @@ name: Reel diario @vendanaobra
 on:
   schedule:
     - cron: "45 11 * * *"   # dispara 11:45 UTC, publica 12:00 UTC = 09h BRT
-    - cron: "0 14 * * *"    # repescagem 11h BRT, so se o do dia nao saiu
+    - cron: "7 14 * * *"    # repescagem 11h BRT, so se o do dia nao saiu
+    - cron: "23 17 * * *"   # 2a repescagem 14h20 BRT (27/08/2026: o GitHub perdeu
+                            # os dois crons do dia e o Reel nao saiu; minuto 0 e o
+                            # horario de maior fila, por isso os minutos quebrados)
   workflow_dispatch:
     inputs:
       id:
