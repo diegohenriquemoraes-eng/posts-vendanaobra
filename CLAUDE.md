@@ -10,6 +10,14 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
 > | **Reel diário (9:16)** | **NO AR desde 24/08/2026** — `reel-diario.yml` + `publicar_reel.py`, 9h BRT, fila de 27 cortes do Aluparts Podcast #EP25 em `reels_ep25.json`, em colab com @aluparts.oficial. |
 >
+> **Armadilha do cron (27/08/2026):** o Reel do dia não saiu porque o GitHub
+> simplesmente **não disparou nenhum dos dois crons** — sem run, sem erro, sem
+> issue (o aviso de falha só nasce quando o job roda e quebra). Cron do Actions
+> é "best effort" e some em horário de fila. Desde então há **três** horários
+> (11:45, 14:07 e 17:23 UTC) e nenhum no minuto 0. Se um dia faltar de novo:
+> `gh run list --workflow=reel-diario.yml` e, se não houver run do dia,
+> `gh workflow run reel-diario.yml` — o `--garantir` da repescagem impede post duplo.
+>
 > Em 21/08/2026 o Diego tinha tirado os dois formatos da API (receio de a
 > publicação automática prejudicar a entrega). Em 24/08/2026 ele mandou o
 > carrossel longo voltar exatamente à estratégia de antes — mesmo formato,
