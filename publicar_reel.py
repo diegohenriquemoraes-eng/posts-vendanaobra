@@ -27,6 +27,7 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -41,6 +42,7 @@ API = "https://graph.facebook.com/v21.0"
 REPO_RAW = "https://raw.githubusercontent.com/diegohenriquemoraes-eng/posts-vendanaobra/main"
 
 FILA = os.path.join(BASE, "reels_ep25.json")
+PLANO = os.path.join(BASE, "plano_ep25.json")
 PUBLICADOS = os.path.join(BASE, "publicados_reels.json")
 MIDIA = "midia/reels"                      # caminho dentro do repo
 
@@ -168,20 +170,33 @@ def ja_publicou_hoje() -> bool:
     return any(p["data"] == _hoje() for p in _carregar(PUBLICADOS, []))
 
 
-def escolher(fila: dict, id_forcado: str | None) -> dict:
+def escolher(fila: dict, id_forcado: str | None) -> tuple[dict, bool]:
+    """Proximo corte do calendario + se ele vai para o feed.
+
+    A ordem deixou de ser a do `reels_ep25.json` em 27/08/2026: quem manda e' o
+    `plano_ep25.json` (ver `plano.py`). Quase todo corte sai **so na aba de
+    Reels**; so os escolhidos pelo Diego aparecem na grade do perfil, e sao
+    esses — e apenas esses — que levam colab com a Aluparts.
+    """
     feitos = {p["id"] for p in _carregar(PUBLICADOS, [])}
-    itens = fila["cortes"]
+    itens = {c["id"]: c for c in fila["cortes"]}
+    plano = _carregar(PLANO, [])
+    if not plano:
+        raise SystemExit("plano_ep25.json nao encontrado — rode `python plano.py`")
+    no_feed = {d["id"]: bool(d.get("feed")) for d in plano}
+
     if id_forcado:
-        for c in itens:
-            if c["id"] == id_forcado:
-                return c
-        raise SystemExit(f"Corte {id_forcado} nao existe na fila")
-    restantes = [c for c in itens if c["id"] not in feitos]
+        if id_forcado not in itens:
+            raise SystemExit(f"Corte {id_forcado} nao existe na fila")
+        return itens[id_forcado], no_feed.get(id_forcado, False)
+
+    restantes = [d for d in plano if d["id"] not in feitos]
     if not restantes:
         raise SystemExit("Fila do EP25 terminou — nada a publicar.")
     if len(restantes) <= 3:
         _log(f"AVISO: so restam {len(restantes)} cortes na fila.")
-    return restantes[0]
+    d = restantes[0]
+    return itens[d["id"]], bool(d.get("feed"))
 
 
 def _travar() -> None:
@@ -194,6 +209,12 @@ def _travar() -> None:
 
 
 def main() -> None:
+    # o console do Windows e cp1252 e as legendas tem emoji: sem isto o
+    # `--ensaio` quebra ao imprimir a legenda
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     a = argparse.ArgumentParser()
     a.add_argument("--ensaio", action="store_true")
     a.add_argument("--garantir", action="store_true")
@@ -208,12 +229,15 @@ def main() -> None:
         _log("ja publicou hoje, nada a fazer")
         return
 
-    corte = escolher(fila, a.id)
+    corte, no_feed = escolher(fila, a.id)
     video = f"{REPO_RAW}/{MIDIA}/{corte['arquivo']}"
     capa = f"{REPO_RAW}/{MIDIA}/{corte['capa']}"
-    colabs = fila.get("colaboradores") or []
+    # colab so nos que aparecem na grade: nos de aba de Reels o post nao entra
+    # no feed de ninguem, entao marcar a Aluparts nao entrega nada a eles
+    colabs = (fila.get("colaboradores") or []) if no_feed else []
 
     _log(f"corte {corte['id']} — {corte['titulo']} ({corte['duracao']}s)")
+    _log("destino: FEED + aba de Reels" if no_feed else "destino: SO a aba de Reels (fora da grade)")
     _log(f"video: {video}")
     _log(f"capa:  {capa}")
     _log(f"colab: {', '.join(colabs) if colabs else 'NENHUM (post sai so no perfil do Diego)'}")
@@ -232,7 +256,7 @@ def main() -> None:
         "video_url": video,
         "cover_url": capa,
         "caption": corte["legenda"],
-        "share_to_feed": "true",
+        "share_to_feed": "true" if no_feed else "false",
         "access_token": token,
     }
     if colabs:
@@ -248,7 +272,8 @@ def main() -> None:
 
     feitos = _carregar(PUBLICADOS, [])
     feitos.append({"id": corte["id"], "slug": corte["slug"], "media_id": media_id,
-                   "permalink": link, "data": _hoje(), "colaboradores": colabs})
+                   "permalink": link, "data": _hoje(), "colaboradores": colabs,
+                   "feed": no_feed})
     _salvar(PUBLICADOS, feitos)
     _commitar(f"reel {corte['id']} publicado", "publicados_reels.json")
 

@@ -6,3 +6,5 @@ analise/frames/
 analise/*.json
 analise/*.npy
 analise/*.txt
+capas-ia/z-*.jpg
+capas-ia/*-preview.jpg
