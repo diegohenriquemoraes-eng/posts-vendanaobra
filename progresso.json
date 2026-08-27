@@ -1,0 +1,161 @@
+{
+ "03-3-segundos-prova-de-fogo-paulista.mp4": {
+  "status": "publicado",
+  "legenda": true,
+  "render_s": 1180,
+  "quando": "27/08 14:01"
+ },
+ "01-5-minutos-para-chorar.mp4": {
+  "status": "antigo",
+  "legenda": false,
+  "quando": "27/08 14:02"
+ },
+ "02-melhor-oferta-nao-melhor-produto.mp4": {
+  "status": "antigo",
+  "legenda": false,
+  "quando": "27/08 14:02"
+ },
+ "04-quem-faz-tudo-nao-faz-nada.mp4": {
+  "status": "antigo",
+  "legenda": false,
+  "quando": "27/08 14:02"
+ },
+ "10-nao-culpe-ninguem-pelos-resultados.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 14:10",
+  "render_s": 359
+ },
+ "07-pedir-x-pegar-indicacao.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 18:15",
+  "render_s": 866
+ },
+ "05-venda-nao-e-dom.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 18:48",
+  "render_s": 270
+ },
+ "13-territorio-x-mapa.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 18:59",
+  "render_s": 653
+ },
+ "18-nao-me-posicionava-como-autoridade.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:06",
+  "render_s": 430
+ },
+ "11-atendimento-dura-20-minutos.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:11",
+  "render_s": 285
+ },
+ "25-por-onde-chegam-x-por-onde-fecham.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:20",
+  "render_s": 567
+ },
+ "08-2-perguntas-antes-do-orcamento.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:28",
+  "render_s": 475
+ },
+ "27-dois-mentores.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:31",
+  "render_s": 190
+ },
+ "22-vai-com-medo.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:34",
+  "render_s": 161
+ },
+ "21-medo-de-produzir-conteudo.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:37",
+  "render_s": 169
+ },
+ "12-instagram-com-cara-de-arquitetura.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:41",
+  "render_s": 232
+ },
+ "06-nunca-marco-no-mesmo-dia.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:47",
+  "render_s": 384
+ },
+ "14-demitir-cliente.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:53",
+  "render_s": 350
+ },
+ "23-instagram-e-uma-novela.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 19:55",
+  "render_s": 150
+ },
+ "17-ninguem-me-ensinou-a-vender.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:02",
+  "render_s": 377
+ },
+ "26-funil-de-arquiteto-45-dias.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:15",
+  "render_s": 314
+ },
+ "19-network-interessado-nao-interesseiro.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:19",
+  "render_s": 209
+ },
+ "20-posicionamento-antes-de-abrir-a-boca.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:22",
+  "render_s": 183
+ },
+ "15-gestao-emocional-do-vendedor.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:26",
+  "render_s": 225
+ },
+ "24-ninguem-sabe-quantos-orcamentos-faz.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:31",
+  "render_s": 296
+ },
+ "09-presente-anticiclico.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:36",
+  "render_s": 319
+ },
+ "16-aviso-que-nao-vou-fechar-nada.mp4": {
+  "status": "pronto",
+  "legenda": true,
+  "quando": "27/08 20:38",
+  "render_s": 130
+ }
+}
