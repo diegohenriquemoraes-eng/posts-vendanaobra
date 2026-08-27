@@ -82,10 +82,17 @@ semente fixa: o calendário é sempre o mesmo).
 
 ### 3. Capas
 
-- **Feed:** capa de IA, foto gerada no Gemini, **sem a etiqueta "ALUPARTS
-  PODCAST"** — a ideia é que a pessoa só descubra que é corte depois de clicar.
-  `gerar_capa_ia.py`, mesma diagramação da capa do podcast.
-- **Só Reels:** segue a capa original (rosto do Diego + gancho).
+**Decisão final do Diego (27/08/2026): só o corte 07 leva capa de IA.**
+Os outros três do feed — 13, 27 e 14 — ficam com a **capa original (rosto dele +
+gancho)**, igual aos de aba de Reels. Ele decidiu assim depois de ver o 07 pronto.
+**Não gerar capa de IA para eles achando que ficou pendente** — não ficou.
+
+- **Corte 07:** capa de IA (`gerar_capa_ia.py`), foto do Gemini, **sem a etiqueta
+  "ALUPARTS PODCAST"** — a pessoa só descobre que é corte depois de clicar. No
+  lugar da etiqueta do podcast vai uma etiqueta de tema, em dourado, que mantém a
+  peça dentro da identidade do grid.
+- **Todos os outros:** capa original (rosto do Diego + gancho).
+- O `gerar_capa_ia.py` fica no repo para quando ele quiser voltar ao formato.
 
 ⚠️ **O Gemini não obedece "sem marca" nem "sem texto legível".** Ele pôs o
 logotipo da Dell na moldura do notebook e escreveu "CONTRACT" em letra grande no
