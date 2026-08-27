@@ -1,0 +1,243 @@
+# -*- coding: utf-8 -*-
+"""Monta o Reel 9:16 de um corte do EP25 seguindo quem fala.
+
+Regra de ouro (Diego, 27/08/2026):
+  * quando ELE fala, o quadro tem de estar nele;
+  * quando a AUDREY fala, o quadro vai para ela — ou fica nele ouvindo, se a
+    unica camera disponivel naquele instante for a fechada nele;
+  * quando os dois se revezam em ritmo parecido, entra o split empilhado
+    (ele em cima, ela embaixo), que so existe enquanto o plano aberto esta no ar.
+
+Ritmo: nenhum plano passa de PLANO_MAX; dentro de uma fala longa o corte
+alterna entre plano medio e fechado (punch-in), que e' o beat de 2-3 s dos
+cortes de podcast que rendem. Corte sempre seco.
+"""
+import json, os, subprocess, sys, argparse, math
+
+MASTER = "master/ep25.mp4"
+AUDIO = "master/ep25.m4a"
+SAIDA = "saida/reels"
+PASSO = 0.2          # resolucao da linha do tempo de fala
+PLANO_MIN = 1.6      # nenhum plano mais curto que isso
+PLANO_MAX = 3.2      # nenhum plano mais longo que isso
+FALA_MIN = 1.2       # troca de falante so vale se durar isso
+
+# --- recortes no master 1920x1080 -------------------------------------------
+# medio e fechado do mesmo angulo: a alternancia entre eles e' o punch-in
+CROPS = {
+    ("D", "medio"):  (608, 1080, 700, 0),
+    ("D", "perto"):  (500,  889, 756, 60),
+    ("A", "medio"):  (608, 1080, 430, 0),
+    ("A", "perto"):  (500,  889, 486, 60),
+    ("WD", "medio"): (540,  960, 1360, 100),
+    ("WD", "perto"): (456,  810, 1400, 120),
+    ("WA", "medio"): (540,  960, 270, 110),
+    ("WA", "perto"): (456,  810, 250, 120),
+}
+SPLIT = {"D": (760, 675, 1290, 140), "A": (760, 675, 255, 170)}
+
+def segmentos(linha, passo=PASSO, minimo=FALA_MIN):
+    """String 'DDDAAA...' -> [(ini, fim, quem)] sem trechos menores que `minimo`."""
+    segs, ini = [], 0
+    for i in range(1, len(linha) + 1):
+        if i == len(linha) or linha[i] != linha[ini]:
+            segs.append([ini * passo, i * passo, linha[ini]])
+            ini = i
+    mudou = True
+    while mudou and len(segs) > 1:
+        mudou = False
+        for i, s in enumerate(segs):
+            if s[1] - s[0] >= minimo: continue
+            if i == 0: segs[1][0] = s[0]
+            elif i == len(segs) - 1: segs[-2][1] = s[1]
+            else:
+                meio = (s[0] + s[1]) / 2
+                segs[i-1][1] = meio; segs[i+1][0] = meio
+            segs.pop(i); mudou = True
+            break
+    # funde vizinhos iguais
+    out = [segs[0]]
+    for s in segs[1:]:
+        if s[2] == out[-1][2]: out[-1][1] = s[1]
+        else: out.append(s)
+    return [(round(a, 2), round(b, 2), q) for a, b, q in out]
+
+def fala_das_legendas(blocos, dur, reserva=None):
+    """Quem fala, tirado da legenda revisada — que e' onde o falante e' certo.
+
+    O detector de voz por timbre erra justamente na fronteira curta ("nao, total")
+    e era ele que colocava o quadro na pessoa errada. A legenda ja passou por
+    revisao humana, entao ela manda; o detector so preenche o que sobra.
+    """
+    n = int(round(dur / PASSO))
+    linha = list(reserva[:n].ljust(n, "D")) if reserva else ["D"] * n
+    for b in blocos:
+        i, j = int(b["ini"] / PASSO), min(n, int(round(b["fim"] / PASSO)))
+        for k in range(max(0, i), j):
+            linha[k] = b.get("quem", "D")
+    # o intervalo entre dois blocos segue o bloco anterior (respiro, nao troca)
+    ult = None
+    for k in range(n):
+        if linha[k] in "DA": ult = linha[k]
+        elif ult: linha[k] = ult
+    return "".join(linha)
+
+def camera_em(cams, t):
+    for c in cams:
+        if c["ini"] <= t < c["fim"]: return c["cam"]
+    return cams[-1]["cam"] if cams else "D"
+
+def dialogo(falas, a, b):
+    """Ha revezamento parecido entre a e b?"""
+    dentro = [(max(a, x), min(b, y), q) for x, y, q in falas if y > a and x < b]
+    if len(dentro) < 3: return False
+    tot = b - a
+    td = sum(y - x for x, y, q in dentro if q == "D")
+    ta = tot - td
+    return min(td, ta) / tot >= 0.28
+
+def plano_para(quem, cam):
+    """Que fonte usar para mostrar `quem`, dado o que a camera mostra."""
+    if cam == "W": return "WD" if quem == "D" else "WA"
+    if cam == quem: return quem          # camera fechada em quem fala
+    return cam                            # so ha o outro em quadro: fica nele
+
+def montar_edl(falas, cams, dur, modo="cameras"):
+    edl = []
+    for a, b, quem in falas:
+        t = a
+        alterna = 0
+        while t < b - 0.05:
+            fim = min(b, t + PLANO_MAX)
+            # um plano nunca atravessa uma troca de camera do master: se atravessar,
+            # o recorte do angulo velho cai sobre o angulo novo e o quadro fica vazio
+            for c in cams:
+                if t + 0.05 < c["fim"] < fim: fim = c["fim"]
+            if b - fim < PLANO_MIN: fim = b
+            for c in cams:
+                if t + 0.05 < c["fim"] < fim: fim = c["fim"]
+            cam = camera_em(cams, t + 0.1)
+            # split so no plano aberto e so quando ha revezamento
+            usa_split = cam == "W" and (modo == "split" or
+                        dialogo(falas, max(0, t - 3), min(dur, fim + 3)))
+            if usa_split:
+                edl.append({"ini": round(t, 2), "fim": round(fim, 2), "tipo": "split"})
+            else:
+                fonte = plano_para(quem, cam)
+                nivel = "perto" if alterna % 2 else "medio"
+                edl.append({"ini": round(t, 2), "fim": round(fim, 2), "tipo": "solo",
+                            "fonte": fonte, "nivel": nivel, "quem": quem, "cam": cam})
+            alterna += 1
+            t = fim
+    return edl
+
+def filtro_solo(fonte, nivel, dur):
+    w, h, x, y = CROPS[(fonte, nivel)]
+    pan = f"{x}+6*sin(2*PI*t/{max(dur,0.1):.2f})"
+    return (f"crop={w}:{h}:'{pan}':{y},scale=1080:1920:flags=bicubic,setsar=1")
+
+def filtro_split():
+    wd, hd, xd, yd = SPLIT["D"]
+    wa, ha, xa, ya = SPLIT["A"]
+    return (f"[0:v]crop={wd}:{hd}:{xd}:{yd},scale=1080:960:flags=bicubic,setsar=1[cima];"
+            f"[0:v]crop={wa}:{ha}:{xa}:{ya},scale=1080:960:flags=bicubic,setsar=1[baixo];"
+            f"[cima][baixo]vstack=inputs=2[v]")
+
+def render(edl, t0, tmp):
+    partes = []
+    for i, e in enumerate(edl):
+        dur = round(e["fim"] - e["ini"], 3)
+        if dur <= 0.05: continue
+        alvo = os.path.join(tmp, f"p{i:03d}.mp4")
+        base = ["ffmpeg", "-v", "error", "-y", "-ss", f"{t0 + e['ini']:.3f}",
+                "-i", MASTER, "-t", f"{dur:.3f}", "-an"]
+        if e["tipo"] == "split":
+            cmd = base + ["-filter_complex", filtro_split(), "-map", "[v]"]
+        else:
+            cmd = base + ["-vf", filtro_solo(e["fonte"], e["nivel"], dur)]
+        cmd += ["-r", "30", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                "-pix_fmt", "yuv420p", alvo]
+        subprocess.run(cmd, check=True)
+        partes.append(alvo)
+    return partes
+
+# --- legenda queimada --------------------------------------------------------
+CABECA = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: L,Instagram Sans Medium,72,&H00FFFFFF,&H00FFFFFF,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,4,0,2,90,90,470,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+
+def tempo_ass(t):
+    h = int(t // 3600); m = int(t % 3600 // 60); s = t % 60
+    return f"{h}:{m:02d}:{s:05.2f}"
+
+def escrever_ass(blocos, alvo, margem_v=470):
+    linhas = [CABECA.replace("MarginV, Encoding\nStyle: L,Instagram Sans Medium,72,&H00FFFFFF,&H00FFFFFF,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,4,0,2,90,90,470,1",
+                             "MarginV, Encoding\nStyle: L,Instagram Sans Medium,72,&H00FFFFFF,&H00FFFFFF,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,4,0,2,90,90,%d,1" % margem_v)]
+    for b in blocos:
+        txt = b["txt"].replace("\n", "\\N")
+        linhas.append(f"Dialogue: 0,{tempo_ass(b['ini'])},{tempo_ass(b['fim'])},L,,0,0,0,,{{\\blur6}}{txt}")
+    open(alvo, "w", encoding="utf-8").write("\n".join(linhas) + "\n")
+
+def finalizar(partes, t0, dur, ass, alvo, tmp):
+    lista = os.path.join(tmp, "lista.txt")
+    with open(lista, "w", encoding="utf-8") as f:
+        for p in partes:
+            f.write("file '%s'\n" % os.path.abspath(p).replace("\\", "/"))
+    mudo = os.path.join(tmp, "mudo.mp4")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0",
+                    "-i", lista, "-c", "copy", mudo], check=True)
+    vf = "ass=" + ass.replace("\\", "/").replace(":", "\\:") + ":fontsdir=fontes"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", mudo,
+                    "-ss", f"{t0:.3f}", "-i", AUDIO, "-t", f"{dur:.3f}",
+                    "-vf", vf, "-map", "0:v", "-map", "1:a",
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
+                    "-movflags", "+faststart", "-shortest", alvo], check=True)
+
+def blocos_de(arq, legendas):
+    if arq in legendas: return legendas[arq]
+    raise SystemExit("Sem legenda revisada para " + arq)
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--id", help="numero do corte, ex 03")
+    ap.add_argument("--todos", action="store_true")
+    ap.add_argument("--modo", default="cameras", choices=["cameras", "split"],
+                    help="cameras: quadro segue quem fala · split: empilha os dois sempre que der")
+    ap.add_argument("--sufixo", default="")
+    a = ap.parse_args()
+    jan = json.load(open("analise/janelas.json"))
+    cams = json.load(open("analise/cameras.json"))
+    fala = json.load(open("analise/fala.json"))
+    legs = json.load(open("legendas_ep25.json", encoding="utf-8"))
+    os.makedirs(SAIDA, exist_ok=True)
+    alvos = sorted(jan) if a.todos else [k for k in sorted(jan) if k.startswith(a.id + "-")]
+    for arq in alvos:
+        j = jan[arq]
+        blocos = blocos_de(arq, legs)
+        falas = segmentos(fala_das_legendas(blocos, j["dur"], fala.get(arq)))
+        edl = montar_edl(falas, cams[arq], j["dur"], a.modo)
+        tmp = os.path.join("saida", "tmp", arq[:2] + a.modo)
+        os.makedirs(tmp, exist_ok=True)
+        for f in os.listdir(tmp): os.remove(os.path.join(tmp, f))
+        ass = os.path.join(tmp, "leg.ass")
+        escrever_ass(blocos, ass)
+        partes = render(edl, j["inicio"], tmp)
+        alvo = os.path.join(SAIDA, arq[:-4] + a.sufixo + ".mp4")
+        finalizar(partes, j["inicio"], j["dur"], ass, alvo, tmp)
+        tds = round(sum(e["fim"]-e["ini"] for e in edl if e["tipo"] == "split"), 1)
+        print(f"{arq}: {len(edl)} planos, split {tds}s -> {alvo}", flush=True)
+
+if __name__ == "__main__":
+    main()
