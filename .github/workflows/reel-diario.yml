@@ -69,7 +69,10 @@ jobs:
           args=""
           [ -n "${{ inputs.id }}" ] && args="$args --id ${{ inputs.id }}"
           [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" != "45 11 * * *" ]; then
+          # TODO disparo agendado usa --garantir: cron do GitHub chega atrasado
+          # (ate 9h de atraso medido em 27/08/2026) e um atrasado sem essa trava
+          # publica um segundo Reel no mesmo dia.
+          if [ "${{ github.event_name }}" = "schedule" ]; then
             args="$args --garantir"
           fi
           python publicar_reel.py $args
