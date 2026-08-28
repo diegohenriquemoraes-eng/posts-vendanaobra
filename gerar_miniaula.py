@@ -118,6 +118,22 @@ def _salvar(img: Image.Image, destino: str) -> str:
 
 # --------------------------------------------------------------------- capa
 
+def foto_em_alta(caminho: str) -> bool:
+    """A foto de capa cabe no slide sem ser ampliada?
+
+    Erro pago em 27/08/2026: seis capas foram exportadas do PREVIEW do Gemini
+    (928x1152, menor que o slide 1080x1350) — a montagem ampliou e a capa saiu
+    borrada no feed. Quem gera a foto usa `preparar_foto.py`; quem publica pula
+    a aula que nao passar aqui.
+    """
+    try:
+        with Image.open(caminho) as im:
+            larg, alt = im.size
+    except OSError:
+        return False
+    return larg >= LARG and alt >= ALT
+
+
 def _cobrir(foto: Image.Image, larg: int, alt: int) -> Image.Image:
     """Recorta a foto no formato do slide sem distorcer (efeito object-fit: cover)."""
     escala = max(larg / foto.width, alt / foto.height)
@@ -134,6 +150,14 @@ def gerar_capa(titulo: str, etiqueta: str, foto_path: str, destino: str) -> str:
     O degrade fecha em preto SOLIDO na base (mesma regra da secao de servicos do
     site): sem isso o texto briga com a foto e o slide fica ilegivel no feed.
     """
+    if not foto_em_alta(foto_path):
+        with Image.open(foto_path) as _im:
+            tem = "x".join(str(v) for v in _im.size)
+        raise ValueError(
+            f"{os.path.basename(foto_path)} tem {tem}, menor que o slide "
+            f"{LARG}x{ALT}: a capa sairia ampliada. Reexporte o master no "
+            "tamanho original com preparar_foto.py."
+        )
     img = _cobrir(Image.open(foto_path).convert("RGB"), LARG, ALT)
 
     # escurece a foto inteira de leve, para o texto ganhar contraste

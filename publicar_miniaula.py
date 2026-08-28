@@ -52,9 +52,16 @@ def escolher(id_forcado: int | None) -> dict | None:
     for i in fila:
         aula = aulas[i]
         foto = os.path.join(BASE, aula["foto"])
-        if os.path.exists(foto):
-            return aula
-        _log(f"aula {i} SEM FOTO ({aula['foto']}) — pulando para a proxima")
+        if not os.path.exists(foto):
+            _log(f"aula {i} SEM FOTO ({aula['foto']}) — pulando para a proxima")
+            continue
+        # capa ampliada = capa borrada no feed (erro pago em 27/08/2026):
+        # foto menor que o slide 1080x1350 recebe o mesmo tratamento de "sem foto"
+        if not gerar_miniaula.foto_em_alta(foto):
+            _log(f"aula {i} com FOTO EM BAIXA ({aula['foto']}) — pulando; "
+                 "reexporte o master com preparar_foto.py")
+            continue
+        return aula
     return None
 
 

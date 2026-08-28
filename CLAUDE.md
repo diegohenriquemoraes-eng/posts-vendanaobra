@@ -146,6 +146,49 @@ Fotos novas geradas no Gemini com o padrão documental de sempre; a capa da aula
 recortado para o prédio e a grua (retoque local no logo não funciona: o remendo
 fica visível). **Conferir marca de terceiro em toda foto gerada antes de commitar.**
 
+## Foto de capa: resolução e foco — trava automática (27/08/2026)
+
+**O que aconteceu:** o post da aula 10 (27/08) foi ao ar com a capa borrada e o
+Diego reclamou. Duas causas somadas, as duas na foto:
+
+1. **Resolução.** As seis fotos feitas em 24/08 (04, 06, 10, 13, 16, 18) foram
+   salvas do **preview** do Gemini (928x1152) em vez do "tamanho original"
+   (1856x2304). Como o slide é 1080x1350, `_cobrir()` **ampliava** a foto — capa
+   macia no feed. Todas foram reexportadas dos masters, que já existiam em alta.
+2. **Foco.** A foto da aula 10 era desfocada na origem (bokeh forte em toda a
+   cena; nitidez medida em 109 contra 700–970 das boas). Foto nova gerada com o
+   pedido explícito de **f/11, profundidade de campo grande, sem bokeh** —
+   `miniaula-10-v2-nitida.png`, nitidez 2.222.
+
+**A trava, para não repetir:**
+
+- `preparar_foto.py` é a porta de entrada de qualquer foto nova:
+  `python preparar_foto.py 10` exporta o master (prefere a versão `-v2-*`) para
+  `fotos/miniaula-10.jpg` em qualidade 95 e **recusa** master menor que
+  1080x1350. `python preparar_foto.py --conferir` audita a pasta inteira e sai
+  com código 1 se houver foto pequena.
+- `gerar_miniaula.gerar_capa()` levanta erro se a foto for menor que o slide, e
+  `gerar_capa_ia.py` faz o mesmo para a capa de Reel (1080x1920).
+- `publicar_miniaula.escolher()` trata foto em baixa **como "aula sem foto"**:
+  pula para a próxima da fila e loga o motivo — o robô nunca publica capa
+  ampliada e também nunca trava o job por causa disso.
+
+**Ainda em 928x1152: as fotos 01, 02, 03 e 29** (as capas v2 de 12/08, cujo
+master alto é a cena antiga de esquadria). São de aulas **já publicadas** e a
+fila não as repete; se um dia forem reaproveitadas, refazer a foto no Gemini.
+
+**Regra que fica:** foto de capa sai do Gemini pelo botão **"Baixar imagem no
+tamanho original"** (1856x2304), nunca pelo preview, e o prompt pede nitidez em
+toda a cena — capa é foto de fundo com texto grande por cima, bokeh forte lê
+como foto ruim no feed.
+
+**Republicação (27/08/2026):** a aula 10 saiu de novo às 22h33 com a capa nova
+(`media_id 18097587371048145`). **A Graph API não apaga post nem story do
+Instagram** (`DELETE` devolve erro 100/subcode 33) — a primeira versão tem de ser
+excluída à mão no app. O slug da republicação leva sufixo `-v2`: reusar o mesmo
+caminho no `raw.githubusercontent` arrisca o Instagram baixar a imagem antiga do
+cache do CDN.
+
 ## Fluxo manual (`preparar.py`) — hoje só o carrossel de frase
 
 | Comando | O que faz |
@@ -239,6 +282,7 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 | `miniaulas.json` | Banco das mini-aulas (7 de 40 escritas; pauta em `PAUTA-MINIAULAS.md`) |
 | `publicar_miniaula.py` | Mini-aula por API — **no ar de novo desde 24/08/2026** (ter/qui 12h BRT) |
 | `gerar_miniaula.py` | Pillow → slides 4:5 (âncoras fixas + fonte única por peça) |
+| `preparar_foto.py` | Master do Gemini → `fotos/miniaula-XX.jpg`, com trava de resolução (`--conferir` audita) |
 | `gerar_story.py` | Story 1080x1920 com a arte do dia emoldurada |
 | `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
 | `.github/workflows/miniaula.yml` | **Ativo** desde 24/08/2026 — ter/qui 12h BRT + repescagens 13h/17h |

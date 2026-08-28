@@ -51,6 +51,13 @@ def _ajustar(texto, largura, alt_max, maior, menor):
 def _encaixar(caminho):
     """Foto qualquer -> 1080x1920 sem deformar, cortando o excedente pelo centro."""
     im = Image.open(caminho).convert("RGB")
+    # foto menor que a capa seria AMPLIADA e sai borrada no feed (erro pago em
+    # 27/08/2026 na mini-aula): baixar o "tamanho original" do Gemini, nao o preview
+    if im.width < LARG or im.height < ALT:
+        raise ValueError(
+            f"{os.path.basename(caminho)} tem {im.width}x{im.height}, menor que a "
+            f"capa {LARG}x{ALT}: sairia ampliada. Use o 'tamanho original' do Gemini."
+        )
     escala = max(LARG / im.width, ALT / im.height)
     im = im.resize((round(im.width * escala), round(im.height * escala)), Image.LANCZOS)
     esq = (im.width - LARG) // 2
