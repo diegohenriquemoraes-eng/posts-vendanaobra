@@ -20,6 +20,7 @@ SAIDA = "saida/reels"
 PASSO = 0.2          # resolucao da linha do tempo de fala
 PLANO_MIN = 1.6      # nenhum plano mais curto que isso
 PLANO_MAX = 3.2      # nenhum plano mais longo que isso
+PLANO_CURTO = 0.7    # abaixo disso o plano vira piscada e some no plano vizinho
 FALA_MIN = 1.2       # troca de falante so vale se durar isso
 
 # --- recortes no master 1920x1080 -------------------------------------------
@@ -102,6 +103,47 @@ def plano_para(quem, cam):
     if cam == quem: return quem          # camera fechada em quem fala
     return cam                            # so ha o outro em quadro: fica nele
 
+def unir_curtos(edl, cams, minimo=PLANO_CURTO):
+    """Funde no vizinho todo plano curto demais para ser lido como plano.
+
+    De onde vinham: quando uma troca de FALANTE cai poucos decimos antes de uma
+    troca de CAMERA do master, o beat era cortado na camera e sobrava um caco de
+    0,2 s — seis quadros. Na tela isso nao le como corte, le como piscada (o
+    Diego pegou isso no corte 07, em 28/08/2026).
+
+    So funde com o plano anterior quando os dois estao na MESMA camera do
+    master; senao o recorte de um angulo cairia sobre o outro, que e' o bug do
+    quadro vazio.
+    """
+    out = []
+    for e in edl:
+        if e["fim"] - e["ini"] >= minimo or not out:
+            out.append(dict(e))
+            continue
+        ant = out[-1]
+        if camera_em(cams, ant["ini"] + 0.1) == camera_em(cams, e["ini"] + 0.1):
+            ant["fim"] = e["fim"]
+        else:
+            out.append(dict(e))
+    # o que sobrou curto esta' no INICIO de uma camera nova (nao havia vizinho
+    # anterior na mesma camera): esse funde com o seguinte
+    i = 0
+    while i < len(out) - 1:
+        if out[i]["fim"] - out[i]["ini"] < minimo and \
+           camera_em(cams, out[i]["ini"] + 0.1) == camera_em(cams, out[i+1]["ini"] + 0.1):
+            out[i+1]["ini"] = out[i]["ini"]
+            out.pop(i)
+            continue
+        i += 1
+    # o ultimo tambem nao pode ficar curto
+    while len(out) > 1 and out[-1]["fim"] - out[-1]["ini"] < minimo:
+        if camera_em(cams, out[-2]["ini"] + 0.1) != camera_em(cams, out[-1]["ini"] + 0.1):
+            break
+        out[-2]["fim"] = out[-1]["fim"]
+        out.pop()
+    return out
+
+
 def montar_edl(falas, cams, dur, modo="cameras"):
     edl = []
     for a, b, quem in falas:
@@ -129,7 +171,7 @@ def montar_edl(falas, cams, dur, modo="cameras"):
                             "fonte": fonte, "nivel": nivel, "quem": quem, "cam": cam})
             alterna += 1
             t = fim
-    return edl
+    return unir_curtos(edl, cams)
 
 def filtro_solo(fonte, nivel, dur):
     w, h, x, y = CROPS[(fonte, nivel)]
