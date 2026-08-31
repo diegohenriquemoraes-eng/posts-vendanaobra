@@ -1,0 +1,43 @@
+{
+ "_regra": "Uma cena por mini-aula. Esquadria/vidro SÓ nas aulas da Venda Blindada (20 a 28); as de método e gestão falam com a construção inteira, senão a peça estreita a percepção do público (regra do Diego, 12/08/2026). Nenhuma cena pede rosto em close: rosto é o que mais entrega imagem gerada. As regras de nitidez e de proibição de marca/texto ficam em gerar_foto_ia.py e são acrescentadas a todas.",
+
+ "20": "Um profissional medindo o vão de uma janela numa obra em fase de acabamento, com trena metálica encostada na lateral do vão. Parede rebocada, vão requadrado, luz natural de dia entrando pelo vão. Enquadramento nas mãos e no vão, sem mostrar rosto.",
+
+ "21": "Um utilitário de trabalho parado em frente ao portão fechado de uma obra residencial que ainda não está pronta, entulho e areia no acesso, fim de manhã. Vista de fora, ninguém em quadro.",
+
+ "22": "Uma prancheta com cronograma impresso apoiada sobre uma bancada improvisada de obra, ao lado de um capacete branco e um lápis. Papel sem texto legível. Luz natural, obra em estrutura ao fundo, nítida.",
+
+ "23": "Mesa de escritório de obra com um contrato impresso, uma caneta em cima e uma calculadora simples ao lado. Papel com texto ilegível. Luz de janela, fim de tarde, tudo nítido.",
+
+ "24": "Prancheta com desenho técnico de uma esquadria sendo alterado a lápis, borracha e escalímetro ao lado, sobre mesa de madeira clara. Apenas as mãos aparecem. Traços do desenho sem cotas legíveis.",
+
+ "25": "Fachada de um prédio residencial em obra vista de baixo, com balancim e andaime montados junto às aberturas do último pavimento, céu claro. Nenhuma pessoa em quadro.",
+
+ "26": "Piso de porcelanato claro recém-assentado dentro de um apartamento em obra, com manta de proteção parcialmente aberta e uma ferramenta de corte apoiada ao lado, junto à soleira de uma porta de vidro.",
+
+ "27": "Pasta de documentos aberta sobre uma mesa de reunião clara, com um contrato e uma proposta impressa lado a lado e uma caneta em cima. Papéis com texto ilegível. Luz natural de janela.",
+
+ "28": "Mão segurando um celular em videochamada apontado para o vão de uma janela numa obra, mostrando a medida para alguém do outro lado. Tela do celular sem interface legível. Obra em acabamento ao fundo, nítida.",
+
+ "30": "Duas pessoas sentadas frente a frente numa mesa de reunião simples, vistas de cima e de lado, apenas mãos e antebraços em quadro, com uma proposta impressa entre elas. Papel com texto ilegível. Luz natural.",
+
+ "31": "Mesa de escritório com uma planilha impressa e um marcador colorido destacando algumas linhas, ao lado de uma caneca. Números e palavras ilegíveis no papel. Vista de cima em ângulo, luz de manhã.",
+
+ "32": "Aperto de mãos entre duas pessoas por cima de uma mesa com um contrato assinado e uma caneta, apenas mãos e antebraços em quadro, camisa social clara. Escritório claro ao fundo, nítido.",
+
+ "33": "Mesa de trabalho com uma agenda de papel aberta, um celular ao lado e uma caneta, vista de cima em ângulo. Agenda sem texto legível. Luz natural de janela, escritório de obra ao fundo.",
+
+ "34": "Uma planta arquitetônica impressa apoiada numa bancada em primeiro plano e, ao fundo e igualmente nítido, o prédio real em construção correspondente, com estrutura de concreto aparente. Fim de tarde, sem pessoas.",
+
+ "35": "Mural de cortiça numa parede de escritório com fotos e papéis fixados por percevejos, todos sem texto legível, e um caderno aberto sobre a mesa logo abaixo. Luz natural, tudo nítido.",
+
+ "36": "Uma pessoa de costas, em pé, olhando pela janela de um escritório de obra, com o canteiro visível lá fora. Camisa clara, sem rosto em quadro. Luz do fim da tarde, cena inteira nítida.",
+
+ "37": "Mesa de escritório no fim do dia, com calendário de parede ao fundo, xícara de café vazia e um celular virado para baixo. Calendário sem números legíveis. Luz baixa de fim de tarde, sem desfoque.",
+
+ "38": "Vista de cima de uma mesa com uma planilha impressa, uma calculadora e uma caneta, e uma régua marcando uma linha do papel. Números ilegíveis. Luz de manhã, cena inteira nítida.",
+
+ "39": "Pilha de pastas de projeto empilhadas sobre uma mesa, com uma única pasta separada e aberta ao lado das outras. Etiquetas em branco, sem texto. Escritório claro, vista de cima em ângulo.",
+
+ "40": "Notebook aberto sobre uma mesa de escritório de obra, com a tela mostrando uma interface abstrata e desfocada de sistema, ao lado de um caderno e uma caneta. Nenhum texto ou marca legível. Luz natural de janela, cena nítida."
+}

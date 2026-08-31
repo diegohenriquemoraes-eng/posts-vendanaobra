@@ -946,7 +946,8 @@
    },
    "legenda": "O contrato diz uma coisa. A proposta dizia outra. Os dois documentos existem, e nenhum diz qual vale.\n\nO detalhe da venda mora na proposta: modelo, cor, vidro, ferragem, quantidade. Um contrato que não cita a proposta comercial deixa de fora justamente a parte que descreve o que você vendeu.\n\nDeclare a lista de documentos e a ordem de prevalência. Duas linhas.\n\nContrato não é só a folha assinada — é o conjunto que descreve a venda.",
    "fonte": "Venda Blindada — Contrato Modelo Esquadrias (produto do Diego)",
-   "foto": "fotos/miniaula-27.jpg"
+   "foto": "fotos/miniaula-27.jpg",
+   "foto_reaproveitada_de": 19
   },
   {
    "id": 28,
@@ -1124,7 +1125,8 @@
     "tipo": "salvar"
    },
    "legenda": "Você visita todo mundo com a mesma energia e colhe resultado meia-boca de cada um.\n\nCurva ABC de produto todo mundo entende: 20% do esforço traz 80% da venda. Agora troca o nome do produto pelo nome do arquiteto.\n\nLevanta três números: quantos você prospectou, quais geraram venda e quanto cada um faturou. Na construção civil quantidade não é dinheiro no bolso — um arquiteto de poucas vendas pode ser o maior faturamento do ano.\n\nNão é abandonar ninguém. É saber onde colocar energia na hora do aperto.",
-   "foto": "fotos/miniaula-31.jpg"
+   "foto": "fotos/miniaula-31.jpg",
+   "foto_reaproveitada_de": 10
   },
   {
    "id": 32,
@@ -1309,7 +1311,8 @@
     "tipo": "envio"
    },
    "legenda": "“Gostaria de ter um carro melhor.” “Gostaria de liberdade financeira.”\n\nRepare em quem fala assim à sua volta. Quase ninguém chegou lá — porque enquanto é “gostaria”, é sonho, e sonho é subjetivo demais para virar ação.\n\nMeta é objetivo, e objetivo tem forma, data e jornada.\n\nForma: qual modelo, qual ano, qual cor. Data e valor: pesquisados, não chutados. Jornada: como exatamente você chega nesse número.\n\nE estruturar é tirar da cabeça. Ela precisa estar livre para a estratégia, não ocupada guardando a meta.",
-   "foto": "fotos/miniaula-35.jpg"
+   "foto": "fotos/miniaula-35.jpg",
+   "foto_reaproveitada_de": 7
   },
   {
    "id": 36,
@@ -1402,7 +1405,8 @@
     "tipo": "palavra"
    },
    "legenda": "Fim do mês chegando, meta escapando. Agenda lotada de orçamento, cliente que prometeu e sumiu, telefone mudo — só vibrando com cobrança de fornecedor.\n\nAí você acelera: manda mensagem, liga, pressiona. E a cada contato o silêncio aumenta.\n\nAnsiedade não fecha obra. O ciclo de venda de obra não obedece ao calendário da sua meta, e o cliente sente o desespero — prefere adiar ou fechar com quem parece mais previsível.\n\nO problema não é a sua ansiedade. É não saber o motivo real do sumiço.\n\nO que resolve o fim do mês é o que você fez no dia 8.",
-   "foto": "fotos/miniaula-37.jpg"
+   "foto": "fotos/miniaula-37.jpg",
+   "foto_reaproveitada_de": 9
   },
   {
    "id": 38,
