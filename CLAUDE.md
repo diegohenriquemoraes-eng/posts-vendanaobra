@@ -67,6 +67,29 @@ ele que pôs o quadro na Audrey enquanto o Diego dizia "não, total". Cada bloco
 Quando atravessa, o recorte do ângulo velho cai sobre o ângulo novo e o quadro
 fica vazio (parede e cadeira, sem ninguém). `montar_edl` quebra o beat na troca.
 
+### A fila virou SÓ FEED em 31/08/2026
+
+**Decisão do Diego, depois de ver os números.** Dos 19 cortes que ainda faltavam,
+**17 eram de aba de Reels e foram excluídos da fila** — não desativados,
+removidos do `plano_ep25.json`. Sobraram os dois de feed, **nas datas que já
+estavam marcadas**:
+
+| Dia | Corte | |
+|---|---|---|
+| 05/09/2026, 9h | 27 · Você precisa de dois mentores | feed + colab @aluparts.oficial |
+| 10/09/2026, 9h | 14 · Empresa que não demite cliente | feed + colab @aluparts.oficial |
+
+**Não repor os 17 na fila.** Os MP4 deles continuam em `midia/reels/`, prontos e
+já com o formato novo — apagá-los não devolveria espaço (o git guarda os blobs no
+histórico de qualquer jeito) e jogaria fora horas de render. Se um dia ele quiser
+um deles, é só voltar a linha no plano.
+
+**O publicador passou a olhar a DATA.** Era posicional ("o próximo da fila"), e
+com dois cortes restando isso publicaria os dois em dias seguidos, ignorando o
+calendário. Agora: dia sem nada marcado sai com **código 0** e a mensagem "nada
+marcado para hoje" — de propósito, para o Actions não abrir issue todos os dias
+entre 31/08 e 05/09.
+
 ### 2. Calendário: feed x só Reels
 
 Postar todo dia no feed encheria o perfil de corte. A cadência continua **1 por

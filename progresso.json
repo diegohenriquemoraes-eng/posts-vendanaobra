@@ -21,7 +21,7 @@
   "quando": "27/08 14:02"
  },
  "10-nao-culpe-ninguem-pelos-resultados.mp4": {
-  "status": "pronto",
+  "status": "publicado",
   "legenda": true,
   "quando": "27/08 14:10",
   "render_s": 359
@@ -33,13 +33,13 @@
   "render_s": 866
  },
  "05-venda-nao-e-dom.mp4": {
-  "status": "pronto",
+  "status": "publicado",
   "legenda": true,
   "quando": "27/08 18:48",
   "render_s": 270
  },
  "13-territorio-x-mapa.mp4": {
-  "status": "pronto",
+  "status": "publicado",
   "legenda": true,
   "quando": "27/08 18:59",
   "render_s": 653
@@ -95,8 +95,8 @@
  "06-nunca-marco-no-mesmo-dia.mp4": {
   "status": "pronto",
   "legenda": true,
-  "quando": "27/08 19:47",
-  "render_s": 384
+  "quando": "31/08 10:55",
+  "render_s": 275
  },
  "14-demitir-cliente.mp4": {
   "status": "pronto",
@@ -125,8 +125,8 @@
  "19-network-interessado-nao-interesseiro.mp4": {
   "status": "pronto",
   "legenda": true,
-  "quando": "27/08 20:19",
-  "render_s": 209
+  "quando": "31/08 11:00",
+  "render_s": 331
  },
  "20-posicionamento-antes-de-abrir-a-boca.mp4": {
   "status": "pronto",
@@ -137,14 +137,14 @@
  "15-gestao-emocional-do-vendedor.mp4": {
   "status": "pronto",
   "legenda": true,
-  "quando": "27/08 20:26",
-  "render_s": 225
+  "quando": "31/08 11:05",
+  "render_s": 257
  },
  "24-ninguem-sabe-quantos-orcamentos-faz.mp4": {
   "status": "pronto",
   "legenda": true,
-  "quando": "27/08 20:31",
-  "render_s": 296
+  "quando": "31/08 11:09",
+  "render_s": 262
  },
  "09-presente-anticiclico.mp4": {
   "status": "pronto",
