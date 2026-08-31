@@ -2,116 +2,139 @@
  {
   "id": "07",
   "dia": "2026-08-28",
-  "feed": true
+  "feed": true,
+  "ativo": true
  },
  {
   "id": "10",
   "dia": "2026-08-29",
-  "feed": false
+  "feed": false,
+  "ativo": true
  },
  {
   "id": "05",
   "dia": "2026-08-30",
-  "feed": false
+  "feed": false,
+  "ativo": true
  },
  {
   "id": "13",
   "dia": "2026-08-31",
-  "feed": true
+  "feed": true,
+  "ativo": true
  },
  {
   "id": "18",
   "dia": "2026-09-01",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "11",
   "dia": "2026-09-02",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "25",
   "dia": "2026-09-03",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "08",
   "dia": "2026-09-04",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "27",
   "dia": "2026-09-05",
-  "feed": true
+  "feed": true,
+  "ativo": true
  },
  {
   "id": "22",
   "dia": "2026-09-06",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "21",
   "dia": "2026-09-07",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "12",
   "dia": "2026-09-08",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "06",
   "dia": "2026-09-09",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "14",
   "dia": "2026-09-10",
-  "feed": true
+  "feed": true,
+  "ativo": true
  },
  {
   "id": "23",
   "dia": "2026-09-11",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "17",
   "dia": "2026-09-12",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "26",
   "dia": "2026-09-13",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "19",
   "dia": "2026-09-14",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "20",
   "dia": "2026-09-15",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "15",
   "dia": "2026-09-16",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "24",
   "dia": "2026-09-17",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "09",
   "dia": "2026-09-18",
-  "feed": false
+  "feed": false,
+  "ativo": false
  },
  {
   "id": "16",
   "dia": "2026-09-19",
-  "feed": false
+  "feed": false,
+  "ativo": false
  }
 ]

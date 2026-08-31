@@ -190,12 +190,22 @@ def escolher(fila: dict, id_forcado: str | None) -> tuple[dict, bool]:
             raise SystemExit(f"Corte {id_forcado} nao existe na fila")
         return itens[id_forcado], no_feed.get(id_forcado, False)
 
-    restantes = [d for d in plano if d["id"] not in feitos]
+    # Desde 31/08/2026 a fila e' so' dos cortes de FEED, e cada um tem DATA.
+    # Antes isto era posicional ("o proximo da fila") — o que, com poucos cortes
+    # restando, publicaria todos em dias seguidos e ignoraria o calendario.
+    hoje = _hoje()
+    restantes = [d for d in plano
+                 if d["id"] not in feitos and d.get("ativo", True)]
     if not restantes:
         raise SystemExit("Fila do EP25 terminou — nada a publicar.")
-    if len(restantes) <= 3:
+    vencidos = [d for d in restantes if d["dia"] <= hoje]
+    if not vencidos:
+        prox = min(d["dia"] for d in restantes)
+        _log(f"nada marcado para hoje; o proximo e' {prox}")
+        raise SystemExit(0)
+    if len(restantes) <= 2:
         _log(f"AVISO: so restam {len(restantes)} cortes na fila.")
-    d = restantes[0]
+    d = vencidos[0]
     return itens[d["id"]], bool(d.get("feed"))
 
 
