@@ -145,6 +145,23 @@ limitante" é **crença limitante**, "custo de questão de cliente" é **custo d
 aquisição de cliente**. A transcrição própria também **inventou** uma linha de
 crédito de legendagem que não existe no áudio — conferir o fim de cada corte.
 
+### Armadilha paga: PUXAR antes de agir (31/08/2026)
+
+**Publiquei o corte 10 duas vezes.** Ao retomar depois de dois dias, li o
+`publicados_reels.json` **local**, que estava parado em 28/08, concluí que nada
+tinha saído e republiquei. O robô do GitHub tinha publicado normalmente em 29 e
+30/08 e gravado **no remoto**.
+
+A trava `--garantir` existe e funciona, mas ela lê o arquivo local — e o arquivo
+local estava desatualizado.
+
+**Regra: neste repositório o robô da nuvem também escreve. `git pull` ANTES de
+qualquer decisão sobre o que publicar**, e antes de confiar em qualquer arquivo de
+estado. Vale para `publicados_reels.json`, `publicados_miniaulas.json` e
+`estado_cta.json`.
+
+A Graph API não apaga post do Instagram — o duplicado teve de ser removido à mão.
+
 ### Armadilha: o tamanho do repositório
 
 O `.git` passou de 500 MB e cada lote de vídeo novo é ~100 MB. **`git push`
@@ -152,6 +169,57 @@ estoura 10 minutos** e precisa rodar em segundo plano. Sem o push, o Actions
 publica o arquivo **antigo** — o vídeo vem de `raw.githubusercontent`, não da
 máquina. Subir em lotes, e conferir `git status -sb` antes de dar a fila por
 pronta.
+
+## Banco de mini-aulas — 20 aulas novas em 31/08/2026
+
+**33 aulas no banco.** O Diego mandou escrever a fila até dezembro; escrevi **20**,
+que é o que o material dele cobre. Fontes: o contrato do **Venda Blindada** (9),
+as **transcrições dos vídeos** dele (9), o **blog** (2) e o banco de frases no tema
+inteligência artificial (1). Cada aula traz a origem em `fonte` — nenhuma foi
+escrita de fora do material dele, que é a regra do banco.
+
+**Faltam 11 para fechar dezembro, e elas dependem do Diego.** Sete saem de
+"O Cliente Sumiu" e **o texto do e-book não está mais no disco** (a pasta
+`Perffec\Claude\Ebook-Cliente-Sumiu` está vazia; o arquivado da LP só tem as
+imagens de capa). As outras quatro precisam de tema novo. Sem uma das duas coisas,
+escrever essas 11 seria inventar — e o banco proíbe.
+
+### O CTA das mini-aulas agora é um ciclo
+
+`palavra → salvar → palavra → envio → palavra → pergunta`, no campo `cta.tipo`.
+Só o tipo `palavra` tem `cta.palavra`.
+
+Antes era palavra-chave em **100%** das aulas — o mesmo padrão que o Diego já
+tinha corrigido no carrossel de frase em agosto, quando o perfil passou a ler como
+loja. A pesquisa de mercado (set/2026) confirma: em carrossel educativo, CTA de
+salvar e compartilhar rende mais, e carrossel é o formato de maior engajamento
+(0,50% contra 0,48% do Reel).
+
+⚠️ **A entrega automática do link NÃO está ligada.** O objetivo declarado é
+"comenta e recebe o link", mas hoje só existe o robô do RAIOX; o resto o Diego
+responde à mão. Ligar isso vale mais que escrever aula nova.
+
+### Capas: o gargalo real
+
+**A fila publica até 29/09 e para.** O `escolher()` **pula** aula sem foto e vai
+para a próxima com foto — não falha, mas também não espera. Então saem nove posts
+(13, 6, 18, 16, 4, 37, 31, 35, 27) e depois o job passa a falhar.
+
+**16 aulas escritas estão esperando capa.**
+
+Em 31/08 reaproveitei as **4 fotos livres em alta** — das aulas já publicadas 07,
+09, 10 e 19 — nas aulas 35, 37, 31 e 27, casadas por cena. `foto_reaproveitada_de`
+registra a origem. Não dava para reaproveitar mais: 04, 06, 13, 16 e 18 são das
+aulas que ainda vão ao ar, e 01, 02, 03 e 29 estão em 928x1152, abaixo do slide.
+
+**A API do Gemini não resolve hoje:** `gerar_foto_ia.py` e `cenas_miniaulas.json`
+(as 20 cenas escritas) estão prontos e testados, mas **todos os modelos de imagem
+devolvem HTTP 429 nas duas chaves** — geração de imagem não tem free tier, ao
+contrário da geração de texto que o blog e o LinkedIn usam com a mesma chave.
+Para destravar: ligar faturamento na chave, e aí é um comando só.
+
+⚠️ O arquivo `Perffec\Claude\gemini_api_token.txt` guarda **duas chaves**, e uma
+delas apareceu na tela num erro de execução em 31/08 — vale rotacionar.
 
 ## Banco de mini-aulas (24/08/2026)
 
