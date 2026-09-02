@@ -423,6 +423,11 @@ o robô já respondeu.
 - **Checkout esparso no workflow.** `midia/` tem quase 500 MB de MP4; baixar
   isso 144 vezes por dia seria absurdo, então o job clona só `*.py`, `*.json` e
   `.github`.
+- **O cron de 10 minutos não é garantia.** Nas primeiras horas o Actions não
+  honrou nenhum disparo de `*/10`. Por isso o atendimento tem três camadas: o
+  cron de 10 em 10, um cron horário no minuto 7, e — a que realmente importa —
+  **12 passadas de 5 em 5 minutos dentro do próprio `miniaula.yml`**, logo
+  depois de publicar, que é quando chega quase todo comentário.
 - **Nenhum horário no minuto redondo.** O primeiro `*/10` não disparou nenhuma
   vez em meia hora — minuto 0/10/20 é pico de fila do Actions, a mesma
   armadilha do reel diário em 27/08. Hoje roda em `4,14,24,34,44,54`.

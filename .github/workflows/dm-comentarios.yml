@@ -27,6 +27,9 @@ on:
     # nao disparou em 27/08 (ver "Armadilhas ja pagas" no CLAUDE.md). Na primeira
     # meia hora com "*/10" este workflow tambem nao rodou nenhuma vez.
     - cron: "4,14,24,34,44,54 * * * *"
+    # Rede de seguranca de hora em hora, em minuto quebrado: cron de alta
+    # frequencia e o primeiro que o Actions despriorizada quando a fila aperta.
+    - cron: "7 * * * *"
   workflow_dispatch:
     inputs:
       ensaio:
