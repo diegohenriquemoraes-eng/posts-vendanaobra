@@ -22,7 +22,11 @@ name: DM por comentario @vendanaobra
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    # De 10 em 10 minutos, mas NUNCA no minuto redondo: minuto 0, 10, 20 e afins
+    # sao o pico de fila do Actions, e foi assim que o reel diario simplesmente
+    # nao disparou em 27/08 (ver "Armadilhas ja pagas" no CLAUDE.md). Na primeira
+    # meia hora com "*/10" este workflow tambem nao rodou nenhuma vez.
+    - cron: "4,14,24,34,44,54 * * * *"
   workflow_dispatch:
     inputs:
       ensaio:

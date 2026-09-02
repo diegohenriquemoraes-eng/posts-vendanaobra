@@ -423,6 +423,9 @@ o robô já respondeu.
 - **Checkout esparso no workflow.** `midia/` tem quase 500 MB de MP4; baixar
   isso 144 vezes por dia seria absurdo, então o job clona só `*.py`, `*.json` e
   `.github`.
+- **Nenhum horário no minuto redondo.** O primeiro `*/10` não disparou nenhuma
+  vez em meia hora — minuto 0/10/20 é pico de fila do Actions, a mesma
+  armadilha do reel diário em 27/08. Hoje roda em `4,14,24,34,44,54`.
 - **Polling, não webhook.** Se uma rodada não disparar (e o cron do Actions some
   sem avisar, ver 27/08), a próxima pega os mesmos comentários — a janela é de 7
   dias e o estado sabe quem já foi atendido. Webhook seria instantâneo, mas
