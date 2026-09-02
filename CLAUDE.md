@@ -358,6 +358,76 @@ centralizada entre aspas tipográficas, assinatura discreta no rodapé
 azul da marca (`#18406F`, amostrado do hero de `vendanaobra.com.br`) e letra
 branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 
+## DM por comentário — robô próprio, no ar desde 02/09/2026
+
+Toda mini-aula termina pedindo "comenta PALAVRA que eu te mando o link no
+Direct". Quem cumpria isso era o Diego, **na mão**: nos comentários de agosto
+ele respondeu "@fulano te chamei no direct" de 4 a 36 minutos depois e mandou a
+mensagem ele mesmo. Agora o `responder_dm.py` faz isso sozinho, a cada 10
+minutos, para **toda mini-aula publicada daqui para a frente** — sem configurar
+nada por post, porque o `publicados_miniaulas.json` já guarda o `media_id` de
+cada uma.
+
+| Palavra comentada | O que cai no Direct |
+|---|---|
+| `RAIOX` · `RAIO X` · `LIVRO` (aposentada) | `/raio-x` |
+| `10X` | `/venda-10x` |
+| `BLINDADA` | `/venda-blindada-esquadrias` |
+| `MAQUINA` · `CRM` | `/crm-venda-na-obra` |
+| `PROSPECCAO` | `/prospeccao-turbinada-por-ia` |
+| `quero`, `link`, `manda aí`… | o produto **daquele post** (`cta.palavra`), nunca chute |
+
+Todo link sai com `utm_medium=dm` — é o único jeito de separar o que o
+comment-to-DM traz do resto do tráfego do Instagram. E o destino é sempre a
+**nossa subpágina**, nunca o checkout: a página do nosso domínio é a que explica
+o diferencial e a que ranqueia (decisão de 26/08/2026).
+
+### As automações nativas da Meta continuam ligadas — e tudo bem
+
+No Business Suite existem 7 automações "Comentar para enviar mensagem"
+(MAPEAMENTO, MAQUINA, RAIOX, CRM, BLINDADA, 10X, LIVRO), todas **ativadas**,
+todas valendo para qualquer post, todas com o link certo. **Elas não estão
+disparando** — a prova está nos comentários de agosto: a resposta pública é o
+texto do Diego ("te chamei no direct"), nunca o texto que a automação usaria
+("Enviei uma mensagem para você!"), e o intervalo é de minutos, não de segundos.
+Foi por isso que ele pediu este robô.
+
+**Não foi preciso desligar nenhuma delas**, e não se deve desligar. O robô lê as
+respostas do comentário antes de agir: se o @vendanaobra já respondeu ali
+embaixo — o Diego na mão ou a automação nativa voltando a funcionar — ele se
+cala. Quem chega primeiro atende; o outro fica quieto. Se um dia as nativas
+voltarem, o pior que acontece é o robô ficar ocioso, nunca DM em dobro.
+
+Pela mesma razão a **resposta pública fica ligada por padrão** ("@fulano te
+chamei no direct", igual ao que ele escreve à mão): é olhando o post que o Diego
+vê que aquele comentário já foi atendido. Sem ela, ele responderia de novo o que
+o robô já respondeu.
+
+### Detalhes que custaram tempo
+
+- **A private reply não sai pelo IG User ID.** Pelo `{ig-user-id}/messages` a
+  Graph responde `(#3) Application does not have the capability to make this API
+  call`, mesmo com o token tendo `instagram_manage_messages`. Sai pela **Página**
+  (`{page-id}/messages`, `PAGE_ID = 1272959582565285`) com o **token da página**,
+  derivado do de system user em `/me/accounts` a cada rodada. Nenhum segredo novo.
+- **7 dias e uma resposta só.** A Meta recusa private reply em comentário mais
+  velho que isso (subcode 2534024) e recusa a segunda resposta ao mesmo
+  comentário. O robô trata os dois como definitivos e não insiste.
+- **O estado é anônimo de propósito.** Este repo é público e os logs do Actions
+  também: `respondidos_dm.json` guarda um hash de 12 caracteres no lugar do @ da
+  pessoa. O comentário é público; a mensagem privada não, e "@fulano recebeu DM
+  do Venda Blindada" seria um dado novo exposto.
+- **Comentário com mais de 10 palavras não recebe DM.** É conversa, não
+  palavra-chave — responder "MAQUINA" para quem escreveu três linhas contando o
+  caso dele é o jeito mais rápido de parecer robô.
+- **Checkout esparso no workflow.** `midia/` tem quase 500 MB de MP4; baixar
+  isso 144 vezes por dia seria absurdo, então o job clona só `*.py`, `*.json` e
+  `.github`.
+- **Polling, não webhook.** Se uma rodada não disparar (e o cron do Actions some
+  sem avisar, ver 27/08), a próxima pega os mesmos comentários — a janela é de 7
+  dias e o estado sabe quem já foi atendido. Webhook seria instantâneo, mas
+  exigiria servidor de pé e um endpoint público só para isso.
+
 ## Arquivos
 
 | Arquivo | Papel |
@@ -378,6 +448,10 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 | `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
 | `.github/workflows/miniaula.yml` | **Ativo** desde 24/08/2026 — ter/qui 12h BRT + repescagens 13h/17h |
 | `.github/workflows/post-diario.yml`, `rede-de-seguranca.yml` | **Disabled + cron comentado** (carrossel de frase é manual) |
+| `responder_dm.py` | **Ativo** desde 02/09/2026 — comentário com palavra → link do produto no Direct |
+| `dm_produtos.py` | Palavra → produto → subpágina + o texto que a pessoa recebe |
+| `respondidos_dm.json` | Quem já foi atendido (identidade em hash — o repo é público) |
+| `.github/workflows/dm-comentarios.yml` | **Ativo** — roda de 10 em 10 minutos |
 
 ## Por que o repositório é público
 

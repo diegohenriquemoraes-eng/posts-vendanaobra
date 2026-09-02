@@ -1,0 +1,99 @@
+name: DM por comentario @vendanaobra
+
+# ============================================================================
+# Comentario com palavra-chave -> link da subpagina do produto no Direct.
+#
+# Criado em 02/09/2026 a pedido do Diego: as mini-aulas de terca e quinta
+# terminam pedindo "comenta PALAVRA que eu te mando no Direct", e ate aqui isso
+# dependia da automacao nativa da Meta, configurada publicacao a publicacao.
+# Mini-aula nova saia sem cobertura ate alguem lembrar de configurar. Este
+# workflow cobre toda mini-aula publicada daqui para a frente, sozinho.
+#
+# POR QUE DE 10 EM 10 MINUTOS, e nao webhook: webhook exigiria servidor de pe e
+# um endpoint publico so para isso. O polling e mais burro e mais resistente —
+# se uma rodada nao disparar (e o cron do Actions some sem avisar, ver 27/08),
+# a proxima pega os mesmos comentarios, porque a janela de resposta da Meta e
+# de 7 dias e o estado guarda quem ja foi atendido. Nao ha DM repetida.
+#
+# CUSTO ZERO: o repo e publico, entao minuto de Actions e ilimitado. O checkout
+# e esparso (so .py, .json e workflows) porque midia/ tem quase 500 MB de MP4 e
+# baixar isso 144 vezes por dia seria absurdo.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      ensaio:
+        description: "Ensaio: mostra o que enviaria, sem enviar"
+        required: false
+        type: boolean
+        default: false
+      desde:
+        description: "Olhar mini-aulas a partir desta data (AAAA-MM-DD)"
+        required: false
+        type: string
+
+# Uma rodada por vez: duas ao mesmo tempo brigariam pelo push do estado.
+concurrency:
+  group: dm-comentarios
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  responder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*.py
+            /*.json
+            /.github
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # publicar.py (de onde vem o token e os utilitarios) importa o gerador de
+      # carrossel, que importa PIL. So por isso o pillow entra aqui.
+      - run: pip install --quiet pillow
+
+      - name: Responder comentarios
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          args=""
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          [ -n "${{ inputs.desde }}" ] && args="$args --desde ${{ inputs.desde }}"
+          python responder_dm.py $args
+
+      # Falha isolada nao vira issue (sao 144 rodadas por dia e a proxima
+      # reprocessa tudo). Uma issue por vez, reaberta so quando nao existe
+      # nenhuma aberta — para quebra de verdade (token, permissao) aparecer sem
+      # inundar o repo.
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const busca = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "dm-comentarios",
+            })
+            if (busca.data.length) return
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              labels: ["dm-comentarios"],
+              title: "Robo de DM por comentario esta falhando",
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner +
+                    "/" + context.repo.repo + "/actions/runs/" + context.runId +
+                    "\n\nCausas comuns: token da Meta sem instagram_manage_messages, " +
+                    "vinculo Instagram <-> Pagina desfeito, ou push do estado recusado.",
+            })
