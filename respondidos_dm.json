@@ -1,4 +1,17 @@
 {
-  "comentarios": {},
+  "comentarios": {
+    "17896528491664063": {
+      "quando": "2026-09-02T21:00:08-03:00",
+      "pessoa": "87f760632f40",
+      "midia": "18404000800094234",
+      "acao": "ja-respondido-no-post"
+    },
+    "18115796594318600": {
+      "quando": "2026-09-02T21:00:08-03:00",
+      "pessoa": "24dd714316af",
+      "midia": "18404000800094234",
+      "acao": "conta-da-casa"
+    }
+  },
   "envios": []
 }
