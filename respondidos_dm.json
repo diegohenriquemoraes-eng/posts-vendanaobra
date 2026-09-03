@@ -19,6 +19,12 @@
       "acao": "enviado",
       "produto": "maquina",
       "palavra": "maquina"
+    },
+    "17963686545076939": {
+      "quando": "2026-09-02T21:05:18-03:00",
+      "pessoa": "24dd714316af",
+      "midia": "18404000800094234",
+      "acao": "conta-da-casa"
     }
   },
   "envios": [
