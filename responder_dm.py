@@ -6,12 +6,20 @@ estao no ar, descobre qual produto a pessoa pediu e manda a SUBPAGINA daquele
 produto por mensagem privada, uma unica vez por pessoa.
 
 Por que existe (02/09/2026, pedido do Diego): as duas mini-aulas da semana
-terminam pedindo "comenta PALAVRA que eu te mando no Direct". Ate agora isso
-dependia da automacao nativa da Meta ("Comentar para enviar mensagem"), que e
-configurada publicacao a publicacao no Business Suite — mini-aula nova saia sem
-cobertura ate alguem lembrar de configurar. Este robo cobre **toda mini-aula
-publicada daqui para a frente**, sem configurar nada: o `publicar_miniaula.py`
-ja grava o `media_id` no `publicados_miniaulas.json`, e e dali que ele le.
+terminam pedindo "comenta PALAVRA que eu te mando no Direct", e a automacao
+nativa da Meta so atende quem escreve a palavra **exatamente** como ela esta
+cadastrada. Medido no post do dia, com a mesma conta, no mesmo carrossel:
+
+    "Blindada"  -> nativa respondeu no MESMO SEGUNDO
+    "Maquina" com acento ("Máquina") -> nativa ficou muda; este robo atendeu
+                                        15 segundos depois
+
+Era o buraco por onde a conversao vazava sem ninguem ver: os tres comentarios
+"Máquina" de agosto ficaram sem resposta automatica e o Diego respondeu na mao,
+de 4 a 36 minutos depois. Este robo normaliza acento, pontuacao e emoji antes de
+comparar, entende "quero"/"manda o link" pelo produto do proprio post, e cobre
+**toda mini-aula publicada daqui para a frente** sem configurar nada: o
+`publicar_miniaula.py` ja grava o `media_id` no `publicados_miniaulas.json`.
 
 Caminho OFICIAL, nada de navegador: private reply da Graph API
 (`POST /{ig-user-id}/messages` com `recipient={"comment_id": ...}`), com o mesmo
@@ -295,15 +303,15 @@ def atendido_pela_casa(respostas: list[dict]) -> bool:
       1. **O Diego respondendo a mao.** E o que acontece hoje: nos comentarios
          de agosto ele respondeu "@fulano te chamei no direct" e mandou a DM
          ele mesmo, 4 a 36 minutos depois do comentario.
-      2. **As automacoes nativas da Meta**, que seguem ligadas no Business Suite
-         (MAPEAMENTO, MAQUINA, RAIOX, CRM, BLINDADA, 10X, LIVRO) e respondem o
-         comentario com "Enviei uma mensagem para voce!" quando disparam. Elas
-         nao estao disparando — por isso este robo existe — mas se voltarem a
-         funcionar, a resposta publica delas aparece aqui e o robo se cala em
-         vez de mandar a segunda DM.
+      2. **As automacoes nativas da Meta**, ligadas no Business Suite
+         (MAPEAMENTO, MAQUINA, RAIOX, CRM, BLINDADA, 10X, LIVRO), que respondem
+         "Enviei uma mensagem para voce!" no mesmo segundo quando a palavra bate
+         exatamente. Testado em 02/09/2026: elas funcionam, e este robo ficou
+         calado no comentario que elas atenderam.
 
     E por isso que **nao foi preciso desligar nada** para ligar este robo: quem
-    chegar primeiro atende, o outro fica quieto.
+    chegar primeiro atende, o outro fica quieto. As nativas pegam o caso exato,
+    este robo pega o resto — acento, variacao e intencao.
     """
     return any((r.get("username") or "").lower() in prod.IGNORAR_USUARIOS
                for r in respostas)

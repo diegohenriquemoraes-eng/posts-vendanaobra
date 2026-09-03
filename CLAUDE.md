@@ -361,12 +361,21 @@ branca — fecha o carrossel com a cor do site (ver seção CTA abaixo).
 ## DM por comentário — robô próprio, no ar desde 02/09/2026
 
 Toda mini-aula termina pedindo "comenta PALAVRA que eu te mando o link no
-Direct". Quem cumpria isso era o Diego, **na mão**: nos comentários de agosto
-ele respondeu "@fulano te chamei no direct" de 4 a 36 minutos depois e mandou a
-mensagem ele mesmo. Agora o `responder_dm.py` faz isso sozinho, a cada 10
-minutos, para **toda mini-aula publicada daqui para a frente** — sem configurar
-nada por post, porque o `publicados_miniaulas.json` já guarda o `media_id` de
-cada uma.
+Direct". A automação nativa da Meta atende isso — **mas só quem escreve a
+palavra exatamente como ela está cadastrada**. Medido no post do dia, mesma
+conta, mesmo carrossel:
+
+| Comentário | Nativa | Nosso robô |
+|---|---|---|
+| `Blindada` | respondeu no **mesmo segundo** | ficou calado (já atendido) |
+| `Máquina` (com acento) | **ficou muda** | atendeu **15 segundos** depois |
+
+Era o buraco por onde a conversão vazava sem ninguém ver: os três comentários
+"Máquina" de agosto ficaram sem resposta automática, e o Diego respondeu à mão
+de 4 a 36 minutos depois. O `responder_dm.py` normaliza acento, pontuação e
+emoji antes de comparar, entende "quero"/"manda o link" pelo produto do próprio
+post, e cobre **toda mini-aula publicada daqui para a frente** — sem configurar
+nada por post, porque o `publicados_miniaulas.json` já guarda o `media_id`.
 
 | Palavra comentada | O que cai no Direct |
 |---|---|
@@ -382,21 +391,24 @@ comment-to-DM traz do resto do tráfego do Instagram. E o destino é sempre a
 **nossa subpágina**, nunca o checkout: a página do nosso domínio é a que explica
 o diferencial e a que ranqueia (decisão de 26/08/2026).
 
-### As automações nativas da Meta continuam ligadas — e tudo bem
+### As automações nativas continuam ligadas — e devem continuar
 
 No Business Suite existem 7 automações "Comentar para enviar mensagem"
-(MAPEAMENTO, MAQUINA, RAIOX, CRM, BLINDADA, 10X, LIVRO), todas **ativadas**,
-todas valendo para qualquer post, todas com o link certo. **Elas não estão
-disparando** — a prova está nos comentários de agosto: a resposta pública é o
-texto do Diego ("te chamei no direct"), nunca o texto que a automação usaria
-("Enviei uma mensagem para você!"), e o intervalo é de minutos, não de segundos.
-Foi por isso que ele pediu este robô.
+(MAPEAMENTO, MAQUINA, RAIOX, CRM, BLINDADA, 10X, LIVRO), todas ativadas e
+valendo para qualquer post. Elas **funcionam** e são instantâneas — só não
+toleram acento nem variação. Os dois mecanismos se dividem sozinhos: a nativa
+pega o caso exato, o robô pega o resto.
 
-**Não foi preciso desligar nenhuma delas**, e não se deve desligar. O robô lê as
-respostas do comentário antes de agir: se o @vendanaobra já respondeu ali
-embaixo — o Diego na mão ou a automação nativa voltando a funcionar — ele se
-cala. Quem chega primeiro atende; o outro fica quieto. Se um dia as nativas
-voltarem, o pior que acontece é o robô ficar ocioso, nunca DM em dobro.
+**Não desligar nenhuma delas.** O robô lê as respostas do comentário antes de
+agir: se o @vendanaobra já respondeu ali embaixo — a nativa ou o Diego na mão —
+ele se cala. Quem chega primeiro atende; nunca sai DM em dobro. Foi assim no
+teste de 02/09: o comentário `Blindada` foi atendido pela nativa e o robô não
+mandou nada.
+
+Uma consequência prática: o link da nativa vai **sem UTM**, e o do robô vai com.
+Então o `utm_medium=dm` mede o que o robô atendeu, não o total do
+comentário→Direct. Fechar essa diferença exigiria editar as 7 automações à mão
+no Business Suite.
 
 Pela mesma razão a **resposta pública fica ligada por padrão** ("@fulano te
 chamei no direct", igual ao que ele escreve à mão): é olhando o post que o Diego
