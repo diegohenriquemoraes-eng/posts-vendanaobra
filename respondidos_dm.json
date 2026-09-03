@@ -13,14 +13,22 @@
       "acao": "conta-da-casa"
     },
     "17904024186552571": {
-      "quando": "2026-09-02T21:04:51-03:00",
+      "quando": "2026-09-02T21:04:48-03:00",
       "pessoa": "87f760632f40",
       "midia": "18404000800094234",
-      "acao": "erro",
+      "acao": "enviado",
       "produto": "maquina",
-      "tentativas": 1,
-      "erro": "An unexpected error has occurred. Please retry your request later."
+      "palavra": "maquina"
     }
   },
-  "envios": []
+  "envios": [
+    {
+      "quando": "2026-09-02T21:04:48-03:00",
+      "pessoa": "87f760632f40",
+      "produto": "maquina",
+      "palavra": "maquina",
+      "comentario": "17904024186552571",
+      "midia": "18404000800094234"
+    }
+  ]
 }
