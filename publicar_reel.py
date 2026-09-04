@@ -4,13 +4,16 @@
 Fila fixa: os 12 cortes da participacao do Diego no Aluparts Podcast #EP25
 (`reels_ep25.json`). Um por dia, na ordem escrita no arquivo, ate acabar.
 
-Por que 09h e nao 12h: a mini-aula ocupa terca e quinta as 12h (`miniaula.yml`).
-09h e o segundo melhor horario medido da conta (mediana 427 views contra 545 das
-12h, no periodo organico de jul/ago) e deixa 3 horas de folga do carrossel.
+Por que 14h15 (04/09/2026): com o metodo ROTA 100K o perfil passou a publicar 4
+Reels proprios por dia — 09:00, 12:30, 16:00 e 19:00 — e as 09h o corte do EP25
+disputava o slot do Reels que carrega o gancho do dia. 14h15 e' o meio do maior
+buraco da grade (12:30 -> 16:00). A mini-aula, que antes ocupava terca e quinta
+as 12h e era o motivo de as 09h terem sido escolhidas, foi cancelada em 04/09.
 
-Cada post entra como **colaboracao** com o perfil da Aluparts: aparece nos dois
-feeds e soma o alcance dos dois publicos. O convite precisa ser aceito por
-alguem de la — ate aceitar, o Reel fica so no perfil do Diego.
+Cada post entra como **colaboracao** com a Aluparts e com a convidada do
+episodio (@arq.audreydias): aparece no feed dos tres perfis e soma o alcance dos
+tres publicos. Cada convite precisa ser aceito do outro lado — ate aceitar, o
+Reel fica so no perfil do Diego.
 
 Uso:
     python publicar_reel.py --ensaio     # mostra o que sairia e para
