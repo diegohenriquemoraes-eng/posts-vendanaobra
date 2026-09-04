@@ -4,10 +4,10 @@ name: Mini-aula @vendanaobra
 # MINI-AULA PAUSADA EM 04/09/2026 (decisao do Diego) — "interrompe, mas mantem
 # o estudo ate eu pedir para voltar".
 #
-# Nao sai mais mini-aula por API: nem a de terca nem a de quinta. A pausa vale
-# ja para a semana de 08/09 — a aula 6 ("4 objecoes que viram sumico") continua
-# na fila, sem data, e a sequencia NAO foi mexida: quando o Diego mandar voltar,
-# a proxima peca e exatamente a que sairia hoje.
+# Nao sai mais mini-aula por API: nem a de terca nem a de quinta. A ultima foi
+# a aula 6, em 03/09. A pausa vale ja para a semana de 08/09 — as aulas 18 e 16
+# continuam na fila, sem data, e a sequencia NAO foi mexida: quando o Diego
+# mandar voltar, a proxima peca e exatamente a que sairia agora.
 #
 # O ESTUDO CONTINUA INTEIRO, de proposito: `miniaulas.json` (33 aulas),
 # `PAUTA-MINIAULAS.md`, `fotos/`, `gerar_miniaula.py`, `publicar_miniaula.py` e

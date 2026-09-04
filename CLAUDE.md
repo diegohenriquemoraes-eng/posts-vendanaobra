@@ -190,10 +190,11 @@ sairia na semana seguinte. Não veio motivo, e não foi inventado nenhum aqui.
   script é a segunda trava.
 
 **O que a semana de 08/09 perde, e que já está retirado:** terça 08/09 sairia a
-aula **6** ("4 objeções que viram sumiço — e a resposta de cada uma", venda10x)
-e quinta 10/09 a **18** ("Construtora não compra igual a cliente final").
+aula **18** ("Construtora não compra igual a cliente final", venda10x) e quinta
+10/09 a **16** ("3 mensagens para a carteira que está parada há meses", crm).
 Nenhuma das duas foi consumida: a `sequencia` do `miniaulas.json` não foi
-tocada e `publicados_miniaulas.json` continua com as 9 que foram ao ar. Quando
+tocada e `publicados_miniaulas.json` para nas 10 que foram ao ar — a última é a
+aula 6, de 03/09, a peça que fecha a série. Quando
 o Diego mandar voltar, a próxima peça é exatamente a que sairia agora — não há
 buraco na fila nem aula queimada.
 
