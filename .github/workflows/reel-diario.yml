@@ -17,9 +17,14 @@ name: Reel diario @vendanaobra
 
 on:
   schedule:
-    - cron: "45 11 * * *"   # dispara 11:45 UTC, publica 12:00 UTC = 09h BRT
-    - cron: "7 14 * * *"    # repescagem 11h BRT, so se o do dia nao saiu
-    - cron: "23 17 * * *"   # 2a repescagem 14h20 BRT (27/08/2026: o GitHub perdeu
+    # 04/09/2026: saiu das 09h BRT. Com o metodo ROTA 100K o @vendanaobra passou
+    # a publicar 4 Reels proprios por dia — 09:00, 12:30, 16:00 e 19:00 — e o
+    # corte do EP25 batia de frente com o primeiro deles, que e' o que carrega o
+    # gancho do dia. 14h15 e' o meio do maior buraco da grade (12:30 -> 16:00) e
+    # e' horario de fora-de-pico, que combina com corte de podcast.
+    - cron: "2 17 * * *"    # dispara 17:02 UTC, publica ~14h15 BRT
+    - cron: "7 19 * * *"    # repescagem 16h05 BRT, so se o do dia nao saiu
+    - cron: "23 20 * * *"   # 2a repescagem 17h23 BRT (27/08/2026: o GitHub perdeu
                             # os dois crons do dia e o Reel nao saiu; minuto 0 e o
                             # horario de maior fila, por isso os minutos quebrados)
   workflow_dispatch:

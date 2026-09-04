@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Reel do dia (09h BRT) no feed da @vendanaobra.
+"""Reel do dia (14h15 BRT) no feed da @vendanaobra.
 
 Fila fixa: os 12 cortes da participacao do Diego no Aluparts Podcast #EP25
 (`reels_ep25.json`). Um por dia, na ordem escrita no arquivo, ate acabar.

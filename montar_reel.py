@@ -22,20 +22,44 @@ PLANO_MIN = 1.6      # nenhum plano mais curto que isso
 PLANO_MAX = 3.2      # nenhum plano mais longo que isso
 PLANO_CURTO = 0.7    # abaixo disso o plano vira piscada e some no plano vizinho
 FALA_MIN = 1.2       # troca de falante so vale se durar isso
+FPS_MASTER = 30000 / 1001   # o master e' 29,97, nao 30
+MEIO_FRAME = 1 / (2 * FPS_MASTER)
 
 # --- recortes no master 1920x1080 -------------------------------------------
 # medio e fechado do mesmo angulo: a alternancia entre eles e' o punch-in
+#
+# MEDIDOS, nao chutados (04/09/2026). Ate aqui eram retangulos escritos a mao em
+# agosto e nunca conferidos: no plano aberto a Audrey saia 168 px a esquerda do
+# centro (encostada na borda do vertical) e na camera fechada dela o desvio era
+# de 120 px. `analise/medir_enquadramento.py` roda o MediaPipe Face Detection em
+# 50 frames sorteados de cada camera e devolve a mediana do centro do rosto e da
+# linha dos olhos — 50/50 de deteccao, dispersao p10-p90 de ~50 px.
+#
+#   camera        centro do rosto   olhos
+#   D  (fechada)      990            282
+#   A  (fechada)      854            299
+#   WA (aberto)       372            305
+#   WD (aberto)      1525            252
+#
+# Regra de composicao, a mesma dos editores de video: x centraliza o rosto e y
+# poe os OLHOS a ~1/3 do topo do quadro (nao no meio — o terco de baixo e' da
+# legenda queimada). Onde o recorte ja usa a altura toda do master nao ha folga
+# em y e ele fica em 0, com os olhos caindo em 26-28%.
+#
+# Nao ha "look room" (dar mais espaco para o lado que a pessoa olha): a tecnica
+# existe e e' correta, mas desloca o rosto do centro de proposito — e centralizar
+# foi justamente o que o Diego pediu. Se um dia entrar, sao ~5% da largura.
 CROPS = {
-    ("D", "medio"):  (608, 1080, 700, 0),
-    ("D", "perto"):  (500,  889, 756, 60),
-    ("A", "medio"):  (608, 1080, 430, 0),
-    ("A", "perto"):  (500,  889, 486, 60),
-    ("WD", "medio"): (540,  960, 1360, 100),
-    ("WD", "perto"): (456,  810, 1400, 120),
-    ("WA", "medio"): (540,  960, 270, 110),
-    ("WA", "perto"): (456,  810, 250, 120),
+    ("D", "medio"):  (608, 1080,  686,  0),
+    ("D", "perto"):  (500,  889,  740,  0),
+    ("A", "medio"):  (608, 1080,  550,  0),
+    ("A", "perto"):  (500,  889,  604,  6),
+    ("WD", "medio"): (540,  960, 1255,  0),
+    ("WD", "perto"): (456,  810, 1297,  0),
+    ("WA", "medio"): (540,  960,  102,  0),
+    ("WA", "perto"): (456,  810,  144, 38),
 }
-SPLIT = {"D": (760, 675, 1290, 140), "A": (760, 675, 255, 170)}
+SPLIT = {"D": (760, 675, 1145, 27), "A": (760, 675, 0, 80)}
 
 def segmentos(linha, passo=PASSO, minimo=FALA_MIN):
     """String 'DDDAAA...' -> [(ini, fim, quem)] sem trechos menores que `minimo`."""
@@ -174,9 +198,17 @@ def montar_edl(falas, cams, dur, modo="cameras"):
     return unir_curtos(edl, cams)
 
 def filtro_solo(fonte, nivel, dur):
+    """Recorte FIXO. O quadro so muda quando muda o plano.
+
+    Ate 04/09/2026 havia um pan senoidal de +-6 px por plano
+    (`{x}+6*sin(2*PI*t/dur)`), posto para o quadro nao parecer parado. Como
+    cada plano dura 1,6 a 3,2 s, o seno fechava um ciclo inteiro dentro do
+    plano: na tela isso nao le como movimento de camera, le como CAMERA
+    TREMENDO — foi a reclamacao do Diego ao ver os cortes 27 e 14 prontos.
+    Camera estatica dentro do plano, corte seco na troca: e' assim que o
+    formato de podcast e' editado."""
     w, h, x, y = CROPS[(fonte, nivel)]
-    pan = f"{x}+6*sin(2*PI*t/{max(dur,0.1):.2f})"
-    return (f"crop={w}:{h}:'{pan}':{y},scale=1080:1920:flags=bicubic,setsar=1")
+    return f"crop={w}:{h}:{x}:{y},scale=1080:1920:flags=bicubic,setsar=1"
 
 def filtro_split():
     wd, hd, xd, yd = SPLIT["D"]
@@ -191,8 +223,14 @@ def render(edl, t0, tmp):
         dur = round(e["fim"] - e["ini"], 3)
         if dur <= 0.05: continue
         alvo = os.path.join(tmp, f"p{i:03d}.mp4")
-        base = ["ffmpeg", "-v", "error", "-y", "-ss", f"{t0 + e['ini']:.3f}",
-                "-i", MASTER, "-t", f"{dur:.3f}", "-an"]
+        # comeca MEIO FRAME antes do pts alvo: assim a janela [ini, ini+dur)
+        # sempre contem o primeiro frame do plano e nunca o primeiro do
+        # seguinte. Sem essa folga, arredondar a fronteira para 3 casas (0,4 ms)
+        # bastava para o ffmpeg entregar 1 frame do angulo NOVO ainda com o crop
+        # do VELHO — o pisca que o Diego viu na troca de camera (04/09/2026).
+        base = ["ffmpeg", "-v", "error", "-y",
+                "-ss", f"{t0 + e['ini'] - MEIO_FRAME:.6f}",
+                "-i", MASTER, "-t", f"{dur:.6f}", "-an"]
         if e["tipo"] == "split":
             cmd = base + ["-filter_complex", filtro_split(), "-map", "[v]"]
         else:
