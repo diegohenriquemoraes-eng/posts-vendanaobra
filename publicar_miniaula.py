@@ -17,6 +17,11 @@ Uso:
     python publicar_miniaula.py --id 3      # aula especifica
     python publicar_miniaula.py --ensaio    # gera tudo e para (nao publica)
     python publicar_miniaula.py --garantir  # so publica se a de hoje nao saiu
+
+PAUSADA EM 04/09/2026 (decisao do Diego): sem VNO_MINIAULA_ATIVA=1 o script
+recusa publicar — mesmo padrao do publicar.py e do publicar_reel.py. O --ensaio
+continua livre, porque o estudo (banco, pauta, fotos, geracao dos slides) segue
+de pe; o que parou foi a publicacao.
 """
 from __future__ import annotations
 
@@ -87,6 +92,23 @@ def ja_postou_hoje() -> bool:
     return any(p["data"] == hoje for p in _carregar(PUBLICADOS, {"posts": []})["posts"])
 
 
+def _travar() -> None:
+    """Mini-aula pausada em 04/09/2026 — o Diego pediu para interromper a serie.
+
+    Nao e trava de aprovacao como a do Reel: e uma pausa por tempo indeterminado,
+    que so ele levanta. A trava vive AQUI, e nao so no cron, porque pausar um
+    workflow sem travar o script ja falhou uma vez (17/08/2026: a rede de
+    seguranca continuou chamando o publicar.py e o post saiu assim mesmo).
+    """
+    if os.environ.get("VNO_MINIAULA_ATIVA", "").strip() == "1":
+        return
+    raise SystemExit(
+        "Mini-aula pausada em 04/09/2026 a pedido do Diego — o banco e a pauta "
+        "continuam de pe, so a publicacao parou. Para gerar sem publicar: --ensaio. "
+        "Para publicar mesmo assim: VNO_MINIAULA_ATIVA=1"
+    )
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--id", type=int, default=None)
@@ -102,6 +124,9 @@ def main() -> None:
     if a.garantir and ja_postou_hoje():
         _log("mini-aula do dia ja esta no ar — nada a fazer")
         return
+
+    if not a.ensaio:
+        _travar()
 
     aula = escolher(a.id)
     if aula is None:

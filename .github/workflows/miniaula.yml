@@ -1,28 +1,43 @@
 name: Mini-aula @vendanaobra
 
 # ============================================================================
-# CARROSSEL LONGO (mini-aula) — AUTOMACAO RELIGADA EM 24/08/2026.
+# MINI-AULA PAUSADA EM 04/09/2026 (decisao do Diego) — "interrompe, mas mantem
+# o estudo ate eu pedir para voltar".
 #
-# Historico: a publicacao por API foi encerrada em 21/08/2026 e a peca passou a
-# ser preparada pelo preparar.py e postada a mao. Em 24/08 o Diego mandou voltar
-# a estrategia de antes SO PARA O CARROSSEL LONGO — ele estava tendo retorno de
-# comentarios. Mesmo formato, cores, leitura, CTA, dias e horarios de antes:
-# terca e quinta, 12h BRT, com story de reforco.
+# Nao sai mais mini-aula por API: nem a de terca nem a de quinta. A pausa vale
+# ja para a semana de 08/09 — a aula 6 ("4 objecoes que viram sumico") continua
+# na fila, sem data, e a sequencia NAO foi mexida: quando o Diego mandar voltar,
+# a proxima peca e exatamente a que sairia hoje.
 #
-# O CARROSSEL CURTO (frase, 2 slides) CONTINUA MANUAL — post-diario.yml e
-# rede-de-seguranca.yml seguem desligados de proposito. Nao religar sem pedido.
+# O ESTUDO CONTINUA INTEIRO, de proposito: `miniaulas.json` (33 aulas),
+# `PAUTA-MINIAULAS.md`, `fotos/`, `gerar_miniaula.py`, `publicar_miniaula.py` e
+# `cenas_miniaulas.json` ficam como estao. Nada de banco foi apagado.
+#
+# TRAVA DUPLA, como manda o repo (uma pausa so no cron ja falhou uma vez —
+# ver post-diario.yml e a licao de 17/08): o bloco `schedule` esta comentado E
+# `publicar_miniaula.py` recusa publicar sem `VNO_MINIAULA_ATIVA=1`, que este
+# workflow NAO define. `workflow_dispatch` continua servindo para `--ensaio`
+# (gerar a peca e ler a legenda sem publicar).
+#
+# PARA VOLTAR (so com pedido explicito do Diego): descomentar o `schedule`,
+# devolver `VNO_MINIAULA_ATIVA: "1"` ao step de publicar e, se o workflow
+# estiver desabilitado na UI, `gh workflow enable miniaula.yml`.
+#
+# O robo de DM (`dm-comentarios.yml`) FICA LIGADO: os comentarios da mini-aula
+# de 01/09 ainda estao dentro da janela de 7 dias da Meta e precisam de resposta.
 # ============================================================================
-
-# Terca e quinta, 12h em ponto BRT. O cron dispara 14:45 UTC e o job dorme ate
-# 15:00:00 UTC exatos, porque o agendador do Actions costuma atrasar.
-# O carrossel de frase ocupa seg/qua/sex (post-diario.yml) — nunca colidem.
+#
+# Historico ate aqui: publicacao por API encerrada em 21/08/2026, religada so
+# para o carrossel longo em 24/08/2026 (terca e quinta, 12h BRT, com story de
+# reforco), pausada de novo em 04/09/2026.
 
 on:
-  schedule:
-    - cron: "45 14 * * 2,4"   # ter e qui
-    # repescagens: publicam so se a mini-aula do dia nao saiu (--garantir)
-    - cron: "0 16 * * 2,4"    # 13h BRT
-    - cron: "0 20 * * 2,4"    # 17h BRT
+  # DESLIGADO 04/09/2026 — o bloco `schedule` inteiro esta comentado.
+  # schedule:
+  #   - cron: "45 14 * * 2,4"   # ter e qui, 12h BRT
+  #   # repescagens: publicam so se a mini-aula do dia nao saiu (--garantir)
+  #   - cron: "0 16 * * 2,4"    # 13h BRT
+  #   - cron: "0 20 * * 2,4"    # 17h BRT
   workflow_dispatch:
     inputs:
       id:
@@ -51,6 +66,8 @@ jobs:
 
       - run: pip install --quiet pillow
 
+      # Inerte enquanto o schedule estiver comentado; fica aqui para o dia em
+      # que a mini-aula voltar, sem ter de reescrever a espera do meio-dia.
       - name: Esperar o meio-dia em ponto
         if: github.event_name == 'schedule' && github.event.schedule == '45 14 * * 2,4'
         run: |

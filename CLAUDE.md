@@ -2,11 +2,11 @@
 
 Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
-> ## Quem publica o quê — desde 24/08/2026
+> ## Quem publica o quê — desde 04/09/2026
 >
 > | Formato | Como sai hoje |
 > |---|---|
-> | **Carrossel longo (mini-aula, 4:5)** | **AUTOMÁTICO por API** — `miniaula.yml`, terça e quinta, 12h BRT, com story de reforço. Religado em 24/08/2026 a pedido do Diego: o formato longo está trazendo retorno de comentários. |
+> | **Carrossel longo (mini-aula, 4:5)** | **PAUSADO em 04/09/2026** a pedido do Diego — nada mais sai por API, nem terça nem quinta. Nenhum banco foi apagado: ver "Mini-aula pausada" abaixo. |
 > | **Carrossel curto (frase, 1:1)** | **MANUAL** — `preparar.py frase` monta a peça, o Diego posta do celular. Continua assim, sem previsão de voltar. |
 > | **Reel diário (9:16)** | **NO AR desde 24/08/2026** — `reel-diario.yml` + `publicar_reel.py`, 9h BRT. Desde 27/08/2026 quase todo Reel sai **só na aba de Reels**; a ordem e o destino de cada um vivem em `plano_ep25.json`. |
 >
@@ -25,8 +25,10 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 >
 > **Travas hoje:** `post-diario.yml` e `rede-de-seguranca.yml` seguem
 > `disabled_manually` **e** com o `schedule` comentado, e `publicar.py` só
-> publica com `VNO_PUBLICAR_API=1`. `miniaula.yml` e `publicar_miniaula.py`
-> estão livres de novo. Não religar o carrossel de frase sem pedido explícito.
+> publica com `VNO_PUBLICAR_API=1`. Desde 04/09/2026 o `miniaula.yml` está na
+> mesma condição — `schedule` comentado e `publicar_miniaula.py` exigindo
+> `VNO_MINIAULA_ATIVA=1`. **Só o Reel diário (`reel-diario.yml`) publica
+> sozinho.** Não religar nada sem pedido explícito do Diego.
 >
 > Contraponto já registrado, para quando o assunto voltar: a Graph API é o
 > caminho oficial (mLabs, Later e Buffer usam) e não há sinal de penalização —
@@ -170,6 +172,58 @@ publica o arquivo **antigo** — o vídeo vem de `raw.githubusercontent`, não d
 máquina. Subir em lotes, e conferir `git status -sb` antes de dar a fila por
 pronta.
 
+## ⏸️ Mini-aula PAUSADA em 04/09/2026 — "interrompe, mas mantém o estudo"
+
+Decisão do Diego, palavra dele: interromper a mini-aula em carrossel (as duas
+por semana), **manter o estudo até ele pedir para voltar**, e já tirar o que
+sairia na semana seguinte. Não veio motivo, e não foi inventado nenhum aqui.
+
+**O que parou (trava dupla, a lição de 17/08 aplicada):**
+
+- `miniaula.yml` com o bloco `schedule` inteiro comentado — os três crons
+  (12h, 13h e 17h BRT de terça e quinta) não existem mais.
+- `publicar_miniaula.py` recusa publicar sem `VNO_MINIAULA_ATIVA=1`, e o
+  workflow **não define** essa variável. Um `workflow_dispatch` clicado por
+  engano não põe nada no ar.
+- Só o cron não bastava: em 17/08 o carrossel de frase foi "pausado" no cron e
+  saiu assim mesmo, porque outro workflow chamava o mesmo script. Aqui o
+  script é a segunda trava.
+
+**O que a semana de 08/09 perde, e que já está retirado:** terça 08/09 sairia a
+aula **6** ("4 objeções que viram sumiço — e a resposta de cada uma", venda10x)
+e quinta 10/09 a **18** ("Construtora não compra igual a cliente final").
+Nenhuma das duas foi consumida: a `sequencia` do `miniaulas.json` não foi
+tocada e `publicados_miniaulas.json` continua com as 9 que foram ao ar. Quando
+o Diego mandar voltar, a próxima peça é exatamente a que sairia agora — não há
+buraco na fila nem aula queimada.
+
+**O que continua de pé (é isto o "manter o estudo"):**
+
+- `miniaulas.json` — as 33 aulas escritas, com `fonte`, legenda e CTA.
+- `PAUTA-MINIAULAS.md`, `cenas_miniaulas.json` e as fotos em `fotos/`.
+- `gerar_miniaula.py`, `preparar_foto.py`, `gerar_story.py` e o
+  `publicar_miniaula.py --ensaio`, que gera os slides e imprime a legenda sem
+  publicar. Dá para continuar escrevendo, ilustrando e conferindo peça.
+- `python preparar.py aula --forcar` para o Diego postar do celular, se um dia
+  quiser uma avulsa sem religar a automação (esse caminho passa pelo
+  `preparar.py`, não pela trava).
+- **`dm-comentarios.yml` fica LIGADO.** Os comentários da mini-aula de 01/09
+  ainda estão dentro da janela de 7 dias da Meta; desligar o robô agora
+  deixaria gente pedindo o link sem resposta. Se a pausa passar de meados de
+  setembro, aí sim ele fica rodando 144 vezes por dia sem nada a fazer — custo
+  zero (repo público), mas pode ser desligado.
+
+**Efeito na conta, dito sem enfeite:** o feed fica só com o **Reel diário**
+(9h BRT, fila do EP25) e com o carrossel de frase manual, que está parado desde
+17/08. Ou seja, **nenhum carrossel sai do @vendanaobra enquanto a pausa durar**
+— e carrossel é o formato mais eficiente medido da conta (índice 2,10 de
+interação por view, contra 0,85 do Reel). É consequência aceita da decisão, não
+descuido.
+
+**Para voltar** (só com pedido explícito): descomentar o `schedule` do
+`miniaula.yml`, devolver `VNO_MINIAULA_ATIVA: "1"` ao step de publicar e, se o
+workflow estiver desabilitado na UI, `gh workflow enable miniaula.yml`.
+
 ## Banco de mini-aulas — 20 aulas novas em 31/08/2026
 
 **33 aulas no banco.** O Diego mandou escrever a fila até dezembro; escrevi **20**,
@@ -311,7 +365,7 @@ se o Diego quiser, é postar a arte do slide 1 à mão.
 | Dia | Formato | Preparador |
 |---|---|---|
 | Seg / Qua / Sex | Carrossel de frase (3 slides, 1080x1080) | manual — `preparar.py frase` |
-| Ter / Qui, 12h BRT | Mini-aula (7–9 slides, 4:5, capa com foto) | automático — `miniaula.yml` |
+| ~~Ter / Qui, 12h BRT~~ | ~~Mini-aula (7–9 slides, 4:5, capa com foto)~~ | **pausada em 04/09/2026** — ter/qui estão vagas |
 
 Sem sábado/domingo. Dias fixos porque a cadência antiga ("a cada 2 dias úteis")
 derivava e ia colidir com a mini-aula.
@@ -461,12 +515,12 @@ o robô já respondeu.
 | `gerar_carrossel.py` | Pillow → os 3 JPEGs 1080x1080 (claro, escuro, CTA azul) |
 | `publicar.py` | Publicador por API — **desligado 21/08/2026** (exige `VNO_PUBLICAR_API=1`) |
 | `miniaulas.json` | Banco das mini-aulas (7 de 40 escritas; pauta em `PAUTA-MINIAULAS.md`) |
-| `publicar_miniaula.py` | Mini-aula por API — **no ar de novo desde 24/08/2026** (ter/qui 12h BRT) |
+| `publicar_miniaula.py` | Mini-aula por API — **pausada desde 04/09/2026** (trava `VNO_MINIAULA_ATIVA=1`) |
 | `gerar_miniaula.py` | Pillow → slides 4:5 (âncoras fixas + fonte única por peça) |
 | `preparar_foto.py` | Master do Gemini → `fotos/miniaula-XX.jpg`, com trava de resolução (`--conferir` audita) |
 | `gerar_story.py` | Story 1080x1920 com a arte do dia emoldurada |
 | `limpar_marca.py` | Remove a marca d'água do Gemini (fundo de textura contínua) |
-| `.github/workflows/miniaula.yml` | **Ativo** desde 24/08/2026 — ter/qui 12h BRT + repescagens 13h/17h |
+| `.github/workflows/miniaula.yml` | **Pausado** em 04/09/2026 — `schedule` comentado; `workflow_dispatch` só faz ensaio |
 | `.github/workflows/post-diario.yml`, `rede-de-seguranca.yml` | **Disabled + cron comentado** (carrossel de frase é manual) |
 | `responder_dm.py` | **Ativo** desde 02/09/2026 — comentário com palavra → link do produto no Direct |
 | `dm_produtos.py` | Palavra → produto → subpágina + o texto que a pessoa recebe |
