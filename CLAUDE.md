@@ -692,7 +692,7 @@ entra mais em post nenhum.
 
 | Produto | Formato | Preço | Dor |
 |---|---|---|---|
-| **Venda Blindada** | Contrato editável | R$ 347 único | Prejuízo/brecha em contrato de esquadria |
+| **Venda Blindada** | Contrato editável | R$ 147 único | Prejuízo/brecha em contrato de esquadria |
 | **Venda 10x** | Ao vivo semanal, terça 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 
