@@ -17,13 +17,13 @@ name: Reel diario @vendanaobra
 
 on:
   schedule:
-    # 04/09/2026: saiu das 09h BRT. Com o metodo ROTA 100K o @vendanaobra passou
-    # a publicar 4 Reels proprios por dia — 09:00, 12:30, 16:00 e 19:00 — e o
-    # corte do EP25 batia de frente com o primeiro deles, que e' o que carrega o
-    # gancho do dia. 14h15 e' o meio do maior buraco da grade (12:30 -> 16:00) e
-    # e' horario de fora-de-pico, que combina com corte de podcast.
-    - cron: "2 17 * * *"    # dispara 17:02 UTC, publica ~14h15 BRT
-    - cron: "7 19 * * *"    # repescagem 16h05 BRT, so se o do dia nao saiu
+    # 04/09/2026 (noite): o Diego mandou seguir a Rota 100K a risca, e a grade
+    # do Afonso e' fixa — dias 2-4: 09/12/15/18; dias 5-7: 09/15/18/21. O corte
+    # do EP25 passou a OCUPAR o slot das 15h (o unico presente nas duas grades)
+    # em vez de ser um 5o post fora de hora. No app Canteiro, o Reel das 15h de
+    # 05/09 e 10/09 aparece como "sai sozinho" e o Diego grava so os outros 3.
+    - cron: "58 17 * * *"   # dispara 17:58 UTC, publica ~15h BRT
+    - cron: "7 19 * * *"    # repescagem 16h07 BRT, so se o do dia nao saiu
     - cron: "23 20 * * *"   # 2a repescagem 17h23 BRT (27/08/2026: o GitHub perdeu
                             # os dois crons do dia e o Reel nao saiu; minuto 0 e o
                             # horario de maior fila, por isso os minutos quebrados)
