@@ -527,6 +527,42 @@ o robô já respondeu.
 | `dm_produtos.py` | Palavra → produto → subpágina + o texto que a pessoa recebe |
 | `respondidos_dm.json` | Quem já foi atendido (identidade em hash — o repo é público) |
 | `.github/workflows/dm-comentarios.yml` | **Ativo** — roda de 10 em 10 minutos |
+| `medir_alcance.py` | Linha de base: alcance por post e efeito de publicar mais de uma peça no dia |
+| `top_posts.py` | Os campeões medidos (Graph API) — é de onde saem as "referências do dia" do app Canteiro |
+| `coletar_stories.py` | **Diário**: fotografa os Stories antes de expirarem (a API só os devolve por 24h) |
+| `placar.py` | O placar de sexta: posts, réguas de Story e comentários em forma de pergunta |
+| `dados/stories.json` | Histórico dos Stories — **versionado**, o runner é descartável |
+| `.github/workflows/placar-semanal.yml` | **Ativo** — coleta 01:10 UTC diário; placar sexta 12:10 UTC como issue |
+
+## Medição da ROTA 100K (04/09/2026) — as réguas que não existiam
+
+O Diego mandou seguir o método do Afonso à risca. Duas exigências dele são de
+MEDIÇÃO e nunca tinham sido cumpridas, porque o dado some sozinho:
+
+- **Story vive 24h na Graph API.** Sem uma coleta diária, as duas réguas do
+  Destrave Story (1º story ≥ 10% dos seguidores; último ≥ 40% do primeiro) não
+  podem sequer ser calculadas. `coletar_stories.py` roda 01:10 UTC e **commita**
+  `dados/stories.json`.
+- **O post que vai ao tráfego se escolhe por SALVOS, não por views.** `placar.py`
+  ordena por salvamento e mostra os três; também lista os comentários em forma de
+  pergunta, que é a terceira fonte de gancho do método e não era usada.
+
+Primeira leitura, 04/09 — sem maquiagem: 1º story **82** contra meta de 928;
+último/primeiro **24%** contra 40%; mediana de alcance dos posts na semana **73**;
+**3** salvos na semana inteira; **zero** comentários em forma de pergunta. A
+estrutura está no formato do Afonso, a audiência ainda não.
+
+⚠ As métricas de Story mudam de nome entre versões da API (`views` substituiu
+`impressions`). O coletor pede **uma métrica por vez** e fica com as que a conta
+aceita — pedir todas de uma vez faz a coleta inteira falhar por causa de uma.
+
+## O Reel do EP25 passou para o slot das 15h (04/09/2026)
+
+Saiu das 14h15. Com a grade da Rota 100K (dias 2–4: 09/12/15/18; dias 5–7:
+09/15/18/21), **15h é o único horário presente nas duas grades** — antes o corte
+era um 5º post fora de hora. Cron: `58 17 * * *`. No app Canteiro esse Reel
+aparece com o chip "robô" e o aviso de que sai sozinho, e o bloco de produção do
+dia já desconta ele da conta de gravações.
 
 ## Por que o repositório é público
 
