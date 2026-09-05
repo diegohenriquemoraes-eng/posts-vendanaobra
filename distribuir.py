@@ -307,6 +307,12 @@ def main() -> None:
     p.add_argument("--limite", type=int, default=1, help="quantos por execucao")
     p.add_argument("--dias", type=int, default=45, help="janela de coleta")
     p.add_argument("--id", help="forcar um id de midia do Instagram")
+    p.add_argument(
+        "--ordem",
+        choices=["novo", "antigo"],
+        default="novo",
+        help="'novo' (padrao) publica o Reel mais recente primeiro",
+    )
     args = p.parse_args()
 
     estado = carregar_estado()
@@ -314,10 +320,15 @@ def main() -> None:
     if args.id:
         reels = [m for m in reels if m["id"] == args.id]
 
-    # Do mais ANTIGO para o mais novo: o acervo parado e o que precisa sair, e
-    # publicar em ordem cronologica deixa o canal com uma linha do tempo que faz
-    # sentido para quem chega pelo perfil.
-    pendentes = [m for m in reels if m["id"] not in estado][::-1]
+    # Do mais NOVO para o mais antigo (05/09/2026, corrigindo o desenho inicial).
+    # A primeira versao ia do mais antigo para o mais novo, para deixar uma linha
+    # do tempo bonita no perfil — e com 21 Reels de acervo na frente, o Reel de
+    # HOJE so chegaria ao YouTube dez dias depois. Quem publica espera ver o
+    # video do dia no ar no mesmo dia; ordem do acervo ninguem repara. O acervo
+    # continua escoando, andando para tras.
+    pendentes = [m for m in reels if m["id"] not in estado]
+    if args.ordem == "antigo":
+        pendentes = pendentes[::-1]
 
     print(f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao distribuidos")
     if not pendentes:
