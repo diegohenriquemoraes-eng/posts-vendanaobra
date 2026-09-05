@@ -31,7 +31,9 @@
   },
   "portalvgv.com.br": {
     "nome": "Portal VGV",
-    "emails": [],
+    "emails": [
+      "banca@portalvgv.com.br"
+    ],
     "visto_em": "2026-09-05"
   },
   "cimentoitambe.com.br": {
