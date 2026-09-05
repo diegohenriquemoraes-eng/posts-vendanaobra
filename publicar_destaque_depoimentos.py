@@ -25,17 +25,24 @@ from publicar import (IG_USER_ID, REPO_RAW, _commitar, _log, _post, _token,
 from gerar_destaque_depoimentos import SAIDA, gerar_tudo
 
 PASTA_REL = "imagens/destaque-venda10x"
-ORDEM = ["0-capa.jpg", "1-gilliard.jpg", "2-nice.jpg", "3-sueli.jpg"]
+# A ordem do destaque e a ordem de publicacao: a capa vai primeiro. Peca nova
+# entra no fim da lista e sobe sozinha com --apenas, sem repostar o resto.
+ORDEM = ["0-capa.jpg", "1-gilliard.jpg", "2-nice.jpg", "3-sueli.jpg",
+         "4-gabriel.jpg"]
 
 
-def publicar(ensaio: bool = False) -> None:
+def publicar(ensaio: bool = False, apenas: list = None) -> None:
     gerar_tudo()
-    for nome in ORDEM:
+    fila = [n for n in ORDEM if not apenas or n in apenas or
+            n.rsplit(".", 1)[0] in apenas]
+    if apenas and not fila:
+        raise SystemExit(f"--apenas {apenas} nao casa com nenhuma peca de {ORDEM}")
+    for nome in fila:
         if not os.path.exists(os.path.join(SAIDA, nome)):
             raise SystemExit(f"faltou a arte {nome}")
 
     if ensaio:
-        for nome in ORDEM:
+        for nome in fila:
             _log(f"ensaio: publicaria {REPO_RAW}/{PASTA_REL}/{nome}")
         return
 
@@ -46,7 +53,7 @@ def publicar(ensaio: bool = False) -> None:
     # nao aceita upload de arquivo local.
     _commitar("artes do destaque de depoimentos do Venda 10x", PASTA_REL)
 
-    for nome in ORDEM:
+    for nome in fila:
         url = f"{REPO_RAW}/{PASTA_REL}/{nome}"
         r = _post(f"{IG_USER_ID}/media", {
             "media_type": "STORIES", "image_url": url, "access_token": token,
@@ -64,4 +71,6 @@ def publicar(ensaio: bool = False) -> None:
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--ensaio", action="store_true", help="nao publica, so mostra")
-    publicar(p.parse_args().ensaio)
+    p.add_argument("--apenas", nargs="*", help="pecas a publicar (ex.: 4-gabriel)")
+    a = p.parse_args()
+    publicar(a.ensaio, a.apenas)

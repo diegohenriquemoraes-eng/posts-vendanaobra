@@ -65,6 +65,20 @@ DEPOIMENTOS = [
         ],
     },
     {
+        "arquivo": "4-gabriel",
+        "nome": "Gabriel Pires",
+        "papel": "Aluno do Venda 10x",
+        "data": "05/09/2026",
+        "baloes": [
+            ("Fala, Diego! Cara, para falar a verdade, eu até acho estranho.",
+             "18:13"),
+            ("Eu pensei que iam ser umas aulas bem básicas.", "18:14"),
+            ("Mas eu me surpreendi: as aulas estão muito boas, o pessoal que "
+             "está lá também é muito bom.", "18:15"),
+            ("E são assuntos na aula que eu passo todos os dias.", "18:15"),
+        ],
+    },
+    {
         "arquivo": "2-nice",
         "nome": "Nice Laso",
         "papel": "Aluna do Venda 10x",
