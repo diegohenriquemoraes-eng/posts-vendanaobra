@@ -201,10 +201,15 @@ def renovar() -> None:
         )
     )
     novo, dias = r["access_token"], int(r.get("expires_in", 0)) // 86400
-    destino = pathlib.Path(
-        r"C:\Users\NOTE\Desktop\Perffec\Claude\threads_token_vendanaobra.txt"
-    )
-    if destino.parent.exists():
+
+    # Quem decide onde gravar e o AMBIENTE, nao a existencia do caminho:
+    # `pathlib.Path(r"C:\...")` no Linux vira nome relativo e `.parent` e ".",
+    # que existe sempre — na primeira rodada na nuvem isso gravou um arquivo
+    # chamado "C:\Users\..." dentro do runner e o token novo se perdeu.
+    if not os.environ.get("GITHUB_ACTIONS"):
+        destino = pathlib.Path(
+            r"C:\Users\NOTE\Desktop\Perffec\Claude\threads_token_vendanaobra.txt"
+        )
         destino.write_text(novo, encoding="utf-8")
         print(f"Token renovado por {dias} dias e gravado em {destino.name}.")
     else:
