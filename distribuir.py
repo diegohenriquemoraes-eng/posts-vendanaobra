@@ -65,6 +65,13 @@ YT_CATEGORIA = "27"
 
 LINK_RAIOX = "https://vendanaobra.com.br/r/ytd"
 
+# TETO DIARIO: quem manda e a COTA da YouTube Data API, nao o gosto.
+# `videos.insert` custa 1.600 unidades e o projeto vendanaobra-automacao tem
+# 10.000 por dia. 5 uploads = 8.000, sobrando margem para um reenvio; 6 = 9.600,
+# e ai um retry derruba o dia. Foi por isso que o teto ficou em 5, e nao porque
+# publicar muito faca mal ao canal.
+TETO_DIA = 5
+
 # Bordao fixo que abre varias legendas: e marca, nao e o gancho. Como titulo de
 # busca ele nao diz nada e ainda se repetiria em dezenas de videos. Aparece em
 # duas formas ("venda e metodo" e so "e METODO"), por isso o meio e opcional.
@@ -330,12 +337,28 @@ def main() -> None:
     if args.ordem == "antigo":
         pendentes = pendentes[::-1]
 
-    print(f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao distribuidos")
+    # Quanto ja saiu HOJE (UTC), lido do proprio estado: o runner e descartavel
+    # e nao tem memoria entre execucoes.
+    hoje = datetime.now(timezone.utc).date().isoformat()
+    saiu_hoje = sum(
+        1
+        for v in estado.values()
+        if v.get("distribuido_em", "").startswith(hoje) and v.get("youtube")
+    )
+    resta = max(TETO_DIA - saiu_hoje, 0)
+
+    print(
+        f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao "
+        f"distribuidos · {saiu_hoje}/{TETO_DIA} publicados hoje"
+    )
     if not pendentes:
         print("Nada a fazer.")
         return
+    if resta == 0:
+        print(f"Teto diario de {TETO_DIA} atingido (cota da API). Volta na proxima rodada.")
+        return
 
-    for midia in pendentes[: args.limite]:
+    for midia in pendentes[: min(args.limite, resta)]:
         legenda = midia.get("caption") or ""
         titulo = titulo_para_busca(legenda)
         print(f"\n[{midia['timestamp'][:10]}] {midia['permalink']}")

@@ -8,11 +8,11 @@ name: Distribuir Reel no YouTube
 # a mediana de alcance de um post no Instagram e 73. Mesmo conteudo, ~10x mais
 # gente — e o YouTube e buscador, entao o video segue sendo achado depois.
 #
-# RITMO: 2 por dia. Havia 22 Reels de julho/agosto que nunca foram para o
-# YouTube; a 2/dia esse acervo escoa em ~11 dias e depois a fila passa a andar
-# no ritmo do Reel diario. Mais que isso num canal dormente parece despejo de
-# robo, e a cota (1.600 por upload, teto de 10.000/dia no projeto
-# vendanaobra-automacao) nao comporta rajada.
+# RITMO: ate 5 por dia (TETO_DIA no distribuir.py), em cinco janelas. Quem manda
+# o teto e a COTA: videos.insert custa 1.600 e o projeto vendanaobra-automacao
+# tem 10.000/dia, entao 5 uploads = 8.000 e sobra margem para um reenvio; 6 =
+# 9.600 e um retry derruba o dia. Era 2/dia ate 05/09/2026 — pouco demais se o
+# Diego postar 4 ou 5 Reels no Instagram, porque a fila nunca escoaria.
 #
 # HORARIOS QUEBRADOS de proposito: o cron do GitHub e "best effort" e o minuto
 # 0 e o de maior fila — em 27/08/2026 o reel-diario.yml perdeu os dois disparos
@@ -21,14 +21,21 @@ name: Distribuir Reel no YouTube
 
 on:
   schedule:
+    # Cinco janelas, uma por hora do dia em que o Diego costuma postar. Cada uma
+    # publica ate 2, e o teto DIARIO de 5 mora no distribuir.py (TETO_DIA), que
+    # conta o que ja saiu hoje — cron do GitHub atrasa e coalesce, entao o teto
+    # nao pode depender do numero de disparos.
     - cron: "17 13 * * *"   # 10h17 BRT
-    - cron: "41 21 * * *"   # 18h41 BRT
+    - cron: "23 16 * * *"   # 13h23 BRT
+    - cron: "41 18 * * *"   # 15h41 BRT
+    - cron: "37 21 * * *"   # 18h37 BRT
+    - cron: "13 0 * * *"    # 21h13 BRT
   workflow_dispatch:
     inputs:
       limite:
-        description: "Quantos videos nesta execucao"
+        description: "Quantos videos nesta execucao (o teto diario continua valendo)"
         required: false
-        default: "1"
+        default: "2"
       ensaio:
         description: "Ensaio: mostra o que subiria, sem publicar"
         required: false
@@ -62,7 +69,7 @@ jobs:
           YT_TOKEN: ${{ secrets.YT_TOKEN_VNO }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          args="--limite ${{ inputs.limite || 1 }}"
+          args="--limite ${{ inputs.limite || 2 }}"
           [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
           python distribuir.py $args
 
