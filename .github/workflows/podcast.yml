@@ -1,0 +1,79 @@
+name: Podcast — novos episodios
+
+# ============================================================================
+# Toda quinta: se o canal ganhou video longo novo, ele vira episodio.
+#
+# O acervo (16 videos de 4min+) ja foi preparado a mao em 05/09/2026; este
+# workflow existe para o que vier DEPOIS, sem ninguem lembrar.
+#
+# ⚠ RISCO CONHECIDO: o YouTube bloqueia yt-dlp vindo de IP de datacenter com
+# alguma frequencia ("Sign in to confirm you're not a bot"). Se este workflow
+# comecar a falhar por isso, o plano B e rodar `python podcast_preparar.py` no
+# PC do Diego — o script e o mesmo. Por isso a falha abre issue em vez de
+# passar batido.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "27 13 * * 4"   # quinta, 10h27 BRT
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Quantos episodios preparar"
+        required: false
+        default: "3"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: podcast
+  cancel-in-progress: false
+
+jobs:
+  preparar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencias
+        run: |
+          pip install --quiet yt-dlp google-api-python-client google-auth
+          ffmpeg -version | head -1
+
+      - name: Preparar episodios
+        env:
+          YT_TOKEN: ${{ secrets.YT_TOKEN_VNO }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python podcast_preparar.py --limite ${{ inputs.limite || 3 }}
+
+      - name: Commitar o estado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add podcast_episodios.json
+          git diff --staged --quiet || git commit -m "Podcast: episodios novos (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: "Podcast nao preparou episodio em " + hoje,
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causa mais provavel: o YouTube bloqueou o yt-dlp por vir de IP " +
+                    "de datacenter. Plano B: rodar `python podcast_preparar.py` no PC " +
+                    "do Diego — e o mesmo script.",
+            })
