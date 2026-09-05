@@ -1,0 +1,82 @@
+name: Facebook Reels
+
+# ============================================================================
+# O Reel do @vendanaobra vira Reel na Pagina do Facebook.
+#
+# POR QUE: a Pagina existia desde sempre so para ligar o Instagram a API — 0
+# post, 0 seguidor. Reels do Facebook sao distribuidos por ALGORITMO, nao por
+# seguidores, entao pagina zerada recebe view de quem nao segue. E o dono de
+# vidracaria de 45 anos vive no Facebook, nao no Threads. Custo: zero, e o
+# mesmo video.
+#
+# ⚠ O token do sistema que ja existia NAO tinha `pages_manage_posts` (o app
+# declarava, o token nao). Foi gerado um SEGUNDO token de usuario de sistema,
+# sem expiracao, so para a Pagina — o antigo continua valendo para o Instagram,
+# entao nada do que ja funcionava foi tocado. Secret: META_PAGE_TOKEN.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "51 14 * * *"   # 11h51 BRT
+    - cron: "19 22 * * *"   # 19h19 BRT
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Quantos nesta execucao"
+        required: false
+        default: "2"
+      ensaio:
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: facebook-reels
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Publicar
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+        run: |
+          args="--limite ${{ inputs.limite || 2 }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          python facebook_reels.py $args
+
+      - name: Commitar o estado
+        if: inputs.ensaio != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add facebook_publicados.json
+          git diff --staged --quiet || git commit -m "Publica no Facebook (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: "Facebook Reels falhou em " + new Date().toISOString().slice(0,10),
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas ja vistas: token sem `pages_manage_posts`, ou o caminho " +
+                    "por `file_url` (o Facebook recusa buscar video hospedado na " +
+                    "propria Meta — o arquivo precisa subir em bytes).",
+            })
