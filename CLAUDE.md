@@ -503,6 +503,31 @@ o robô já respondeu.
   dias e o estado sabe quem já foi atendido. Webhook seria instantâneo, mas
   exigiria servidor de pé e um endpoint público só para isso.
 
+## Destaque "Depoimentos" do Venda 10x (05/09/2026) — e o que a API nao faz
+
+Primeiro destaque de prova social do perfil: capa com o selo Venda 10x e tres
+depoimentos de alunos (Gilliard, Nice, Sueli) em forma de **conversa de
+WhatsApp**. Decisao do Diego no dia: no Instagram o depoimento redigido do site
+"parece superficial" — ali a prova e o balao da mensagem. O site fica com o
+texto redigido; o destaque, com o print.
+
+- `gerar_destaque_depoimentos.py` desenha as 4 pecas (capa + 3 depoimentos);
+  `publicar_destaque_depoimentos.py` sobe os Stories na ordem. **Rodada manual,
+  fora de cron** — nao entra na cadencia de nada.
+- **Os baloes sao REDESENHADOS, nao e o print original.** O print do Gilliard
+  vinha com o painel de contato aberto do WhatsApp Web (foto e **telefone** dele
+  na tela); o da Sueli tem erros de digitacao que o Diego mandou corrigir; e
+  tres prints de zoom diferente ficam desalinhados num destaque, que e lido em
+  sequencia. O texto e o das mensagens, palavra por palavra.
+- **O destaque nao tem API.** A Graph API publica o Story e para ai; o circulo
+  no perfil so se monta no app ou no instagram.com (Perfil -> Novo -> escolher
+  os Stories -> Selecionar capa). Por isso existe a peca `0-capa`: a capa
+  redonda tem de sair de um dos Stories do proprio destaque, e a ordem do
+  destaque e a ordem de publicacao — a capa vai primeiro.
+- O selo vem de `Desktop\Perffec\Claude\Logo-Venda10x\selo-venda10x-1024.png`,
+  que esta fora do repo: se a marca mudar de lugar, o gerador quebra na hora e
+  nao publica peca velha.
+
 ## Arquivos
 
 | Arquivo | Papel |
