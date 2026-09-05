@@ -564,6 +564,19 @@ era um 5º post fora de hora. Cron: `58 17 * * *`. No app Canteiro esse Reel
 aparece com o chip "robô" e o aviso de que sai sozinho, e o bloco de produção do
 dia já desconta ele da conta de gravações.
 
+⚠️ **Trocar o cron custa o primeiro dia (05/09/2026).** O corte 27 não saiu às
+15h: o GitHub **não disparou nenhum dos três crons novos** — nem o das 17:58,
+nem as repescagens. Não foi erro de código (o `--ensaio` local escolhia o corte
+certo, com mídia e legenda prontas) nem falta de mídia: o agendador do repo
+estava vivo o dia inteiro (o `dm-comentarios.yml` rodou 10 vezes), só o
+`reel-diario.yml` ficou mudo — e era o **primeiro dia** com o horário novo,
+commitado na véspera às 22h40 BRT. Mesmo sintoma de 27/08: sem run não há
+falha, e sem falha não nasce issue. **Sempre que mexer no `schedule`, conferir
+o dia seguinte** (`gh run list --workflow=reel-diario.yml`) e, se não houver run
+do dia, `gh workflow run reel-diario.yml` — o `--garantir` das repescagens
+impede post duplo. Foi assim que o 27 saiu, 18h35 UTC:
+https://www.instagram.com/reel/Dc6naPIkZR9/
+
 ## Por que o repositório é público
 
 Herança da publicação por API: a Graph API **não aceita upload de arquivo
