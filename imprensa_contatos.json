@@ -1,0 +1,42 @@
+{
+  "abravidro.org.br": {
+    "nome": "Abravidro",
+    "emails": [
+      "abravidro@abravidro.org.br",
+      "rsilva@abravidro.org.br"
+    ],
+    "visto_em": "2026-09-05"
+  },
+  "afeal.com.br": {
+    "nome": "AFEAL",
+    "emails": [],
+    "visto_em": "2026-09-05"
+  },
+  "aecweb.com.br": {
+    "nome": "AECweb",
+    "emails": [],
+    "visto_em": "2026-09-05"
+  },
+  "metalica.com.br": {
+    "nome": "Portal Metálica",
+    "emails": [],
+    "visto_em": "2026-09-05"
+  },
+  "abal.org.br": {
+    "nome": "ABAL",
+    "emails": [
+      "abal@abal.org.br"
+    ],
+    "visto_em": "2026-09-05"
+  },
+  "portalvgv.com.br": {
+    "nome": "Portal VGV",
+    "emails": [],
+    "visto_em": "2026-09-05"
+  },
+  "cimentoitambe.com.br": {
+    "nome": "Massa Cinzenta",
+    "emails": [],
+    "visto_em": "2026-09-05"
+  }
+}
