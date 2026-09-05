@@ -1,0 +1,86 @@
+name: Placar dos canais
+
+# ============================================================================
+# Toda segunda, 11h13 BRT: quanto cada porta publicou e o que trouxe.
+#
+# POR QUE: em 05/09/2026 havia tres canais publicando sozinhos e nenhuma
+# medicao. Foi assim que o canal do YouTube ficou quatro meses parado sem
+# ninguem notar. A regra combinada com o Diego — canal que em 60 dias nao trouxe
+# nenhum lead sai do motor — so e aplicavel se existir placar.
+#
+# O placar chega por ISSUE do GitHub, que manda e-mail: nao adianta gravar um
+# arquivo num repositorio que ninguem abre na segunda de manha.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "13 14 * * 1"   # segunda, 11h13 BRT
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Janela em dias"
+        required: false
+        default: "7"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  medir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install --quiet google-api-python-client google-auth
+
+      - name: Medir
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          YT_TOKEN: ${{ secrets.YT_TOKEN_VNO }}
+          GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+        run: python placar_canais.py --dias ${{ inputs.dias || 7 }} --md analise/placar-canais.md
+
+      - name: Abrir a issue com o placar
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const corpo = fs.readFileSync('analise/placar-canais.md', 'utf8')
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Placar dos canais — " + hoje,
+              body: corpo,
+              labels: ["placar"],
+            })
+
+      - name: Guardar o placar no repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add analise/placar-canais.md
+          git diff --staged --quiet || git commit -m "Placar dos canais (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Placar dos canais falhou",
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas comuns: GSC_TOKEN ou YT_TOKEN_VNO revogados, ou o " +
+                    "/llms.txt do site fora do ar.",
+            })
