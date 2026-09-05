@@ -1,0 +1,100 @@
+name: Threads diario @vendanaobra
+
+# ============================================================================
+# Um post por dia no Threads, tirado do BLOG — nao do Reel.
+#
+# POR QUE NAO O REEL: o Instagram ja espelha o Reel no Threads sozinho.
+# Republicar pela API seria duplicar. O que falta la e o que so o Threads
+# permite: LINK que clica. Entao a esteira daqui e a resposta de um artigo do
+# blog com o link carimbado por UTM.
+#
+# RENOVACAO DO TOKEN: o token do Threads dura 60 dias. Renovar e permitido a
+# partir de 24 h de vida e devolve outros 60 — entao renovar TODO DIA deixa ele
+# permanentemente novo, e ninguem precisa lembrar. O secret e reescrito pelo
+# proprio workflow (GH_PAT). Sem GH_PAT o passo apenas avisa: o repositorio e
+# PUBLICO, token em arquivo versionado esta fora de cogitacao.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "23 14 * * *"   # 11h23 BRT — minuto quebrado de proposito
+  workflow_dispatch:
+    inputs:
+      ensaio:
+        description: "Ensaio: mostra o que sairia, sem publicar"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: threads-diario
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Publicar
+        env:
+          THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          args=""
+          [ "${{ inputs.ensaio }}" = "true" ] && args="--ensaio"
+          python threads_publicar.py $args
+
+      - name: Renovar o token
+        id: renovar
+        if: inputs.ensaio != true
+        env:
+          THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+        run: python threads_publicar.py --renovar
+
+      - name: Guardar o token novo
+        if: inputs.ensaio != true && steps.renovar.outputs.token != ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          NOVO: ${{ steps.renovar.outputs.token }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Sem GH_PAT: o token novo nao foi guardado. Ele vence em 60 dias."
+            exit 0
+          fi
+          printf '%s' "$NOVO" | gh secret set THREADS_TOKEN
+
+      - name: Commitar o estado
+        if: inputs.ensaio != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add threads_publicados.json
+          git diff --staged --quiet || git commit -m "Publica no Threads (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Threads diario falhou em " + hoje,
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas comuns: THREADS_TOKEN vencido (o token dura 60 dias e " +
+                    "a renovacao diaria deste mesmo workflow deveria evitar isso), " +
+                    "ou o /llms.txt do site mudou de formato."
+            })
