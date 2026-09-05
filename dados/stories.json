@@ -1,0 +1,63 @@
+[
+ {
+  "dia": "2026-09-04",
+  "seguidores": 9277,
+  "colhido_em": "2026-09-04 22:36",
+  "stories": [
+   {
+    "id": "17955654858223665",
+    "hora": "07:46",
+    "tipo": "IMAGE",
+    "views": 82,
+    "reach": 68,
+    "replies": 0,
+    "navigation": 68
+   },
+   {
+    "id": "18189681115400548",
+    "hora": "09:51",
+    "tipo": "IMAGE",
+    "views": 67,
+    "reach": 55,
+    "replies": 0,
+    "navigation": 61
+   },
+   {
+    "id": "18100122899198195",
+    "hora": "11:52",
+    "tipo": "IMAGE",
+    "views": 50,
+    "reach": 40,
+    "replies": 0,
+    "navigation": 42
+   },
+   {
+    "id": "18081420983320133",
+    "hora": "15:55",
+    "tipo": "IMAGE",
+    "views": 41,
+    "reach": 23,
+    "replies": 0,
+    "navigation": 37
+   },
+   {
+    "id": "18108740741125371",
+    "hora": "19:28",
+    "tipo": "VIDEO",
+    "views": 23,
+    "reach": 18,
+    "replies": 0,
+    "navigation": 20
+   },
+   {
+    "id": "17983125822097104",
+    "hora": "19:30",
+    "tipo": "VIDEO",
+    "views": 20,
+    "reach": 18,
+    "replies": 0,
+    "navigation": 18
+   }
+  ]
+ }
+]

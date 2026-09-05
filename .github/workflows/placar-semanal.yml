@@ -1,0 +1,78 @@
+name: Placar @vendanaobra
+
+# ============================================================================
+# As duas medicoes que o metodo ROTA 100K exige e que ninguem fazia.
+#
+# 1) COLETA DIARIA de Stories, 01:10 UTC (22h10 BRT). Story vive 24h na API:
+#    sem fotografar antes de expirar, as duas reguas do Destrave Story (1o
+#    story >= 10% dos seguidores; ultimo >= 40% do primeiro) nao existem.
+#    O JSON e' COMMITADO — o runner e' descartavel e o historico e' o produto.
+#
+# 2) PLACAR de SEXTA, 12:10 UTC (09h10 BRT): posts da semana por alcance e
+#    salvos, as reguas de story dia a dia e os comentarios em forma de
+#    pergunta (a fonte de gancho do metodo). Sai como issue, para o Diego ler
+#    no celular.
+#
+# Nao publica nada: os dois scripts so' leem a Graph API.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "10 1 * * *"      # coleta diaria dos stories
+    - cron: "10 12 * * 5"     # placar de sexta
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Janela do placar em dias (padrao 7)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  medir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Coletar stories do dia
+        if: github.event.schedule == '10 1 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: python coletar_stories.py
+
+      - name: Guardar o historico
+        if: github.event.schedule == '10 1 * * *' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados/stories.json
+          git diff --staged --quiet || git commit -m "Mede stories (auto)"
+          git push
+
+      - name: Montar o placar
+        if: github.event.schedule == '10 12 * * 5' || github.event_name == 'workflow_dispatch'
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: python placar.py --dias ${{ inputs.dias || 7 }} --md placar.md
+
+      - name: Publicar o placar como issue
+        if: github.event.schedule == '10 12 * * 5' || github.event_name == 'workflow_dispatch'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const corpo = fs.readFileSync('placar.md', 'utf8').slice(0, 60000)
+            const hoje = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Placar da semana — " + hoje,
+              body: corpo
+            })
