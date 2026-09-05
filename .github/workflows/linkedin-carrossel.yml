@@ -1,0 +1,75 @@
+name: LinkedIn carrossel
+
+# ============================================================================
+# Terca e quinta: o artigo do blog vira PDF de 5 folhas no LinkedIn.
+#
+# POR QUE: post de DOCUMENTO segura o leitor passando folha dentro do
+# LinkedIn, em vez de manda-lo embora num link — e a rede distribui muito mais
+# quem prende do que quem manda sair. O post de texto continua nas segundas,
+# quartas e sextas; os dois nunca caem no mesmo dia, porque dois posts do mesmo
+# perfil no mesmo dia competem entre si.
+#
+# O PDF e desenhado com PyMuPDF, sem dependencia nova, e o script pula artigo
+# que o post de texto usou nos ultimos 7 dias.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "47 11 * * 2,4"   # 08h47 BRT, terca e quinta
+  workflow_dispatch:
+    inputs:
+      ensaio:
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: linkedin-carrossel
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencias
+        run: pip install --quiet pymupdf
+
+      - name: Publicar
+        env:
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          LINKEDIN_URN: ${{ secrets.LINKEDIN_URN }}
+        run: |
+          args=""
+          [ "${{ inputs.ensaio }}" = "true" ] && args="--ensaio"
+          python linkedin_carrossel.py $args
+
+      - name: Commitar o estado
+        if: inputs.ensaio != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add linkedin_carrossel_publicados.json
+          git diff --staged --quiet || git commit -m "Carrossel no LinkedIn (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: "Carrossel do LinkedIn falhou em " + new Date().toISOString().slice(0,10),
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId,
+            })

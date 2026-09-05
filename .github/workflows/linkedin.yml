@@ -19,7 +19,10 @@ name: LinkedIn diario
 
 on:
   schedule:
-    - cron: "47 11 * * 1-5"   # 08h47 BRT, segunda a sexta
+    # Segunda, quarta e sexta. Terca e quinta sao do carrossel
+    # (linkedin-carrossel.yml): dois posts do mesmo perfil no mesmo dia
+    # competem entre si na entrega.
+    - cron: "47 11 * * 1,3,5"   # 08h47 BRT
   workflow_dispatch:
     inputs:
       ensaio:
