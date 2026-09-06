@@ -144,6 +144,9 @@ def artigo_mais_novo() -> dict:
 
 def release(art: dict) -> tuple[str, str]:
     assunto = f"Sugestão de pauta: {art['titulo']}"
+    # UTM no link do release: sem isso, o portal que publicar a materia traz
+    # gente que chega como "direto", e a assessoria nunca prova que funcionou.
+    link = art["url"] + ("&" if "?" in art["url"] else "?") + "utm_source=imprensa&utm_medium=release&utm_campaign=portais"
     corpo = f"""Olá,
 
 Sou Diego Moraes, fundador da Perffec (esquadrias e vidro de alto padrão, em
@@ -154,7 +157,7 @@ sai da fábrica.
 Publiquei esta semana um material que talvez interesse ao público de vocês:
 
 {art['titulo']}
-{art['url']}
+{link}
 
 {art['resposta']}
 

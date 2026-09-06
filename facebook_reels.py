@@ -105,7 +105,7 @@ def legenda_para_facebook(bruta: str) -> str:
             continue
         linhas.append(l)
     corpo = "\n\n".join(linhas[:5])
-    return (corpo + "\n\nRaio-X gratuito do seu comercial: https://vendanaobra.com.br/r/ig").strip()
+    return (corpo + "\n\nRaio-X gratuito do seu comercial: https://vendanaobra.com.br/r/fb-raiox").strip()
 
 
 def publicar_reel(video_url: str, descricao: str) -> str:
