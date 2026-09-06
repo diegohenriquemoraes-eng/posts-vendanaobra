@@ -59,5 +59,102 @@
     "navigation": 18
    }
   ]
+ },
+ {
+  "dia": "2026-09-06",
+  "seguidores": 9277,
+  "colhido_em": "2026-09-06 02:53",
+  "stories": [
+   {
+    "id": "18008708804894229",
+    "hora": "13:32",
+    "tipo": "IMAGE",
+    "views": 73,
+    "reach": 52,
+    "replies": 0,
+    "navigation": 58
+   },
+   {
+    "id": "17908075026495425",
+    "hora": "16:09",
+    "tipo": "IMAGE",
+    "views": 39,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 37
+   },
+   {
+    "id": "18107670911136873",
+    "hora": "16:55",
+    "tipo": "IMAGE",
+    "views": 32,
+    "reach": 24,
+    "replies": 0,
+    "navigation": 30
+   },
+   {
+    "id": "18109843931023280",
+    "hora": "16:56",
+    "tipo": "IMAGE",
+    "views": 33,
+    "reach": 23,
+    "replies": 0,
+    "navigation": 33
+   },
+   {
+    "id": "18030628268845362",
+    "hora": "16:56",
+    "tipo": "IMAGE",
+    "views": 33,
+    "reach": 22,
+    "replies": 0,
+    "navigation": 33
+   },
+   {
+    "id": "18076468559450321",
+    "hora": "16:56",
+    "tipo": "IMAGE",
+    "views": 31,
+    "reach": 22,
+    "replies": 0,
+    "navigation": 31
+   },
+   {
+    "id": "18244502071311549",
+    "hora": "17:36",
+    "tipo": "IMAGE",
+    "views": 33,
+    "reach": 21,
+    "replies": 0,
+    "navigation": 28
+   },
+   {
+    "id": "18132705574631470",
+    "hora": "18:28",
+    "tipo": "IMAGE",
+    "views": 31,
+    "reach": 19,
+    "replies": 0,
+    "navigation": 26
+   },
+   {
+    "id": "17892632601416743",
+    "hora": "20:42",
+    "tipo": "VIDEO",
+    "views": 21,
+    "reach": 16,
+    "replies": 0,
+    "navigation": 20
+   },
+   {
+    "id": "18108250760241763",
+    "hora": "20:45",
+    "tipo": "VIDEO",
+    "views": 18,
+    "reach": 15,
+    "replies": 0,
+    "navigation": 18
+   }
+  ]
  }
 ]
