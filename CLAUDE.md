@@ -37,6 +37,46 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
 
+## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
+
+Pedido do Diego em 05/09/2026, a partir do card de contagem regressiva que a
+**própria feira** publica com os embaixadores dela (foto recortada sobre
+vermelho, "Faltam N dias", logo, data e endereço): o mesmo com ele, marcando a
+@fesqua como colaboradora.
+
+| Peça | Onde |
+|---|---|
+| Arte 1080x1350 | `gerar_card_fesqua.py` → `imagens/2026-09-06/2026-09-06-fesqua-faltam-3.jpg` |
+| Legenda, data e colaborador | `fesqua_card.json` |
+| Publicação | `publicar_card_fesqua.py` + `.github/workflows/fesqua-card.yml` (12h BRT de 06/09, com 2 repescagens) |
+| Registro | `fesqua_publicados.json` |
+
+**Este é o único post de FEED que volta a sair por API** desde a pausa de
+04/09/2026 — e é um post único, com data marcada, pedido nominalmente. A trava
+`VNO_FESQUA_ATIVO=1` mora só no `fesqua-card.yml`; `post-diario.yml`,
+`miniaula.yml` e `rede-de-seguranca.yml` continuam desligados.
+
+Decisões que valem para qualquer card novo desta série:
+
+- **A credencial é "Influenciador da Fesqua 2026"**, sem a palavra "oficial" e
+  nunca "embaixador" — os 13 embaixadores são outra categoria e o Diego não está
+  na lista. Foi ele mesmo quem cortou o "oficial", às 12h55 de 05/09
+  (`Perffec\Claude\FESQUA-2026-registro-envios.md`).
+- **O número da contagem é calculado da data de publicação até 09/09**, nunca
+  escrito à mão. Card de contagem com número errado é o erro que o feed inteiro
+  enxerga — e o `--garantir` do publicador se recusa a publicar fora da data por
+  isso.
+- **O convite de colaboração pode ser recusado pela API** (perfil que bloqueia
+  convite, convite pendente, @ errado). Nesse caso o container é recriado sem
+  colab e o post sai assim mesmo: perder a data do card seria pior. O log diz, e
+  aí a marcação é na mão pelo app.
+- **A foto é a do Gemini** (`Fotos-IA/diego-obra-venda10x-2K-obra-ativa.png`),
+  recortada com `rembg` (bria-rmbg 2.0) e guardada em `midia/fesqua/`. Duas
+  armadilhas pagas na montagem: o halo atrás da silhueta precisa de folga no
+  canvas antes do desfoque (senão vira um RETÂNGULO claro no card), e o recorte
+  é plano médio — sem dissolver os últimos 150 px, o corpo aparece cortado por
+  uma linha reta no meio da arte.
+
 ## Reel do EP25 — refeito em 27/08/2026 (formato, calendário e capas)
 
 Três decisões do Diego no mesmo dia mudaram o Reel de ponta a ponta. O que valia
