@@ -71,11 +71,20 @@ Decisões que valem para qualquer card novo desta série:
   colab e o post sai assim mesmo: perder a data do card seria pior. O log diz, e
   aí a marcação é na mão pelo app.
 - **A foto é a do Gemini** (`Fotos-IA/diego-obra-venda10x-2K-obra-ativa.png`),
-  recortada com `rembg` (bria-rmbg 2.0) e guardada em `midia/fesqua/`. Duas
-  armadilhas pagas na montagem: o halo atrás da silhueta precisa de folga no
-  canvas antes do desfoque (senão vira um RETÂNGULO claro no card), e o recorte
-  é plano médio — sem dissolver os últimos 150 px, o corpo aparece cortado por
-  uma linha reta no meio da arte.
+  recortada com `rembg` (bria-rmbg 2.0) e guardada em `midia/fesqua/`.
+- **O layout é o da peça da feira, elemento por elemento** — ele pediu isso
+  explicitamente na segunda volta: "copie o layout dele só mudando a foto, os
+  dias e a relação com vendas". Duas correções vieram daí e valem para qualquer
+  card novo: **o número nunca cobre o rosto** (na peça original ele fica ACIMA
+  da cabeça, e a pessoa começa abaixo do bloco da contagem) e **o fundo não é
+  vermelho chapado** — a peça original tem foto de pavilhão por trás do
+  vermelho, e é ela que dá profundidade. O fundo aqui é uma foto CC0 do Commons
+  (`midia/fesqua/fundo-feira.jpg`), desfocada, dessaturada e coberta por uma
+  rampa vermelha que fecha quase opaca embaixo, onde ficam o crachá e o rodapé.
+- Outras duas armadilhas de montagem: o halo atrás da silhueta precisa de folga
+  no canvas antes do desfoque (senão vira um RETÂNGULO claro no card), e o
+  recorte é plano médio — sem dissolver os últimos pixels, o corpo aparece
+  cortado por uma linha reta no meio da arte.
 
 ## Reel do EP25 — refeito em 27/08/2026 (formato, calendário e capas)
 
