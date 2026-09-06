@@ -15,18 +15,20 @@ O QUE ELE MEDE — E O QUE NAO MEDE, DE PROPOSITO
 Mede: Google (Search Console), YouTube (canal e videos da semana), Threads e
 Instagram (contagem), e a SAUDE DA ESTEIRA (publicou o que a config manda?).
 
+**Visitas e leads por canal entraram em 05/09/2026.** Sao lidos do coletor
+(`medicao-webapp-url.txt`), um Apps Script SEPARADO do que recebe os leads — o
+de leads esta em producao e nao foi tocado. O coletor nao guarda nada de
+pessoal: so canal, midia, campanha e caminho da pagina.
+
+⚠ A leitura so vale a partir de 05/09/2026, e a atribuicao e de PRIMEIRO TOQUE:
+quem chegou pelo Short, voltou pelo Google e so entao preencheu o Raio-X conta
+para o YouTube. Atribuir ao Google premiaria o canal errado.
+
 NAO mede, por falta de acesso e nao por esquecimento:
-- **Visitas por canal**: o site nao tem Google Analytics. O que existe e a rota
-  `/r/<origem>`, que carimba UTM mas nao guarda nada — Vercel serverless nao tem
-  onde escrever. Ligar isso exige um contador (Vercel Analytics, no painel do
-  Diego) ou fazer o `/r/` avisar o Apps Script.
-- **Leads por origem**: ficam na planilha do Apps Script "Leads Venda na Obra".
-  O web app so aceita POST; nao devolve relatorio. Para ler daqui, o Diego
-  precisa colar no editor uma funcao `doGet` que exporte o resumo.
 - **Vendas**: Kiwify, sem integracao. O caminho e um webhook da Kiwify.
 
-Enquanto essas tres faltarem, o placar responde "quanta gente alcancei" e nao
-"quanto vendi". Melhor dizer isso na cara do que fingir um numero.
+Enquanto essa faltar, o placar responde "quem trouxe gente" e nao "quanto
+vendi". Melhor dizer isso na cara do que fingir um numero.
 
 Uso:
     python placar_canais.py                # semana corrente
@@ -248,6 +250,26 @@ def blog(dias: int) -> int:
 
 
 # --------------------------------------------------------------------------- #
+COLETOR = "https://script.google.com/macros/s/AKfycby7m9HPEKBHfWJqU1WJv8xr9RuK2TbyDdcN9Up7gJ0Y-t91VzCg2e13W8yJ7qKOx-4p/exec"
+
+
+def origens(dias: int) -> dict | None:
+    """Visitas e leads por canal, do coletor.
+
+    Falhar aqui nao derruba o placar: o resto da medicao continua valendo, e um
+    placar que nao chega e pior que um placar incompleto.
+    """
+    try:
+        req = urllib.request.Request(
+            f"{COLETOR}?dias={dias}", headers={"User-Agent": "VendaNaObra/1.0"}
+        )
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"coletor indisponivel: {str(e)[:100]}")
+        return None
+
+
 def variacao(agora: int, antes: int) -> str:
     if antes == 0:
         return "novo" if agora else "—"
@@ -311,16 +333,42 @@ def montar(dias: int) -> str:
     if i:
         L += ["## Instagram", "", f"{i['seguidores']} seguidores.", ""]
 
+    o = origens(dias)
+    if o:
+        visitas, leads = o.get("visitas", {}), o.get("leads", {})
+        L += ["## De onde veio quem entrou no site", ""]
+        if visitas:
+            total = sum(visitas.values())
+            L += [
+                f"{total} sessão(ões) no período. Atribuição de **primeiro toque**.",
+                "",
+                "| origem | sessões | leads |",
+                "|---|---:|---:|",
+            ]
+            for chave, n in sorted(visitas.items(), key=lambda x: -x[1]):
+                L.append(f"| {chave} | {n} | {leads.get(chave, 0)} |")
+            orfaos = [k for k in leads if k not in visitas]
+            for chave in orfaos:
+                L.append(f"| {chave} | — | {leads[chave]} |")
+            L.append("")
+        else:
+            L += [
+                "Nenhuma sessão registrada. Ou ninguém entrou, ou os links "
+                "publicados ainda não passam pelo `/r/<origem>`.",
+                "",
+            ]
+        if not leads:
+            L += ["Nenhum lead no período.", ""]
+
     L += [
         "## O que este placar ainda NÃO sabe",
         "",
-        "- **Visitas por canal** — o site não tem Google Analytics; a rota `/r/<origem>` "
-        "carimba a origem mas não guarda nada.",
-        "- **Leads por origem** — ficam na planilha do Apps Script, que só aceita escrita. "
-        "Para ler daqui, é preciso publicar lá uma função que devolva o resumo.",
-        "- **Vendas** — a Kiwify não está integrada; o caminho é um webhook dela.",
-        "",
-        "Enquanto isso, este placar responde *quanta gente alcancei*, não *quanto vendi*.",
+        "- **Vendas** — a Kiwify não está integrada; o caminho é um webhook dela. "
+        "É a última peça que falta para o placar dizer *quanto vendi* e não só "
+        "*quem trouxe gente*.",
+        "- **Quem entra e não volta** — o coletor conta uma sessão, não a jornada. "
+        "Saber que o visitante do LinkedIn lê três páginas e o do YouTube uma só "
+        "exigiria rastrear navegação, que é justamente o que se decidiu não fazer.",
     ]
     return "\n".join(L)
 
