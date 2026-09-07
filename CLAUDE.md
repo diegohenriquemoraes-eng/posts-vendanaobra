@@ -577,6 +577,36 @@ texto redigido; o destaque, com o print.
   que esta fora do repo: se a marca mudar de lugar, o gerador quebra na hora e
   nao publica peca velha.
 
+## Destaque "Podcasts" (07/09/2026) — 8 participacoes, e o que o site errava
+
+Segundo destaque de prova social, no mesmo molde do de depoimentos:
+`gerar_destaque_podcasts.py` desenha (capa + 1 peca por episodio) e
+`publicar_destaque_podcasts.py` sobe os Stories em ordem CRONOLOGICA — a ordem
+do destaque e a ordem de publicacao. Rodada manual, fora de cron.
+
+Como o levantamento foi feito, para repetir quando entrar episodio novo:
+varredura dos 651 posts do perfil pela Graph API (legenda com
+"podcast|episodio|convidado" e os nomes dos programas) e, com os links de
+YouTube achados nas legendas, busca dentro de CADA canal
+(`youtube.com/@canal/search?query=diego`). A legenda sozinha nao basta: os dois
+episodios de 2026 nunca tiveram corte publicado aqui.
+
+Deu **8 episodios em 5 casas** — o site mostra 5 cards e erra dois:
+
+- "Papo de Esquadria" e "Premium Cast" nao sao dois podcasts: o Premium Cast e
+  um programa do canal Papo de Esquadria. Sao dois episodios distintos
+  (abr/2025 e abr/2026), nao duas casas.
+- "Na Veia - Nosso Setor" e uma mesa do **Maos a Obra Podcast** (EP77 e EP80).
+- Falta no site: Alem do Drywall #109, Na Veia EP77 e EP80, Papo 2026.
+
+⚠ A arte de cada peca e a **thumbnail oficial do episodio** (cache em
+`imagens/_cache_podcasts/`, fora do Git). Frame de corte proprio nao serve: os
+Reels do perfil sao 638x360 e viram borrao em 1080 de largura.
+
+O convite do fim ("quer o Diego no seu podcast?") esta escrito em `fecho()`,
+mas fora de `gerar_tudo` e da fila: publicado em 07/09 e apagado pelo Diego no
+mesmo dia.
+
 ## Arquivos
 
 | Arquivo | Papel |
