@@ -633,6 +633,7 @@ mesmo dia.
 | `.github/workflows/dm-comentarios.yml` | **Ativo** — roda de 10 em 10 minutos |
 | `medir_alcance.py` | Linha de base: alcance por post e efeito de publicar mais de uma peça no dia |
 | `top_posts.py` | Os campeões medidos (Graph API) — é de onde saem as "referências do dia" do app Canteiro |
+| `medir_cta.py` | Le o teste de CTA do carrossel (07/09/2026): braço `bio` x `compartilhar`, casando o publicado com o `publico` do banco do Canteiro |
 | `coletar_stories.py` | **Diário**: fotografa os Stories antes de expirarem (a API só os devolve por 24h) |
 | `placar.py` | O placar de sexta: posts, réguas de Story e comentários em forma de pergunta |
 | `dados/stories.json` | Histórico dos Stories — **versionado**, o runner é descartável |
