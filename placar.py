@@ -17,6 +17,7 @@ Uso: python placar.py               # semana corrente (ultimos 7 dias)
      python placar.py --md caminho.md
 """
 import argparse
+import sys
 import json
 import re
 from datetime import datetime, timedelta
@@ -37,6 +38,41 @@ def comentarios(token, media_id):
     return r.get("data", [])
 
 
+def conta(token, dias):
+    """A regua da CONTA — o que a escada do metodo move primeiro.
+
+    Entrou em 07/09/2026: o placar so' olhava o post, e o post CAI enquanto a
+    escada sobe (o volume triplica e cada peca pega uma fatia menor). Sem esta
+    secao o Diego via "views baixas" numa semana em que o alcance da conta
+    tinha subido 3,4x. Mede alcance, quem e' de fora e retencao dos Reels.
+    """
+    hoje = datetime.now(FUSO_BR).date()
+    j = _get(f"{IG_USER_ID}/insights",
+             {"metric": "reach", "period": "day", "metric_type": "total_value",
+              "breakdown": "follow_type", "since": str(hoje - timedelta(days=dias)),
+              "until": str(hoje), "access_token": token})
+    tv = (j.get("data") or [{}])[0].get("total_value", {})
+    br = {x["dimension_values"][0]: x["value"]
+          for x in (tv.get("breakdowns") or [{}])[0].get("results", [])}
+    v = _get(f"{IG_USER_ID}/insights",
+             {"metric": "views", "period": "day", "metric_type": "total_value",
+              "since": str(hoje - timedelta(days=dias)), "until": str(hoje),
+              "access_token": token})
+    seg = _get(IG_USER_ID, {"fields": "followers_count", "access_token": token}
+               ).get("followers_count", 0)
+    return {"alcance": tv.get("value", 0), "fora": br.get("NON_FOLLOWER", 0),
+            "dentro": br.get("FOLLOWER", 0),
+            "views": (v.get("data") or [{}])[0].get("total_value", {}).get("value", 0),
+            "seguidores": seg}
+
+
+def retencao_reel(token, media_id):
+    r = _get(f"{media_id}/insights",
+             {"metric": "ig_reels_avg_watch_time,views", "access_token": token})
+    d = {x["name"]: x["values"][0]["value"] for x in r.get("data", [])}
+    return (d.get("ig_reels_avg_watch_time") or 0) / 1000, d.get("views", 0)
+
+
 def main():
     a = argparse.ArgumentParser()
     a.add_argument("--dias", type=int, default=7)
@@ -50,7 +86,10 @@ def main():
         m = metricas(token, p)
         if not m:
             continue
+        assist, vws = (retencao_reel(token, p["id"])
+                       if p.get("media_product_type") == "REELS" else (None, None))
         linhas.append({
+            "assistido": assist, "views": vws, "curtidas": m.get("likes", 0),
             "quando": p["quando"].strftime("%d/%m"),
             "tipo": p.get("media_product_type") or p.get("media_type"),
             "alcance": m.get("reach", 0), "salvos": m.get("saved", 0),
@@ -67,6 +106,23 @@ def main():
     w = out.append
     hoje = datetime.now(FUSO_BR).strftime("%d/%m/%Y")
     w(f"# Placar @vendanaobra — {hoje} (últimos {o.dias} dias)\n")
+
+    c = conta(token, o.dias)
+    if c["alcance"]:
+        w("## A conta — é isto que a escada move primeiro\n")
+        w(f"- Contas alcançadas: **{c['alcance']}** · de fora (não seguidores): "
+          f"**{c['fora']}** ({c['fora'] / c['alcance']:.0%}) · de dentro: {c['dentro']}")
+        w(f"- Views no período: **{c['views']}** · seguidores hoje: {c['seguidores']}")
+        piso = c["seguidores"] / 100
+        aptos = [d for d in linhas if d["curtidas"] >= piso]
+        w(f"- Posts aptos a tráfego (≥ {piso:.0f} curtidas = 1%): **{len(aptos)}** "
+          f"(o método pede 3 na fila)")
+        ret = [(d["assistido"], d["views"]) for d in linhas if d["assistido"]]
+        if ret:
+            w(f"- Reels: {len(ret)} · tempo assistido mediano **{median(a for a, _ in ret):.1f}s** "
+              f"· views medianas {median(v for _, v in ret):.0f} — o Instagram só abre para "
+              f"fora acima de ~50% de retenção; com Reels de 40s isso é 20s assistidos")
+        w("")
 
     if linhas:
         alc = [d["alcance"] for d in linhas]
@@ -114,6 +170,10 @@ def main():
     w("")
 
     texto = "\n".join(out)
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")  # o cp1252 do Windows engasga no emoji
+    except AttributeError:
+        pass
     print(texto)
     destino = Path(o.md) if o.md else Path(
         rf"C:\Users\NOTE\Desktop\Perffec\Claude\Placar-vendanaobra-{datetime.now(FUSO_BR):%Y-%m-%d}.md")
