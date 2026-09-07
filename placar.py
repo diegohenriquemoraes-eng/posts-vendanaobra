@@ -24,7 +24,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from statistics import median
 
-from top_posts import FUSO_BR, _get, _token, gancho, metricas, posts
+from top_posts import FUSO_BR, IG_USER_ID, _get, _token, gancho, metricas, posts
 
 HIST = Path(__file__).parent / "dados" / "stories.json"
 PERGUNTA = re.compile(r"\?|^(como|qual|quanto|quando|onde|por que|porque|pq|tem como|da pra|dá pra)\b",
