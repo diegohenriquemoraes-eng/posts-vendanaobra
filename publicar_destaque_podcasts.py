@@ -25,8 +25,9 @@ from publicar import (IG_USER_ID, REPO_RAW, _commitar, _log, _post, _token,
 from gerar_destaque_podcasts import EPISODIOS, SAIDA, gerar_tudo
 
 PASTA_REL = "imagens/destaque-podcasts"
-ORDEM = (["0-capa.jpg"] + [e["arquivo"] + ".jpg" for e in EPISODIOS]
-         + ["9-fecho.jpg"])
+# Sem o convite do fim ("quer o Diego no seu podcast?"): publicado em 07/09 e
+# apagado pelo Diego no mesmo dia — o destaque termina no episodio mais novo.
+ORDEM = ["0-capa.jpg"] + [e["arquivo"] + ".jpg" for e in EPISODIOS]
 
 
 def publicar(ensaio: bool = False, apenas: list = None) -> None:

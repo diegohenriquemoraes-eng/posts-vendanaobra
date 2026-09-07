@@ -291,7 +291,12 @@ def episodio(item: dict, destino: str) -> str:
 
 
 def fecho(destino: str) -> str:
-    """Ultima peca: o destaque tem de terminar em convite, nao em episodio."""
+    """Convite final — FORA do destaque desde 07/09/2026.
+
+    Foi publicado junto com o resto e o Diego apagou o Story ("pode deixar sem
+    esse no destaque"). A funcao fica porque a peca esta pronta se ele mudar de
+    ideia; ela nao entra em `gerar_tudo` nem na fila do publicador.
+    """
     img = _fundo()
     d = ImageDraw.Draw(img)
     _rotulo_topo(d, "PARTICIPAÇÕES EM PODCASTS", 268)
@@ -326,7 +331,6 @@ def gerar_tudo() -> list:
     feitos = [capa(os.path.join(SAIDA, "0-capa.jpg"))]
     for item in EPISODIOS:
         feitos.append(episodio(item, os.path.join(SAIDA, item["arquivo"] + ".jpg")))
-    feitos.append(fecho(os.path.join(SAIDA, "9-fecho.jpg")))
     return feitos
 
 
