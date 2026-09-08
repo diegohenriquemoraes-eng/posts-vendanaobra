@@ -244,5 +244,147 @@
     "navigation": 29
    }
   ]
+ },
+ {
+  "dia": "2026-09-08",
+  "seguidores": 9274,
+  "colhido_em": "2026-09-08 02:56",
+  "stories": [
+   {
+    "id": "18122693938908086",
+    "hora": "08:43",
+    "tipo": "VIDEO",
+    "views": 55,
+    "reach": 42,
+    "replies": 0,
+    "navigation": 54
+   },
+   {
+    "id": "18483165235106044",
+    "hora": "09:41",
+    "tipo": "IMAGE",
+    "views": 49,
+    "reach": 36,
+    "replies": 0,
+    "navigation": 54
+   },
+   {
+    "id": "17872412214582503",
+    "hora": "09:42",
+    "tipo": "IMAGE",
+    "views": 43,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 49
+   },
+   {
+    "id": "18103933724262589",
+    "hora": "09:42",
+    "tipo": "IMAGE",
+    "views": 39,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 45
+   },
+   {
+    "id": "18025661561889091",
+    "hora": "09:42",
+    "tipo": "IMAGE",
+    "views": 46,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 51
+   },
+   {
+    "id": "18094059542431705",
+    "hora": "09:42",
+    "tipo": "IMAGE",
+    "views": 49,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 53
+   },
+   {
+    "id": "17996328416821304",
+    "hora": "09:42",
+    "tipo": "IMAGE",
+    "views": 43,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 45
+   },
+   {
+    "id": "18108928535032387",
+    "hora": "09:43",
+    "tipo": "IMAGE",
+    "views": 39,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 40
+   },
+   {
+    "id": "18098727572144407",
+    "hora": "09:43",
+    "tipo": "IMAGE",
+    "views": 40,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 40
+   },
+   {
+    "id": "18063176243603220",
+    "hora": "11:15",
+    "tipo": "IMAGE",
+    "views": 42,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 42
+   },
+   {
+    "id": "18124119244879117",
+    "hora": "13:11",
+    "tipo": "IMAGE",
+    "views": 47,
+    "reach": 32,
+    "replies": 1,
+    "navigation": 47
+   },
+   {
+    "id": "18114629101792466",
+    "hora": "14:34",
+    "tipo": "IMAGE",
+    "views": 41,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 36
+   },
+   {
+    "id": "18579665683067950",
+    "hora": "15:15",
+    "tipo": "VIDEO",
+    "views": 38,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 37
+   },
+   {
+    "id": "18115557056000079",
+    "hora": "15:54",
+    "tipo": "IMAGE",
+    "views": 38,
+    "reach": 28,
+    "replies": 0,
+    "navigation": 36
+   },
+   {
+    "id": "17892408129608654",
+    "hora": "20:19",
+    "tipo": "VIDEO",
+    "views": 29,
+    "reach": 20,
+    "replies": 0,
+    "navigation": 26
+   }
+  ]
  }
 ]
