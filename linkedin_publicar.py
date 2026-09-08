@@ -4,7 +4,7 @@ POR QUE O LINKEDIN, e por que ele é diferente dos outros canais
 ---------------------------------------------------------------
 No Instagram e no TikTok quem está do outro lado é o VENDEDOR. No LinkedIn está
 o dono da vidraçaria, o gerente da construtora, o industrial do alumínio — quem
-compra consultoria, e não e-book de R$ 47. É o único canal do plano capaz de
+compra consultoria, e não e-book de R$ 97. É o único canal do plano capaz de
 gerar contrato em vez de venda de baixo ticket. Por isso o texto aqui é escrito
 para decisor, não para quem executa.
 
