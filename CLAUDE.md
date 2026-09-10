@@ -9,9 +9,10 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > `Reel diario @vendanaobra` (`reel-diario.yml`) **desativado no GitHub**
 > (`disabled_manually`); o cron da Hostinger (`disparar.sh`, 12:00 UTC) **não existia no
 > hPanel** — nunca foi criado, o log do servidor está vazio. A fila do EP25
-> (`plano_ep25.json`) fica onde está. Os workflows que dependem do Reel do dia
-> (Distribuir Reel no YouTube, Facebook Reels, Threads diario) seguem ativos e vão rodar
-> no vazio — desligar também se incomodarem. Religar = `gh workflow enable reel-diario.yml`,
+> (`plano_ep25.json`) fica onde está. **Distribuir Reel no YouTube e Facebook Reels
+> continuam ativos e NÃO dependem disto**: leem a CONTA pela Graph API, então todo Reel que
+> o Diego postar na mão vira Short e Reel do Facebook como antes (confirmado com ele em
+> 11/09). O Threads posta do blog, nem olha o Reel. Religar = `gh workflow enable reel-diario.yml`,
 > só com ordem do Diego.
 
 > ## Quem publica o quê — desde 04/09/2026
