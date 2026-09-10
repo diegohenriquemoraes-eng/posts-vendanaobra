@@ -492,5 +492,84 @@
     "navigation": 16
    }
   ]
+ },
+ {
+  "dia": "2026-09-10",
+  "seguidores": 9272,
+  "colhido_em": "2026-09-10 02:56",
+  "stories": [
+   {
+    "id": "17893333998606462",
+    "hora": "07:56",
+    "tipo": "IMAGE",
+    "views": 85,
+    "reach": 53,
+    "replies": 1,
+    "navigation": 76
+   },
+   {
+    "id": "18338443588286100",
+    "hora": "09:48",
+    "tipo": "VIDEO",
+    "views": 79,
+    "reach": 50,
+    "replies": 1,
+    "navigation": 71
+   },
+   {
+    "id": "18353352649172767",
+    "hora": "09:50",
+    "tipo": "VIDEO",
+    "views": 73,
+    "reach": 49,
+    "replies": 1,
+    "navigation": 69
+   },
+   {
+    "id": "18025195619887707",
+    "hora": "10:50",
+    "tipo": "VIDEO",
+    "views": 81,
+    "reach": 48,
+    "replies": 2,
+    "navigation": 75
+   },
+   {
+    "id": "17883184713622105",
+    "hora": "13:02",
+    "tipo": "VIDEO",
+    "views": 71,
+    "reach": 44,
+    "replies": 0,
+    "navigation": 64
+   },
+   {
+    "id": "17987039841059613",
+    "hora": "13:38",
+    "tipo": "VIDEO",
+    "views": 149,
+    "reach": 101,
+    "replies": 0,
+    "navigation": 62
+   },
+   {
+    "id": "18092881298438720",
+    "hora": "13:40",
+    "tipo": "VIDEO",
+    "views": 364,
+    "reach": 174,
+    "replies": 0,
+    "navigation": 62
+   },
+   {
+    "id": "18120371563915632",
+    "hora": "15:35",
+    "tipo": "IMAGE",
+    "views": 60,
+    "reach": 40,
+    "replies": 1,
+    "navigation": 54
+   }
+  ]
  }
 ]
