@@ -2,6 +2,18 @@
 
 Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
+> # ⏹ 10/09/2026 — Reel diário ENCERRADO (decisão do Diego)
+>
+> No levantamento das automações que mandam push pelo ntfy, o Diego mandou encerrar a
+> automação inteira do Reel diário — não só o alarme. Feito: workflow
+> `Reel diario @vendanaobra` (`reel-diario.yml`) **desativado no GitHub**
+> (`disabled_manually`); o cron da Hostinger (`disparar.sh`, 12:00 UTC) **não existia no
+> hPanel** — nunca foi criado, o log do servidor está vazio. A fila do EP25
+> (`plano_ep25.json`) fica onde está. Os workflows que dependem do Reel do dia
+> (Distribuir Reel no YouTube, Facebook Reels, Threads diario) seguem ativos e vão rodar
+> no vazio — desligar também se incomodarem. Religar = `gh workflow enable reel-diario.yml`,
+> só com ordem do Diego.
+
 > ## Quem publica o quê — desde 04/09/2026
 >
 > | Formato | Como sai hoje |
