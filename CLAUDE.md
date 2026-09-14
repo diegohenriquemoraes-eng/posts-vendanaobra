@@ -234,6 +234,17 @@ publica o arquivo **antigo** — o vídeo vem de `raw.githubusercontent`, não d
 máquina. Subir em lotes, e conferir `git status -sb` antes de dar a fila por
 pronta.
 
+## Mini-aula com frases curtas (14/09/2026)
+
+O Diego olhou o acervo e pediu: *"os carrosséis estão com texto extenso, quero frases mais
+curtas"*. As **23 aulas não publicadas** foram reescritas em `miniaulas.json` (corpo: mediana
+19 palavras, p90 24 — antes era 28 e 53; título até 10 palavras; 1 ou 2 parágrafos curtos).
+As 10 já publicadas ficaram como estão. Regra nova em `_regras` ("RESUMIDO"): vale para toda
+aula nova — o aprofundamento vai na LEGENDA, nunca no slide. `_fontes_da_peca` ganhou teto
+de corpo 48 (era 38) e de título 64 (era 58), senão a frase curta sobrava meia tela vazia; o
+tamanho continua UM por peça (regra de 03/08). A mini-aula segue PAUSADA — isto só prepara o
+banco para quando voltar.
+
 ## ⏸️ Mini-aula PAUSADA em 04/09/2026 — "interrompe, mas mantém o estudo"
 
 Decisão do Diego, palavra dele: interromper a mini-aula em carrossel (as duas

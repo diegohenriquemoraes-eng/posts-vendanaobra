@@ -323,14 +323,16 @@ def _fontes_da_peca(aula: dict) -> tuple:
     caixa_corpo = Y_RODAPE - Y_CORPO - 60
 
     ft = _f(56, peso=700)
-    for t in range(58, 37, -1):
+    for t in range(64, 37, -1):
         f = _f(t, peso=700)
         if all(_altura_bloco(x, UTIL, f, entrelinha=1.22) <= caixa_titulo for x in titulos):
             ft = f
             break
 
+    # Teto 48 (era 38): com as frases curtas de 14/09/2026 o corpo de 38 sobrava
+    # meia tela vazia. O piso continua 26 — e o tamanho segue UM por peca.
     fc = _f(30, peso=400)
-    for t in range(38, 25, -1):
+    for t in range(48, 25, -1):
         f = _f(t, peso=400)
         if all(_altura_bloco(x, UTIL, f) <= caixa_corpo for x in corpos):
             fc = f
