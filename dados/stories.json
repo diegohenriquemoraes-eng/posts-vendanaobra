@@ -980,5 +980,120 @@
     "navigation": 32
    }
   ]
+ },
+ {
+  "dia": "2026-09-18",
+  "seguidores": 9399,
+  "colhido_em": "2026-09-18 02:53",
+  "stories": [
+   {
+    "id": "18372558430242620",
+    "hora": "09:45",
+    "tipo": "IMAGE",
+    "views": 110,
+    "reach": 77,
+    "replies": 0,
+    "navigation": 92
+   },
+   {
+    "id": "18104325791261582",
+    "hora": "10:26",
+    "tipo": "VIDEO",
+    "views": 97,
+    "reach": 70,
+    "replies": 0,
+    "navigation": 83
+   },
+   {
+    "id": "17924328705419559",
+    "hora": "11:33",
+    "tipo": "VIDEO",
+    "views": 92,
+    "reach": 65,
+    "replies": 0,
+    "navigation": 81
+   },
+   {
+    "id": "18051042032801050",
+    "hora": "12:28",
+    "tipo": "IMAGE",
+    "views": 79,
+    "reach": 53,
+    "replies": 0,
+    "navigation": 66
+   },
+   {
+    "id": "18018788471936860",
+    "hora": "13:45",
+    "tipo": "VIDEO",
+    "views": 142,
+    "reach": 97,
+    "replies": 1,
+    "navigation": 70
+   },
+   {
+    "id": "17876585646631718",
+    "hora": "15:55",
+    "tipo": "VIDEO",
+    "views": 146,
+    "reach": 96,
+    "replies": 0,
+    "navigation": 55
+   },
+   {
+    "id": "17958878331208579",
+    "hora": "15:57",
+    "tipo": "VIDEO",
+    "views": 82,
+    "reach": 54,
+    "replies": 0,
+    "navigation": 58
+   },
+   {
+    "id": "17947310919337073",
+    "hora": "16:15",
+    "tipo": "VIDEO",
+    "views": 62,
+    "reach": 40,
+    "replies": 0,
+    "navigation": 57
+   },
+   {
+    "id": "18058227890539533",
+    "hora": "19:57",
+    "tipo": "IMAGE",
+    "views": 48,
+    "reach": 34,
+    "replies": 1,
+    "navigation": 42
+   },
+   {
+    "id": "17903219133570360",
+    "hora": "20:21",
+    "tipo": "VIDEO",
+    "views": 45,
+    "reach": 31,
+    "replies": 0,
+    "navigation": 38
+   },
+   {
+    "id": "17982640716063790",
+    "hora": "20:22",
+    "tipo": "VIDEO",
+    "views": 39,
+    "reach": 30,
+    "replies": 0,
+    "navigation": 35
+   },
+   {
+    "id": "17932522599394994",
+    "hora": "21:51",
+    "tipo": "VIDEO",
+    "views": 26,
+    "reach": 23,
+    "replies": 0,
+    "navigation": 24
+   }
+  ]
  }
 ]
