@@ -1,4 +1,9 @@
-# TikTok @vendanaobra — o que falta para ligar (3 passos do Diego, ~10 min, uma vez)
+# TikTok @vendanaobra — LIGADO em 19/09/2026 (o setup abaixo já foi feito; fica como registro)
+
+Primeiro vídeo publicado às 02:04 UTC de 19/09: https://www.tiktok.com/@vendanaobra/video/7687061267009244417
+Conta no Zernio: login Google do Diego, TikTok `@vendanaobra` conectado, chave em
+`Perffec\Claude\zernio_api_token.txt` (o nome tem de conter `token` para o .gitignore pegar) e no
+secret `ZERNIO_API_KEY` do repo. A partir daqui o cron faz tudo.
 
 O código está pronto (`distribuir_tiktok.py` + workflow `Distribuir Reel no TikTok`).
 Ele lê a conta do Instagram pela Graph API, baixa o Reel limpo (sem marca d'água) e
@@ -23,12 +28,12 @@ de vídeo não é clicável e o TikTok penaliza; por isso o distribuidor nunca e
 
 ## 3. Entregar a chave
 
-Salvar a chave em `C:\Users\NOTE\Desktop\Perffec\Claude\zernio_api_key.txt` (pasta
-gitignorada, mesmo lugar do token da Meta) e me avisar — eu gravo o secret e disparo o
+Salvar a chave em `C:\Users\NOTE\Desktop\Perffec\Claude\zernio_api_token.txt` (o .gitignore da
+pasta só ignora nomes com `token` ou `secret`; `zernio_api_key.txt` NÃO seria ignorado) e me avisar — eu gravo o secret e disparo o
 primeiro vídeo em ensaio. Ou, se preferir fazer direto:
 
 ```bash
-gh secret set ZERNIO_API_KEY --repo diegohenriquemoraes-eng/posts-vendanaobra < "C:/Users/NOTE/Desktop/Perffec/Claude/zernio_api_key.txt"
+gh secret set ZERNIO_API_KEY --repo diegohenriquemoraes-eng/posts-vendanaobra < "C:/Users/NOTE/Desktop/Perffec/Claude/zernio_api_token.txt"
 ```
 
 ## O que acontece depois

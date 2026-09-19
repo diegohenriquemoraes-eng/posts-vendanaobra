@@ -50,7 +50,7 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
 
-## TikTok @vendanaobra — distribuidor pronto, esperando a chave do Zernio (18/09/2026)
+## TikTok @vendanaobra — NO AR desde 19/09/2026 (Reel do Instagram → TikTok pelo Zernio)
 
 Pedido do Diego: "puxar automático pro TikTok todos os vídeos que coloco no Instagram", igual
 ao distribuidor do YouTube. A API oficial do TikTok só publica PÚBLICO com o app auditado
@@ -69,7 +69,13 @@ Decisões: vídeo de `media_url` (sem marca d'água) baixado no runner e subido 
 Zernio por presign — a URL do Instagram expira e o Zernio só a busca na hora de publicar;
 legenda **sem URL** (não clicável e penalizada) e **sem `@`** (marcaria outra pessoa);
 link só no campo "site" da bio (Conta Comercial). Sem `ZERNIO_API_KEY` o cron sai limpo,
-sem issue. Ensaio local de 18/09: 35 Reels na janela de 30 dias, legendas corretas.
+sem issue. **Ligado em 19/09/2026**: TikTok conectado no Zernio (conta `6aaded7c8d284ffb21190a12`,
+390 seguidores herdados da @casaqueresolve.oficial), secret gravado, primeiro vídeo publicado
+(`Ddcg0OoPoOS` → `tiktok.com/@vendanaobra/video/7687061267009244417`). O `creator-info` do TikTok
+só oferece `PUBLIC_TO_EVERYONE` para vídeo (app comercial), que é o que queremos. A chave local
+chama-se `zernio_api_token.txt` porque o `.gitignore` da pasta Perffec só pega `*token*`/`*secret*`.
+⚠ `gh` não estava autenticado nesta máquina; o token do Git Credential Manager (`git credential
+fill`, `gho_`, escopos repo+workflow) serve para `gh auth login --with-token`.
 
 ## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
 
