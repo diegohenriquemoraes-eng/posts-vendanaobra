@@ -12,10 +12,11 @@ O DESENHO, E O MOTIVO DE CADA ESCOLHA
 -------------------------------------
 - A fonte e a CONTA do Instagram (Graph API), como nos distribuidores do
   YouTube e do TikTok: entra o que o Diego posta na mao.
-- O video vai por URL (`media_url` do Instagram): a API do Threads so aceita
-  `video_url`, nao upload. A URL e assinada e publica; e da mesma CDN da Meta.
-  Ela expira em horas, por isso o post sai na mesma execucao — nunca fica
-  agendado.
+- A API do Threads so aceita `video_url`, nao upload — e RECUSOU a URL assinada
+  do Instagram (container ERROR/UNKNOWN na primeira carga, 19/09). Entao o video
+  e baixado no runner e hospedado no storage do Zernio (presign + PUT, o mesmo
+  caminho do TikTok): URL publica e simples, que a Meta baixa sem reclamar. O
+  arquivo fica la 7 dias, de sobra para o processamento.
 - **Dedupe contra o que JA esta no Threads**, nao so contra o estado local:
   antes de publicar, le os ultimos 100 posts do perfil e pula o Reel cujo texto
   ja aparece la. Assim o Diego pode continuar marcando "compartilhar no Threads"
@@ -35,7 +36,8 @@ Uso:
     python distribuir_threads.py --limite 11 --teto 15 --pausa 60   # carga de acervo
 
 Variaveis: META_TOKEN (Graph API do Instagram), THREADS_TOKEN (o mesmo do
-threads_publicar.py, renovado todo dia pelo workflow Threads diario).
+threads_publicar.py, renovado todo dia pelo workflow Threads diario) e
+ZERNIO_API_KEY (so para hospedar o arquivo).
 """
 
 from __future__ import annotations
@@ -53,7 +55,10 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
+import tempfile
+
 from distribuir import _linhas_uteis, coletar  # noqa: E402
+from distribuir_tiktok import chave_zernio, subir_midia  # noqa: E402
 
 AQUI = pathlib.Path(__file__).parent
 ESTADO = AQUI / "distribuidos_threads.json"
@@ -182,6 +187,9 @@ def main() -> None:
     if not token():
         print("THREADS_TOKEN nao definido. Nada feito.")
         return
+    if not args.ensaio and not args.listar and not chave_zernio():
+        print("ZERNIO_API_KEY nao definida (hospeda o video). Nada feito.")
+        return
 
     if args.listar:
         r = _api("me/threads", {"fields": "id,text,media_type,timestamp,permalink", "limit": 100})
@@ -256,7 +264,12 @@ def main() -> None:
 
         if feitos and args.pausa:
             time.sleep(args.pausa)
-        ok, info = publicar(midia["media_url"], texto)
+        with tempfile.TemporaryDirectory() as tmp:
+            destino = pathlib.Path(tmp) / f"reel-{midia['id']}.mp4"
+            urllib.request.urlretrieve(midia["media_url"], destino)
+            print(f"  baixado: {destino.stat().st_size / 1e6:.1f} MB")
+            video_url = subir_midia(destino)
+        ok, info = publicar(video_url, texto)
         agora = datetime.now(timezone.utc).isoformat(timespec="seconds")
         reg = estado.get(midia["id"], {})
         if ok:

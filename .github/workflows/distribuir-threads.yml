@@ -67,6 +67,7 @@ jobs:
         env:
           META_TOKEN: ${{ secrets.META_TOKEN }}
           THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+          ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
         run: |
           args="--limite ${{ inputs.limite || 1 }} --teto ${{ inputs.teto || 3 }} --pausa ${{ inputs.pausa || 0 }}"
           [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
