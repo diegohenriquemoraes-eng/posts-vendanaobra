@@ -268,6 +268,12 @@ def main() -> None:
     p.add_argument("--dias", type=int, default=45, help="janela de coleta")
     p.add_argument("--id", help="forcar um id de midia do Instagram")
     p.add_argument("--ordem", choices=["novo", "antigo"], default="novo")
+    # --teto e --pausa existem para a carga inicial do acervo (19/09/2026, o Diego
+    # pediu os ultimos 15 de uma vez). O cron NAO os usa: no dia a dia vale TETO_DIA.
+    p.add_argument("--teto", type=int, default=TETO_DIA,
+                   help="teto diario so nesta execucao (o TikTok aceita 15/dia)")
+    p.add_argument("--pausa", type=int, default=0,
+                   help="segundos entre um video e outro")
     args = p.parse_args()
 
     if args.contas:
@@ -307,24 +313,27 @@ def main() -> None:
         if (v.get("distribuido_em") or v.get("tentado_em") or "").startswith(hoje)
         and not v.get("pulado")
     )
-    resta = max(TETO_DIA - saiu_hoje, 0)
+    teto = min(args.teto, 15)  # 15 e o teto da propria API do TikTok
+    resta = max(teto - saiu_hoje, 0)
 
     print(
         f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao "
-        f"distribuidos · {saiu_hoje}/{TETO_DIA} enviados hoje"
+        f"distribuidos · {saiu_hoje}/{teto} enviados hoje"
     )
     if not pendentes:
         print("Nada a fazer.")
         return
     if resta == 0:
-        print(f"Teto diario de {TETO_DIA} atingido. Volta na proxima rodada.")
+        print(f"Teto diario de {teto} atingido. Volta na proxima rodada.")
         return
 
     conta = None if args.ensaio else conta_tiktok()
     if conta:
         print(f"Conta TikTok: @{conta.get('username')} ({conta['_id']})")
 
-    for midia in pendentes[: min(args.limite, resta)]:
+    for i, midia in enumerate(pendentes[: min(args.limite, resta)]):
+        if i and args.pausa:
+            time.sleep(args.pausa)
         legenda_ig = midia.get("caption") or ""
         legenda = montar_legenda(legenda_ig)
         print(f"\n[{midia['timestamp'][:10]}] {midia['permalink']}")
