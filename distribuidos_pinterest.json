@@ -8,10 +8,17 @@
     "distribuido_em": "2026-09-19T03:45:25+00:00"
   },
   "18439416838120964": {
-    "tentativas": 1,
-    "erro": "Pinterest video processing timeout after 60s. Will retry with backoff.",
     "zernio_post": "6aae056846e776377b792ff9",
     "permalink": "https://www.instagram.com/reel/DdbQ7JRJTAB/",
-    "tentado_em": "2026-09-19T03:46:50+00:00"
+    "distribuido_em": "2026-09-19T03:46:50+00:00",
+    "pinterest": "https://www.pinterest.com/pin/1142366261766633984/"
+  },
+  "18116597939059060": {
+    "pinterest": "https://www.pinterest.com/pin/1142366261766634082/",
+    "zernio_post": "6aae060b54037654171951ed",
+    "titulo": "Como evitar que cliente suma e pare o orçamento",
+    "permalink": "https://www.instagram.com/reel/DdZ7_T7POTE/",
+    "publicado_ig": "2026-09-17T22:30:08+0000",
+    "distribuido_em": "2026-09-19T03:49:17+00:00"
   }
 }

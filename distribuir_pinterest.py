@@ -136,8 +136,58 @@ def publicar(conta: dict, board: str, url_video: str, titulo: str, descricao: st
     pl = next((p for p in (post.get("platforms") or []) if p.get("platform") == "pinterest"), {})
     if status in (200, 201) and post.get("status") not in ("failed", "partial"):
         return True, {"post_id": post.get("_id"), "url": pl.get("platformPostUrl")}
+    # O Pinterest processa video devagar. O Zernio devolve 207 com o post em
+    # "publishing"/"pending" e a mensagem "processing timeout... Will retry with
+    # backoff": NAO e falha, e fila. Espera um pouco; se nao resolver, fica
+    # PENDENTE e a proxima rodada consulta (`resolver_pendentes`).
+    if post.get("_id") and (post.get("status") in ("publishing", "scheduled")
+                            or pl.get("status") in ("pending", "processing", "uploading")):
+        estado_final = esperar(post["_id"], 240)
+        if estado_final is not None:
+            return estado_final
+        return None, {"post_id": post["_id"], "erro": pl.get("errorMessage")}
     return False, {"http": status, "erro": pl.get("errorMessage") or resp.get("message") or str(resp)[:300],
                    "post_id": post.get("_id")}
+
+
+def consultar(post_id: str) -> tuple[bool | None, dict]:
+    """True publicado / False falhou / None ainda processando."""
+    status, resp = _zernio("GET", f"/posts/{post_id}")
+    if status != 200:
+        return None, {"post_id": post_id}
+    post = resp.get("post", {})
+    pl = next((p for p in (post.get("platforms") or []) if p.get("platform") == "pinterest"), {})
+    if pl.get("status") == "published" or post.get("status") == "published":
+        return True, {"post_id": post_id, "url": pl.get("platformPostUrl")}
+    if pl.get("status") in ("failed", "cancelled") or post.get("status") in ("failed", "cancelled"):
+        return False, {"post_id": post_id, "erro": pl.get("errorMessage") or post.get("status")}
+    return None, {"post_id": post_id, "erro": pl.get("errorMessage")}
+
+
+def esperar(post_id: str, segundos: int) -> tuple[bool, dict] | None:
+    fim = time.time() + segundos
+    while time.time() < fim:
+        time.sleep(20)
+        r, info = consultar(post_id)
+        if r is not None:
+            return r, info
+    return None
+
+
+def resolver_pendentes(estado: dict) -> None:
+    for mid, reg in estado.items():
+        if not reg.get("pendente"):
+            continue
+        r, info = consultar(reg["zernio_post"])
+        if r is True:
+            reg.pop("pendente", None)
+            reg["pinterest"] = info.get("url") or True
+            print(f"  pendente resolvido: {reg.get('permalink')} -> {reg['pinterest']}")
+        elif r is False:
+            reg.pop("pendente", None)
+            reg["tentativas"] = reg.get("tentativas", 0) + 1
+            reg["erro"] = info.get("erro")
+            print(f"  pendente FALHOU: {reg.get('permalink')} — {reg['erro']}")
 
 
 def carregar_estado() -> dict:
@@ -172,6 +222,9 @@ def main() -> None:
         return
 
     estado = carregar_estado()
+    if not args.ensaio and chave_zernio():
+        resolver_pendentes(estado)
+        gravar_estado(estado)
     reels = coletar(args.dias)
     if args.id:
         reels = [m for m in reels if m["id"] == args.id]
@@ -180,7 +233,7 @@ def main() -> None:
         reg = estado.get(m["id"])
         if not reg:
             return True
-        if reg.get("pinterest") or reg.get("pulado"):
+        if reg.get("pinterest") or reg.get("pulado") or reg.get("pendente"):
             return False
         return reg.get("tentativas", 0) < MAX_TENTATIVAS
 
@@ -240,6 +293,13 @@ def main() -> None:
         ok, info = publicar(conta, board, url_video, titulo, descricao, capa)
         agora = datetime.now(timezone.utc).isoformat(timespec="seconds")
         reg = estado.get(midia["id"], {})
+        if ok is None:
+            print("  em processamento no Pinterest (pendente; a proxima rodada confere)")
+            estado[midia["id"]] = {"pendente": True, "zernio_post": info.get("post_id"),
+                                   "titulo": titulo, "permalink": midia["permalink"],
+                                   "publicado_ig": midia["timestamp"], "distribuido_em": agora}
+            gravar_estado(estado)
+            continue
         if ok:
             print(f"  Pinterest: {info.get('url') or '(publicado; URL processando)'}")
             estado[midia["id"]] = {
