@@ -1,0 +1,94 @@
+name: Distribuir Reel no TikTok
+
+# ============================================================================
+# O Reel do @vendanaobra vira video no TikTok @vendanaobra — via Zernio.
+#
+# POR QUE ASSIM (18/09/2026): a API oficial do TikTok so publica PUBLICO com o
+# app auditado (2-4 semanas, sem garantia); sem auditoria tudo vira rascunho
+# privado. O Zernio (ex-Late) ja tem o app auditado, API REST e 2 contas
+# gratis com posts ilimitados. O Diego conecta o TikTok la UMA vez; o resto
+# roda aqui, sem PC ligado. Detalhe no cabecalho de distribuir_tiktok.py.
+#
+# RITMO: ate 3 por dia (TETO_DIA) — leitura de spam do TikTok, nao cota. Cinco
+# janelas em minutos quebrados (o minuto 0 do cron do GitHub e o de maior fila).
+#
+# ENQUANTO NAO HOUVER ZERNIO_API_KEY o script sai limpo, sem issue.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "29 13 * * *"   # 10h29 BRT
+    - cron: "47 16 * * *"   # 13h47 BRT
+    - cron: "53 18 * * *"   # 15h53 BRT
+    - cron: "19 21 * * *"   # 18h19 BRT
+    - cron: "31 0 * * *"    # 21h31 BRT
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Quantos videos nesta execucao (o teto diario continua valendo)"
+        required: false
+        default: "1"
+      ensaio:
+        description: "Ensaio: mostra o que subiria, sem publicar"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: distribuir-tiktok
+  cancel-in-progress: false
+
+jobs:
+  distribuir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Distribuir
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
+          ZERNIO_TIKTOK_ACCOUNT_ID: ${{ secrets.ZERNIO_TIKTOK_ACCOUNT_ID }}
+        run: |
+          args="--limite ${{ inputs.limite || 1 }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          python distribuir_tiktok.py $args
+
+      - name: Commitar o estado
+        if: always() && inputs.ensaio != true
+        run: |
+          # Sem este commit o runner descartavel perde a memoria do que ja subiu
+          # e a proxima execucao republica o mesmo video. Roda mesmo em falha:
+          # a tentativa falhada tambem e estado (MAX_TENTATIVAS).
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add distribuidos_tiktok.json
+          git diff --staged --quiet || git commit -m "Distribui no TikTok (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Distribuicao no TikTok falhou em " + hoje,
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas comuns: TikTok desconectado no Zernio (reconectar em " +
+                    "zernio.com), chave ZERNIO_API_KEY revogada, token da Meta, " +
+                    "ou o TikTok recusou o video (duplicado / moderacao) — ver " +
+                    "'erro' em distribuidos_tiktok.json."
+            })

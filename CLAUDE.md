@@ -50,6 +50,27 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
 
+## TikTok @vendanaobra — distribuidor pronto, esperando a chave do Zernio (18/09/2026)
+
+Pedido do Diego: "puxar automático pro TikTok todos os vídeos que coloco no Instagram", igual
+ao distribuidor do YouTube. A API oficial do TikTok só publica PÚBLICO com o app auditado
+(2–4 semanas, sem garantia); sem auditoria tudo sai rascunho privado — foi nisso que julho e
+05/09 morreram. O caminho é o **Zernio** (ex-Late): app do TikTok já auditado, API REST e as
+2 primeiras contas grátis com posts ilimitados (teto de 15 vídeos/dia).
+
+| Peça | Onde |
+|---|---|
+| Distribuidor | `distribuir_tiktok.py` (importa `coletar`/`_linhas_uteis` do `distribuir.py`) |
+| Workflow | `.github/workflows/distribuir-tiktok.yml` — 5 janelas/dia, teto de 3 vídeos/dia |
+| Estado | `distribuidos_tiktok.json` (versionado; 2 tentativas no máximo por Reel) |
+| Setup do Diego | `SETUP-TIKTOK.md` — conta TikTok comercial, conta Zernio, chave em `ZERNIO_API_KEY` |
+
+Decisões: vídeo de `media_url` (sem marca d'água) baixado no runner e subido ao storage do
+Zernio por presign — a URL do Instagram expira e o Zernio só a busca na hora de publicar;
+legenda **sem URL** (não clicável e penalizada) e **sem `@`** (marcaria outra pessoa);
+link só no campo "site" da bio (Conta Comercial). Sem `ZERNIO_API_KEY` o cron sai limpo,
+sem issue. Ensaio local de 18/09: 35 Reels na janela de 30 dias, legendas corretas.
+
 ## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
 
 Pedido do Diego em 05/09/2026, a partir do card de contagem regressiva que a
