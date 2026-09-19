@@ -114,6 +114,24 @@ Armadilhas pagas em 19/09:
 
 Cargas iniciais de 19/09 (últimos 15 Reels): TikTok 15, Threads 13 (+2 do app), Pinterest 15.
 
+**LinkedIn (19/09, decisão do Diego)**: `distribuir_linkedin.py` roda DENTRO do `linkedin.yml`
+(seg/qua/sex 8h47) antes do texto do blog. Só entra Reel que fale com o DONO — número, nome de
+empresa/feira ou palavra de resultado na legenda (`elegivel_para_dono`); os outros ficam marcados
+como pulados. Texto reescrito para o decisor pelo Groq + `/r/li-raiox`. Vídeo nativo pela API
+(`/rest/videos` initializeUpload → PUT por partes → finalizeUpload → AVAILABLE → `/rest/posts`),
+sem gastar vaga no Zernio. Se publica, imprime `LINKEDIN_VIDEO_PUBLICADO` e o passo do texto é
+pulado: **um post por dia, nunca dois** (o LinkedIn canibaliza). Vídeo que falhe abre issue própria
+e o texto sai normalmente. Upload testado do PC em 19/09; ensaio na nuvem escolheu o Reel do box
+rosê e descartou o da medida.
+
+⚠ Pinterest processa vídeo devagar: o Zernio devolve 207 com "processing timeout... will retry".
+Isso é FILA, não falha — `distribuir_pinterest.py` marca `pendente` e resolve na rodada seguinte
+(`resolver_pendentes`). A primeira versão contava como falha e gastava tentativa.
+
+**Decisão do Diego (19/09): nenhuma rede além destas.** Kwai (sem API), Snapchat (público
+13–24), Bluesky/Reddit/Telegram/Discord/X (sem o nicho; X cobra por post), WhatsApp canal (sem
+API oficial). Régua: 30 dias, mediana de views por rede; sem lead em 60 dias pela rota `/r/`, sai.
+
 ## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
 
 Pedido do Diego em 05/09/2026, a partir do card de contagem regressiva que a
