@@ -81,6 +81,39 @@ os secrets e parou no teto. Restam 20 Reels de acervo nos 45 dias, que escoam a 
 ⚠ `gh` não estava autenticado nesta máquina; o token do Git Credential Manager (`git credential
 fill`, `gho_`, escopos repo+workflow) serve para `gh auth login --with-token`.
 
+## Threads e Pinterest recebem o Reel desde 19/09/2026 (mesmo desenho do TikTok)
+
+Decisão do Diego em 19/09: o Reel vai para **todas** as redes onde dá para automatizar. Quatro
+distribuidores, todos lendo a CONTA do Instagram pela Graph API, cada um com estado próprio,
+teto de 3/dia e 5 janelas em minutos quebrados:
+
+| Rede | Script | Como publica | Link |
+|---|---|---|---|
+| YouTube Shorts | `distribuir.py` | API do YouTube (token próprio) | descrição, `/r/ytd` |
+| TikTok | `distribuir_tiktok.py` | Zernio (1ª conta grátis) | só na bio (app) |
+| Threads | `distribuir_threads.py` | API do Threads (token do `threads_publicar.py`) | texto, `/r/th-raiox` clicável |
+| Pinterest | `distribuir_pinterest.py` | Zernio (2ª conta grátis), board "Vendas na construção civil" | Pin, `/r/pi-raiox` |
+
+Armadilhas pagas em 19/09:
+
+- **A premissa "o Instagram espelha o Reel no Threads sozinho" era falsa.** `--listar` mostrou
+  que o espelho é o botão do app: dos últimos 15 Reels, 2 estavam lá. O distribuidor **dedupa
+  contra o perfil** (compara os 40 primeiros caracteres do texto dos posts de vídeo), então o
+  Diego pode continuar marcando no app sem gerar post duplicado.
+- **A API do Threads recusa a URL assinada do Instagram** (`media_url`): container ERROR /
+  UNKNOWN. O vídeo é baixado no runner e hospedado no storage do Zernio (`subir_midia` do
+  TikTok), URL pública simples que a Meta baixa. Por isso o workflow do Threads também leva
+  `ZERNIO_API_KEY`.
+- O token do Threads só existe no secret (renovado pelo Threads diário); teste é só na nuvem,
+  por `workflow_dispatch` com `ensaio` ou `listar`.
+- O coletor de visitas (Apps Script) não conhece "pinterest": a rota `/r/pi-raiox` entra como
+  `outro/pinterest`. Kwai não tem API de publicação (nem via intermediário) — fora.
+- Pinterest: conta business `vendanaobra@gmail.com`, username `vendanaobra`, avatar = o do
+  Instagram (`profile_picture_url` da Graph API, subido pelo Chrome). O `titulo_para_busca`
+  do YouTube (Groq) vira o título do Pin — Pinterest é buscador.
+
+Cargas iniciais de 19/09 (últimos 15 Reels): TikTok 15, Threads 13 (+2 do app), Pinterest 15.
+
 ## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
 
 Pedido do Diego em 05/09/2026, a partir do card de contagem regressiva que a

@@ -1,0 +1,17 @@
+{
+  "18374249995240385": {
+    "pinterest": "https://www.pinterest.com/pin/1142366261766633772/",
+    "zernio_post": "6aae0527aa00cd398b3d3e1a",
+    "titulo": "Como descobrir quem decide e o que assusta o cliente na obra",
+    "permalink": "https://www.instagram.com/reel/Ddcg0OoPoOS/",
+    "publicado_ig": "2026-09-18T22:30:06+0000",
+    "distribuido_em": "2026-09-19T03:45:25+00:00"
+  },
+  "18439416838120964": {
+    "tentativas": 1,
+    "erro": "Pinterest video processing timeout after 60s. Will retry with backoff.",
+    "zernio_post": "6aae056846e776377b792ff9",
+    "permalink": "https://www.instagram.com/reel/DdbQ7JRJTAB/",
+    "tentado_em": "2026-09-19T03:46:50+00:00"
+  }
+}
