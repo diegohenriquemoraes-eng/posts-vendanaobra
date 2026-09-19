@@ -131,9 +131,7 @@ jobs:
               owner: context.repo.owner, repo: context.repo.repo,
               title: "Video do LinkedIn falhou em " + hoje,
               body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
-                    context.repo.repo + "/actions/runs/" + context.runId + "
-
-" +
+                    context.repo.repo + "/actions/runs/" + context.runId + " — " +
                     "O post de texto saiu normalmente. Ver 'erro' em distribuidos_linkedin.json.",
             })
 
