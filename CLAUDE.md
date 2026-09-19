@@ -114,6 +114,15 @@ Armadilhas pagas em 19/09:
 
 Cargas iniciais de 19/09 (últimos 15 Reels): TikTok 15, Threads 13 (+2 do app), Pinterest 15.
 
+⚠ **A carga inicial travou os três distribuidores o dia inteiro (19/09).** Os 15 subiram entre
+02h e 03h UTC de 19/09 e contaram como "enviados hoje"; as cinco janelas do dia leram 15/3 e
+pararam no teto, e os 2 Reels que o Diego postou em 19/09 ficaram sem TikTok/Threads/Pinterest
+até ele reclamar à noite. Correção: **Reel do dia nunca espera o teto** — `e_do_dia`
+(`RECENTE_H = 36`) e `selecionar` em `distribuir_tiktok.py`, importados pelos outros dois. Todo
+Reel publicado no Instagram há menos de 36 h sai na rodada (até o teto da API: TikTok 15,
+Threads 15, Pinterest 25); o teto de 3/dia e o `--limite` valem só para o ACERVO. Dia da conta é
+UTC (vira às 21h BRT): o TikTok do dia 19 só destravou depois da virada.
+
 **LinkedIn (19/09, decisão do Diego)**: `distribuir_linkedin.py` roda DENTRO do `linkedin.yml`
 (seg/qua/sex 8h47) antes do texto do blog. Só entra Reel que fale com o DONO — número, nome de
 empresa/feira ou palavra de resultado na legenda (`elegivel_para_dono`); os outros ficam marcados
