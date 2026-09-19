@@ -1,0 +1,95 @@
+name: Distribuir Reel no Threads
+
+# ============================================================================
+# O Reel do @vendanaobra vira video no Threads — com link clicavel do Raio-X.
+#
+# POR QUE (19/09/2026): a premissa de que "o Instagram espelha o Reel no
+# Threads sozinho" era falsa na pratica — 4 de 35 Reels chegaram la; o espelho
+# e um botao que o Diego marca (ou nao) no app. O script dedupa contra o que ja
+# esta no perfil, entao ele pode continuar marcando sem gerar post duplo.
+#
+# RITMO: ate 3 por dia, cinco janelas em minutos quebrados (cron do GitHub e
+# "best effort"; o minuto 0 e o de maior fila). O token e o mesmo do Threads
+# diario, que o renova todo dia.
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "41 13 * * *"   # 10h41 BRT
+    - cron: "59 16 * * *"   # 13h59 BRT
+    - cron: "07 19 * * *"   # 16h07 BRT
+    - cron: "33 21 * * *"   # 18h33 BRT
+    - cron: "43 0 * * *"    # 21h43 BRT
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Quantos videos nesta execucao"
+        required: false
+        default: "1"
+      teto:
+        description: "Teto diario so nesta execucao (carga de acervo; max 15)"
+        required: false
+        default: "3"
+      pausa:
+        description: "Segundos entre um post e outro"
+        required: false
+        default: "0"
+      ensaio:
+        description: "Ensaio: mostra o que sairia, sem publicar"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: distribuir-threads
+  cancel-in-progress: false
+
+jobs:
+  distribuir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Distribuir
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+        run: |
+          args="--limite ${{ inputs.limite || 1 }} --teto ${{ inputs.teto || 3 }} --pausa ${{ inputs.pausa || 0 }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          python distribuir_threads.py $args
+
+      - name: Commitar o estado
+        if: always() && inputs.ensaio != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add distribuidos_threads.json
+          git diff --staged --quiet || git commit -m "Distribui no Threads (auto)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Avisar se falhou
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hoje = new Date().toISOString().slice(0, 10)
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Distribuicao no Threads falhou em " + hoje,
+              body: "Run: " + context.serverUrl + "/" + context.repo.owner + "/" +
+                    context.repo.repo + "/actions/runs/" + context.runId + "\n\n" +
+                    "Causas comuns: THREADS_TOKEN vencido (o Threads diario renova; " +
+                    "conferir se ele rodou), token da Meta, ou a Meta recusou o video " +
+                    "(ver 'erro' em distribuidos_threads.json)."
+            })
