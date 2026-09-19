@@ -39,6 +39,11 @@ on:
         required: false
         type: boolean
         default: false
+      listar:
+        description: "Diagnostico: lista os ultimos 100 posts do perfil e sai"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -65,10 +70,11 @@ jobs:
         run: |
           args="--limite ${{ inputs.limite || 1 }} --teto ${{ inputs.teto || 3 }} --pausa ${{ inputs.pausa || 0 }}"
           [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          [ "${{ inputs.listar }}" = "true" ] && args="--listar"
           python distribuir_threads.py $args
 
       - name: Commitar o estado
-        if: always() && inputs.ensaio != true
+        if: always() && inputs.ensaio != true && inputs.listar != true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

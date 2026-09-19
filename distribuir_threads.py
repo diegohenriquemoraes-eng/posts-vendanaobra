@@ -176,10 +176,18 @@ def main() -> None:
     p.add_argument("--ordem", choices=["novo", "antigo"], default="novo")
     p.add_argument("--teto", type=int, default=TETO_DIA, help="teto diario so nesta execucao")
     p.add_argument("--pausa", type=int, default=0, help="segundos entre um post e outro")
+    p.add_argument("--listar", action="store_true", help="diagnostico: os ultimos 100 posts do perfil")
     args = p.parse_args()
 
     if not token():
         print("THREADS_TOKEN nao definido. Nada feito.")
+        return
+
+    if args.listar:
+        r = _api("me/threads", {"fields": "id,text,media_type,timestamp,permalink", "limit": 100})
+        for q in r.get("data", []):
+            print(q.get("timestamp", "")[:16], q.get("media_type"), (q.get("text") or "")[:60].replace("
+", " "))
         return
 
     estado = carregar_estado()
