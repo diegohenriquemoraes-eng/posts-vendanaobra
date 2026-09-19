@@ -186,8 +186,7 @@ def main() -> None:
     if args.listar:
         r = _api("me/threads", {"fields": "id,text,media_type,timestamp,permalink", "limit": 100})
         for q in r.get("data", []):
-            print(q.get("timestamp", "")[:16], q.get("media_type"), (q.get("text") or "")[:60].replace("
-", " "))
+            print(q.get("timestamp", "")[:16], q.get("media_type"), (q.get("text") or "")[:60].replace(chr(10), " "))
         return
 
     estado = carregar_estado()
