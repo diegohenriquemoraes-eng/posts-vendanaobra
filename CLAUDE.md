@@ -74,6 +74,10 @@ sem issue. **Ligado em 19/09/2026**: TikTok conectado no Zernio (conta `6aaded7c
 (`Ddcg0OoPoOS` → `tiktok.com/@vendanaobra/video/7687061267009244417`). O `creator-info` do TikTok
 só oferece `PUBLIC_TO_EVERYONE` para vídeo (app comercial), que é o que queremos. A chave local
 chama-se `zernio_api_token.txt` porque o `.gitignore` da pasta Perffec só pega `*token*`/`*secret*`.
+**Carga inicial (19/09, pedido do Diego)**: os últimos 15 Reels subiram de uma vez com
+`--limite 14 --teto 15 --pausa 90` (flags só para carga de acervo; o cron usa TETO_DIA=3), zero
+falhas. Execução na nuvem conferida no mesmo dia (run 35417749151): o runner leu a Meta, o estado e
+os secrets e parou no teto. Restam 20 Reels de acervo nos 45 dias, que escoam a 3/dia.
 ⚠ `gh` não estava autenticado nesta máquina; o token do Git Credential Manager (`git credential
 fill`, `gho_`, escopos repo+workflow) serve para `gh auth login --with-token`.
 
