@@ -45,7 +45,7 @@ import urllib.request
 from datetime import datetime, timezone
 
 from distribuir import GRAPH, _linhas_uteis, coletar, titulo_para_busca, token_meta  # noqa: E402
-from distribuir_tiktok import _zernio, chave_zernio, subir_midia  # noqa: E402
+from distribuir_tiktok import _zernio, chave_zernio, e_do_dia, selecionar, subir_midia  # noqa: E402
 
 AQUI = pathlib.Path(__file__).parent
 ESTADO = AQUI / "distribuidos_pinterest.json"
@@ -246,15 +246,19 @@ def main() -> None:
         1 for v in estado.values()
         if (v.get("distribuido_em") or v.get("tentado_em") or "").startswith(hoje) and not v.get("pulado")
     )
-    teto = min(args.teto, 25)  # 25 e o teto diario do Pinterest no Zernio
-    resta = max(teto - saiu_hoje, 0)
+    TETO_API = 25  # teto diario do Pinterest no Zernio
+    teto = min(args.teto, TETO_API)
+    # Reel do dia nao espera o teto (ver RECENTE_H em distribuir_tiktok.py);
+    # o teto de 3/dia vale para o acervo.
+    escolhidos = selecionar(pendentes, args.limite, teto, TETO_API, saiu_hoje)
+    do_dia = sum(1 for m in escolhidos if e_do_dia(m))
     print(f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao "
-          f"distribuidos · {saiu_hoje}/{teto} enviados hoje")
+          f"distribuidos · {saiu_hoje}/{teto} enviados hoje · {do_dia} do dia nesta rodada")
     if not pendentes:
         print("Nada a fazer.")
         return
-    if resta == 0:
-        print(f"Teto diario de {teto} atingido. Volta na proxima rodada.")
+    if not escolhidos:
+        print(f"Teto diario de {teto} atingido (acervo). Volta na proxima rodada.")
         return
 
     conta = board = None
@@ -265,7 +269,7 @@ def main() -> None:
         conta, board = par
         print(f"Conta Pinterest: @{conta.get('username')} · board {board}")
 
-    for i, midia in enumerate(pendentes[: min(args.limite, resta)]):
+    for i, midia in enumerate(escolhidos):
         if i and args.pausa:
             time.sleep(args.pausa)
         legenda_ig = midia.get("caption") or ""

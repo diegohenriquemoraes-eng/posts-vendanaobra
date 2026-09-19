@@ -61,7 +61,7 @@ import tempfile
 import time
 import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 # Reaproveita coleta e limpeza de legenda do distribuidor do YouTube: a fonte
 # (Graph API) e a mesma e a regra "linha util" tambem.
@@ -80,6 +80,16 @@ TETO_DIA = 3
 # Depois de 2 falhas no mesmo Reel (conteudo duplicado, moderacao, video curto
 # demais), para de insistir: cada tentativa gasta uma das vagas do dia.
 MAX_TENTATIVAS = 2
+
+# REEL DO DIA NUNCA ESPERA O TETO (19/09/2026). Na noite da carga inicial os 15
+# do acervo subiram entre 02h e 03h UTC de 19/09 e contaram como "enviados
+# hoje": as cinco janelas do dia leram 15/3 e pararam, e os Reels que o Diego
+# postou em 19/09 ficaram no Instagram sem ir para o TikTok. O teto existe para
+# o ACERVO escoar devagar; o que foi postado agora e o que o Diego quer ver no
+# ar hoje, e 2-4 por dia e o ritmo normal da conta, nao rajada. Vale para
+# Threads e Pinterest tambem (importam daqui).
+RECENTE_H = 36
+TETO_API_TIKTOK = 15  # teto da propria API do TikTok no Zernio
 
 HASHTAGS_FIXAS = ["vendas", "esquadrias", "construcaocivil"]
 MAX_HASHTAGS = 5
@@ -115,6 +125,25 @@ def montar_legenda(legenda_ig: str) -> str | None:
             tags.append(t)
 
     return f"{corpo}\n\n" + " ".join(f"#{t}" for t in tags)
+
+
+def e_do_dia(midia: dict, horas: int = RECENTE_H) -> bool:
+    """Reel publicado no Instagram ha menos de `horas` — passa na frente do teto."""
+    quando = datetime.fromisoformat(midia["timestamp"].replace("+0000", "+00:00"))
+    return quando >= datetime.now(timezone.utc) - timedelta(hours=horas)
+
+
+def selecionar(pendentes: list[dict], limite: int, teto: int, teto_api: int,
+               saiu_hoje: int) -> list[dict]:
+    """Quem sai nesta execucao: TODO Reel do dia (ate o teto da API) e, do
+    acervo, ate `limite` respeitando o teto diario. Usado pelos 3 distribuidores."""
+    do_dia = [m for m in pendentes if e_do_dia(m)]
+    acervo = [m for m in pendentes if not e_do_dia(m)]
+    vaga_api = max(teto_api - saiu_hoje, 0)
+    escolhidos = do_dia[:vaga_api]
+    resta = max(teto - saiu_hoje - len(escolhidos), 0)
+    escolhidos += acervo[:min(limite, resta)]
+    return escolhidos
 
 
 # --------------------------------------------------------------------------- #
@@ -313,25 +342,26 @@ def main() -> None:
         if (v.get("distribuido_em") or v.get("tentado_em") or "").startswith(hoje)
         and not v.get("pulado")
     )
-    teto = min(args.teto, 15)  # 15 e o teto da propria API do TikTok
-    resta = max(teto - saiu_hoje, 0)
+    teto = min(args.teto, TETO_API_TIKTOK)
+    escolhidos = selecionar(pendentes, args.limite, teto, TETO_API_TIKTOK, saiu_hoje)
+    do_dia = sum(1 for m in escolhidos if e_do_dia(m))
 
     print(
         f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao "
-        f"distribuidos · {saiu_hoje}/{teto} enviados hoje"
+        f"distribuidos · {saiu_hoje}/{teto} enviados hoje · {do_dia} do dia nesta rodada"
     )
     if not pendentes:
         print("Nada a fazer.")
         return
-    if resta == 0:
-        print(f"Teto diario de {teto} atingido. Volta na proxima rodada.")
+    if not escolhidos:
+        print(f"Teto diario de {teto} atingido (acervo). Volta na proxima rodada.")
         return
 
     conta = None if args.ensaio else conta_tiktok()
     if conta:
         print(f"Conta TikTok: @{conta.get('username')} ({conta['_id']})")
 
-    for i, midia in enumerate(pendentes[: min(args.limite, resta)]):
+    for i, midia in enumerate(escolhidos):
         if i and args.pausa:
             time.sleep(args.pausa)
         legenda_ig = midia.get("caption") or ""

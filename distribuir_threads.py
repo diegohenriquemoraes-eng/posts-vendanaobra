@@ -58,7 +58,7 @@ from datetime import datetime, timezone
 import tempfile
 
 from distribuir import _linhas_uteis, coletar  # noqa: E402
-from distribuir_tiktok import chave_zernio, subir_midia  # noqa: E402
+from distribuir_tiktok import chave_zernio, e_do_dia, selecionar, subir_midia  # noqa: E402
 
 AQUI = pathlib.Path(__file__).parent
 ESTADO = AQUI / "distribuidos_threads.json"
@@ -222,22 +222,24 @@ def main() -> None:
         if (v.get("distribuido_em") or v.get("tentado_em") or "").startswith(hoje) and not v.get("pulado")
     )
     teto = min(args.teto, TETO_API)
-    resta = max(teto - saiu_hoje, 0)
+    # Reel do dia nao espera o teto (ver RECENTE_H em distribuir_tiktok.py);
+    # o teto de 3/dia vale para o acervo.
+    escolhidos = selecionar(pendentes, args.limite, teto, TETO_API, saiu_hoje)
+    do_dia = sum(1 for m in escolhidos if e_do_dia(m))
     print(
         f"{len(reels)} Reels na janela de {args.dias} dias · {len(pendentes)} ainda nao "
         f"distribuidos · {len(existentes)} videos ja no Threads · {saiu_hoje}/{teto} enviados hoje"
+        f" · {do_dia} do dia nesta rodada"
     )
     if not pendentes:
         print("Nada a fazer.")
         return
-    if resta == 0:
-        print(f"Teto diario de {teto} atingido. Volta na proxima rodada.")
+    if not escolhidos:
+        print(f"Teto diario de {teto} atingido (acervo). Volta na proxima rodada.")
         return
 
     feitos = 0
-    for midia in pendentes:
-        if feitos >= min(args.limite, resta):
-            break
+    for midia in escolhidos:
         legenda_ig = midia.get("caption") or ""
         texto = montar_texto(legenda_ig)
         print(f"\n[{midia['timestamp'][:10]}] {midia['permalink']}")
