@@ -125,5 +125,12 @@
     "distribuido_em": "2026-09-20T00:07:24+00:00",
     "tentativas": 1,
     "erro": "You have created too many posts in the last 24 hours via the API. Please try posting directly in the TikTok app or wait before posting again. (Error: spam_risk_too_many_posts)"
+  },
+  "18107155046580846": {
+    "tiktok": "https://www.tiktok.com/@vendanaobra/video/7687695153150119188",
+    "zernio_post": "6ab02e05a8c60db495087ca3",
+    "permalink": "https://www.instagram.com/reel/DdhGZ-Cp7ro/",
+    "publicado_ig": "2026-09-20T17:21:12+0000",
+    "distribuido_em": "2026-09-20T19:03:40+00:00"
   }
 }
