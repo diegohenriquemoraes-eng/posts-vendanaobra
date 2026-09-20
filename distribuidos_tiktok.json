@@ -105,24 +105,25 @@
     "distribuido_em": "2026-09-19T03:08:04+00:00"
   },
   "17949927849292867": {
-    "pendente": true,
     "zernio_post": "6aaf23324704016e2e487922",
     "permalink": "https://www.instagram.com/reel/DdfFsnYp--x/",
     "publicado_ig": "2026-09-19T22:32:34+0000",
-    "distribuido_em": "2026-09-20T00:05:06+00:00"
+    "distribuido_em": "2026-09-20T00:05:06+00:00",
+    "tiktok": "https://www.tiktok.com/@vendanaobra/video/7687432896927386900"
   },
   "18134411797634214": {
-    "pendente": true,
-    "zernio_post": "6aaf23b77e53588e1ea2e500",
+    "tiktok": "https://www.tiktok.com/@vendanaobra/video/7687479366065851668",
+    "zernio_post": "6aaf69c40e9959aa65a4e77d",
     "permalink": "https://www.instagram.com/reel/DdeHxjrJmRP/",
     "publicado_ig": "2026-09-19T13:31:47+0000",
-    "distribuido_em": "2026-09-20T00:07:19+00:00"
+    "distribuido_em": "2026-09-20T05:06:19+00:00"
   },
   "18560213638079827": {
-    "pendente": true,
     "zernio_post": "6aaf23bb7e53588e1ea2e5dd",
     "permalink": "https://www.instagram.com/reel/DdSKJ1RvCGr/",
     "publicado_ig": "2026-09-14T22:00:07+0000",
-    "distribuido_em": "2026-09-20T00:07:24+00:00"
+    "distribuido_em": "2026-09-20T00:07:24+00:00",
+    "tentativas": 1,
+    "erro": "You have created too many posts in the last 24 hours via the API. Please try posting directly in the TikTok app or wait before posting again. (Error: spam_risk_too_many_posts)"
   }
 }
