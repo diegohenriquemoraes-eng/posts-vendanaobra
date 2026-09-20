@@ -103,5 +103,12 @@
     "permalink": "https://www.instagram.com/reel/DdTcjONPGm2/",
     "publicado_ig": "2026-09-15T10:00:07+0000",
     "distribuido_em": "2026-09-19T03:08:04+00:00"
+  },
+  "17949927849292867": {
+    "tentativas": 1,
+    "erro": "TikTok allows 15 video posts per account per day through the Business API. This post is queued and will publish automatically after 2026-09-20T02:05:33.290Z.",
+    "zernio_post": "6aaf23324704016e2e487922",
+    "permalink": "https://www.instagram.com/reel/DdfFsnYp--x/",
+    "tentado_em": "2026-09-20T00:05:06+00:00"
   }
 }
