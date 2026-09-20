@@ -121,7 +121,14 @@ até ele reclamar à noite. Correção: **Reel do dia nunca espera o teto** — 
 (`RECENTE_H = 36`) e `selecionar` em `distribuir_tiktok.py`, importados pelos outros dois. Todo
 Reel publicado no Instagram há menos de 36 h sai na rodada (até o teto da API: TikTok 15,
 Threads 15, Pinterest 25); o teto de 3/dia e o `--limite` valem só para o ACERVO. Dia da conta é
-UTC (vira às 21h BRT): o TikTok do dia 19 só destravou depois da virada.
+UTC (vira às 21h BRT).
+
+⚠ **O teto de 15 do TikTok é janela MÓVEL de 24 h, não dia UTC** (pago às 00:05 UTC de 20/09): a
+carga das 02h–03h de 19/09 ainda contava e o Zernio respondeu 207 com o post `pending`,
+`tiktokBusinessCapDeferredUntil` e "queued and will publish automatically after…". O Zernio
+publica sozinho na hora; criar outro post seria vídeo duplicado. `publicar_tiktok` devolve `None`
+nesse caso, o registro vira `pendente` e `resolver_pendentes` confere na rodada seguinte (mesmo
+desenho do Pinterest). A issue #22 foi disso.
 
 **LinkedIn (19/09, decisão do Diego)**: `distribuir_linkedin.py` roda DENTRO do `linkedin.yml`
 (seg/qua/sex 8h47) antes do texto do blog. Só entra Reel que fale com o DONO — número, nome de
