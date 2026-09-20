@@ -254,12 +254,56 @@ def publicar_tiktok(conta: dict, url_video: str, legenda: str) -> tuple[bool, di
     tk = next((p for p in plataformas if p.get("platform") == "tiktok"), {})
     if status in (200, 201) and post.get("status") not in ("failed", "partial"):
         return True, {"post_id": post.get("_id"), "url": tk.get("platformPostUrl")}
+    # O TETO DE 15 DO TIKTOK E JANELA MOVEL DE 24 H, NAO DIA UTC (pago em
+    # 20/09/2026, 00:05 UTC): a carga inicial das 02h-03h de 19/09 ainda contava
+    # e o Zernio respondeu 207 com o post "pending", `tiktokBusinessCapDeferredUntil`
+    # e "queued and will publish automatically after ...". O Zernio publica sozinho
+    # na hora; criar outro post seria video DUPLICADO no TikTok. Fica PENDENTE e a
+    # proxima rodada confere (`resolver_pendentes`), como o Pinterest ja fazia.
+    if post.get("_id") and (
+        tk.get("status") in ("pending", "processing", "uploading", "scheduled")
+        or post.get("status") in ("publishing", "scheduled")
+    ):
+        return None, {"post_id": post["_id"], "erro": tk.get("errorMessage"),
+                      "quando": (tk.get("platformSpecificData") or {}).get("tiktokBusinessCapDeferredUntil")
+                      or tk.get("scheduledFor")}
     return False, {
         "http": status,
         "status": post.get("status"),
         "erro": tk.get("errorMessage") or resp.get("message") or resp.get("error") or str(resp)[:300],
         "post_id": post.get("_id"),
     }
+
+
+def consultar(post_id: str) -> tuple[bool | None, dict]:
+    """True publicado / False falhou / None ainda na fila ou processando."""
+    status, resp = _zernio("GET", f"/posts/{post_id}")
+    if status != 200:
+        return None, {"post_id": post_id}
+    post = resp.get("post", {})
+    tk = next((p for p in (post.get("platforms") or []) if p.get("platform") == "tiktok"), {})
+    if tk.get("status") == "published" or post.get("status") == "published":
+        return True, {"post_id": post_id, "url": tk.get("platformPostUrl")}
+    if tk.get("status") in ("failed", "cancelled") or post.get("status") in ("failed", "cancelled"):
+        return False, {"post_id": post_id, "erro": tk.get("errorMessage") or post.get("status")}
+    return None, {"post_id": post_id, "erro": tk.get("errorMessage")}
+
+
+def resolver_pendentes(estado: dict) -> None:
+    """Posts que ficaram na fila do Zernio (teto movel do TikTok): publicou? falhou?"""
+    for mid, reg in estado.items():
+        if not reg.get("pendente"):
+            continue
+        r, info = consultar(reg["zernio_post"])
+        if r is True:
+            reg.pop("pendente", None)
+            reg["tiktok"] = info.get("url") or True
+            print(f"  pendente resolvido: {reg.get('permalink')} -> {reg['tiktok']}")
+        elif r is False:
+            reg.pop("pendente", None)
+            reg["tentativas"] = reg.get("tentativas", 0) + 1
+            reg["erro"] = info.get("erro")
+            print(f"  pendente FALHOU: {reg.get('permalink')} — {reg['erro']}")
 
 
 def esperar_url(post_id: str, segundos: int = 150) -> str | None:
@@ -320,6 +364,9 @@ def main() -> None:
         return
 
     estado = carregar_estado()
+    if not args.ensaio and chave_zernio():
+        resolver_pendentes(estado)
+        gravar_estado(estado)
     reels = coletar(args.dias)
     if args.id:
         reels = [m for m in reels if m["id"] == args.id]
@@ -328,7 +375,7 @@ def main() -> None:
         reg = estado.get(m["id"])
         if not reg:
             return True
-        if reg.get("tiktok") or reg.get("pulado"):
+        if reg.get("tiktok") or reg.get("pulado") or reg.get("pendente"):
             return False
         return reg.get("tentativas", 0) < MAX_TENTATIVAS
 
@@ -390,6 +437,18 @@ def main() -> None:
         ok, info = publicar_tiktok(conta, url_video, legenda)
         agora = datetime.now(timezone.utc).isoformat(timespec="seconds")
         reg = estado.get(midia["id"], {})
+        if ok is None:
+            print(f"  na fila do Zernio (teto movel do TikTok); publica sozinho em "
+                  f"{info.get('quando') or 'breve'} — a proxima rodada confere")
+            estado[midia["id"]] = {
+                "pendente": True,
+                "zernio_post": info.get("post_id"),
+                "permalink": midia["permalink"],
+                "publicado_ig": midia["timestamp"],
+                "distribuido_em": agora,
+            }
+            gravar_estado(estado)
+            continue
         if ok:
             url = info.get("url") or (esperar_url(info["post_id"]) if info.get("post_id") else None)
             print(f"  TikTok: {url or '(publicado; URL ainda processando)'}")
