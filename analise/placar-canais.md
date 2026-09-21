@@ -1,21 +1,21 @@
-# Placar dos canais — 2026-09-14 (últimos 7 dias)
+# Placar dos canais — 2026-09-21 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 26 | 118 |
-| Threads (blog, com link) | 6 | 11 |
-| Instagram | 26 (16 Reels) | — |
+| YouTube Shorts | 21 | 139 |
+| Threads (blog, com link) | 5 | 16 |
+| Instagram | 27 (21 Reels) | — |
 | Blog | 6 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-09-06 a 2026-09-12 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-09-13 a 2026-09-19 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 4 | 0 | novo |
+| Impressões | 5 | 4 | +25% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
@@ -23,62 +23,55 @@ Período medido: 2026-09-06 a 2026-09-12 (o Search Console fecha os dados com 2 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
 | wesales login | 4 | 0 | 8 |
+| wesales | 1 | 0 | 10 |
 
 ## YouTube
 
-86 inscritos · 34543 views no total · 0 Reels ainda na fila para subir.
+95 inscritos · 40138 views no total · 0 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [Como treinar equipe de vendas na construção e parar de enrolar cliente](https://youtu.be/EpzFQjGVaoc) | 1059 |
-| [Como lidar quando o cliente esconde informação e você fica bravo](https://youtu.be/ZvBFWSB8L8M) | 977 |
-| [Como manter o contexto da proposta e evitar que cliente esqueça](https://youtu.be/mftpQsfBfpY) | 967 |
-| [Como prever quanto vai entrar no próximo mês sem sorte](https://youtu.be/YFsqgx48ToM) | 242 |
-| [Erro de negociação: cliente solto deixa dinheiro parado na mesa](https://youtu.be/oebgDX67kZ8) | 158 |
-| [Como vender risco zero na obra e fechar orçamento](https://youtu.be/S96I7juVwwU) | 125 |
-| [Desconto inusitado: como não perder vendas na construção civil](https://youtu.be/aTpjOga84Is) | 71 |
-| [Venda impossível: como fechar cliente sem orçamento](https://youtu.be/sHteipVQkTI) | 66 |
-| [Como descobrir quem decide na primeira conversa e fechar venda](https://youtu.be/KmgA8CCgfz8) | 55 |
-| [Como usar método de perguntas para não perder receita na construção civil](https://youtu.be/nii1YpPYJQc) | 49 |
-| [Como criar oferta irresistível em vendas de esquadrias e posicionar seu produto](https://youtu.be/ag3un7o_7D0) | 41 |
-| [Como lidar com cliente exigente e salvar o contrato na venda de esquadrias](https://youtu.be/IW08qpDl1Yw) | 39 |
-| [Como vender dentro da norma e cobrar mais sem perder orçamento](https://youtu.be/7svc6-dCL18) | 37 |
-| [Como prospectar arquitetos como canal de vendas e garantir indicação segura](https://youtu.be/NGfy8ifauaQ) | 32 |
-| [Cliente pede desconto? Aprenda a negociar sem ceder tudo](https://youtu.be/xacMFg7Zb5g) | 26 |
-| [Por que perdi a venda? Aprenda a cobrar mais explicando a norma](https://youtu.be/dRav2K46KXI) | 25 |
-| [Como conseguir indicação na assinatura de contrato de obra](https://youtu.be/P67s9TiHYPc) | 25 |
-| [Como abordar cliente desconhecido e fechar contrato](https://youtu.be/3qvUvy45w0w) | 22 |
-| [Como cobrar mais sendo especialista e cortar linhas sem retorno](https://youtu.be/4ZdT2Tns5Q4) | 20 |
-| [Como se recuperar rápido de um não e fechar novo orçamento](https://youtu.be/N-9BCq2gsSo) | 19 |
-| [Como responder cliente diz vou pensar preço prazo insegurança](https://youtu.be/dCSz-I8goFk) | 17 |
-| [Como fechar venda impossível na construção civil](https://youtu.be/qmftIL7zYgI) | 11 |
-| [Como montar a oferta certa e ganhar mais orçamentos na obra](https://youtu.be/0C1oJ1vP5t4) | 10 |
-| [Como vender vidraçaria de alto padrão para arquitetos exigentes](https://youtu.be/p2xkaXTPl0w) | 8 |
-| [Como convencer cliente que esquadria vale mais que vidro temperado](https://youtu.be/R0m4vc1ivJY) | 0 |
-| [Como vender box flex rosé e aumentar margem sem desconto](https://youtu.be/iEt7eygIVt0) | 0 |
+| [Orçamento box flex: como fechar venda na visita técnica](https://youtu.be/hido2W1bKWc) | 1158 |
+| [Como fechar venda na obra: quem decide, prazo e medo do cliente](https://youtu.be/LznXLftDF5k) | 1035 |
+| [Como treinar equipe de vendas quando cliente exigente aperta](https://youtu.be/cB-thPtV0y8) | 970 |
+| [Como vender para cliente bilionário sem medo: postura consultiva](https://youtu.be/5MIB5X2dtj4) | 952 |
+| [Como fechar contrato em 1 dia com cliente enrolado na construção civil](https://youtu.be/2fvqnCbqwcc) | 889 |
+| [Como responder cliente que só compara preço na proposta](https://youtu.be/rxXN2cljRW8) | 93 |
+| [Orçamento travado Como responder objeções e não perder cliente](https://youtu.be/RVSOtpjvCs4) | 84 |
+| [Negociação criativa: como vender quando cliente sem dinheiro](https://youtu.be/qPCZbJt-qB8) | 77 |
+| [Como não perder cliente ao justificar preço](https://youtu.be/9VMC8HJrt6o) | 39 |
+| [Como filtrar cliente que só quer preço e identificar o tomador de decisão](https://youtu.be/s4DcK71Hm8s) | 35 |
+| [Como responder cliente na hora e fechar venda](https://youtu.be/mYKCkKW07EQ) | 31 |
+| [Como não perder cliente após 15 dias sem retorno e fechar contrato milionário](https://youtu.be/X5F5IgmzcEg) | 29 |
+| [Como fechar cliente que enrola manda contrato e Pix](https://youtu.be/Hurv1jyrnI4) | 28 |
+| [Como responder quando o cliente pede outro orçamento na construção](https://youtu.be/sjfxNw_ohWc) | 27 |
+| [Como não perder cliente que some 7 dias e fechar em 3 meses](https://youtu.be/3yjAHADX8wQ) | 18 |
+| [Arquitetos devem ir à feira de esquadrias? Como convencer e fechar orçamento](https://youtu.be/jbRsj17YcCE) | 13 |
+| [Como fechar orçamento de projeto que ninguém aceita e lucrar](https://youtu.be/IOpu0tsJVt4) | 12 |
+| [Como fechar obra contra empresa maior respondendo tudo na hora](https://youtu.be/kJxiKKtb5Jo) | 12 |
+| [Como criar conexão com arquitetos e garantir orçamentos recorrentes](https://youtu.be/ip0cdtRMuWM) | 12 |
+| [Como fechar contrato de portas de ACM sem experiência](https://youtu.be/nx4ZZTk6qDw) | 10 |
+| [Como vender esquadria focando na solução da obra do cliente](https://youtu.be/gsPJZyC4DdM) | 0 |
 
 ## Instagram
 
-9297 seguidores.
+9514 seguidores.
 
 ## De onde veio quem entrou no site
 
-223 sessão(ões) no período. Atribuição de **primeiro toque**.
+140 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 89 | 1 |
-| instagram | 71 | 0 |
-| outro/social | 26 | 0 |
-| facebook | 12 | 0 |
-| threads/post | 9 | 0 |
-| youtube/descricao | 6 | 0 |
+| direto | 57 | 2 |
+| outro/social | 34 | 1 |
+| instagram | 17 | 0 |
+| youtube/descricao | 10 | 0 |
+| facebook | 7 | 0 |
+| threads/post | 6 | 0 |
+| busca | 5 | 0 |
 | linkedin/post | 3 | 0 |
-| imprensa/release | 2 | 0 |
-| outro/efyfbff | 2 | 0 |
-| outro/lovable.dev | 1 | 0 |
 | outro | 1 | 0 |
-| busca | 1 | 0 |
 
 ## O que este placar ainda NÃO sabe
 
