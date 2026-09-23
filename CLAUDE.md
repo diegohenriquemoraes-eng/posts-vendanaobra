@@ -148,6 +148,13 @@ Isso é FILA, não falha — `distribuir_pinterest.py` marca `pendente` e resolv
 13–24), Bluesky/Reddit/Telegram/Discord/X (sem o nicho; X cobra por post), WhatsApp canal (sem
 API oficial). Régua: 30 dias, mediana de views por rede; sem lead em 60 dias pela rota `/r/`, sai.
 
+**Stories do IG → Stories do TikTok: não existe (23/09/2026, decisão do Diego: fica como está).**
+Nem a Content Posting API oficial nem o Zernio publicam Story no TikTok — o Zernio só faz vídeo
+e carrossel de fotos no feed. As alternativas avaliadas e recusadas: mandar cada story como
+rascunho para a caixa de entrada do app (`tiktokSettings.draft`, o Diego finalizaria como Story à
+mão, ~6/dia) e jogar os stories no FEED (conteúdo efêmero, ~6/dia, cara de spam e dilui os Reels).
+Robô de navegador segue proibido. O TikTok recebe só os Reels.
+
 ## Card da Fesqua — post de feed em 06/09/2026, colab com a @fesqua
 
 Pedido do Diego em 05/09/2026, a partir do card de contagem regressiva que a
