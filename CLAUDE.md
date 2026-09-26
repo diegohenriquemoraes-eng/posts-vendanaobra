@@ -1,5 +1,9 @@
 # posts-vendanaobra
 
+> **26/09/2026 — o carrossel diário do Canteiro sai SOZINHO, às 12h30, sem música**, pelo repo
+> `canteiro-stories` (`carrossel.py` + workflow `carrossel.yml`, token de sistema da Meta). Decisão
+> do Diego. Nada disso mora aqui; os avisos abaixo de "carrossel manual" valem só para a história.
+
 Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
 > # ⏹ 10/09/2026 — Reel diário ENCERRADO (decisão do Diego)
