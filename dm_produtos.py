@@ -67,15 +67,34 @@ PRODUTOS = {
     },
     "blindada": {
         "nome": "Venda Blindada",
-        "caminho": "/venda-blindada-esquadrias",
+        # 26/09/2026: a vitrine passou a ser a Venda Blindada CONSTRUCAO
+        # (/venda-blindada); a de esquadrias vive so no link antigo.
+        "caminho": "/venda-blindada",
         "palavras": ["blindada", "vendablindada", "venda blindada"],
         "texto": (
             "Opa! O Venda Blindada é aqui:\n\n"
             "{link}\n\n"
-            "É o contrato de esquadrias que eu uso na Perffec, em modelo "
-            "editável, com cada cláusula explicada: por que ela existe e qual "
-            "prejuízo ela evita depois da venda.\n\n"
+            "É o contrato de prestação de serviços que eu uso na minha empresa, "
+            "validado por advogado e reescrito para qualquer serviço da obra "
+            "(marcenaria, gesso, pintura, marmoraria, esquadria, iluminação...), "
+            "em modelo editável, com cada cláusula explicada: por que ela existe "
+            "e qual prejuízo ela evita depois da venda.\n\n"
             "Qualquer dúvida antes de decidir, me chama por aqui."
+        ),
+    },
+    "caderno": {
+        # 25/09/2026: Caderno do Vendedor da Construcao (R$ 39,90 desde 26/09).
+        "nome": "Caderno do Vendedor da Construção",
+        "caminho": "/caderno",
+        "palavras": ["caderno", "caderno do vendedor", "cadernodovendedor"],
+        "texto": (
+            "Opa! O Caderno do Vendedor da Construção é aqui:\n\n"
+            "{link}\n\n"
+            "São 69 páginas e 14 capítulos com exercício em toda seção: o produto, "
+            "a obra no tempo, quem decide (arquiteto, engenheiro, construtora) e "
+            "os 5 passos da venda. Serve para marcenaria, iluminação, gesso, "
+            "pintura, marmoraria, esquadria, piso.\n\n"
+            "Dá uma olhada na página. Dúvida, me chama por aqui."
         ),
     },
     "maquina": {

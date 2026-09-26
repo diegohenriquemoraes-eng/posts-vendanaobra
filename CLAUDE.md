@@ -614,7 +614,8 @@ nada por post, porque o `publicados_miniaulas.json` já guarda o `media_id`.
 |---|---|
 | `RAIOX` · `RAIO X` · `LIVRO` (aposentada) | `/raio-x` |
 | `10X` | `/venda-10x` |
-| `BLINDADA` | `/venda-blindada-esquadrias` |
+| `BLINDADA` | `/venda-blindada` (Venda Blindada Construção desde 26/09/2026; a de esquadrias vive só em `/venda-blindada-esquadrias`, fora da vitrine) |
+| `CADERNO` | `/caderno` (Caderno do Vendedor da Construção, R$ 39,90; entrou no robô em 26/09/2026) |
 | `MAQUINA` · `CRM` | `/crm-venda-na-obra` |
 | `PROSPECCAO` | `/prospeccao-turbinada-por-ia` |
 | `quero`, `link`, `manda aí`… | o produto **daquele post** (`cta.palavra`), nunca chute |
@@ -975,7 +976,8 @@ entra mais em post nenhum.
 
 | Produto | Formato | Preço | Dor |
 |---|---|---|---|
-| **Venda Blindada** | Contrato editável | R$ 147 único | Prejuízo/brecha em contrato de esquadria |
+| **Caderno do Vendedor da Construção** | PDF, 69 páginas, trilha de 30 dias | R$ 39,90 único (desde 26/09/2026) | Vendedor novo que entra na obra sem repertório |
+| **Venda Blindada** (versão Construção desde 26/09/2026) | Contrato editável | R$ 97,90 único (desde 26/09/2026; era R$ 147) | Prejuízo/brecha em contrato de serviço na obra |
 | **Venda 10x** | Ao vivo semanal, terça 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 

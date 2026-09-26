@@ -156,13 +156,13 @@ CTA = {
     "venda-blindada": {
         "slide": (
             "Venda Blindada\n\n"
-            "O contrato editável que fecha as brechas onde a esquadria perde "
+            "O contrato editável que fecha as brechas onde a sua empresa perde "
             "dinheiro depois da venda.\n\n"
             "Comenta BLINDADA que o link cai no seu Direct."
         ),
         "rodape": "@vendanaobra",
         "legenda": (
-            "Contrato genérico é onde a esquadria perde dinheiro depois da venda "
+            "Contrato genérico é onde a empresa de obra perde dinheiro depois da venda "
             "fechada.\nO Venda Blindada é o modelo editável que fecha essas brechas.\n\n"
             "Comenta BLINDADA aqui embaixo que eu te mando o link no seu Direct."
         ),
