@@ -1,77 +1,65 @@
-# Placar dos canais — 2026-09-21 (últimos 7 dias)
+# Placar dos canais — 2026-09-28 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 21 | 139 |
-| Threads (blog, com link) | 5 | 16 |
-| Instagram | 27 (21 Reels) | — |
-| Blog | 6 | — |
+| YouTube Shorts | 13 | 154 |
+| Threads (blog, com link) | 5 | 22 |
+| Instagram | 22 (13 Reels) | — |
+| Blog | 0 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-09-13 a 2026-09-19 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-09-20 a 2026-09-26 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 5 | 4 | +25% |
+| Impressões | 0 | 5 | -100% |
 | Cliques | 0 | 0 | — |
 
-**O que trouxe gente**
-
-| consulta | impressões | cliques | posição |
-|---|---:|---:|---:|
-| wesales login | 4 | 0 | 8 |
-| wesales | 1 | 0 | 10 |
+Nenhuma consulta no período — o site ainda é invisível para a busca.
 
 ## YouTube
 
-95 inscritos · 40138 views no total · 0 Reels ainda na fila para subir.
+98 inscritos · 40809 views no total · 0 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [Orçamento box flex: como fechar venda na visita técnica](https://youtu.be/hido2W1bKWc) | 1158 |
-| [Como fechar venda na obra: quem decide, prazo e medo do cliente](https://youtu.be/LznXLftDF5k) | 1035 |
-| [Como treinar equipe de vendas quando cliente exigente aperta](https://youtu.be/cB-thPtV0y8) | 970 |
-| [Como vender para cliente bilionário sem medo: postura consultiva](https://youtu.be/5MIB5X2dtj4) | 952 |
-| [Como fechar contrato em 1 dia com cliente enrolado na construção civil](https://youtu.be/2fvqnCbqwcc) | 889 |
-| [Como responder cliente que só compara preço na proposta](https://youtu.be/rxXN2cljRW8) | 93 |
-| [Orçamento travado Como responder objeções e não perder cliente](https://youtu.be/RVSOtpjvCs4) | 84 |
-| [Negociação criativa: como vender quando cliente sem dinheiro](https://youtu.be/qPCZbJt-qB8) | 77 |
-| [Como não perder cliente ao justificar preço](https://youtu.be/9VMC8HJrt6o) | 39 |
-| [Como filtrar cliente que só quer preço e identificar o tomador de decisão](https://youtu.be/s4DcK71Hm8s) | 35 |
-| [Como responder cliente na hora e fechar venda](https://youtu.be/mYKCkKW07EQ) | 31 |
-| [Como não perder cliente após 15 dias sem retorno e fechar contrato milionário](https://youtu.be/X5F5IgmzcEg) | 29 |
-| [Como fechar cliente que enrola manda contrato e Pix](https://youtu.be/Hurv1jyrnI4) | 28 |
-| [Como responder quando o cliente pede outro orçamento na construção](https://youtu.be/sjfxNw_ohWc) | 27 |
-| [Como não perder cliente que some 7 dias e fechar em 3 meses](https://youtu.be/3yjAHADX8wQ) | 18 |
-| [Arquitetos devem ir à feira de esquadrias? Como convencer e fechar orçamento](https://youtu.be/jbRsj17YcCE) | 13 |
-| [Como fechar orçamento de projeto que ninguém aceita e lucrar](https://youtu.be/IOpu0tsJVt4) | 12 |
-| [Como fechar obra contra empresa maior respondendo tudo na hora](https://youtu.be/kJxiKKtb5Jo) | 12 |
-| [Como criar conexão com arquitetos e garantir orçamentos recorrentes](https://youtu.be/ip0cdtRMuWM) | 12 |
-| [Como fechar contrato de portas de ACM sem experiência](https://youtu.be/nx4ZZTk6qDw) | 10 |
-| [Como vender esquadria focando na solução da obra do cliente](https://youtu.be/gsPJZyC4DdM) | 0 |
+| [Precisei contratar vendedor e varri doze sites de emprego, um por um.](https://youtu.be/5-3IJ4yUQ_k) | 296 |
+| [O cliente da construção não compara empresas. Compara o que consegue enxergar.](https://youtu.be/wEjwDrGkxC8) | 102 |
+| [Todo desconto dado sem contrapartida vira munição pro concorrente.](https://youtu.be/LVzSu39YasM) | 44 |
+| [A regra que eu uso na minha empresa: toda negociação aberta tem que ter uma próxima tarefa com data.](https://youtu.be/8-3fJ8zsEjg) | 37 |
+| [Como vender segurança e evitar erro na compra de esquadria](https://youtu.be/TsTliDW56K0) | 23 |
+| [O cliente bateu em todas as esquadrias da região.](https://youtu.be/ogJ9xtccbHo) | 15 |
+| [Troca o vendedor e, em três meses, o problema volta igual: proposta sem apresentação, follow-up...](https://youtu.be/y_JqXOq1ziU) | 15 |
+| [“Vou fazer mais um orçamento.”](https://youtu.be/F83xQ6warYM) | 9 |
+| [Cliente novo por anúncio custa milhares. O vizinho da obra que você já entregou custa uma conversa.](https://youtu.be/asI-6AeyjOs) | 9 |
+| [Se o vendedor pode dar 5% sozinho, esses 5% já foram dados.](https://youtu.be/2h4tBQVIoxs) | 6 |
+| [Descansem em paz](https://youtu.be/qYCi5NPU0BM) | 5 |
+| [A conta que quase ninguém na construção fez:](https://youtu.be/NASTgCxLXFA) | 3 |
+| [Fiz uma lista de tudo o que só acontecia na minha empresa se eu lembrasse.](https://youtu.be/unbMWaFhrE0) | 0 |
 
 ## Instagram
 
-9514 seguidores.
+9761 seguidores.
 
 ## De onde veio quem entrou no site
 
-140 sessão(ões) no período. Atribuição de **primeiro toque**.
+305 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 57 | 2 |
-| outro/social | 34 | 1 |
-| instagram | 17 | 0 |
-| youtube/descricao | 10 | 0 |
-| facebook | 7 | 0 |
-| threads/post | 6 | 0 |
-| busca | 5 | 0 |
-| linkedin/post | 3 | 0 |
-| outro | 1 | 0 |
+| direto | 210 | 0 |
+| youtube/video | 34 | 0 |
+| outro/social | 17 | 0 |
+| youtube/descricao | 13 | 0 |
+| busca | 10 | 1 |
+| facebook | 9 | 0 |
+| threads/post | 8 | 0 |
+| facebook/reel | 2 | 0 |
+| instagram | 1 | 0 |
+| outro/localhost | 1 | 0 |
 
 ## O que este placar ainda NÃO sabe
 
