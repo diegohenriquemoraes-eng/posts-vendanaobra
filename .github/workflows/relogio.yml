@@ -1,0 +1,66 @@
+name: Relogio dos distribuidores
+
+# 28/09/2026: o cron do GitHub engoliu todas as janelas do dia dos
+# distribuidores (o Reel nao foi para Shorts nem TikTok). Este vigia fica
+# acordado 5h50 por disparo e chama os distribuidores no minuto da tabela via
+# workflow_dispatch. Oito disparos por dia, em fila (concurrency): basta um
+# acordar para cobrir as proximas ~6 h. Os crons proprios dos distribuidores
+# continuam como segunda via — o teto diario e o registro de enviados evitam
+# duplicata. Tabela abaixo = os mesmos horarios dos crons, em Brasilia.
+
+on:
+  schedule:
+    - cron: "3 1,4,7,10,13,16,19,22 * * *"
+  workflow_dispatch:
+    inputs:
+      minutos:
+        description: "Minutos acordado (0 = uma passada so)"
+        default: "350"
+      ensaio:
+        description: "So mostrar o que dispararia"
+        type: boolean
+        default: false
+
+concurrency:
+  group: relogio
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+
+jobs:
+  relogio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vigiar a tabela
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELOGIO_SLOTS: >-
+            [
+             {"hora": "10:17", "workflow": "distribuir.yml"},
+             {"hora": "13:23", "workflow": "distribuir.yml"},
+             {"hora": "15:41", "workflow": "distribuir.yml"},
+             {"hora": "18:37", "workflow": "distribuir.yml"},
+             {"hora": "21:13", "workflow": "distribuir.yml"},
+             {"hora": "10:29", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "13:47", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "15:53", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "18:19", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "21:31", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "10:41", "workflow": "distribuir-threads.yml"},
+             {"hora": "13:59", "workflow": "distribuir-threads.yml"},
+             {"hora": "16:07", "workflow": "distribuir-threads.yml"},
+             {"hora": "18:33", "workflow": "distribuir-threads.yml"},
+             {"hora": "21:43", "workflow": "distribuir-threads.yml"},
+             {"hora": "10:53", "workflow": "distribuir-pinterest.yml"},
+             {"hora": "14:11", "workflow": "distribuir-pinterest.yml"},
+             {"hora": "16:19", "workflow": "distribuir-pinterest.yml"},
+             {"hora": "18:47", "workflow": "distribuir-pinterest.yml"},
+             {"hora": "21:57", "workflow": "distribuir-pinterest.yml"}
+            ]
+        run: |
+          args="--minutos ${{ inputs.minutos || 350 }}"
+          [ "${{ inputs.ensaio }}" = "true" ] && args="$args --ensaio"
+          python3 relogio.py $args

@@ -54,6 +54,18 @@ Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`)
 > **não oficial** (robô clicando no Instagram Web) — por isso o `preparar.py`
 > nunca posta por navegador.
 
+## Relógio dos distribuidores (28/09/2026) — o cron do GitHub não é confiável
+
+Em 28/09 o cron do GitHub engoliu TODAS as janelas do dia (10h-16h BRT) dos quatro
+distribuidores: o Reel não foi para Shorts nem TikTok. Não era código nem token.
+Correção: `relogio.yml` + `relogio.py` — vigia acordado 5h50 por disparo (8 disparos/dia,
+em fila por `concurrency`), que confere a tabela de horários de minuto em minuto e chama o
+distribuidor por `workflow_dispatch` (o `GITHUB_TOKEN` pode, com `actions: write`) se não
+houve execução desde a hora. Os crons próprios dos distribuidores ficaram como segunda via;
+teto diário e registro de enviados evitam duplicata. Mudou horário de um distribuidor? Mudar
+também na tabela `RELOGIO_SLOTS` do `relogio.yml`. Ensaio: Actions → Relogio → `ensaio`.
+Achado lateral: `distribuir.py` loga "Groq indisponivel ... 404" e cai na extração simples.
+
 ## TikTok @vendanaobra — NO AR desde 19/09/2026 (Reel do Instagram → TikTok pelo Zernio)
 
 Pedido do Diego: "puxar automático pro TikTok todos os vídeos que coloco no Instagram", igual
