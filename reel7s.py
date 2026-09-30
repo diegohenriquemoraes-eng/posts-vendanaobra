@@ -27,17 +27,22 @@ def arte_texto(linhas: list[str], y_centro: int, caminho: str) -> None:
     img = Image.new("RGBA", (L, A), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     f = ImageFont.truetype(str(FONTE), 74)
-    alt_linha = 92
-    larguras = [d.textlength(t, font=f) for t in linhas]
+    # Linha vazia separa uma frase da outra (30/09/2026: nas redes nao se usa
+    # ponto final, a frase acaba e a proxima comeca depois de um respiro).
+    alt_linha, alt_vazia = 92, 44
+    alturas = [alt_vazia if not t else alt_linha for t in linhas]
+    larguras = [d.textlength(t, font=f) for t in linhas if t]
     caixa_l = int(max(larguras)) + 96
-    caixa_a = alt_linha * len(linhas) + 64
+    caixa_a = sum(alturas) + 64
     x0 = (L - caixa_l) // 2
     y0 = y_centro - caixa_a // 2
     d.rounded_rectangle((x0, y0, x0 + caixa_l, y0 + caixa_a), radius=28,
                         fill=(10, 16, 28, 215))
-    for i, t in enumerate(linhas):
-        d.text((L // 2, y0 + 32 + alt_linha * i + alt_linha // 2), t, font=f,
-               fill="white", anchor="mm")
+    y = y0 + 32
+    for t, h in zip(linhas, alturas):
+        if t:
+            d.text((L // 2, y + h // 2), t, font=f, fill="white", anchor="mm")
+        y += h
     img.save(caminho)
 
 
