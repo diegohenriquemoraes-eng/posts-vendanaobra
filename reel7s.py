@@ -23,21 +23,25 @@ FONTE = Path(__file__).parent / "fontes" / "InstagramSans-Bold.ttf"
 L, A = 1080, 1920
 
 
-def arte_texto(linhas: list[str], y_centro: int, caminho: str) -> None:
+def arte_texto(linhas: list[str], y_centro: int, caminho: str, larg_min: int = 0) -> None:
     img = Image.new("RGBA", (L, A), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    f = ImageFont.truetype(str(FONTE), 74)
+    tam = 74
+    f = ImageFont.truetype(str(FONTE), tam)
+    while max(d.textlength(t, font=f) for t in linhas if t) > L - 160 and tam > 52:
+        tam -= 2
+        f = ImageFont.truetype(str(FONTE), tam)
     # Linha vazia separa uma frase da outra (30/09/2026: nas redes nao se usa
     # ponto final, a frase acaba e a proxima comeca depois de um respiro).
     alt_linha, alt_vazia = 92, 44
     alturas = [alt_vazia if not t else alt_linha for t in linhas]
     larguras = [d.textlength(t, font=f) for t in linhas if t]
-    caixa_l = int(max(larguras)) + 96
+    caixa_l = max(int(max(larguras)) + 96, larg_min)
     caixa_a = sum(alturas) + 64
     x0 = (L - caixa_l) // 2
     y0 = y_centro - caixa_a // 2
     d.rounded_rectangle((x0, y0, x0 + caixa_l, y0 + caixa_a), radius=28,
-                        fill=(10, 16, 28, 215))
+                        fill=(10, 16, 28, 255))
     y = y0 + 32
     for t, h in zip(linhas, alturas):
         if t:
@@ -55,11 +59,12 @@ def main() -> None:
     ap.add_argument("--texto", required=True, help="linhas separadas por |")
     ap.add_argument("--y", type=int, default=560, help="centro vertical do texto")
     ap.add_argument("--saida", required=True)
+    ap.add_argument("--caixa-min", type=int, default=0, help="largura mínima da caixa, para cobrir texto antigo")
     o = ap.parse_args()
     x, y, w, h = o.crop.split(",")
     with tempfile.TemporaryDirectory() as tmp:
         png = str(Path(tmp) / "texto.png")
-        arte_texto(o.texto.split("|"), o.y, png)
+        arte_texto(o.texto.split("|"), o.y, png, o.caixa_min)
         filtro = (f"[0:v]crop={w}:{h}:{x}:{y},scale={L}:{A}:flags=lanczos,"
                   f"eq=contrast=1.04:saturation=1.08,fps=30[v];[v][1:v]overlay=0:0[out]")
         subprocess.run([
