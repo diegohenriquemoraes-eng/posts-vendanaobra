@@ -21,6 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 FONTE = Path(__file__).parent / "fontes" / "InstagramSans-Bold.ttf"
 L, A = 1080, 1920
+ESTILO = "classic"   # "classic" (padrao desde 30/09/2026) ou "caixa"
 
 
 def arte_texto(linhas: list[str], y_centro: int, caminho: str, larg_min: int = 0) -> None:
@@ -40,12 +41,19 @@ def arte_texto(linhas: list[str], y_centro: int, caminho: str, larg_min: int = 0
     caixa_a = sum(alturas) + 64
     x0 = (L - caixa_l) // 2
     y0 = y_centro - caixa_a // 2
-    d.rounded_rectangle((x0, y0, x0 + caixa_l, y0 + caixa_a), radius=28,
-                        fill=(10, 16, 28, 255))
+    if ESTILO == "caixa":
+        d.rounded_rectangle((x0, y0, x0 + caixa_l, y0 + caixa_a), radius=28,
+                            fill=(10, 16, 28, 255))
     y = y0 + 32
     for t, h in zip(linhas, alturas):
         if t:
-            d.text((L // 2, y + h // 2), t, font=f, fill="white", anchor="mm")
+            if ESTILO == "classic":
+                # 30/09/2026: o Diego quer o "Classic" do Instagram com contorno,
+                # igual aos Reels dele, e nao a caixa escura por tras.
+                d.text((L // 2, y + h // 2), t, font=f, fill="white", anchor="mm",
+                       stroke_width=6, stroke_fill=(0, 0, 0, 235))
+            else:
+                d.text((L // 2, y + h // 2), t, font=f, fill="white", anchor="mm")
         y += h
     img.save(caminho)
 
@@ -60,7 +68,10 @@ def main() -> None:
     ap.add_argument("--y", type=int, default=560, help="centro vertical do texto")
     ap.add_argument("--saida", required=True)
     ap.add_argument("--caixa-min", type=int, default=0, help="largura mínima da caixa, para cobrir texto antigo")
+    ap.add_argument("--estilo", choices=["classic", "caixa"], default="classic")
     o = ap.parse_args()
+    global ESTILO
+    ESTILO = o.estilo
     x, y, w, h = o.crop.split(",")
     with tempfile.TemporaryDirectory() as tmp:
         png = str(Path(tmp) / "texto.png")
