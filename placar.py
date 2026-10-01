@@ -27,6 +27,9 @@ from statistics import median
 from top_posts import FUSO_BR, IG_USER_ID, _get, _token, gancho, metricas, posts
 
 HIST = Path(__file__).parent / "dados" / "stories.json"
+# 01/10/2026, revisao dos 5 Funcionarios do Afonso: todo Reel fecha com UMA palavra
+# no comentario. Quem comenta a palavra levantou a mao — e' o primeiro degrau do funil.
+PALAVRAS = ("ORÇAMENTO", "ORCAMENTO", "MARGEM", "FUNIL", "PERDIDOS")
 PERGUNTA = re.compile(r"\?|^(como|qual|quanto|quando|onde|por que|porque|pq|tem como|da pra|dá pra)\b",
                       re.I)
 
@@ -81,7 +84,7 @@ def main():
 
     token = _token()
     desde = datetime.now(FUSO_BR) - timedelta(days=o.dias)
-    linhas, perguntas = [], []
+    linhas, perguntas, maos = [], [], []
     for p in posts(token, desde):
         m = metricas(token, p)
         if not m:
@@ -98,6 +101,11 @@ def main():
         })
         for c in comentarios(token, p["id"]):
             t = (c.get("text") or "").strip()
+            if c.get("username") != "vendanaobra":
+                achou = [k for k in PALAVRAS if k in t.upper()]
+                if achou:
+                    maos.append({"quem": c.get("username", ""), "palavra": achou[0].replace("ORCAMENTO", "ORÇAMENTO"),
+                                 "post": p["quando"].strftime("%d/%m")})
             if PERGUNTA.search(t) and len(t) > 12:
                 perguntas.append({"quem": c.get("username", ""), "texto": t,
                                   "post": p["quando"].strftime("%d/%m")})
@@ -159,6 +167,16 @@ def main():
     else:
         w("## Stories\n\nSem histórico ainda — rode `python coletar_stories.py` "
           "todo dia à noite (é o que alimenta esta tabela).\n")
+
+    w("## Funil da venda — comentário → direct → Caderno\n")
+    w(f"- Mãos levantadas (comentário com a palavra-chave): **{len(maos)}**")
+    for k in ("ORÇAMENTO", "MARGEM", "FUNIL", "PERDIDOS"):
+        n = sum(1 for m in maos if m["palavra"] == k)
+        if n:
+            w(f"  - {k}: {n} · " + ", ".join("@" + m["quem"] for m in maos if m["palavra"] == k)[:200])
+    w("- Preencher à mão na sexta (a API não lê direct nem Kiwify): directs abertos · respondidos · "
+      "oferta apresentada · cliques no sticker · Cadernos vendidos")
+    w("- **KPI**: Cadernos vendidos por 1.000 views do story de oferta (o último do dia, tabela acima)\n")
 
     w(f"## Comentários que são pergunta ({len(perguntas)}) — pauta pronta\n")
     if perguntas:
