@@ -4,6 +4,16 @@
 > `canteiro-stories` (`carrossel.py` + workflow `carrossel.yml`, token de sistema da Meta). Decisão
 > do Diego. Nada disso mora aqui; os avisos abaixo de "carrossel manual" valem só para a história.
 
+## Reel de 7 s (`reel7s.py`, desde 30/09/2026)
+
+Filmagem real do Diego + uma frase na tela (estilo Classic com contorno, sem música), entrega na
+legenda de 1.500-2.000 caracteres. Os dados (texto da tela, legenda, palavra-chave, status) moram em
+`Perffec\Claude\Instagram-vendanaobra\Reel-7s\reels7s.json`; os trechos de cada um e a posição do
+texto em `Reel-7s\novos\render_2026_10_01.py`, as legendas em `Reel-7s\legendas\gerar_2026_10_01.py`.
+Texto sempre dentro da zona segura (y 305 a 1575, `Perffec\Claude\safe-zone-reels-1080x1920.png`).
+
+Desde 01/10/2026 o texto da tela é diagnóstico (número ou fala real), nunca tese; legenda fecha com palavra-chave no comentário.
+
 Prepara as peças do Instagram **@vendanaobra** (IG User ID `17841470188725651`).
 
 > # ⏹ 10/09/2026 — Reel diário ENCERRADO (decisão do Diego)
