@@ -177,7 +177,10 @@ def titulo_para_busca(legenda: str) -> str | None:
             "Regras: no máximo 80 caracteres; em português; use as palavras que um "
             "vendedor digitaria na busca (ex.: 'como responder tá caro', "
             "'orçamento', 'desconto', 'cliente sumiu'); sem emoji; sem hashtag; "
-            "sem aspas; sem ponto final; não invente fato que não esteja no texto.\n\n"
+            "sem ponto final; não invente fato que não esteja no texto. "
+            "Prefira diagnóstico a conselho: se o texto tiver um número (24 de 38, R$ 500 mil, "
+            "21% do lucro) ou uma fala literal do cliente (vou fazer mais um orçamento), ponha no "
+            "título; nunca título de tese genérica como 'a importância do follow-up'.\n\n"
             f"TEXTO:\n{chr(10).join(linhas[:6])}"
         )
         try:
@@ -218,17 +221,30 @@ def titulo_para_busca(legenda: str) -> str | None:
     return frase
 
 
+# 01/10/2026, revisao dos 5 Funcionarios do Afonso: duas portas. Short de
+# objecao (orcamento, desconto, preco) leva ao Caderno; Short de funil, IA e
+# processo leva ao Raio-X. O "Comenta PALAVRA" da legenda do Instagram aciona o
+# direct de la — no YouTube ninguem responde, entao a linha sai e o link entra.
+LINK_CADERNO = "https://vendanaobra.com.br/r/ytc"
+PORTA_CADERNO = re.compile(r"\b(ORÇAMENTO|ORCAMENTO|MARGEM)\b|desconto|tá caro|ta caro|vou pensar|"
+                           r"obje[çc][ãa]o|mais um or[çc]amento", re.I)
+COMENTA = re.compile(r"^comenta\b", re.I)
+
+
 def montar_descricao(legenda: str, permalink: str) -> str:
-    linhas = _linhas_uteis(legenda)
+    linhas = [l for l in _linhas_uteis(legenda) if not COMENTA.match(l)
+              and not l.lower().startswith("siga o @vendanaobra")]
     corpo = "\n\n".join(linhas[:5])
+    if PORTA_CADERNO.search(legenda or ""):
+        chamada = ("As respostas prontas para as objeções que mais fazem a construção perder venda "
+                   f"estão no Caderno do Vendedor da Construção (R$ 39,90):\n{LINK_CADERNO}")
+    else:
+        chamada = f"Descubra em 3 minutos onde a sua venda está travando:\n{LINK_RAIOX}"
     return (
         f"{corpo}\n\n"
-        "—\n"
-        "Descubra em 3 minutos onde a sua venda está travando:\n"
-        f"{LINK_RAIOX}\n\n"
-        "Diego Moraes — Venda na Obra\n"
-        "Método comercial para quem vende esquadria, vidro e material de construção "
-        "para arquitetos, construtoras e cliente final.\n\n"
+        f"{chamada}\n\n"
+        "Diego Moraes, Venda na Obra\n"
+        "Desenvolvo empresas da construção a vender mais e de forma previsível\n\n"
         f"Publicado também no Instagram: {permalink}\n\n"
         "#Shorts #vendas #esquadrias #construcaocivil"
     )
