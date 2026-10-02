@@ -83,7 +83,7 @@ PRODUTOS = {
         ),
     },
     "caderno": {
-        # 25/09/2026: Caderno do Vendedor da Construcao (R$ 39,90 desde 26/09).
+        # 25/09/2026: Caderno do Vendedor da Construcao (R$ 79,90 desde 01/10/2026; era R$ 39,90 de 26/09 a 01/10).
         "nome": "Caderno do Vendedor da Construção",
         "caminho": "/caderno",
         "palavras": ["caderno", "caderno do vendedor", "cadernodovendedor"],

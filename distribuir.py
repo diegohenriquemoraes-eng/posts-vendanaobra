@@ -237,7 +237,7 @@ def montar_descricao(legenda: str, permalink: str) -> str:
     corpo = "\n\n".join(linhas[:5])
     if PORTA_CADERNO.search(legenda or ""):
         chamada = ("As respostas prontas para as objeções que mais fazem a construção perder venda "
-                   f"estão no Caderno do Vendedor da Construção (R$ 39,90):\n{LINK_CADERNO}")
+                   f"estão no Caderno do Vendedor da Construção (R$ 79,90):\n{LINK_CADERNO}")
     else:
         chamada = f"Descubra em 3 minutos onde a sua venda está travando:\n{LINK_RAIOX}"
     return (
