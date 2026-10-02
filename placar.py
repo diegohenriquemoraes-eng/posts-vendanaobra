@@ -164,6 +164,25 @@ def main():
               f"{'✅' if v[0] >= piso else '❌'} | {v[-1]} | {q:.0%} "
               f"| {'✅' if q >= 0.40 else '❌'} |")
         w("")
+        # Stories 10x (Ladeira) dentro do Destrave Story, desde 03/10/2026:
+        # a caixinha das 09h10 é a levantada de mão do dia. Metas: 5 respostas/dia
+        # em 16/10, 10 em 02/11; taxa (respostas da caixinha ÷ views dela) 5% → 7%.
+        w("## Caixinha — respostas por dia (meta 16/10: 5 · 02/11: 10)\n")
+        w("| dia | respostas no dia | story da caixinha | views dela | taxa | meta 5/dia |")
+        w("|---|---:|---|---:|---:|---|")
+        for h in hist:
+            its = h["stories"]
+            if not its:
+                continue
+            tot = sum(i.get("replies", 0) for i in its)
+            # a caixinha é a da manhã com mais respostas (o horário real escorrega)
+            manha = [i for i in its if "08:55" <= i.get("hora", "")[:5] <= "10:30"]
+            cx = max(manha or its, key=lambda i: i.get("replies", 0))
+            vw = cx.get("views", cx.get("reach", 0))
+            tx = cx.get("replies", 0) / vw if vw else 0
+            w(f"| {h['dia'][-5:]} | {tot} | {cx.get('hora', '?')[:5]} | {vw} | {tx:.1%} "
+              f"| {'✅' if tot >= 5 else '❌'} |")
+        w("")
     else:
         w("## Stories\n\nSem histórico ainda — rode `python coletar_stories.py` "
           "todo dia à noite (é o que alimenta esta tabela).\n")
