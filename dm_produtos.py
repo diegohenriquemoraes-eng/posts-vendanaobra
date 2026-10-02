@@ -62,7 +62,7 @@ PRODUTOS = {
             "É aula ao vivo toda terça, às 20h, com empresários e vendedores da "
             "construção civil — da qualificação ao fechamento, com caso real na "
             "mesa.\n\n"
-            "Dá uma olhada na página. Se ficar qualquer dúvida, me chama por aqui mesmo."
+            "Dá uma olhada na página e me responde aqui: hoje, em que etapa a venda de vocês mais trava?"
         ),
     },
     "blindada": {
@@ -79,7 +79,7 @@ PRODUTOS = {
             "(marcenaria, gesso, pintura, marmoraria, esquadria, iluminação...), "
             "em modelo editável, com cada cláusula explicada: por que ela existe "
             "e qual prejuízo ela evita depois da venda.\n\n"
-            "Qualquer dúvida antes de decidir, me chama por aqui."
+            "Me responde aqui: hoje vocês fecham com contrato próprio ou só com a proposta assinada?"
         ),
     },
     "caderno": {
@@ -94,7 +94,7 @@ PRODUTOS = {
             "a obra no tempo, quem decide (arquiteto, engenheiro, construtora) e "
             "os 5 passos da venda. Serve para marcenaria, iluminação, gesso, "
             "pintura, marmoraria, esquadria, piso.\n\n"
-            "Dá uma olhada na página. Dúvida, me chama por aqui."
+            "Dá uma olhada na página e me responde aqui: qual objeção mais trava a venda de vocês hoje?"
         ),
     },
     "maquina": {
@@ -107,7 +107,7 @@ PRODUTOS = {
             "É o CRM da construção civil já configurado: cada orçamento com a "
             "próxima data marcada, follow-up automático e o funil inteiro numa "
             "tela só — para a venda parar de depender da sua memória.\n\n"
-            "Na página tem o passo a passo da implantação. Dúvida, me chama."
+            "Na página tem o passo a passo da implantação. Me responde aqui: hoje vocês controlam os orçamentos onde?"
         ),
     },
     "prospeccao": {
