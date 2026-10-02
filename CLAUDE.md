@@ -4,6 +4,11 @@
 > `canteiro-stories` (`carrossel.py` + workflow `carrossel.yml`, token de sistema da Meta). Decisão
 > do Diego. Nada disso mora aqui; os avisos abaixo de "carrossel manual" valem só para a história.
 
+> **02/10/2026 — janela da manhã dos distribuidores.** O Reel das ~9h só ia para Shorts/TikTok às
+> 10h17/10h29 e parecia "não ter saído". Entraram janelas às 08h07/09h17 (YouTube) e 08h13/09h23
+> (TikTok), no cron e no `relogio.yml`. O teto diário não muda. O carrossel de 01/10 (12h30, repo
+> `canteiro-stories`) saiu no horário: media `17908345320481202`, conferido no perfil.
+
 ## Reel de 7 s (`reel7s.py`, desde 30/09/2026)
 
 Filmagem real do Diego + uma frase na tela (estilo Classic com contorno, sem música), entrega na

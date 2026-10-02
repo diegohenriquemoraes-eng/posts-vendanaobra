@@ -39,11 +39,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELOGIO_SLOTS: >-
             [
+             {"hora": "08:07", "workflow": "distribuir.yml"},
+             {"hora": "09:17", "workflow": "distribuir.yml"},
              {"hora": "10:17", "workflow": "distribuir.yml"},
              {"hora": "13:23", "workflow": "distribuir.yml"},
              {"hora": "15:41", "workflow": "distribuir.yml"},
              {"hora": "18:37", "workflow": "distribuir.yml"},
              {"hora": "21:13", "workflow": "distribuir.yml"},
+             {"hora": "08:13", "workflow": "distribuir-tiktok.yml"},
+             {"hora": "09:23", "workflow": "distribuir-tiktok.yml"},
              {"hora": "10:29", "workflow": "distribuir-tiktok.yml"},
              {"hora": "13:47", "workflow": "distribuir-tiktok.yml"},
              {"hora": "15:53", "workflow": "distribuir-tiktok.yml"},

@@ -17,6 +17,8 @@ name: Distribuir Reel no TikTok
 
 on:
   schedule:
+    - cron: "13 11 * * *"   # 08h13 BRT (Reel da manha, 02/10/2026)
+    - cron: "23 12 * * *"   # 09h23 BRT
     - cron: "29 13 * * *"   # 10h29 BRT
     - cron: "47 16 * * *"   # 13h47 BRT
     - cron: "53 18 * * *"   # 15h53 BRT
