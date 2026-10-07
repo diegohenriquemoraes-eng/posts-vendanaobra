@@ -59,7 +59,7 @@ PRODUTOS = {
         "texto": (
             "Opa! O Venda 10x é aqui:\n\n"
             "{link}\n\n"
-            "É aula ao vivo toda terça, às 20h, com empresários e vendedores da "
+            "É aula ao vivo às terças, às 20h, com empresários e vendedores da "
             "construção civil — da qualificação ao fechamento, com caso real na "
             "mesa.\n\n"
             "Dá uma olhada na página e me responde aqui: hoje, em que etapa a venda de vocês mais trava?"

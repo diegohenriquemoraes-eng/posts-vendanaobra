@@ -1009,7 +1009,7 @@ entra mais em post nenhum.
 |---|---|---|---|
 | **Caderno do Vendedor da Construção** | PDF, 69 páginas, trilha de 30 dias | R$ 79,90 único (desde 01/10/2026; R$ 39,90 de 26/09 a 01/10) | Vendedor novo que entra na obra sem repertório |
 | **Venda Blindada** (versão Construção desde 26/09/2026) | Contrato editável | R$ 97,90 único (desde 26/09/2026; era R$ 147) | Prejuízo/brecha em contrato de serviço na obra |
-| **Venda 10x** | Ao vivo semanal, terça 20h | R$ 497/ano | Falta de rotina/consistência comercial |
+| **Venda 10x** | Ao vivo, às terças, 20h | R$ 497/ano | Falta de rotina/consistência comercial |
 | **Máquina de Vendas** (o CRM, rebatizado 12/08/2026) | Assinatura, sem fidelidade | R$ 297/mês | Orçamento enviado, cliente some, ninguém cobra |
 
 **O e-book "O Cliente Sumiu" saiu do portfólio em 25/08/2026** (decisão do

@@ -170,13 +170,13 @@ CTA = {
     "venda10x": {
         "slide": (
             "Venda 10x\n\n"
-            "O ao vivo semanal que transforma meta em rotina de execução comercial.\n\n"
+            "O ao vivo de terça que transforma meta em rotina de execução comercial.\n\n"
             "Comenta 10X que o link cai no seu Direct."
         ),
         "rodape": "@vendanaobra",
         "legenda": (
             "Rotina comercial não nasce de motivação, nasce de cadência.\n"
-            "É isso que eu destrincho toda terça, 20h, no Venda 10x.\n\n"
+            "É isso que eu destrincho às terças, 20h, no Venda 10x.\n\n"
             "Comenta 10X aqui embaixo que eu te mando o link no seu Direct."
         ),
     },
