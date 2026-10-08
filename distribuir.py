@@ -161,6 +161,14 @@ def titulo_para_busca(legenda: str) -> str | None:
     if not linhas:
         return None
 
+    # 07/10/2026, Studio do canal: o titulo reescrito "para busca" (os "Como
+    # fechar...", 05-20/09) fez mediana 120 views e 32% de "assistiu em vez de
+    # deslizar"; o gancho literal entre aspas fez 346 e 53%. Short vive do feed,
+    # nao da busca (93% das views vem do feed). Se a primeira frase ja cabe, ela
+    # E o titulo; a IA so entra quando a frase e longa demais.
+    if 12 <= len(linhas[0]) <= 90:
+        return linhas[0].rstrip(".")
+
     # Groq e nao Gemini: a chave do Gemini que sustenta o blog vive SO no secret
     # do repo da LP (a copia local em Perffec\Claude nao e chave de API, e um
     # token de sessao do AI Studio — conferido em 05/09/2026, devolve 401). E o
@@ -172,12 +180,12 @@ def titulo_para_busca(legenda: str) -> str | None:
     if chave:
         pedido = (
             "Você escreve títulos de YouTube Shorts para um canal brasileiro sobre "
-            "VENDAS na construção civil (esquadrias, vidraçaria, serralheria). "
-            "Leia o texto abaixo e devolva UM título, e nada além dele.\n"
-            "Regras: no máximo 80 caracteres; em português; use as palavras que um "
-            "vendedor digitaria na busca (ex.: 'como responder tá caro', "
-            "'orçamento', 'desconto', 'cliente sumiu'); sem emoji; sem hashtag; "
-            "sem ponto final; não invente fato que não esteja no texto. "
+            "VENDAS na construção civil. Leia o texto abaixo e devolva UM título, "
+            "e nada além dele.\n"
+            "Regras: no máximo 80 caracteres; em português; o título é o GANCHO, "
+            "não uma frase de busca: nunca comece com 'Como'; prefira a fala literal "
+            "do cliente entre aspas ou a frase em primeira pessoa com número; sem emoji; "
+            "sem hashtag; sem ponto final; não invente fato que não esteja no texto. "
             "Prefira diagnóstico a conselho: se o texto tiver um número (24 de 38, R$ 500 mil, "
             "21% do lucro) ou uma fala literal do cliente (vou fazer mais um orçamento), ponha no "
             "título; nunca título de tese genérica como 'a importância do follow-up'.\n\n"
@@ -229,12 +237,45 @@ LINK_CADERNO = "https://vendanaobra.com.br/r/ytc"
 PORTA_CADERNO = re.compile(r"\b(ORÇAMENTO|ORCAMENTO|MARGEM)\b|desconto|tá caro|ta caro|vou pensar|"
                            r"obje[çc][ãa]o|mais um or[çc]amento", re.I)
 COMENTA = re.compile(r"^comenta\b", re.I)
+# "Segue o @vendanaobra" e chamada do Instagram: no YouTube nao leva a lugar nenhum.
+SIGA_IG = re.compile(r"(siga|segue|me segue)\b.*@vendanaobra", re.I)
+
+# 07/10/2026: 93% das views do canal vem do feed de Shorts e 0,15% de sugeridos;
+# os longos so recebem busca. Cada Short aponta para o longo do mesmo tema.
+# Ordem importa: o primeiro padrao que casar leva. Trocar o id quando sair um
+# longo melhor sobre o tema.
+LONGO_POR_TEMA = [
+    (re.compile(r"\bpass(ar|ou|a) o pre[çc]o\b|\bdepois do pre[çc]o\b", re.I), "L71YE2DAd0A"),
+    (re.compile(r"\bdesconto|\bt[áa] caro\b|\bmargem\b", re.I), "a5K9o-R5Gi0"),
+    # sem re.I: "ia" minusculo e o verbo ("eu ia ligar")
+    (re.compile(r"[Ii]ntelig[êe]ncia [Aa]rtificial|\bIA\b"), "KF900WBRs-A"),
+    (re.compile(r"\bmais um or[çc]amento\b|\bvou pensar\b|\bsumiu\b|\bn[ãa]o responde|"
+                r"\bor[çc]amento no whatsapp\b|\bconseguiu ver\b", re.I), "6ODtb_XgIGg"),
+    (re.compile(r"\bfunil\b|\bindicador(es)?\b|\bmetas?\b|\bgestor\b|\bCRM\b|\bcarteira\b|"
+                r"\bvendedor(es)?\b", re.I), "HgcnwFhm3G8"),
+    (re.compile(r"\barquitet[oa]s?\b|\bengenheir[oa]s?\b", re.I), "zSzLtrfyzRk"),
+]
+
+
+def longo_relacionado(legenda: str) -> str | None:
+    """Longo do mesmo tema. O gancho (1a linha) decide; o resto da legenda so
+    entra se o gancho nao casar com nada — no corpo aparece de tudo."""
+    linhas = _linhas_uteis(legenda)
+    for trecho in (linhas[:1], linhas[:4]):
+        texto = "\n".join(trecho)
+        for padrao, video_id in LONGO_POR_TEMA:
+            if padrao.search(texto):
+                return video_id
+    return None
 
 
 def montar_descricao(legenda: str, permalink: str) -> str:
     linhas = [l for l in _linhas_uteis(legenda) if not COMENTA.match(l)
-              and not l.lower().startswith("siga o @vendanaobra")]
+              and not SIGA_IG.search(l)]
     corpo = "\n\n".join(linhas[:5])
+    longo = longo_relacionado(legenda)
+    if longo:
+        corpo += f"\n\n▶ Aula completa no canal: https://youtu.be/{longo}"
     if PORTA_CADERNO.search(legenda or ""):
         chamada = ("As respostas prontas para as objeções que mais fazem a construção perder venda "
                    f"estão no Caderno do Vendedor da Construção (R$ 79,90):\n{LINK_CADERNO}")
