@@ -1938,5 +1938,30 @@
     "navigation": 60
    }
   ]
+ },
+ {
+  "dia": "2026-10-11",
+  "seguidores": 10133,
+  "colhido_em": "2026-10-11 04:07",
+  "stories": [
+   {
+    "id": "18118150309781544",
+    "hora": "11:49",
+    "tipo": "VIDEO",
+    "views": 84,
+    "reach": 65,
+    "replies": 0,
+    "navigation": 84
+   },
+   {
+    "id": "18108089858576976",
+    "hora": "21:08",
+    "tipo": "IMAGE",
+    "views": 37,
+    "reach": 30,
+    "replies": 0,
+    "navigation": 39
+   }
+  ]
  }
 ]
