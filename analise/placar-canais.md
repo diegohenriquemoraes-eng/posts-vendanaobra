@@ -1,73 +1,74 @@
-# Placar dos canais — 2026-10-05 (últimos 7 dias)
+# Placar dos canais — 2026-10-12 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 16 | 172 |
-| Threads (blog, com link) | 3 | 26 |
-| Instagram | 30 (22 Reels) | — |
-| Blog | 0 | — |
+| YouTube Shorts | 12 | 185 |
+| Threads (blog, com link) | 1 | 27 |
+| Instagram | 24 (16 Reels) | — |
+| Blog | 2 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-09-27 a 2026-10-03 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-10-04 a 2026-10-10 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 1 | 0 | novo |
+| Impressões | 4 | 1 | +300% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
-| qual é o custo médio de uma boa plataforma de crm para empresas de construção civil? | 1 | 0 | 2 |
+| crm para construtoras | 1 | 0 | 92 |
+| qual é o custo médio de uma boa plataforma de crm para empresas de construção civil? | 1 | 0 | 4 |
+| quanto custa um crm para construção? | 1 | 0 | 1 |
+| valores | 1 | 0 | 16 |
 
 ## YouTube
 
-119 inscritos · 50957 views no total · 6 Reels ainda na fila para subir.
+150 inscritos · 61743 views no total · 10 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [Se o seu vendedor sair amanhã, o que vai embora com ele?](https://youtu.be/f0r1BAF8fO4) | 1160 |
-| [Quando o cliente disser “vou fazer mais um orçamento”, não tente impedir](https://youtu.be/-mryPbXOAv4) | 1099 |
-| [“Tá caro”](https://youtu.be/8v0PpW3M2jY) | 1021 |
-| [Eu achei meio milhão parado no funil da minha própria empresa](https://youtu.be/39-MLXIVXeE) | 1009 |
-| [“Tá caro” é a melhor frase que um cliente pode te dizer](https://youtu.be/l6sMm_c9kDI) | 983 |
-| [A IA não decide por você. Ela mostra onde você está decidindo no escuro.](https://youtu.be/HcAeTxF09_Q) | 974 |
-| [Pedi um preenchimento simples pros vendedores da minha empresa.](https://youtu.be/XyJuupjRaFw) | 968 |
-| [Quando o número só aparece no dia 30, ninguém tem chance de reagir](https://youtu.be/BvH-QO8T5IM) | 538 |
-| [A frase que quebra o vendedor é “Vou pensar”](https://youtu.be/irFoqYzvwHw) | 210 |
-| [Uma obra de alto padrão também é construída pelas parcerias certas.](https://youtu.be/NRHSKfv2a7Y) | 190 |
-| [“Tá caro”](https://youtu.be/UNhOoqJi1Zg) | 161 |
-| [A IA me poupa horas toda semana.](https://youtu.be/a4C8rvj16SA) | 122 |
-| [Um orçamento bem feito na construção leva horas da sua equipe: levantar, conferir, montar, revisar](https://youtu.be/z7xiR-TgP64) | 113 |
-| [“Anúncio não funciona pra mim”](https://youtu.be/0r5iv18ZUJ8) | 85 |
-| [“Me manda o orçamento no WhatsApp”](https://youtu.be/a2OafRms6jo) | 76 |
-| [Eu uso inteligência artificial todo dia na minha empresa. Nenhuma vez para escrever post.](https://youtu.be/LkZ_NAxVsPo) | 9 |
+| [“Achei mais barato”](https://youtu.be/jz1zOf3BJEE) | 1205 |
+| [Você pisaria aqui?](https://youtu.be/dY83Y7fx5Vs) | 1073 |
+| [“Se fechar hoje eu faço desconto”](https://youtu.be/c-uLjZia5UM) | 1046 |
+| [“O outro faz pela metade do preço”](https://youtu.be/m5a-DtieEy8) | 1004 |
+| [“Me dá um desconto que eu fecho hoje”](https://youtu.be/C7wcP8Evwrg) | 1002 |
+| [Na minha empresa o vendedor é proibido de fazer o cliente contar a história de novo](https://youtu.be/Nxsb8QJrWMw) | 997 |
+| [O cliente ligou pro dono e levou o desconto que o vendedor tinha segurado](https://youtu.be/4l-I2FZZ8h8) | 959 |
+| [Na sua fábrica existem 4 cadeiras](https://youtu.be/nn5thax3QjI) | 337 |
+| [Se você manda orçamento e depois pergunta “e aí, conseguiu ver?”, escuta isso](https://youtu.be/qOt4f_Ec7sI) | 330 |
+| [A segunda maior obra do meu funil estava parada por falta de contato](https://youtu.be/SRC2esD4teQ) | 233 |
+| [Coloquei uma pessoa do meu time pra ligar pra arquiteto e proibi ela de falar de produto](https://youtu.be/D0YK4_K10xs) | 80 |
+| [“Gostei, mas tá fora do meu orçamento”](https://youtu.be/oAj0UzePPpw) | 28 |
 
 ## Instagram
 
-9894 seguidores.
+10155 seguidores.
 
 ## De onde veio quem entrou no site
 
-159 sessão(ões) no período. Atribuição de **primeiro toque**.
+90 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 78 | 6 |
-| outro/social | 20 | 0 |
-| youtube/descricao | 17 | 1 |
-| instagram | 13 | 0 |
-| facebook | 9 | 0 |
-| threads/post | 6 | 0 |
-| busca | 6 | 0 |
-| youtube/video | 4 | 0 |
-| outro | 2 | 0 |
-| linkedin/post | 2 | 0 |
-| youtube/short | 2 | 0 |
+| direto | 42 | 0 |
+| instagram | 18 | 0 |
+| youtube/video | 9 | 0 |
+| youtube/descricao | 7 | 0 |
+| outro/social | 5 | 0 |
+| threads/post | 2 | 0 |
+| facebook | 2 | 0 |
+| facebook/reel | 2 | 0 |
+| youtube | 1 | 0 |
+| linkedin/post | 1 | 0 |
+| outro/efyfbff | 1 | 0 |
+
+Nenhum lead no período.
 
 ## O que este placar ainda NÃO sabe
 
