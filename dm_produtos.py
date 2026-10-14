@@ -83,18 +83,19 @@ PRODUTOS = {
         ),
     },
     "caderno": {
-        # 25/09/2026: Caderno do Vendedor da Construcao (R$ 79,90 desde 01/10/2026; era R$ 39,90 de 26/09 a 01/10).
+        # 25/09/2026: Caderno do Vendedor da Construcao. 14/10/2026: texto alinhado ao direct em 3 toques
+        # (5 passos, sem preco, sem segmento de vidro/esquadria). Preco nunca no direct (08/10/2026).
         "nome": "Caderno do Vendedor da Construção",
         "caminho": "/caderno",
         "palavras": ["caderno", "caderno do vendedor", "cadernodovendedor"],
         "texto": (
-            "Opa! O Caderno do Vendedor da Construção é aqui:\n\n"
-            "{link}\n\n"
-            "São 69 páginas e 14 capítulos com exercício em toda seção: o produto, "
-            "a obra no tempo, quem decide (arquiteto, engenheiro, construtora) e "
-            "os 5 passos da venda. Serve para marcenaria, iluminação, gesso, "
-            "pintura, marmoraria, esquadria, piso.\n\n"
-            "Dá uma olhada na página e me responde aqui: qual objeção mais trava a venda de vocês hoje?"
+            "Opa! Diego aqui\n\n"
+            "Eu criei o Caderno do Vendedor da Construção a partir do meu método de vendas, "
+            "que tem 5 passos: Atração, Conexão, Diagnóstico, Oferta e Decisão\n"
+            "Em cada passo tem o roteiro e a rotina para o vendedor aplicar no dia a dia, "
+            "do primeiro contato até o fechamento\n\n"
+            "Dá uma olhada aqui: {link}\n\n"
+            "E me conta: qual objeção mais trava a venda de vocês hoje?"
         ),
     },
     "maquina": {
