@@ -660,5 +660,12 @@
     "permalink": "https://www.instagram.com/reel/DerNS6_Pmlf/",
     "publicado_ig": "2026-10-19T12:00:07+0000",
     "distribuido_em": "2026-10-19T13:57:25+00:00"
+  },
+  "18115344062036237": {
+    "tentativas": 1,
+    "erro": "{'error': 'Validation failed', 'details': 'null value in column \"platforms\" of relation \"posts\" violates not-null constraint', 'fields': ['platforms']}",
+    "zernio_post": null,
+    "permalink": "https://www.instagram.com/reel/Der2iDJPNNF/",
+    "tentado_em": "2026-10-19T19:20:59+00:00"
   }
 }
