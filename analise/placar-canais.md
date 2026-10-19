@@ -1,72 +1,71 @@
-# Placar dos canais — 2026-10-12 (últimos 7 dias)
+# Placar dos canais — 2026-10-19 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 12 | 185 |
-| Threads (blog, com link) | 1 | 27 |
-| Instagram | 24 (16 Reels) | — |
+| YouTube Shorts | 14 | 203 |
+| Threads (blog, com link) | 1 | 28 |
+| Instagram | 21 (19 Reels) | — |
 | Blog | 2 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-10-04 a 2026-10-10 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-10-11 a 2026-10-17 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 4 | 1 | +300% |
+| Impressões | 3 | 4 | -25% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
-| crm para construtoras | 1 | 0 | 92 |
-| qual é o custo médio de uma boa plataforma de crm para empresas de construção civil? | 1 | 0 | 4 |
-| quanto custa um crm para construção? | 1 | 0 | 1 |
-| valores | 1 | 0 | 16 |
+| quanto custa um crm para construção? | 3 | 0 | 2 |
 
 ## YouTube
 
-150 inscritos · 61743 views no total · 10 Reels ainda na fila para subir.
+164 inscritos · 69678 views no total · 10 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [“Achei mais barato”](https://youtu.be/jz1zOf3BJEE) | 1205 |
-| [Você pisaria aqui?](https://youtu.be/dY83Y7fx5Vs) | 1073 |
-| [“Se fechar hoje eu faço desconto”](https://youtu.be/c-uLjZia5UM) | 1046 |
-| [“O outro faz pela metade do preço”](https://youtu.be/m5a-DtieEy8) | 1004 |
-| [“Me dá um desconto que eu fecho hoje”](https://youtu.be/C7wcP8Evwrg) | 1002 |
-| [Na minha empresa o vendedor é proibido de fazer o cliente contar a história de novo](https://youtu.be/Nxsb8QJrWMw) | 997 |
-| [O cliente ligou pro dono e levou o desconto que o vendedor tinha segurado](https://youtu.be/4l-I2FZZ8h8) | 959 |
-| [Na sua fábrica existem 4 cadeiras](https://youtu.be/nn5thax3QjI) | 337 |
-| [Se você manda orçamento e depois pergunta “e aí, conseguiu ver?”, escuta isso](https://youtu.be/qOt4f_Ec7sI) | 330 |
-| [A segunda maior obra do meu funil estava parada por falta de contato](https://youtu.be/SRC2esD4teQ) | 233 |
-| [Coloquei uma pessoa do meu time pra ligar pra arquiteto e proibi ela de falar de produto](https://youtu.be/D0YK4_K10xs) | 80 |
-| [“Gostei, mas tá fora do meu orçamento”](https://youtu.be/oAj0UzePPpw) | 28 |
+| [“Arredonda pra baixo que eu fecho”](https://youtu.be/l2hNKsBFdQs) | 1082 |
+| [“Achei teu preço baixo demais, tem alguma coisa errada?”](https://youtu.be/DRXugmv5PGk) | 1068 |
+| [“Por que você é mais caro?”](https://youtu.be/UZHZCIdkrkc) | 1067 |
+| [Uma obra que ninguém da região quis fazer virou venda pra quem passou o preço](https://youtu.be/gAZRZLNE2Ps) | 992 |
+| [“Pode falar direto comigo, o arquiteto é muito ocupado” Quando o cliente disser isso, não tira o...](https://youtu.be/tTZnuA0StXE) | 989 |
+| [“Eu vi teu preço pelo cliente” Quando o arquiteto te disser isso, você já perdeu os dois](https://youtu.be/RYQJxQyW-3Q) | 435 |
+| [“Pra você eu faço um preço especial” Essa frase diz que o teu preço normal é mentira](https://youtu.be/f3E2XRifaSA) | 381 |
+| [O vendedor que oferece desconto antes do cliente pedir está negociando contra a própria empresa](https://youtu.be/sc2DPB8YoI8) | 315 |
+| [“O concorrente baixou, a gente baixa junto?” Não entra nessa guerra](https://youtu.be/D-E9Rh3DPeA) | 308 |
+| [“Esse concorrente aí usa material ruim” Falar mal dele te faz perder a venda](https://youtu.be/nDW6zI_RMNA) | 187 |
+| [“Nossa, que Instagram lindo” Elogio não paga boleto, orçamento paga](https://youtu.be/BxuqpTqCEzI) | 157 |
+| [Não consegue vender sem showroom?](https://youtu.be/EckfFe06MKQ) | 105 |
+| [“Consegue um desconto à vista?”](https://youtu.be/CqG0CUIiuBg) | 20 |
+| [“A gente atende qualquer obra” Quem atende tudo não consegue cobrar por nada](https://youtu.be/kTe4NCvz2aQ) | 1 |
 
 ## Instagram
 
-10155 seguidores.
+10278 seguidores.
 
 ## De onde veio quem entrou no site
 
-90 sessão(ões) no período. Atribuição de **primeiro toque**.
+105 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 42 | 0 |
-| instagram | 18 | 0 |
-| youtube/video | 9 | 0 |
-| youtube/descricao | 7 | 0 |
-| outro/social | 5 | 0 |
+| direto | 58 | 0 |
+| instagram | 13 | 0 |
+| outro/social | 10 | 0 |
+| facebook | 7 | 0 |
+| youtube/video | 5 | 0 |
+| instagram/direct | 5 | 0 |
+| linkedin/post | 2 | 0 |
 | threads/post | 2 | 0 |
-| facebook | 2 | 0 |
-| facebook/reel | 2 | 0 |
-| youtube | 1 | 0 |
-| linkedin/post | 1 | 0 |
 | outro/efyfbff | 1 | 0 |
+| youtube/descricao | 1 | 0 |
+| busca | 1 | 0 |
 
 Nenhum lead no período.
 
