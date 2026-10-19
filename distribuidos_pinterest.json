@@ -662,10 +662,10 @@
     "distribuido_em": "2026-10-19T13:57:25+00:00"
   },
   "18115344062036237": {
-    "tentativas": 1,
+    "tentativas": 2,
     "erro": "{'error': 'Validation failed', 'details': 'null value in column \"platforms\" of relation \"posts\" violates not-null constraint', 'fields': ['platforms']}",
     "zernio_post": null,
     "permalink": "https://www.instagram.com/reel/Der2iDJPNNF/",
-    "tentado_em": "2026-10-19T19:20:59+00:00"
+    "tentado_em": "2026-10-19T19:31:28+00:00"
   }
 }
