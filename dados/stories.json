@@ -2265,5 +2265,48 @@
     "navigation": 19
    }
   ]
+ },
+ {
+  "dia": "2026-10-21",
+  "seguidores": 10307,
+  "colhido_em": "2026-10-21 02:59",
+  "stories": [
+   {
+    "id": "18115780732833049",
+    "hora": "06:44",
+    "tipo": "IMAGE",
+    "views": 78,
+    "reach": 55,
+    "replies": 0,
+    "navigation": 73
+   },
+   {
+    "id": "18026448350920487",
+    "hora": "11:33",
+    "tipo": "IMAGE",
+    "views": 70,
+    "reach": 49,
+    "replies": 1,
+    "navigation": 61
+   },
+   {
+    "id": "18100468190552866",
+    "hora": "18:57",
+    "tipo": "VIDEO",
+    "views": 48,
+    "reach": 32,
+    "replies": 0,
+    "navigation": 41
+   },
+   {
+    "id": "18078894320738130",
+    "hora": "22:03",
+    "tipo": "VIDEO",
+    "views": 17,
+    "reach": 12,
+    "replies": 0,
+    "navigation": 14
+   }
+  ]
  }
 ]
