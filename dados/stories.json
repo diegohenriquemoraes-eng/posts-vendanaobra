@@ -2357,5 +2357,39 @@
   "seguidores": 10360,
   "colhido_em": "2026-10-23 02:59",
   "stories": []
+ },
+ {
+  "dia": "2026-10-24",
+  "seguidores": 10367,
+  "colhido_em": "2026-10-24 02:45",
+  "stories": [
+   {
+    "id": "17908491996664712",
+    "hora": "11:14",
+    "tipo": "IMAGE",
+    "views": 76,
+    "reach": 58,
+    "replies": 1,
+    "navigation": 63
+   },
+   {
+    "id": "18289612474288533",
+    "hora": "11:15",
+    "tipo": "IMAGE",
+    "views": 68,
+    "reach": 45,
+    "replies": 1,
+    "navigation": 65
+   },
+   {
+    "id": "18018274268974071",
+    "hora": "11:17",
+    "tipo": "IMAGE",
+    "views": 53,
+    "reach": 38,
+    "replies": 1,
+    "navigation": 47
+   }
+  ]
  }
 ]
