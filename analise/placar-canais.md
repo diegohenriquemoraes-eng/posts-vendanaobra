@@ -1,73 +1,63 @@
-# Placar dos canais — 2026-10-19 (últimos 7 dias)
+# Placar dos canais — 2026-10-26 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 14 | 203 |
-| Threads (blog, com link) | 1 | 28 |
-| Instagram | 21 (19 Reels) | — |
-| Blog | 2 | — |
+| YouTube Shorts | 9 | 215 |
+| Threads (blog, com link) | 1 | 29 |
+| Instagram | 13 (9 Reels) | — |
+| Blog | 1 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-10-11 a 2026-10-17 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-10-18 a 2026-10-24 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 3 | 4 | -25% |
+| Impressões | 1 | 3 | -67% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
-| quanto custa um crm para construção? | 3 | 0 | 2 |
+| quanto custa um crm para construção? | 1 | 0 | 2 |
 
 ## YouTube
 
-164 inscritos · 69678 views no total · 10 Reels ainda na fila para subir.
+168 inscritos · 71589 views no total · 7 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [“Arredonda pra baixo que eu fecho”](https://youtu.be/l2hNKsBFdQs) | 1082 |
-| [“Achei teu preço baixo demais, tem alguma coisa errada?”](https://youtu.be/DRXugmv5PGk) | 1068 |
-| [“Por que você é mais caro?”](https://youtu.be/UZHZCIdkrkc) | 1067 |
-| [Uma obra que ninguém da região quis fazer virou venda pra quem passou o preço](https://youtu.be/gAZRZLNE2Ps) | 992 |
-| [“Pode falar direto comigo, o arquiteto é muito ocupado” Quando o cliente disser isso, não tira o...](https://youtu.be/tTZnuA0StXE) | 989 |
-| [“Eu vi teu preço pelo cliente” Quando o arquiteto te disser isso, você já perdeu os dois](https://youtu.be/RYQJxQyW-3Q) | 435 |
-| [“Pra você eu faço um preço especial” Essa frase diz que o teu preço normal é mentira](https://youtu.be/f3E2XRifaSA) | 381 |
-| [O vendedor que oferece desconto antes do cliente pedir está negociando contra a própria empresa](https://youtu.be/sc2DPB8YoI8) | 315 |
-| [“O concorrente baixou, a gente baixa junto?” Não entra nessa guerra](https://youtu.be/D-E9Rh3DPeA) | 308 |
-| [“Esse concorrente aí usa material ruim” Falar mal dele te faz perder a venda](https://youtu.be/nDW6zI_RMNA) | 187 |
-| [“Nossa, que Instagram lindo” Elogio não paga boleto, orçamento paga](https://youtu.be/BxuqpTqCEzI) | 157 |
-| [Não consegue vender sem showroom?](https://youtu.be/EckfFe06MKQ) | 105 |
-| [“Consegue um desconto à vista?”](https://youtu.be/CqG0CUIiuBg) | 20 |
-| [“A gente atende qualquer obra” Quem atende tudo não consegue cobrar por nada](https://youtu.be/kTe4NCvz2aQ) | 1 |
+| [“Ninguém vende como eu” Por isso a tua empresa só vende quando você está](https://youtu.be/yQd-AkwEbfM) | 794 |
+| [“Tira a instalação que fica mais barato?”](https://youtu.be/93vVTkF5ZC0) | 40 |
+| [“Ainda não tenho fornecedor fixo” Quando o arquiteto novo disser isso, é a tua chance](https://youtu.be/fHKDyk5KtOw) | 38 |
+| [“Vocês pegam obra pequena?” Quando o arquiteto pergunta isso, ele está te testando](https://youtu.be/gol24rDQ8SA) | 24 |
+| [Nem sempre é o teu concorrente que vende barato, pode ser você que esteja com uma operação cara.](https://youtu.be/Jejo1b5qloc) | 22 |
+| [“Vou esperar a Black Friday”](https://youtu.be/hTEgyoUz4JM) | 9 |
+| [“Teu orçamento chegou depois da minha apresentação” Ali você perdeu a especificação](https://youtu.be/LhuS7rMKEGo) | 6 |
+| [“Esse preço é com tudo?”](https://youtu.be/Wz6iUM2UMDA) | 4 |
+| [“Não tenho tempo pra vender, eu tô na obra” E a próxima obra não vai aparecer sozinha](https://youtu.be/otgBeWRLszU) | 0 |
 
 ## Instagram
 
-10278 seguidores.
+10369 seguidores.
 
 ## De onde veio quem entrou no site
 
-105 sessão(ões) no período. Atribuição de **primeiro toque**.
+62 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 58 | 0 |
-| instagram | 13 | 0 |
-| outro/social | 10 | 0 |
-| facebook | 7 | 0 |
-| youtube/video | 5 | 0 |
-| instagram/direct | 5 | 0 |
-| linkedin/post | 2 | 0 |
+| direto | 22 | 0 |
+| instagram | 15 | 0 |
+| busca | 9 | 1 |
+| outro/social | 6 | 0 |
+| youtube/video | 4 | 0 |
+| facebook | 2 | 0 |
 | threads/post | 2 | 0 |
-| outro/efyfbff | 1 | 0 |
-| youtube/descricao | 1 | 0 |
-| busca | 1 | 0 |
-
-Nenhum lead no período.
+| youtube/descricao | 2 | 0 |
 
 ## O que este placar ainda NÃO sabe
 
