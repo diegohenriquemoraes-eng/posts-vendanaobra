@@ -771,5 +771,20 @@
     "permalink": "https://www.instagram.com/reel/DfAfFguJOIB/",
     "publicado_ig": "2026-10-27T18:54:35+0000",
     "distribuido_em": "2026-10-27T19:04:04+00:00"
+  },
+  "18092151380222642": {
+    "pinterest": "https://www.pinterest.com/pin/1142366261770134089/",
+    "zernio_post": "6ae12cecb558f569d573d24f",
+    "titulo": "“Não consigo colocar isso na minha apresentação” O teu orçamento serve pra você, não pro arquiteto",
+    "permalink": "https://www.instagram.com/reel/DfA7w8BvCYw/",
+    "publicado_ig": "2026-10-27T22:30:05+0000",
+    "distribuido_em": "2026-10-27T23:02:05+00:00"
+  },
+  "18195559282403122": {
+    "tentativas": 1,
+    "erro": "Pinterest reported video processing status: failed (media 3983256132416174784). Automatic retries are exhausted (failed after 3 attempts).",
+    "zernio_post": "6ae12d8326ae08a3c2a6ee39",
+    "permalink": "https://www.instagram.com/reel/DfA7WwJiTR0/",
+    "tentado_em": "2026-10-27T23:06:49+00:00"
   }
 }
