@@ -781,11 +781,20 @@
     "distribuido_em": "2026-10-27T23:02:05+00:00"
   },
   "18195559282403122": {
-    "pendente": true,
     "zernio_post": "6ae1956a9e2cd42a3b9b92fa",
     "titulo": "Quem trabalha na área de vendas tem que saber fazer prospecção, criar conexão, criar autoridade...",
     "permalink": "https://www.instagram.com/reel/DfA7WwJiTR0/",
     "publicado_ig": "2026-10-27T22:26:52+0000",
-    "distribuido_em": "2026-10-28T06:30:08+00:00"
+    "distribuido_em": "2026-10-28T06:30:08+00:00",
+    "tentativas": 1,
+    "erro": "Pinterest reported video processing status: failed (media 3984147847520443904). Automatic retries are exhausted (failed after 3 attempts)."
+  },
+  "18014231480762917": {
+    "pinterest": "https://www.pinterest.com/pin/1142366261770189404/",
+    "zernio_post": "6ae1fe7f59a43a3c38be72e1",
+    "titulo": "“O mercado tá ruim” O ticket caiu e o desconto subiu no mesmo mês? Não é o mercado",
+    "permalink": "https://www.instagram.com/reel/DfCjsnDp_7y/",
+    "publicado_ig": "2026-10-28T13:40:54+0000",
+    "distribuido_em": "2026-10-28T13:56:45+00:00"
   }
 }
