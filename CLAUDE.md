@@ -112,6 +112,17 @@ os secrets e parou no teto. Restam 20 Reels de acervo nos 45 dias, que escoam a 
 ⚠ `gh` não estava autenticado nesta máquina; o token do Git Credential Manager (`git credential
 fill`, `gho_`, escopos repo+workflow) serve para `gh auth login --with-token`.
 
+## Short duplicado no YouTube: corrigido em 30/10/2026
+
+Sintoma: o mesmo Reel subiu duas vezes em 19/10 e 26/10 (cópias `GQOM2u3am8w` e `olqYlOi6548`,
+1 view cada) e o feed de Shorts parou de mostrar o canal de 20 a 26/10. Causa medida: o `relogio.yml`
+e o cron disparam o mesmo slot com segundos de diferença; a `concurrency` enfileira o segundo job, que
+fazia checkout do commit do DISPARO (estado antigo, sem o vídeo que o primeiro acabou de subir),
+republicava e falhava só no push. Correção nos 4 distribuidores: `actions/checkout` com
+`ref: ${{ github.ref_name }}` (ponta do branch quando o job começa). No `distribuir.py`, segunda trava:
+antes do `videos.insert`, olha os 25 últimos uploads do canal e, se o título já existe, devolve o id
+sem subir (1 unidade de cota). As duas cópias foram para **privado** (não excluídas).
+
 ## Threads e Pinterest recebem o Reel desde 19/09/2026 (mesmo desenho do TikTok)
 
 Decisão do Diego em 19/09: o Reel vai para **todas** as redes onde dá para automatizar. Quatro
