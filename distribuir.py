@@ -330,9 +330,21 @@ def subir_youtube(caminho: pathlib.Path, titulo: str, descricao: str, tags: list
 
     # Trava de seguranca: token errado publica no canal errado, e isso ja
     # aconteceu uma vez neste projeto (o @crmnaobra apareceu no lugar).
-    canal = yt.channels().list(part="id", mine=True).execute()["items"][0]["id"]
-    if canal != YT_CANAL:
-        sys.exit(f"Token aponta para o canal {canal}, nao para o @vendanaobra.")
+    canal = yt.channels().list(part="id,contentDetails", mine=True).execute()["items"][0]
+    if canal["id"] != YT_CANAL:
+        sys.exit(f"Token aponta para o canal {canal['id']}, nao para o @vendanaobra.")
+
+    # Segunda trava contra duplicata (30/10/2026): o estado do repo pode estar
+    # velho (duas execucoes no mesmo minuto subiram o mesmo Reel em 19/10 e
+    # 26/10, e as copias ficaram com 1 view enquanto o feed parou de mostrar o
+    # canal). O canal e a verdade: se um dos ultimos uploads tem o mesmo titulo,
+    # devolve esse id em vez de subir de novo. Custa 1 unidade de cota.
+    uploads = canal["contentDetails"]["relatedPlaylists"]["uploads"]
+    recentes = yt.playlistItems().list(part="snippet", playlistId=uploads, maxResults=25).execute()
+    for item in recentes.get("items", []):
+        if item["snippet"]["title"].strip() == titulo[:100].strip():
+            print("  ja esta no canal com este titulo: nao sobe de novo")
+            return item["snippet"]["resourceId"]["videoId"]
 
     corpo = {
         "snippet": {

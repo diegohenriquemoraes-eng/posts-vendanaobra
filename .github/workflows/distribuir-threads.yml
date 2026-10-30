@@ -57,7 +57,13 @@ jobs:
   distribuir:
     runs-on: ubuntu-latest
     steps:
+      # ref = ponta do branch NA HORA EM QUE O JOB COMECA, nao o commit do disparo.
+      # O relogio e o cron disparam o mesmo slot com segundos de diferenca; a
+      # concurrency enfileira o segundo, que sem isto lia o estado de ANTES do
+      # primeiro e republicava o mesmo Reel (YouTube 19/10 e 26/10/2026).
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
