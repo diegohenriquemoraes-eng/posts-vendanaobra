@@ -2594,5 +2594,30 @@
     "navigation": 21
    }
   ]
+ },
+ {
+  "dia": "2026-10-31",
+  "seguidores": 10399,
+  "colhido_em": "2026-10-31 03:56",
+  "stories": [
+   {
+    "id": "18134866321761706",
+    "hora": "17:03",
+    "tipo": "VIDEO",
+    "views": 44,
+    "reach": 37,
+    "replies": 0,
+    "navigation": 38
+   },
+   {
+    "id": "18119428145006936",
+    "hora": "17:05",
+    "tipo": "VIDEO",
+    "views": 39,
+    "reach": 32,
+    "replies": 1,
+    "navigation": 37
+   }
+  ]
  }
 ]
