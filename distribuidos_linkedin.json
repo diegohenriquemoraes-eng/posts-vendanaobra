@@ -242,5 +242,15 @@
     "permalink": "https://www.instagram.com/reel/DfS9aJ_vppa/",
     "publicado_ig": "2026-11-03T22:30:07+0000",
     "distribuido_em": "2026-11-04T18:53:54+00:00"
+  },
+  "18455877877135316": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/DfaM3fnvjOw/"
+  },
+  "18022493627730622": {
+    "tentativas": 1,
+    "erro": "401: {\"status\":401,\"serviceErrorCode\":65602,\"code\":\"EXPIRED_ACCESS_TOKEN\",\"message\":\"The token used in the request has expired\"}",
+    "permalink": "https://www.instagram.com/reel/DfZ9JFipsTy/",
+    "tentado_em": "2026-11-06T18:32:10+00:00"
   }
 }
