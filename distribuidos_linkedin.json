@@ -252,5 +252,27 @@
     "erro": "401: {\"status\":401,\"serviceErrorCode\":65602,\"code\":\"EXPIRED_ACCESS_TOKEN\",\"message\":\"The token used in the request has expired\"}",
     "permalink": "https://www.instagram.com/reel/DfZ9JFipsTy/",
     "tentado_em": "2026-11-06T18:32:10+00:00"
+  },
+  "18221482795345676": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/DfhSHGGPEUZ/"
+  },
+  "18120376864974710": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/DfdeQz1v3d_/"
+  },
+  "18084209195718790": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/DfdJO6sJas6/"
+  },
+  "18434489476144810": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/DfcHGT7pNp8/"
+  },
+  "17900207085398140": {
+    "tentativas": 1,
+    "erro": "401: {\"status\":401,\"serviceErrorCode\":65602,\"code\":\"EXPIRED_ACCESS_TOKEN\",\"message\":\"The token used in the request has expired\"}",
+    "permalink": "https://www.instagram.com/reel/Dfary9DPXpL/",
+    "tentado_em": "2026-11-09T21:39:19+00:00"
   }
 }
