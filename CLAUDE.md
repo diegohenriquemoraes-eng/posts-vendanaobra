@@ -1,5 +1,14 @@
 # posts-vendanaobra
 
+> # ⏸ 11/11/2026 — Shorts automáticos no YouTube DESLIGADOS (decisão do Diego)
+>
+> O feed de Shorts do @VendanaObra caiu 99% (mediana 996 → 2-10 views) enquanto os mesmos Reels
+> seguiam ~550 no Instagram: suspeita de punição por conteúdo repetitivo/automático. Workflow
+> `Distribuir Reel no YouTube` (`distribuir.yml`) **desativado no GitHub** e os slots dele tirados
+> do `relogio.yml`. TikTok, Facebook, Threads e Pinterest seguem automáticos. Religar só com ordem
+> do Diego: `gh workflow enable distribuir.yml` + devolver os slots. Diagnóstico:
+> `Perffec\Claude\Canal-YouTube\Estrategia-YouTube-VNO-2026-11-11.pdf`.
+
 > **26/09/2026 — o carrossel diário do Canteiro sai SOZINHO, às 12h30, sem música**, pelo repo
 > `canteiro-stories` (`carrossel.py` + workflow `carrossel.yml`, token de sistema da Meta). Decisão
 > do Diego. Nada disso mora aqui; os avisos abaixo de "carrossel manual" valem só para a história.
