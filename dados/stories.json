@@ -2933,5 +2933,138 @@
     "navigation": 23
    }
   ]
+ },
+ {
+  "dia": "2026-11-13",
+  "seguidores": 10987,
+  "colhido_em": "2026-11-13 04:52",
+  "stories": [
+   {
+    "id": "18133698907774050",
+    "hora": "23:13",
+    "tipo": "IMAGE",
+    "views": 21,
+    "reach": 17,
+    "replies": 0,
+    "navigation": 20
+   },
+   {
+    "id": "18118482524156001",
+    "hora": "23:14",
+    "tipo": "IMAGE",
+    "views": 12,
+    "reach": 9,
+    "replies": 0,
+    "navigation": 12
+   },
+   {
+    "id": "18097496171157758",
+    "hora": "23:14",
+    "tipo": "IMAGE",
+    "views": 10,
+    "reach": 9,
+    "replies": 0,
+    "navigation": 10
+   },
+   {
+    "id": "17952689931057737",
+    "hora": "23:14",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 8,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "18647606365034869",
+    "hora": "23:15",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 8,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "17869032840695893",
+    "hora": "23:15",
+    "tipo": "IMAGE",
+    "views": 10,
+    "reach": 8,
+    "replies": 0,
+    "navigation": 10
+   },
+   {
+    "id": "18084689444400364",
+    "hora": "23:15",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 8,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "18131824810884935",
+    "hora": "23:16",
+    "tipo": "IMAGE",
+    "views": 10,
+    "reach": 8,
+    "replies": 0,
+    "navigation": 10
+   },
+   {
+    "id": "18136351273749984",
+    "hora": "23:48",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "17933682429162873",
+    "hora": "23:48",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "18141091435712241",
+    "hora": "23:48",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "17911953453327900",
+    "hora": "23:49",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "18295581493291038",
+    "hora": "23:49",
+    "tipo": "IMAGE",
+    "views": 9,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 9
+   },
+   {
+    "id": "18651375469041354",
+    "hora": "23:49",
+    "tipo": "IMAGE",
+    "views": 8,
+    "reach": 7,
+    "replies": 0,
+    "navigation": 8
+   }
+  ]
  }
 ]
