@@ -1,73 +1,69 @@
-# Placar dos canais — 2026-11-09 (últimos 7 dias)
+# Placar dos canais — 2026-11-16 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 17 | 256 |
-| Threads (blog, com link) | 1 | 31 |
-| Instagram | 21 (17 Reels) | — |
+| YouTube Shorts | 5 | 263 |
+| Threads (blog, com link) | 1 | 32 |
+| Instagram | 27 (19 Reels) | — |
 | Blog | 2 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-11-01 a 2026-11-07 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-11-08 a 2026-11-14 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 2 | 1 | +100% |
+| Impressões | 13 | 2 | +550% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
-| qual é o custo médio de um bom software de vendas para pequenas empresas de construção? | 1 | 0 | 2 |
-| quanto custa um crm para construção? | 1 | 0 | 6 |
+| quanto custa um crm para construção? | 4 | 0 | 6 |
+| orçamento válido por 30 dias | 3 | 0 | 11 |
+| wesales login | 2 | 0 | 6 |
+| mensal | 1 | 0 | 4 |
+| qual é o custo médio de um bom software de vendas para empresas de construção civil? | 1 | 0 | 2 |
+| qual é o custo médio de um bom software de vendas para pequenas empresas de construção? | 1 | 0 | 1 |
+| sim | 1 | 0 | 1 |
 
 ## YouTube
 
-176 inscritos · 78003 views no total · 0 Reels ainda na fila para subir.
+176 inscritos · 78211 views no total · 14 Reels ainda na fila para subir.
 
 | vídeo da semana | views |
 |---|---:|
-| [“Se você cobrir o preço dele, eu fecho”](https://youtu.be/yIlWFW-Ddbw) | 114 |
-| [“Preciso de um valor estimado pra hoje” Se você responde semana que vem, o arquiteto estima sem você](https://youtu.be/SJuv9DKfshU) | 111 |
-| [Se o teu cliente disse “vou só conversar com a minha esposa“ você já falhou antes do que imagina](https://youtu.be/MdmjhTpDsns) | 39 |
-| [Teu cliente tocou no assunto da quebra do banco no Paraguai](https://youtu.be/UGXoF8pOY34) | 23 |
-| [“Consegue um desconto pro meu cliente?” Quando o arquiteto pedir isso, não baixa antes de entender](https://youtu.be/uzwadrkFpmA) | 13 |
-| [“Seu concorrente faz isso mais barato”](https://youtu.be/sZS2LTe1XrM) | 11 |
-| [“Você é caro, mas é bom”](https://youtu.be/pDMaSJai5MU) | 10 |
-| [“Por que eu deveria te passar esse orçamento?”](https://youtu.be/ZgibdD_GONI) | 10 |
-| [“Com quem eu falo aí?” Se o arquiteto pergunta isso, cada vez atende um](https://youtu.be/nQFzx6TQcqo) | 9 |
-| [Você não vende porque não produz conteúdo!](https://youtu.be/DplTcy8mraI) | 8 |
-| [“Me dá um desconto que eu te indico pra todo mundo”](https://youtu.be/7XurlxEat4Y) | 6 |
-| [“Vocês recebem indicação de arquiteto?” Se você não responde com número, não tem parceria, tem...](https://youtu.be/m7shcIp6M5w) | 4 |
-| [Pegar indicação é muito diferente de pedir indicação](https://youtu.be/dSyP7yQ3E1A) | 4 |
-| [“Vou ver com o meu chefe se eu consigo” Essa frase avisa que o vendedor não decide nada](https://youtu.be/gu4Z85Tt-Us) | 4 |
-| [“Qualquer coisa me chama”](https://youtu.be/62a3ooEB7DM) | 2 |
-| [E aí analisou o orçamento?](https://youtu.be/0kSU5wgEqVw) | 1 |
-| [Quase quebrei o meu setor comercial por falta de gestão!](https://youtu.be/2gvfO1osLhQ) | 0 |
+| [“Esse arquiteto é muito chato” Arquiteto exigente é o parceiro que mais vale](https://youtu.be/xItyoPjIpUU) | 15 |
+| [“O material eu compro, você só cobra a mão de obra”](https://youtu.be/ag-S3nNb1ZM) | 11 |
+| [Venda é energia e gestão de emoção!](https://youtu.be/Byvau6slzaA) | 7 |
+| [“Ainda tem interesse?” Essa mensagem não ressuscita orçamento parado](https://youtu.be/XtVdzmol-ak) | 5 |
+| [Na negociação você costuma dar desconto ou uma cortesia?](https://youtu.be/8D6UHjzZmXI) | 2 |
 
 ## Instagram
 
-10653 seguidores.
+11175 seguidores.
 
 ## De onde veio quem entrou no site
 
-143 sessão(ões) no período. Atribuição de **primeiro toque**.
+46 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 108 | 0 |
-| youtube/descricao | 13 | 1 |
-| outro/social | 6 | 0 |
-| instagram | 5 | 0 |
-| threads/post | 4 | 0 |
-| facebook | 2 | 0 |
-| busca | 2 | 0 |
-| youtube/video | 2 | 0 |
+| direto | 14 | 0 |
+| instagram | 12 | 0 |
+| outro/social | 10 | 0 |
+| youtube/video | 3 | 0 |
+| facebook/reel | 2 | 0 |
+| youtube/descricao | 1 | 0 |
+| threads/post | 1 | 0 |
+| facebook | 1 | 0 |
 | youtube | 1 | 0 |
+| outro | 1 | 0 |
+
+Nenhum lead no período.
 
 ## O que este placar ainda NÃO sabe
 
