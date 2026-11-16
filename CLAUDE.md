@@ -8,6 +8,15 @@
 > do `relogio.yml`. TikTok, Facebook, Threads e Pinterest seguem automáticos. Religar só com ordem
 > do Diego: `gh workflow enable distribuir.yml` + devolver os slots. Diagnóstico:
 > `Perffec\Claude\Canal-YouTube\Estrategia-YouTube-VNO-2026-11-11.pdf`.
+>
+> **16/11/2026 — o corte pegou o canal inteiro.** Feed de Shorts zerou (0 views em 13 e 14/11) e os
+> longos novos fizeram 2 e 4 views (antes 80-130); busca segue viva (~10/dia), nada rejeitado. O
+> "1 Short curado por dia" de 11/11 NÃO começou (zero Shorts desde 11/11). Proposta: conferir
+> "Status e recursos" no Studio; 1 Short/dia 8-10h, ≤40 s, pelo app do YouTube (não pela API),
+> de 17 a 30/11; nada de edição em lote pela API; longo vira conversa com convidado. **Régua
+> remarcada para 30/11/2026**: mediana ≥300 → era a esteira; <50 → canal marcado, cortes em canal
+> novo publicado à mão. Token de Analytics existe desde 11/11 (`token_analytics_vendanaobra.json`).
+> Relatório: `Perffec\Claude\Canal-YouTube\Diagnostico-entrega-YouTube-VNO-2026-11-16.pdf`.
 
 > **26/09/2026 — o carrossel diário do Canteiro sai SOZINHO, às 12h30, sem música**, pelo repo
 > `canteiro-stories` (`carrossel.py` + workflow `carrossel.yml`, token de sistema da Meta). Decisão
