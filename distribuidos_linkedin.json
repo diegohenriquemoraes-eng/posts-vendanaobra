@@ -322,5 +322,11 @@
   "17877795957587417": {
     "pulado": "sem numero/nome/resultado",
     "permalink": "https://www.instagram.com/reel/Dfnjru_PIZX/"
+  },
+  "18045188633826246": {
+    "tentativas": 1,
+    "erro": "401: {\"status\":401,\"serviceErrorCode\":65602,\"code\":\"EXPIRED_ACCESS_TOKEN\",\"message\":\"The token used in the request has expired\"}",
+    "permalink": "https://www.instagram.com/reel/Dfz_DFyPMix/",
+    "tentado_em": "2026-11-16T21:18:05+00:00"
   }
 }
