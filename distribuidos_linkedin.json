@@ -324,9 +324,37 @@
     "permalink": "https://www.instagram.com/reel/Dfnjru_PIZX/"
   },
   "18045188633826246": {
-    "tentativas": 1,
+    "tentativas": 2,
     "erro": "401: {\"status\":401,\"serviceErrorCode\":65602,\"code\":\"EXPIRED_ACCESS_TOKEN\",\"message\":\"The token used in the request has expired\"}",
     "permalink": "https://www.instagram.com/reel/Dfz_DFyPMix/",
-    "tentado_em": "2026-11-16T21:18:05+00:00"
+    "tentado_em": "2026-11-18T19:38:32+00:00"
+  },
+  "17911130370328748": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df5IvPRvvdo/"
+  },
+  "18139992043679853": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df4fbphPEjP/"
+  },
+  "18079619528727187": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df2_VURPCpB/"
+  },
+  "18361048435247386": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df2j5h1vrtW/"
+  },
+  "18180229186458726": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df16sOwP8V4/"
+  },
+  "18141770014711512": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df1s8_-v5eC/"
+  },
+  "18011444798956582": {
+    "pulado": "sem numero/nome/resultado",
+    "permalink": "https://www.instagram.com/reel/Df0ainFvEwG/"
   }
 }
