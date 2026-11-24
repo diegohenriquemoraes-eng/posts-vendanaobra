@@ -1,67 +1,55 @@
-# Placar dos canais — 2026-11-16 (últimos 7 dias)
+# Placar dos canais — 2026-11-24 (últimos 7 dias)
 
 ## Quanto cada porta publicou
 
 | Canal | No período | Total |
 |---|---:|---:|
-| YouTube Shorts | 5 | 263 |
-| Threads (blog, com link) | 1 | 32 |
-| Instagram | 27 (19 Reels) | — |
-| Blog | 2 | — |
+| YouTube Shorts | 0 | 263 |
+| Threads (blog, com link) | 0 | 33 |
+| Instagram | 27 (20 Reels) | — |
+| Blog | 0 | — |
 
 ## Google — a Colheita
 
-Período medido: 2026-11-08 a 2026-11-14 (o Search Console fecha os dados com 2 dias de atraso).
+Período medido: 2026-11-16 a 2026-11-22 (o Search Console fecha os dados com 2 dias de atraso).
 
 | | Agora | Antes | |
 |---|---:|---:|---|
-| Impressões | 13 | 2 | +550% |
+| Impressões | 12 | 16 | -25% |
 | Cliques | 0 | 0 | — |
 
 **O que trouxe gente**
 
 | consulta | impressões | cliques | posição |
 |---|---:|---:|---:|
-| quanto custa um crm para construção? | 4 | 0 | 6 |
-| orçamento válido por 30 dias | 3 | 0 | 11 |
-| wesales login | 2 | 0 | 6 |
-| mensal | 1 | 0 | 4 |
-| qual é o custo médio de um bom software de vendas para empresas de construção civil? | 1 | 0 | 2 |
-| qual é o custo médio de um bom software de vendas para pequenas empresas de construção? | 1 | 0 | 1 |
-| sim | 1 | 0 | 1 |
+| orçamento de esquadrias de alumínio | 2 | 0 | 54 |
+| orçamento esquadrias de aluminio | 2 | 0 | 62 |
+| vender para construtoras | 2 | 0 | 44 |
+| como vender projetos de arquitetura online | 1 | 0 | 77 |
+| contabilidade de uma vidraçaria | 1 | 0 | 35 |
+| pnl vendas | 1 | 0 | 81 |
+| quanto custa um crm para construção? | 1 | 0 | 1 |
+| quanto ganha um vidraceiro autônomo | 1 | 0 | 3 |
 
 ## YouTube
 
-176 inscritos · 78211 views no total · 14 Reels ainda na fila para subir.
-
-| vídeo da semana | views |
-|---|---:|
-| [“Esse arquiteto é muito chato” Arquiteto exigente é o parceiro que mais vale](https://youtu.be/xItyoPjIpUU) | 15 |
-| [“O material eu compro, você só cobra a mão de obra”](https://youtu.be/ag-S3nNb1ZM) | 11 |
-| [Venda é energia e gestão de emoção!](https://youtu.be/Byvau6slzaA) | 7 |
-| [“Ainda tem interesse?” Essa mensagem não ressuscita orçamento parado](https://youtu.be/XtVdzmol-ak) | 5 |
-| [Na negociação você costuma dar desconto ou uma cortesia?](https://youtu.be/8D6UHjzZmXI) | 2 |
+176 inscritos · 78400 views no total · 34 Reels ainda na fila para subir.
 
 ## Instagram
 
-11175 seguidores.
+11767 seguidores.
 
 ## De onde veio quem entrou no site
 
-46 sessão(ões) no período. Atribuição de **primeiro toque**.
+26 sessão(ões) no período. Atribuição de **primeiro toque**.
 
 | origem | sessões | leads |
 |---|---:|---:|
-| direto | 14 | 0 |
-| instagram | 12 | 0 |
-| outro/social | 10 | 0 |
-| youtube/video | 3 | 0 |
-| facebook/reel | 2 | 0 |
-| youtube/descricao | 1 | 0 |
-| threads/post | 1 | 0 |
-| facebook | 1 | 0 |
-| youtube | 1 | 0 |
-| outro | 1 | 0 |
+| direto | 15 | 0 |
+| instagram | 4 | 0 |
+| busca | 3 | 0 |
+| outro/social | 2 | 0 |
+| threads/post | 2 | 0 |
 
 Nenhum lead no período.
 
