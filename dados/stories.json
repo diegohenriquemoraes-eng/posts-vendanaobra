@@ -3201,5 +3201,30 @@
   "seguidores": 11644,
   "colhido_em": "2026-11-23 05:57",
   "stories": []
+ },
+ {
+  "dia": "2026-11-24",
+  "seguidores": 11793,
+  "colhido_em": "2026-11-24 07:51",
+  "stories": [
+   {
+    "id": "18091270823703380",
+    "hora": "10:38",
+    "tipo": "IMAGE",
+    "views": 73,
+    "reach": 54,
+    "replies": 0,
+    "navigation": 57
+   },
+   {
+    "id": "17919086994467713",
+    "hora": "10:39",
+    "tipo": "IMAGE",
+    "views": 65,
+    "reach": 42,
+    "replies": 0,
+    "navigation": 59
+   }
+  ]
  }
 ]
