@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "publicar | ensaio"
+        description: "publicar | ensaio | checar"
         default: ensaio
 concurrency:
   group: reel-teste
@@ -32,7 +32,7 @@ jobs:
         with: { ref: main }
       - name: postar
         run: |
-          if [ "${{ inputs.modo }}" = "ensaio" ]; then python reel-teste/publicar.py --ensaio; else python reel-teste/publicar.py; fi
+          if [ "${{ inputs.modo }}" = "ensaio" ]; then python reel-teste/publicar.py --ensaio; elif [ "${{ inputs.modo }}" = "checar" ]; then python reel-teste/publicar.py --checar; else python reel-teste/publicar.py; fi
       - name: gravar estado
         if: always()
         run: |

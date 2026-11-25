@@ -109,6 +109,20 @@ def devido(fila):
 
 def main():
     fila = json.loads(FILA.read_text(encoding="utf-8"))
+    if "--checar" in sys.argv:   # confere Drive, Release e token do Instagram sem publicar nada
+        at = drive_token()
+        for x in fila:
+            m = json.load(urllib.request.urlopen(urllib.request.Request(
+                f"https://www.googleapis.com/drive/v3/files/{x['video_drive']}?fields=name,size",
+                headers={"Authorization": "Bearer " + at})))
+            print(x["nome"], "drive ok", int(m["size"]) // 1000000, "MB")
+        if gh("release", "view", TAG, "-R", HOSPEDE).returncode:
+            print("release criado:", gh("release", "create", TAG, "-R", HOSPEDE, "--title", "Reel de teste (temporario)",
+                                         "--notes", "Arquivos temporarios para a Graph API do Instagram.").returncode == 0)
+        else:
+            print("release ok")
+        print("instagram:", chamada(API + IG + "?" + urllib.parse.urlencode({"fields": "username", "access_token": token()})).get("username"))
+        return
     item = devido(fila)
     if not item:
         log("nada devido agora")
