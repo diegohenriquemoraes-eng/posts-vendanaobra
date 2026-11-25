@@ -1,0 +1,42 @@
+name: Reel de teste
+# Reels de teste do @vendanaobra (so para quem nao segue), 21:00 de Brasilia = 00:00 UTC, com repescagens.
+# Veio do editor-nuvem (privado) em 25/11/2026: aqui o repo e publico e os minutos do Actions nao contam.
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "20 0 * * *"
+    - cron: "45 0 * * *"
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "publicar | ensaio"
+        default: ensaio
+concurrency:
+  group: reel-teste
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  postar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      IG_PUBLICAR_TOKEN: ${{ secrets.IG_PUBLICAR_TOKEN }}
+      DRIVE_CLIENT_ID: ${{ secrets.DRIVE_CLIENT_ID }}
+      DRIVE_CLIENT_SECRET: ${{ secrets.DRIVE_CLIENT_SECRET }}
+      DRIVE_REFRESH: ${{ secrets.DRIVE_REFRESH }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: postar
+        run: |
+          if [ "${{ inputs.modo }}" = "ensaio" ]; then python reel-teste/publicar.py --ensaio; else python reel-teste/publicar.py; fi
+      - name: gravar estado
+        if: always()
+        run: |
+          git config user.name "reel-teste"; git config user.email "reel-teste@users.noreply.github.com"
+          git add reel-teste/fila.json reel-teste/log.txt
+          git commit -qm "reel de teste: estado da fila" || exit 0
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
