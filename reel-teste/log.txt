@@ -8,3 +8,4 @@
 [27/11 02:47:03] IMG_1791 container 17956907520339625
 [27/11 02:48:09] PUBLICADO como teste IMG_1791 https://www.instagram.com/reel/DgO9otRzgdR/ {'id': '18027421481922616', 'is_shared_to_feed': False, 'media_product_type': 'REELS', 'permalink': 'https://www.instagram.com/reel/DgO9otRzgdR/'}
 [27/11 05:35:25] nada devido agora
+[27/11 06:04:23] nada devido agora
