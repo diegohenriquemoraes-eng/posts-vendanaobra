@@ -1471,11 +1471,11 @@
     "permalink": "https://www.instagram.com/reel/DgPxdiLR_VL/"
   },
   "17997762582102188": {
-    "tentativas": 1,
+    "tentativas": 2,
     "erro": "Pinterest blocked the destination link as suspected spam. Remove or change the link, or appeal the block with Pinterest.",
-    "zernio_post": "6b098b800df56a95ddc72abd",
+    "zernio_post": "6b0a02c64823cd07729802b0",
     "permalink": "https://www.instagram.com/reel/DgPc9kcvHc_/",
-    "tentado_em": "2026-11-27T13:56:17+00:00"
+    "tentado_em": "2026-11-27T22:23:09+00:00"
   },
   "18080949062440573": {
     "pulado": "sem legenda",
@@ -1487,5 +1487,13 @@
     "zernio_post": "6b09fa93723b8368e6b0e087",
     "permalink": "https://www.instagram.com/reel/DgQYYtchJPl/",
     "tentado_em": "2026-11-27T21:48:14+00:00"
+  },
+  "18650166307054964": {
+    "pulado": "sem legenda",
+    "permalink": "https://www.instagram.com/reel/DgQvUw_RnNY/"
+  },
+  "18118142531183865": {
+    "pulado": "sem legenda",
+    "permalink": "https://www.instagram.com/reel/DgQGID_R80d/"
   }
 }
