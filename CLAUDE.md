@@ -1127,3 +1127,9 @@ Em **24/08/2026**, ao publicar o corte 01, o `media_publish` devolveu
 mesmo**. Se o robô tivesse confiado no erro, o dia seguinte republicaria o mesmo
 corte. Desde então `publicar_reel.py` usa `_publicar_conferindo()`: no erro, ele
 espera 20s, lê o último Reel do feed e só falha de verdade se o feed não mudou.
+
+## Fluxos que vieram do editor-nuvem (26/11/2026)
+
+`editar-video.yml` (render de vídeo) e `repost-06h.yml` (repost das 06:00 do @vendanaobra) rodam aqui porque repo público não
+gasta minutos do Actions. Os dois fazem o checkout do repo privado `editor-nuvem` com o `GH_PAT`, rodam o código de lá e
+devolvem o resultado para lá. Nada do motor mora neste repo. Estado e regras: `Projetosditor-nuvem\RETOMAR.md`.
