@@ -1,0 +1,117 @@
+name: Editar video (motor do editor-nuvem)
+# Veio do editor-nuvem (privado) em 26/11/2026: os minutos gratis da conta acabaram e aqui, em repo publico, nao contam.
+# O CODIGO continua no repo privado: este fluxo so faz o checkout dele com o GH_PAT, roda e devolve o resultado para la.
+# Publico aqui: os logs e, por 1 dia, os pedacos do video (artefatos).
+# preparar: transcreve, acha rosto/texto/cortes (o Claude confere e pode corrigir)
+# render:   plano (fundo) -> pedacos de ~20 s EM PARALELO, uma maquina cada -> juntar e entregar no Drive
+# tudo:     preparar + render sem parar para conferencia
+on:
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "pasta do job (jobs/<id>)"
+        required: true
+      etapa:
+        description: "preparar | render | tudo"
+        default: render
+concurrency:
+  group: editar-${{ inputs.job }}
+permissions:
+  contents: read
+env:
+  G_CLIENT_ID: ${{ secrets.DRIVE_CLIENT_ID }}
+  G_CLIENT_SECRET: ${{ secrets.DRIVE_CLIENT_SECRET }}
+  G_REFRESH: ${{ secrets.DRIVE_REFRESH }}
+  GROQ_KEY: ${{ secrets.GROQ_API_KEY }}
+  GH_TOKEN: ${{ secrets.GH_PAT }}
+  TRABALHO: ${{ github.workspace }}/_trabalho
+  FFMPEG_URL: https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz
+jobs:
+  plano:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      pedacos: ${{ steps.p.outputs.pedacos }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: diegohenriquemoraes-eng/editor-nuvem, token: "${{ secrets.GH_PAT }}", ref: main }
+      - name: ferramentas
+        run: |
+          curl -sL $FFMPEG_URL | tar xJ && echo "$PWD/$(ls -d ffmpeg-master-*)/bin" >> $GITHUB_PATH
+          pip install -q "opencv-python-headless<5" numpy
+      - name: preparar
+        if: inputs.etapa != 'render'
+        run: |
+          python -m nuvem.editar "${{ inputs.job }}" preparar
+          git config user.name "editor-nuvem"; git config user.email "editor-nuvem@users.noreply.github.com"
+          git add "${{ inputs.job }}"; git commit -qm "job ${{ inputs.job }}: preparar" || true
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
+      - id: p
+        if: inputs.etapa != 'preparar'
+        run: |
+          python -m nuvem.editar "${{ inputs.job }}" plano | tee plano.log
+          git config user.name "editor-nuvem"; git config user.email "editor-nuvem@users.noreply.github.com"
+          git add "${{ inputs.job }}"; git commit -qm "job ${{ inputs.job }}: legenda" || true
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
+          echo "pedacos=$(grep '^PEDACOS=' plano.log | cut -d= -f2)" >> $GITHUB_OUTPUT
+
+  pedacos:
+    needs: plano
+    if: inputs.etapa != 'preparar'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        i: ${{ fromJSON(needs.plano.outputs.pedacos) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: diegohenriquemoraes-eng/editor-nuvem, token: "${{ secrets.GH_PAT }}", ref: main }
+      - name: ferramentas
+        run: |
+          curl -sL $FFMPEG_URL | tar xJ && echo "$PWD/$(ls -d ffmpeg-master-*)/bin" >> $GITHUB_PATH
+          pip install -q "opencv-python-headless<5" numpy
+          if python -c "import json,sys;p=json.load(open('${{ inputs.job }}/pedido.json'));sys.exit(0 if p.get('recorte') else 1)"; then
+            sudo apt-get install -y -qq libegl1 libgles2 libgl1 >/dev/null
+            pip install -q mediapipe && pip install -q --force-reinstall --no-deps "opencv-python-headless<5"
+          fi
+      - name: biblioteca do fundo
+        run: |
+          read LAYOUT FUNDO ROT <<< $(python -c "import json;p=json.load(open('${{ inputs.job }}/pedido.json'));print(p.get('layout','dividida'), p.get('fundo','gta6'), 1 if p.get('fundo_roteiro') else 0)")
+          if [ "$LAYOUT" = "dividida" ] && [ "$ROT" = "0" ]; then
+            mkdir -p _trabalho/lib/$FUNDO && gh release download biblioteca-$FUNDO -D _trabalho/lib/$FUNDO --clobber
+          fi
+      - run: python -m nuvem.editar "${{ inputs.job }}" pedaco ${{ matrix.i }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pedaco-${{ matrix.i }}
+          path: _trabalho/pedaco_${{ matrix.i }}.mp4
+          retention-days: 1
+          compression-level: 0
+
+  juntar:
+    needs: pedacos
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: diegohenriquemoraes-eng/editor-nuvem, token: "${{ secrets.GH_PAT }}", ref: main }
+      - name: ferramentas
+        run: curl -sL $FFMPEG_URL | tar xJ && echo "$PWD/$(ls -d ffmpeg-master-*)/bin" >> $GITHUB_PATH
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pedaco-*
+          path: _trabalho
+          merge-multiple: true
+      - name: biblioteca do fundo
+        run: |
+          read LAYOUT FUNDO ROT <<< $(python -c "import json;p=json.load(open('${{ inputs.job }}/pedido.json'));print(p.get('layout','dividida'), p.get('fundo','gta6'), 1 if p.get('fundo_roteiro') else 0)")
+          if [ "$LAYOUT" = "dividida" ] && [ "$ROT" = "0" ]; then
+            mkdir -p _trabalho/lib/$FUNDO && gh release download biblioteca-$FUNDO -D _trabalho/lib/$FUNDO --clobber
+          fi
+      - run: python -m nuvem.editar "${{ inputs.job }}" juntar
+      - name: devolver resultado ao repo
+        run: |
+          git config user.name "editor-nuvem"; git config user.email "editor-nuvem@users.noreply.github.com"
+          git add "${{ inputs.job }}"; git commit -qm "job ${{ inputs.job }}: entregue" || exit 0
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
