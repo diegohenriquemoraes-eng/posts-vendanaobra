@@ -10,3 +10,6 @@
 [27/11 05:35:25] nada devido agora
 [27/11 06:04:23] nada devido agora
 [27/11 06:51:09] nada devido agora
+[28/11 02:27:29] baixado do Drive: 215 MB
+[28/11 02:27:39] IMG_1792 container 17957027703339625
+[28/11 02:28:40] PUBLICADO como teste IMG_1792 https://www.instagram.com/reel/DgRgNcjhuGW/ {'id': '18113994095351529', 'is_shared_to_feed': False, 'media_product_type': 'REELS', 'permalink': 'https://www.instagram.com/reel/DgRgNcjhuGW/'}
